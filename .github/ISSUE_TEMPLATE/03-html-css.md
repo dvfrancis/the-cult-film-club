@@ -1,6 +1,6 @@
 ---
 name: HTML & CSS
-about: Create an issue relating to this project's HTML or CSS
+about: Create an issue related to HTML or CSS
 title: 'HTML & CSS - '
 labels: enhancement
 assignees: dvfrancis

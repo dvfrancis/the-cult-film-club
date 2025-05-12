@@ -1,6 +1,6 @@
 ---
 name: JavaScript
-about: Create an issue relating to this project's JavaScript
+about: Create an issue related to JavaScript
 title: 'JAVASCRIPT - '
 labels: enhancement
 assignees: dvfrancis

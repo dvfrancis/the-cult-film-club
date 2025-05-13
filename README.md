@@ -26,12 +26,12 @@ This website serves as the central hub for the Craftr event, providing informati
 
 ### Site Preview
 
-![A preview of the Hi-Lo website at various screen sizes](assets/images/site-preview.webp)
+![A preview of the Cult Film Club website at various screen sizes](assets/images/site-preview.webp)
 
 ### Site Link
 
-[live site]: https://craftr-bfd2923e1ca4.herokuapp.com/
-The [live site] is hosted by Heroku.
+[live site]: https://the-cult-film-club-82f85068dd71.herokuapp.com
+I have used Heroku as the host for the [live site].
 
 ### GitHub Repository
 [here]: https://github.com/dvfrancis/craftr

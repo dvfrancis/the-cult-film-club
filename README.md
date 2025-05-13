@@ -40,11 +40,11 @@ Whether you're hunting down an obscure horror flick, an 80s sci-fi oddity, or a 
 ### Site Link
 
 [live site]: https://the-cult-film-club-82f85068dd71.herokuapp.com
-I have used Heroku as the host for the [live site].
+Heroku is the host of the [live site].
 
 ### GitHub Repository
-[here]: https://github.com/dvfrancis/craftr
-Click [here] to access the GitHub repository.
+[here]: https://github.com/dvfrancis/the-cult-film-club
+The GitHub repository is [here].
 
 ## Index
 

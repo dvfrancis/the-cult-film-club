@@ -4,25 +4,34 @@
 
 ## Overview
 
-Craftr (pronounced as 'Crafter') is an annual online (fictional) event dedicated to digital crafting, bringing together creative minds from around the world to explore the latest innovations in crafting technology. Held over three days every April, this year's event will take place from 21 to 23 April 2025.
+**The Cult Film Club – A Home for Movie Rebels!**
 
-Digital crafting is the fusion of technology with creativity, enabling individuals to design and make unique projects with precision and innovation. This evolving field spans a variety of crafts, including:
+*Rewind the past. Collect the Future*
 
-- **Paper and Card** - ranging from scrapbooking to personalised greeting cards.
+The Cult Film Club isn’t just an e-commerce site, it's a sanctuary - dedicated to cult cinema in all its glory. It’s a celebration of the films that defy expectations and build devoted communities, whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media, helping to ensure you own a piece of cinematic history.
 
-- **Vinyl and Decal** - stickers, signage, decals, and vinyl applications.
+The website offers:
 
-- **Graphic Design** - custom artwork for t-shirts, drinkware, and other items.
+- **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious and not-so-serious collector alike.
+- **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t see in retail stores.
+- **The Cult Film Club loyalty card** - save money while you shop with The Cult Film Club loyalty card…collect points to exchange for discounts on any release.
+- **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered straight to your door.
 
-- **Fabric** - intricate embroidery, textile design, and fabric embellishments.
+Key features:
 
-- **3D Modelling** - digital sculpting that brings ideas to life.
+- **Product catalogue and search** - a comprehensive, searchable database of cult films with detailed descriptions, pricing, and availability.
+- **User accounts and authentication** - secure user registration and authentication, customer order management, and customer-created "Collector's Vault" watchlist.
+- **Shopping cart and checkout** - a streamlined shopping experience with basket management, discount codes, loyalty points, and free shipping for larger orders.
+- **Admin dashboard** - robust backend tools for inventory management, sales tracking, and order fulfilment.
+- **Community** - users can share selected films to their social media platforms.
 
-- **Laser Cutting** - creating, cutting, and embellishing unique designs for anything including jewellery, signage, and other items.
+**Why The Cult Film Club?**
 
-To achieve professional results, many digital crafters utilise cutting machines such as those produced by [Cricut](https://cricut.com/en-gb/) and [Silhouette](https://www.silhouetteamerica.com/), or even laser cutters like [Glowforge](https://glowforge.com/), to create intricate and precise designs that can be applied to a variety of materials.
+At its heart, The Cult Film Club is built on the love of cinema that breaks the rules. Some films go beyond simple entertainment - they provoke thought, spark discussion, and find audiences who cherish them for life. We believe that these movies deserve physical collections, not just digital files that might disappear after the next software update.
 
-This website serves as the central hub for the Craftr event, providing information about the event, allowing participants to create accounts, browse, and register for available classes. Whether a beginner looking to experiment with digital crafting or an expert seeking new techniques, Craftr is the perfect platform for anyone to connect, learn, and create.
+For casual moviegoers curious about diving into the world of cult cinema, this is your gateway, and for seasoned collectors, this is your treasure trove.
+
+Whether you're hunting down an obscure horror flick, an 80s sci-fi oddity, or a forgotten indie masterpiece, you’ve come to the right place - welcome to The Cult Film Club - where movies find their true fans.
 
 ### Site Preview
 

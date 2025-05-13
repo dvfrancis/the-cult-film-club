@@ -8,19 +8,19 @@
 
 *Rewind the past. Collect the Future*
 
-The Cult Film Club isn’t just an e-commerce site, it's a sanctuary - dedicated to cult cinema in all its glory. It’s a celebration of the films that defy expectations and build devoted communities, whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media, helping to ensure you own a piece of cinematic history.
+The Cult Film Club isn’t just an e-commerce site, it's a sanctuary - dedicated to cult cinema in all its glory. It’s a celebration of the films that defy expectations and build devoted communities, whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media! Helping to ensure you own a piece of cinematic history.
 
 The website offers:
 
 - **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious and not-so-serious collector alike.
 - **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t see in retail stores.
 - **The Cult Film Club loyalty card** - save money while you shop with The Cult Film Club loyalty card…collect points to exchange for discounts on any release.
-- **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered straight to your door.
+- **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered to your door.
 
 Key features:
 
 - **Product catalogue and search** - a comprehensive, searchable database of cult films with detailed descriptions, pricing, and availability.
-- **User accounts and authentication** - secure user registration and authentication, customer order management, and customer-created "Collector's Vault" watchlist.
+- **User accounts and authentication** - secure user registration and authentication, customer order management, and customer-created "Collector's Vault" wish-list.
 - **Shopping cart and checkout** - a streamlined shopping experience with basket management, discount codes, loyalty points, and free shipping for larger orders.
 - **Admin dashboard** - robust backend tools for inventory management, sales tracking, and order fulfilment.
 - **Community** - users can share selected films to their social media platforms.
@@ -31,7 +31,7 @@ At its heart, The Cult Film Club is built on the love of cinema that breaks the 
 
 For casual moviegoers curious about diving into the world of cult cinema, this is your gateway, and for seasoned collectors, this is your treasure trove.
 
-Whether you're hunting down an obscure horror flick, an 80s sci-fi oddity, or a forgotten indie masterpiece, you’ve come to the right place - welcome to The Cult Film Club - where movies find their true fans.
+Whether you're hunting down an obscure horror flick, an 80s sci-fi oddity, or a forgotten indie masterpiece, you’ve come to the right place - The Cult Film Club - where movies find their true fans.
 
 ### Site Preview
 
@@ -91,142 +91,215 @@ The GitHub repository is [here].
 
 ### Project Board
 
-- A GitHub [project board](https://github.com/users/dvfrancis/projects/6) was used throughout the implementation process to keep track of all project-related tasks, such as adding features, handling bugs, and fulfilling user stories.
+- The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4). Amongst other things, it was used to track tasks, feature additions, bugs, and user stories.
 
    <details>
     <summary>Click to view a screenshot of the project board</summary>
             
-    ![Project board](assets/images/project-board-overview.webp)
+    ![Project board](assets/images/milestone-four-project-board-overview.webp)
     </details>
 
-- Each task was categorised with the relevant milestone and labels (including [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) categorisation).
-- The MoSCoW prioritisation of all 89 tasks in the project is split as follows:
+- Each task was assigned to a milestone, with relevant labels and [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) categories.
+- The MoSCoW project split was as follows:
 
 | Type | Total | % Total |
 | --- | --- | --- |
-| Must Have | 27 | 30% |
-| Should Have | 6 | 7% |
-| Could Have | 0 | 0% |
-| Won't Have | 4 | 5% |
-| Not Categorised | 52 | 58% |
-| TOTALS | 89 | 100% |
+| Must Have | TBC | TBC% |
+| Should Have | TBC | TBC% |
+| Could Have | TBC | TBC% |
+| Won't Have | TBC | TBC% |
+| Uncategorised | TBC | TBC% |
+| TOTALS | TBC | 100% |
 
-These figures are well within the usual "60% Must Haves / 20% Should Haves / 20% Could Haves" percentage split.
+When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could Haves" split, the project easily meets all criteria.
 
 <details>
   <summary>Click to view a screenshot of a project task</summary>
 
-  ![Project task](assets/images/project-board-task.webp)
+  ![Project task](assets/images/milestone-four-project-board-task.webp)
 </details>
 
 ### Strategy
 
 #### Key Business Goals
 
-- Attract crafters of all levels to participate, learn something new, and share their positive experiences of the event.
-- The organisers of the event will see value from increased numbers of people visiting the website, the positive word-of-mouth generated, and more sign-ups to their mailing list.
-- The home page will engage visitors' interests, while encouraging them to sign up for one or more of the classes being run across the event.
+- Grow a loyal customer base through brand identity, implementation of a loyalty program ,and fostering an engaged community.
+- Drive revenue through website sales by offering exclusive editions, through optimised pricing strategies, and expansion of the core product catalogue.
+- Improve shopping experience via an easy but secure checkout process, user interface optimisation, and fast and reliable shipping (including free delivery for larger orders).
+- Expand market reach and brand awareness through digital marketing and SEO practices, partnering with film distributors, and building a name in forums, on social media, and in film communities.
+- Establish a sustainable business model through streamlined inventory management, cost-effective supply chain, and exploration of subscription models.
 
 #### Key User Goals
 
-- The potential to learn a new craft, or something new about a craft with which they are familiar.
-- Enjoy a positive and useful experience without having to spend any money.
-- Link up with like-minded people through social media, to share their thoughts on the event.
+- Discover and explore cult films via a curated collection, searchable by keyword / genre / format, learning about individual films through their detailed item information.
+- Build a personal collection through purchase and by maintaining a curated wish-list on the website that can be used to track special editions and other releases.
+- Maximise opportunities to earn rewards through regular purchasing and redeeming accumulated reward points.
+- Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings.
+- Shop with confidence via a hassle-free checkout experience utilising a secure, reliable payment service.
 
 #### User Experience
 
 - Target audience:
-    - Anyone 13 or older who enjoys using technology and being creative. 
-    - Teenager, student, employed, or retired.
-    - Has an interest in arts and crafts.
-    - Those with an interest in the potential of taking a hobby and turning it into a source of income.
-    - Someone looking for a productive but relaxing way to spend their free time.
+    - Film enthusiasts (aged 18+) who appreciate unconventional, offbeat, and genre-defining films.
+    - Users may identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genres, person driven by nostalgia, movie buff, social sharer, member of an alternative subculture communities.
+    - May have an interest in rare or limited edition releases.
+    - Values physical ownership over digital streaming.
+    - Engages in movie discussions, reviews, and fan theories.
  
 #### User Expectations
 
-- The website:
-    - is intuitive, accessible, responsive, and easy to navigate.
-    - has a design that visitors will immediately understand, and be able to use; for example, HTML elements behave in the way most people would expect.
-    - contains useful information that will prompt a visitor to sign up for classes.
-    - is designed to appeal to those who are creative, and possibly enjoy crafting, and help them feel comfortable and welcome.
-    - allows a user to register their details so that they can bookmark or register for interesting classes.
+- A carefully curated, but wide, selection of authentic cult films, including rare editions.
+- A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality. Product descriptions should be comprehensive and engaging.
+- Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout, while being able to easily redeem and track loyalty points balance.
+- High-quality physical media, in a wide variety of formats, which are well-packaged and with a focus on film preservation, bonus content, and collectible value.
+- Community engagement and social features allow users to share discoveries, recommend, and discuss films with others.
+- Reliable customer service through responsive support, and efficient handling of returns and refunds. Loyalty card members may also receive exclusive perks and priority assistance.
 
 #### User Stories
 
 ##### First time visitor goals
-    
-- "What is Craftr about?”
-- “What training is being given?”
-- "When do the classes happen?"
-- “How do I sign up?”
+
+First-time visitors to The Cult Film Club will likely have different goals compared to returning customers or seasoned collectors.
+
+- "What is The Cult Film Club about?”
+- "What films are available?"
+- “Which films are classed as 'Cult Classics'?”
+- "How much do different films cost?"
+- “Does the website accept discount codes?”
+- "Do I get rewarded for multiple purchases?"
+- "How do other users of the site rate the films?"
         
 ##### Returning visitor goals
+
+Returning visitors to The Cult Film Club will likely have different priorities than first-time users. They’ve already explored the site, so their goals will be more focused on engagement, purchases, and expanding their collection.
     
-- “What other classes am I interested in attending?”
-- "When is my class due to start?"
-- "Where can I keep track of the classes I've signed up for?"
+- “What new films are available?”
+- "Is it possible to bookmark films for later purchase?"
+- "How do I share my favourite films wth others?"
+- "How do I pay for my purchases?"
+- "Where can I see a list of my orders?"
     
 ##### Frequent visitor goals
+
+Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and likely see the site as their go-to destination for cult cinema.
     
-- “Who running my class?”
-- "How do I cancel my class enrolment?"
-- "How can I contact the organisers of this event?"
+- "Are there any special, or limited, editions available?"
+- "How many loyalty points do i have?"
+- "How many copies are available of a particular film?"
+- "Can I get priority shipping for my purchase?"
+- "Do you have a website newsletter I can join?"
 
 #### User Personas
 
-The website is designed to appeal to all demographics, but the following personas are meant to represent a range of potential users:
+#### User 1 ("The dedicated collector")
 
-- User 1: Female aged 20-50, enthusiast who wants to develop her crafting skills, loves creating things, unsure where to start.
-- User 2: Male aged 18-35, looking for a way to relax, enjoys new hobbies, limited knowledge about the subject.
-- User 3: Female aged 25-45, looking for free training, enjoys connecting with others, hasn't been able to find many beginner-friendly workshops.
+Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He owns a large collection of films and wants to better track upcoming releases and items on his wish-list:
 
-##### User 1
+“As a dedicated collector, I want to find rare and exclusive releases so that I can expand my collection with unique items.”
 
-“I really enjoy crafting but I'm not sure how to improve my abilities.”
+##### Acceptance Criteria
 
-###### Acceptance Criteria
-
-- Ensure users of all skill levels (beginner to advanced) find suitable classes ([see issue #55](https://github.com/dvfrancis/craftr/issues/55)) .
-- Provide an intuitive way to navigate the site and discover content ([see issue #56](https://github.com/dvfrancis/craftr/issues/56)).
-- Enable users to create accounts and track enrolments ([see issue #59](https://github.com/dvfrancis/craftr/issues/59)).
+- Users can filter products by limited edition, collector’s sets, and special packaging ([see issue #TBC](TBC)).
+- Detailed descriptions include bonus features, remastered quality, and exclusive content ([see issue #TBC](TBC)).
+- Users receive notifications for pre-orders and restocks of highly sought-after films ([see issue #TBC](TBC)).
     
-###### Tasks
+##### Tasks
 
-- Label each class with its appropriate skill level.
-- Design an intuitive navigation menu for easy browsing.
-- Develop a user-friendly account creation and class tracking system.
+- Implement a filtering system for exclusive releases, special packaging, and remastered editions.
+- Add detailed metadata for each product, including bonus features and collector’s notes.
+- Set up an email or site notification system for pre-orders and restocked items.
+
+#### User 2 ("The casual cult fan")
+
+Male, aged 36, enjoys cult films but hasn't built a huge collection yet. He is overwhelmed by choice and is unsure where to start; needs guidance on what films to add to his collection:
+
+"As a casual cult film fan, I want to explore recommendations so that I can easily discover great movies without feeling overwhelmed."
+
+##### Acceptance Criteria
+
+- A “Starter Picks” section highlights must-watch cult films for newcomers ([see issue #TBC](TBC)).
+- Implement curated lists with filter options for casual users ([see issue #TBC](TBC)).
+- Integrate trailers and short film descriptions to help users make informed decisions ([see issue #TBC](TBC)).
+
+##### Tasks
+
+- Design a “Starter Picks” section with featured cult classics.
+- Implement curated lists with filter options for casual users.
+- Integrate trailers and short film descriptions to help users make informed decisions.
+
+#### User 3 ("The nostalgic film buff")
+
+Female, aged 55, wants to revisit films she grew up watching. Struggles to find older films that may not be on typical streaming services due to licensing issues:
+
+“As a nostalgic movie fan, I want to find classic films from past decades so that I can relive the cinematic experiences of my youth.”
+
+##### Acceptance Criteria
+
+- Users can filter films by decade (for example, 1970s) ([see issue #TBC](TBC)).
+- Categories highlight remastered versions, director’s cuts, and vintage favourites ([see issue #TBC](TBC)).
+- A special “Throwback Collection” section spotlights beloved cult hits ([see issue #TBC](TBC)).
     
-##### User 2
+##### Tasks
 
-“I came across this website by accident, it looks really interesting. Where do I start?”
+- Implement a decade-based filter for users to explore films by era.
+- Create a “Throwback Collection” landing page showcasing retro films.
+- Highlight remastered editions and director’s cuts in product descriptions.
 
-###### Acceptance Criteria
+#### User 4 ("The genre-specific fan")
 
-- Make diverse craft types visible and engaging on the homepage ([see issue #57](https://github.com/dvfrancis/craftr/issues/57)).
-- Ensure information is easily accessible for first-time visitors ([see issue #58](https://github.com/dvfrancis/craftr/issues/58)).
-- Create an inviting and user-friendly interface ([see issue #57](https://github.com/dvfrancis/craftr/issues/57)).
+Female, aged 32, devoted to a specific genre. Frustrated when cult subgenres are ignored and wants better curation for niche categories:
+
+“As a horror/sci-fi/arthouse enthusiast, I want deep-cut recommendations so that I can discover obscure films in my favourite genre.”
+
+##### Acceptance Criteria
+
+- Users can filter by specific subgenres (for example, “Grindhouse”, “Psychological Horror", or “Surreal Sci-Fi”) ([see issue #TBC](TBC)).
+- Genre pages include staff picks, community favourites, and rare titles ([see issue #TBC](TBC)).
+- Users can sign up to a genre-specific newsletter that highlights rare or obscure films ([see issue #TBC](TBC)).
     
-###### Tasks
+##### Tasks
 
-- Design an engaging homepage that showcases various craft types.
-- Ensure class details are prominently displayed and easy to locate.
-- Develop a clean and welcoming website layout.
+- Implement a subgenre-based filtering system for deep-cut movie discovery.
+- Design individual genre pages with hand-picked recommendations.
+- Add ability to select a genre when signing up for the website newsletter.
 
-##### User 3
+#### User 5 ("The digital escapee")
 
-“I'm seeking accessible training courses that I can attend with confidence.”
+Male, aged 29, wants to move away from streaming services and embrace physical media. Frustrated when streaming services remove or censor films, but needs educating about formats, restoration quality, and the benefits of physical media:
 
-###### Acceptance Criteria
+“As a film collector moving away from streaming, I want to build a physical media library so that I can ensure my favourite movies don’t become unavailable.”
 
-- Ensure class information is detailed and easily accessible ([see issue #60](https://github.com/dvfrancis/craftr/issues/60)).
-- Clearly outline instructor details and course descriptions ([see issue #60](https://github.com/dvfrancis/craftr/issues/60)).
-- Make sharing information simple and effective ([see issue #54](https://github.com/dvfrancis/craftr/issues/54)).
+##### Acceptance Criteria
+
+- A “Why Own Physical Media?” section explains the benefits of DVDs/Blu-rays over streaming ([see issue #TBC](TBC)).
+- Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #TBC](TBC)).
+- Film pages highlight physical media exclusives (commentary tracks, booklet inserts, etc) ([see issue #TBC](TBC)).
     
-###### Tasks
+##### Tasks
 
-- Maintain a well-organized and searchable class directory.
-- Provide comprehensive course descriptions, including instructor details.
-- Implement easy-to-use social media sharing features.
+- Write and design a “Why Own Physical Media?” information page.
+- Develop a wish-list system ("Collector’s Vault") for tracking future purchases.
+- Ensure film listings clearly highlight physical media exclusives like special features.
+
+#### User 6 ("The social sharer")
+
+Male, aged 22, loves discussing his favourite films in cult film communities. Wants an easy way to share information to social media, and cheaper pricing options (not interested in collector editions):
+
+“As a social film enthusiast, I want to share my favourite discoveries so that I can introduce my friends to cult cinema.”
+
+##### Acceptance Criteria
+
+- Users can share film listings directly to any social media platform ([see issue #TBC](TBC)).
+- Users can rate any film on the website ([see issue #TBC](TBC)).
+- A “Highly Rated Cult Films” section highlights popular films ([see issue #TBC](TBC)).
+    
+##### Tasks
+
+- Implement social media sharing buttons for easy film recommendations.
+- Develop a rating system so users can leave feedback. 
+- Add a “Highly Rated Cult Films” section showcasing popular films.
+
+# DETAILS AFTER THIS POINT ARE SUBJECT TO CHANGE
 
 ### Scope
 
@@ -935,17 +1008,17 @@ All fonts were sourced from Google Fonts, and were used as follows:
     - details.html/6 used [The man is working with laser cutter machine and takes out the...](https://depositphotos.com/photo/the-man-is-working-with-laser-cutter-machine-and-takes-out-the-f-316435016.html)
     - details.html/7 used [Clothes with shopping bags](https://depositphotos.com/illustration/clothes-with-shopping-bags-173885524.html)
     - details.html/8 used [Party animal face stickers](https://depositphotos.com/vector/party-animal-face-stickers-10780069.html)
-    - details.html/9 used [Woman embroidering white shirt with colorful threads at wooden table, closeup. Ukrainian national clothes](https://depositphotos.com/photo/woman-embroidering-white-shirt-colorful-threads-wooden-table-closeup-ukrainian-602283612.html)
+    - details.html/9 used [Woman embroidering white shirt with colorful threads at wooden table, close-up. Ukrainian national clothes](https://depositphotos.com/photo/woman-embroidering-white-shirt-colorful-threads-wooden-table-closeup-ukrainian-602283612.html)
     - details.html/10 used [Luxury dining table in a restaurant, Arcos de San Miguel, San Miguel de Allende, Guanajuato, Mexico](https://depositphotos.com/editorial/luxury-dining-table-restaurant-arcos-san-miguel-san-miguel-allende-189720010.html)
     - details.html/11 used [Beautiful girl with three-dimensional printer](https://depositphotos.com/photo/beautiful-girl-with-three-dimensional-printer-73995545.html)
     - details.html/12 used [Cropped image of woman adding wooden balloon to scrapbooking postcard cover](https://depositphotos.com/photo/cropped-image-woman-adding-wooden-balloon-scrapbooking-postcard-cover-174748548.html)
     - details.html/13 used [Custom t-shirt. Using heat press to print image of giraffe blowing bubble gum](https://depositphotos.com/photo/custom-shirt-using-heat-press-print-image-giraffe-blowing-bubble-684334190.html)
-    - details.html/14 used [A laser engraving machine cuts out a picture on a gold glossy plastic plate. Closeup](https://depositphotos.com/photo/laser-engraving-machine-cuts-out-picture-gold-glossy-plastic-plate-362491484.html)
+    - details.html/14 used [A laser engraving machine cuts out a picture on a gold glossy plastic plate. close-up](https://depositphotos.com/photo/laser-engraving-machine-cuts-out-picture-gold-glossy-plastic-plate-362491484.html)
     - details.html/15 used [3D model review](https://depositphotos.com/photo/3d-model-review-5424533.html)
     - details.html/16 used [Business card template](https://depositphotos.com/vector/business-card-template-152005556.html)
     - details.html/18 used [Punch needle. Asian Woman making handmade Hobby knitting in studio workshop. designer workplace Handmade craft project DIY embroidery concept](https://depositphotos.com/photo/punch-needle-asian-woman-making-handmade-hobby-knitting-studio-workshop-665145098.html)
     - details.html/17 used [Man working with leather](https://depositphotos.com/photo/man-working-with-leather-99783124.html)
-    - details.html/19 used [Beautiful woman with elegant jewelry on blurred background, closeup](https://depositphotos.com/photo/beautiful-woman-elegant-jewelry-blurred-background-closeup-372701716.html)
+    - details.html/19 used [Beautiful woman with elegant jewellery on blurred background, close-up](https://depositphotos.com/photo/beautiful-woman-elegant-jewelry-blurred-background-closeup-372701716.html)
     - details.html/20 used [Golden floral decoration with marbles and colorful background](https://depositphotos.com/photo/golden-floral-decoration-marbles-colorful-background-339786702.html)
     - details.html/21 used [Scrapbook craft product handmade](https://depositphotos.com/photo/scrapbook-craft-product-handmade-104769942.html)
     - details.html/22 used [Valentine's day background with wooden heart. Red background](https://depositphotos.com/photo/valentine-day-background-wooden-heart-red-background-437749632.html)
@@ -993,7 +1066,7 @@ The following images are only used when no class, instructor, or user image has 
 - [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) website accessibility checker.
 - [Responsive Web Design Checker](https://responsivedesignchecker.com/) website responsiveness checker.
 - [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/) CSS reset code.
-- [Website Mockup Generator](https://websitemockupgenerator.com/) previewing website oon different devices.
+- [Website mock-up Generator](https://websitemockupgenerator.com/) previewing website oon different devices.
 - [Deposit Photos](https://depositphotos.com/) images.
 - [Sarah Renae Clarke's Colour Catalogue V2](https://sarahrenaeclark.com/color-palettes/) colours.
 - [Free Convert WebP Converter](https://www.freeconvert.com/webp-converter) any image to webp converter.

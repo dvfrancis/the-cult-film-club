@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "apps.home",
-    "apps.about",
+    "the_cult_film_club.apps.home",
+    "the_cult_film_club.apps.about",
 ]
 
 MIDDLEWARE = [

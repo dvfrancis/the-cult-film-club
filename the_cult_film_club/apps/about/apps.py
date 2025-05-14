@@ -3,4 +3,4 @@ from django.apps import AppConfig
 
 class AboutConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
-    name = "apps.about"
+    name = "the_cult_film_club.apps.about"

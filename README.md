@@ -235,7 +235,7 @@ Male, aged 29, wants to move away from streaming services and embrace physical m
 
 ##### Acceptance Criteria
 
-- A “Why Own Physical Media?” section explains the benefits of DVDs/Blu-rays over streaming ([see issue #TBC](TBC)).
+- A “Why Own Physical Media?” section explains the benefits of physical media, over streaming ([see issue #TBC](TBC)).
 - Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #TBC](TBC)).
 - Releases highlight whether a film was / has been censored ([see issue #TBC](TBC)).
     

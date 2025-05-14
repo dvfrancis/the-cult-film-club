@@ -4,30 +4,30 @@
 
 ## Overview
 
-**The Cult Film Club – A Home for Movie Rebels!**
+**A Home for Movie Rebels!**
 
 *Rewind the past. Collect the Future*
 
-The Cult Film Club isn’t just an e-commerce site, it's a sanctuary - dedicated to cult cinema in all its glory. It’s a celebration of the films that defy expectations and build devoted communities, whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media! Helping to ensure you own a piece of cinematic history.
+The Cult Film Club isn’t just an e-commerce site, it's a celebration of cinema that defies expectation and builds devoted communities. Whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media! Helping to ensure you own a piece of cinematic history.
 
 The website offers:
 
-- **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious and not-so-serious collector alike.
-- **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t see in retail stores.
-- **The Cult Film Club loyalty card** - save money while you shop with The Cult Film Club loyalty card…collect points to exchange for discounts on any release.
+- **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious (and not-so-serious) collector alike.
+- **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t find in retail stores.
+- **Loyalty scheme** - save money while you shop with The Cult Film Club loyalty card…collect points and exchange them for future discounts.
 - **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered to your door.
 
 Key features:
 
 - **Product catalogue and search** - a comprehensive, searchable database of cult films with detailed descriptions, pricing, and availability.
-- **User accounts and authentication** - secure user registration and authentication, customer order management, and customer-created "Collector's Vault" wish-list.
-- **Shopping cart and checkout** - a streamlined shopping experience with basket management, discount codes, loyalty points, and free shipping for larger orders.
+- **User accounts and authentication** - secure user registration and authentication, customer order management, and "Collector's Vault" wish-list.
+- **Shopping cart and checkout** - a streamlined shopping experience with basket management, discount codes, loyalty points, and free shipping on larger orders.
 - **Admin dashboard** - robust backend tools for inventory management, sales tracking, and order fulfilment.
 - **Community** - users can share selected films to their social media platforms.
 
 **Why The Cult Film Club?**
 
-At its heart, The Cult Film Club is built on the love of cinema that breaks the rules. Some films go beyond simple entertainment - they provoke thought, spark discussion, and find audiences who cherish them for life. We believe that these movies deserve physical collections, not just digital files that might disappear after the next software update.
+At its heart, The Cult Film Club is built on the love of cinema that breaks the rules. Some films go beyond simple entertainment - they provoke thought, spark discussion, and find audiences who cherish them for life. We believe that these movies deserve physical releases - not just digital access that might disappear after the next software update.
 
 For casual moviegoers curious about diving into the world of cult cinema, this is your gateway, and for seasoned collectors, this is your treasure trove.
 
@@ -111,7 +111,7 @@ The GitHub repository is [here].
 | Uncategorised | TBC | TBC% |
 | TOTALS | TBC | 100% |
 
-When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could Haves" split, the project easily meets all criteria.
+The project comfortably aligns with all requirements, adhering to the widely recognised distribution of 60% Must-Haves, 20% Should-Haves, and 20% Could-Haves.
 
 <details>
   <summary>Click to view a screenshot of a project task</summary>
@@ -123,16 +123,16 @@ When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could 
 
 #### Key Business Goals
 
-- Grow a loyal customer base through brand identity, implementation of a loyalty program ,and fostering an engaged community.
-- Drive revenue through website sales by offering exclusive editions, through optimised pricing strategies, and expansion of the core product catalogue.
-- Improve shopping experience via an easy but secure checkout process, user interface optimisation, and fast and reliable shipping (including free delivery for larger orders).
+- Grow a loyal customer base through brand identity, implementation of a loyalty scheme, and fostering an engaged community.
+- Drive revenue through website sales by offering exclusive editions, optimised pricing strategies, and continual expansion of the core product catalogue.
+- Improve shopping experience via an easy but secure checkout process, user interface optimisation, and fast and reliable shipping (including free delivery for larger orders, and priority shipping for loyalty scheme members).
 - Expand market reach and brand awareness through digital marketing and SEO practices, partnering with film distributors, and building a name in forums, on social media, and in film communities.
 - Establish a sustainable business model through streamlined inventory management, cost-effective supply chain, and exploration of subscription models.
 
 #### Key User Goals
 
 - Discover and explore cult films via a curated collection, searchable by keyword / genre / format, learning about individual films through their detailed item information.
-- Build a personal collection through purchase and by maintaining a curated wish-list on the website that can be used to track special editions and other releases.
+- Build a personal collection through purchase and by maintaining a wish-list that can be used to track special editions and other releases.
 - Maximise opportunities to earn rewards through regular purchasing and redeeming accumulated reward points.
 - Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings.
 - Shop with confidence via a hassle-free checkout experience utilising a secure, reliable payment service.
@@ -141,7 +141,7 @@ When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could 
 
 - Target audience:
     - Film enthusiasts (aged 18+) who appreciate unconventional, offbeat, and genre-defining films.
-    - Users may identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genres, person driven by nostalgia, movie buff, social sharer, member of an alternative subculture communities.
+    - Users may identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genre, person driven by nostalgia, movie buff, social sharer, member of an alternative subculture communities.
     - May have an interest in rare or limited edition releases.
     - Values physical ownership over digital streaming.
     - Engages in movie discussions, reviews, and fan theories.
@@ -151,7 +151,7 @@ When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could 
 - A carefully curated, but wide, selection of authentic cult films, including rare editions.
 - A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality. Product descriptions should be comprehensive and engaging.
 - Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout, while being able to easily redeem and track loyalty points balance.
-- High-quality physical media, in a wide variety of formats, which are well-packaged and with a focus on film preservation, bonus content, and collectible value.
+- High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), bonus content, and collectible value.
 - Community engagement and social features allow users to share discoveries, recommend, and discuss films with others.
 - Reliable customer service through responsive support, and efficient handling of returns and refunds. Loyalty card members may also receive exclusive perks and priority assistance.
 
@@ -159,7 +159,7 @@ When compared to the recommended "60% Must Haves / 20% Should Haves / 20% Could 
 
 ##### First time visitor goals
 
-First-time visitors to The Cult Film Club will likely have different goals compared to returning customers or seasoned collectors.
+First-time visitors to The Cult Film Club will likely have different goals compared to returning customers or seasoned collectors:
 
 - "What is The Cult Film Club about?”
 - "What films are available?"
@@ -171,7 +171,7 @@ First-time visitors to The Cult Film Club will likely have different goals compa
         
 ##### Returning visitor goals
 
-Returning visitors to The Cult Film Club will likely have different priorities than first-time users. They’ve already explored the site, so their goals will be more focused on engagement, purchases, and expanding their collection.
+Returning visitors to The Cult Film Club will likely have already explored the site, so their goals will be more focused on engagement, purchases, and expanding their collection:
     
 - “What new films are available?”
 - "Is it possible to bookmark films for later purchase?"
@@ -181,17 +181,17 @@ Returning visitors to The Cult Film Club will likely have different priorities t
     
 ##### Frequent visitor goals
 
-Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and likely see the site as their go-to destination for cult cinema.
+Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and likely see the site as their go-to destination for cult cinema:
     
 - "Are there any special, or limited, editions available?"
-- "How many loyalty points do i have?"
+- "How many loyalty points do I have?"
 - "How many copies are available of a particular film?"
 - "Can I get priority shipping for my purchase?"
 - "Do you have a website newsletter I can join?"
 
 #### User Personas
 
-#### User 1 ("The dedicated collector")
+#### User 1
 
 Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He owns a large collection of films and wants to better track upcoming releases and items on his wish-list:
 
@@ -206,46 +206,10 @@ Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He
 ##### Tasks
 
 - Implement a filtering system for exclusive releases, special packaging, and remastered editions.
-- Add detailed metadata for each product, including bonus features and collector’s notes.
+- Add detailed information about each release, including bonus features and collector’s notes.
 - Set up an email or site notification system for pre-orders and restocked items.
 
-#### User 2 ("The casual cult fan")
-
-Male, aged 36, enjoys cult films but hasn't built a huge collection yet. He is overwhelmed by choice and is unsure where to start; needs guidance on what films to add to his collection:
-
-"As a casual cult film fan, I want to explore recommendations so that I can easily discover great movies without feeling overwhelmed."
-
-##### Acceptance Criteria
-
-- A “Starter Picks” section highlights must-watch cult films for newcomers ([see issue #TBC](TBC)).
-- Implement curated lists with filter options for casual users ([see issue #TBC](TBC)).
-- Integrate trailers and short film descriptions to help users make informed decisions ([see issue #TBC](TBC)).
-
-##### Tasks
-
-- Design a “Starter Picks” section with featured cult classics.
-- Implement curated lists with filter options for casual users.
-- Integrate trailers and short film descriptions to help users make informed decisions.
-
-#### User 3 ("The nostalgic film buff")
-
-Female, aged 55, wants to revisit films she grew up watching. Struggles to find older films that may not be on typical streaming services due to licensing issues:
-
-“As a nostalgic movie fan, I want to find classic films from past decades so that I can relive the cinematic experiences of my youth.”
-
-##### Acceptance Criteria
-
-- Users can filter films by decade (for example, 1970s) ([see issue #TBC](TBC)).
-- Categories highlight remastered versions, director’s cuts, and vintage favourites ([see issue #TBC](TBC)).
-- A special “Throwback Collection” section spotlights beloved cult hits ([see issue #TBC](TBC)).
-    
-##### Tasks
-
-- Implement a decade-based filter for users to explore films by era.
-- Create a “Throwback Collection” landing page showcasing retro films.
-- Highlight remastered editions and director’s cuts in product descriptions.
-
-#### User 4 ("The genre-specific fan")
+#### User 2
 
 Female, aged 32, devoted to a specific genre. Frustrated when cult subgenres are ignored and wants better curation for niche categories:
 
@@ -254,16 +218,16 @@ Female, aged 32, devoted to a specific genre. Frustrated when cult subgenres are
 ##### Acceptance Criteria
 
 - Users can filter by specific subgenres (for example, “Grindhouse”, “Psychological Horror", or “Surreal Sci-Fi”) ([see issue #TBC](TBC)).
-- Genre pages include staff picks, community favourites, and rare titles ([see issue #TBC](TBC)).
+- Users can filter films by decade (for example, 1970s) ([see issue #TBC](TBC)).
 - Users can sign up to a genre-specific newsletter that highlights rare or obscure films ([see issue #TBC](TBC)).
     
 ##### Tasks
 
 - Implement a subgenre-based filtering system for deep-cut movie discovery.
-- Design individual genre pages with hand-picked recommendations.
+- Implement a decade-based filter for users to explore films by era.
 - Add ability to select a genre when signing up for the website newsletter.
 
-#### User 5 ("The digital escapee")
+#### User 3
 
 Male, aged 29, wants to move away from streaming services and embrace physical media. Frustrated when streaming services remove or censor films, but needs educating about formats, restoration quality, and the benefits of physical media:
 
@@ -281,7 +245,7 @@ Male, aged 29, wants to move away from streaming services and embrace physical m
 - Develop a wish-list system ("Collector’s Vault") for tracking future purchases.
 - Ensure film listings clearly highlight physical media exclusives like special features.
 
-#### User 6 ("The social sharer")
+#### User 4
 
 Male, aged 22, loves discussing his favourite films in cult film communities. Wants an easy way to share information to social media, and cheaper pricing options (not interested in collector editions):
 

@@ -133,7 +133,7 @@ The project comfortably aligns with all requirements, adhering to the widely rec
 
 - Discover and explore cult films via a curated collection, searchable by keyword / genre / format, learning about individual films through their detailed item information.
 - Build a personal collection through purchase and by maintaining a wish-list that can be used to track special editions and other releases.
-- Maximise opportunities to earn rewards through regular purchasing and redeeming accumulated reward points.
+- Maximise opportunities to earn rewards by making regular purchases and redeeming accumulated reward points.
 - Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings.
 - Shop with confidence via a hassle-free checkout experience utilising a secure, reliable payment service.
 
@@ -151,7 +151,7 @@ The project comfortably aligns with all requirements, adhering to the widely rec
 - A carefully curated, but wide, selection of authentic cult films, including rare editions.
 - A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality. Product descriptions should be comprehensive and engaging.
 - Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout, while being able to easily redeem and track loyalty points balance.
-- High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), bonus content, and collectible value.
+- High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), include bonus content, and have collectible value.
 - Community engagement and social features allow users to share discoveries, recommend, and discuss films with others.
 - Reliable customer service through responsive support, and efficient handling of returns and refunds. Loyalty card members may also receive exclusive perks and priority assistance.
 
@@ -207,7 +207,7 @@ Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He
 
 - Implement a filtering system for exclusive releases, special packaging, and remastered editions.
 - Add detailed information about each release, including bonus features and collector’s notes.
-- Set up an email or site notification system for pre-orders and restocked items.
+- Set up an email newsletter to inform users of latest releases, and items being restocked.
 
 #### User 2
 
@@ -237,13 +237,13 @@ Male, aged 29, wants to move away from streaming services and embrace physical m
 
 - A “Why Own Physical Media?” section explains the benefits of DVDs/Blu-rays over streaming ([see issue #TBC](TBC)).
 - Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #TBC](TBC)).
-- Film pages highlight physical media exclusives (commentary tracks, booklet inserts, etc) ([see issue #TBC](TBC)).
+- Releases highlight whether a film was / has been censored ([see issue #TBC](TBC)).
     
 ##### Tasks
 
 - Write and design a “Why Own Physical Media?” information page.
 - Develop a wish-list system ("Collector’s Vault") for tracking future purchases.
-- Ensure film listings clearly highlight physical media exclusives like special features.
+- Ensure film listings clearly highlight where films have been previously censored.
 
 #### User 4
 
@@ -255,13 +255,13 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 - Users can share film listings directly to any social media platform ([see issue #TBC](TBC)).
 - Users can rate any film on the website ([see issue #TBC](TBC)).
-- A “Highly Rated Cult Films” section highlights popular films ([see issue #TBC](TBC)).
+- Users can sort and filter by film rating ([see issue #TBC](TBC)).
     
 ##### Tasks
 
 - Implement social media sharing buttons for easy film recommendations.
 - Develop a rating system so users can leave feedback. 
-- Add a “Highly Rated Cult Films” section showcasing popular films.
+- Add filtering / sorting by film rating.
 
 # DETAILS AFTER THIS POINT ARE SUBJECT TO CHANGE
 

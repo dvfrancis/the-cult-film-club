@@ -14,7 +14,7 @@ The website offers:
 
 - **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious (and not-so-serious) collector alike.
 - **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t find in retail stores.
-- **Loyalty scheme** - save money while you shop with The Cult Film Club loyalty card…collect points and exchange them for future discounts.
+- **Loyalty scheme** - save money while you shop with The Cult Film Club Card…collect points and exchange them for future discounts.
 - **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered to your door.
 
 Key features:

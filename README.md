@@ -263,7 +263,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - Develop a rating system so users can leave feedback. 
 - Add filtering / sorting by film rating.
 
-# DETAILS AFTER THIS POINT ARE SUBJECT TO CHANGE
+# SCOPE NOT YET UPDATED
 
 ### Scope
 
@@ -508,6 +508,8 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 Routes through the site can be compulsory or optional, as shown on the user flow diagram.
 
+# DATABASE ARCHITECTURE NOT YET UPDATED
+
 #### Database Architecture
 
 <details>
@@ -646,6 +648,8 @@ Click to view the [tablet wireframes](documentation/wireframes/wireframes-tablet
 
 Click to view the [desktop wireframes](documentation/wireframes/wireframes-desktop.pdf).
 
+# SURFACE NOT YET UPDATED
+
 ### Surface
 
 #### Colours
@@ -743,6 +747,8 @@ The following images are only used when no class, instructor, or user image has 
 
 - Please refer to [TESTING.md](TESTING.md) for details.
 
+# TECH USED NOT YET UPDATED
+
 ## Technologies Used
 
 - [HTML](https://en.wikipedia.org/wiki/HTML), [CSS](https://en.wikipedia.org/wiki/CSS), and [JavaScript.](https://en.wikipedia.org/wiki/JavaScript) for page presentation / interaction.
@@ -788,6 +794,8 @@ The following images are only used when no class, instructor, or user image has 
 - [Flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8) Visual Studio Code plugin - Python linting.
 - [GoFullPage](https://gofullpage.com/) browser plugin - website previews (not supported by Firefox).
 - [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) browser plugin - responsive design tester.
+
+# DEPLOYMENT NOT YET UPDATED
 
 ## Deployment
 
@@ -903,6 +911,8 @@ Copy the GitHub repository locally in one of two ways:
 - When you are ready to finalise your project, set `DEBUG=False` in your local `settings.py` file, and delete `DISABLE_COLLECTSTATIC` from the Heroku app's config variables.
 - Commit any changes to GitHub, and deploy from Heroku as before.
 
+# CREDITS / REFS NOT YET UPDATED
+
 ## Credits and References
 
 - [Duckett, J. (2011) HTML & CSS Design and Build Websites](https://htmlandcssbook.com/) - Indianapolis: John Wiley & Sons, Inc.
@@ -913,5 +923,5 @@ Copy the GitHub repository locally in one of two ways:
 
 ## Acknowledgements
 
-- Andrew Parton, for his ongoing support.
-- Juliia Konovalova, for pushing me to achieve my best (even when I wasn't in the mood 😁).
+- Andrew Parton, for helping to convince me to finish this course.
+- Juliia Konovalova, for her mentorship on every single one of these projects.

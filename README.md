@@ -199,9 +199,9 @@ Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He
 
 ##### Acceptance Criteria
 
-- Users can filter products by limited edition, collector’s sets, and special packaging ([see issue #TBC](TBC)).
-- Detailed descriptions include bonus features, remastered quality, and exclusive content ([see issue #TBC](TBC)).
-- Users receive notifications for pre-orders and restocks of highly sought-after films ([see issue #TBC](TBC)).
+- Users can filter products by limited edition, collector’s sets, and special packaging ([see issue #67](https://github.com/dvfrancis/the-cult-film-club/issues/67)).
+- Detailed descriptions include bonus features, remastered quality, and exclusive content ([see issue #68](https://github.com/dvfrancis/the-cult-film-club/issues/68)).
+- Users receive notifications for pre-orders and restocks of highly sought-after films ([see issue #69](https://github.com/dvfrancis/the-cult-film-club/issues/69)).
     
 ##### Tasks
 
@@ -217,9 +217,9 @@ Female, aged 32, devoted to a specific genre. Frustrated when cult subgenres are
 
 ##### Acceptance Criteria
 
-- Users can filter by specific subgenres (for example, “Grindhouse”, “Psychological Horror", or “Surreal Sci-Fi”) ([see issue #TBC](TBC)).
-- Users can filter films by decade (for example, 1970s) ([see issue #TBC](TBC)).
-- Users can sign up to a genre-specific newsletter that highlights rare or obscure films ([see issue #TBC](TBC)).
+- Users can filter by specific subgenres (for example, “Grindhouse”, “Psychological Horror", or “Surreal Sci-Fi”) ([see issue #70](https://github.com/dvfrancis/the-cult-film-club/issues/70)).
+- Users can filter films by decade (for example, 1970s) ([see issue #71](https://github.com/dvfrancis/the-cult-film-club/issues/71)).
+- Users can sign up to a genre-specific newsletter that highlights rare or obscure films ([see issue #72](https://github.com/dvfrancis/the-cult-film-club/issues/72)).
     
 ##### Tasks
 
@@ -235,9 +235,9 @@ Male, aged 29, wants to move away from streaming services and embrace physical m
 
 ##### Acceptance Criteria
 
-- A “Why Own Physical Media?” section explains the benefits of physical media, over streaming ([see issue #TBC](TBC)).
-- Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #TBC](TBC)).
-- Releases highlight whether a film was / has been censored ([see issue #TBC](TBC)).
+- A “Why Own Physical Media?” section explains the benefits of physical media, over streaming ([see issue #73](https://github.com/dvfrancis/the-cult-film-club/issues/73)).
+- Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #74](https://github.com/dvfrancis/the-cult-film-club/issues/74)).
+- Releases highlight whether a film was / has been censored ([see issue #75](https://github.com/dvfrancis/the-cult-film-club/issues/75)).
     
 ##### Tasks
 
@@ -253,9 +253,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### Acceptance Criteria
 
-- Users can share film listings directly to any social media platform ([see issue #TBC](TBC)).
-- Users can rate any film on the website ([see issue #TBC](TBC)).
-- Users can sort and filter by film rating ([see issue #TBC](TBC)).
+- Users can share film listings directly to any social media platform ([see issue #78](https://github.com/dvfrancis/the-cult-film-club/issues/78)).
+- Users can rate any film on the website ([see issue #77](https://github.com/dvfrancis/the-cult-film-club/issues/77)).
+- Users can sort and filter by film rating ([see issue #76](https://github.com/dvfrancis/the-cult-film-club/issues/76)).
     
 ##### Tasks
 

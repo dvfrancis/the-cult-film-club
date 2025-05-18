@@ -508,8 +508,6 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 Routes through the site can be compulsory or optional, as shown on the user flow diagram.
 
-# DATABASE ARCHITECTURE NOT YET UPDATED
-
 #### Database Architecture
 
 <details>
@@ -540,95 +538,91 @@ This is a custom model that extends Django's User model by adding additional fie
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship*
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='profile'`
 |Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank='True', null='True'`
-|Address|Foreign|`address`|CharField|`*Linked to the `Address` model, in a Many-to-One relationship*, blank='True', null='True'`.
+|Address|Foreign|`address`|CharField|*Linked to the `Address` model, in a Many-to-One relationship* `on_delete='models.CASCADE', blank='True', null='True'`.
 |Loyalty Points|Key|`loyalty_points`|IntegerField|`default='0', blank='false', null='False'`
 
-```Python
-# Define the choices for experience levels
-BEGINNER = 'Beginner'
-INTERMEDIATE = 'Intermediate'
-ADVANCED = 'Advanced'
+3. **Address**
 
-EXPERIENCE_CHOICES = [
-    (BEGINNER, 'Beginner'),
-    (INTERMEDIATE, 'Intermediate'),
-    (ADVANCED, 'Advanced'),
-]
-```
-
-3. **EventDay**
-
-Custom model that stores the days on which the event runs. `Class Meta` options ensure the day title is unique regardless of case sensitivity.
+This is a custom model that stores the user's addresses.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Unique Field|Primary|`id`|AutoField|`primary_key=true` (the model had a conflict with the built-in primary key, so I added this as an alternative)
-|Date|Foreign|`day_date`|DateField|*Linked to the `EventClass` model, in a one-to-many relationship*. Field required through validation by `def clean(self)`
-|Title|Key|`day_title`|CharField|`max_length=100, unique=True`. Field required through validation by `def clean(self)`
-|Description|Key|`day_description`|TextField|
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='address'`
+|First Line|Key|`first_line`|CharField|`max_length='100', blank='False', null='False'`
+|Second Line|Key|`second_line`|CharField|`max_length='100', blank='True', null='False'`
+|City|Key|`city`|CharField|`max_length='50', blank='False', null='False'`
+|County|Key|`county`|CharField|`max_length='50', blank='False', null='False'`
+|Postcode|Key|`postcode`|CharField|`max_length='10', blank='False', null='False'`
+|Country|Key|`country`|CharField|`max_length='50', blank='False', null='False'`
+|Default Address|Key|`default_address`|BooleanField|`default='false', blank='False', null='False'`
 
-4. **EventClass**
+4. **Wishlist**
 
-Custom model that lists the classes that run across the entire event. `Class Meta` options ensure that multiple classes cannot be scheduled at the same time.
-
-|Description|Key|Name|Field Type|Validation|
-| ------------- | ------------- | ------------- | ------------- | ------------- |
-|Date|Foreign|`event_day`|DateField|*Linked to the `EventDay` model, in a many-to-one relationship*
-|Start Time|Key|`start_time`|TimeField|`start_time` cannot be later than `end_time` as validated by `def clean(self)`
-|End Time|Key|`end_time`|TimeField|
-|Title|Key|`class_title`|CharField|`max_length=100`
-|Description|Key|`class_description`|TextField|
-|Difficulty|Key|`difficulty`|ChoiceField|`choices=DIFFICULTY_CHOICES, default=BEGINNER, max_length=12`
-|Image|Key|`class_image`|CloudinaryField|`default='class_placeholder', blank=True, null=True`
-|Instructor|Key|`instructor`|CharField|`max_length=100`
-|Instructor Photo|Key|`instructor_photo`|CloudinaryField|`default='instructor_placeholder', blank=True, null=True`
-|Instructor Biography|Key|`instructor_bio`|TextField|
-
-```Python
-# Define the choices for difficulty levels
-BEGINNER = 'Beginner'
-INTERMEDIATE = 'Intermediate'
-ADVANCED = 'Advanced'
-
-DIFFICULTY_CHOICES = [
-    (BEGINNER, 'Beginner'),
-    (INTERMEDIATE, 'Intermediate'),
-    (ADVANCED, 'Advanced'),
-]
-```
-5. **Enrolment**
-
-Custom model that tracks which classes different users are enrolled upon. `Class Meta` options ensure users cannot enrol on the same class multiple times.
+This is a custom model that stores the user's wishlist.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a many-to-one relationship* `on_delete=models.CASCADE, related_name="enrol_status"`
-|Class Title|Foreign|`class_title`|TextField|*Linked to the `EventClass` model, in a many-to-one relationship* `on_delete=models.CASCADE, related_name="enrolments"`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='wishlist'`
+|Release Title|Foreign|`title`|TimeField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='wishlists'`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add='True', blank='False', null='False'`
+|Notes|Key|`notes`|TextField|`max_length='1000', blank='False', null='False'`
+|Priority|Key|`priority`|CharField|`max_length='10', blank='False', null='False', choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')],`
+|Quantity|Key|`quantity`|IntegerField|`default='1', blank='False', null='False'`
+|Purchased?|Key|`is_purchased`|BooleanField|`default='False', blank='False', null='False'`
 
-6. **Contact**
+5. **Releases**
 
-Custom model that stores any messages sent through the contact form, for later reference.
+This is a custom model that stores details of all films being sold on the site.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|First Name|Key|`first_name`|CharField|`max_length=100`
-|Last Name|Key|`last_name`|CharField|`max_length=100`
-|Email|Key|`email`|EmailField|*Django provides built-in validation for `email`*
-|Message|Key|`message`|TextField|
-|Creation Date/Time|Key|`created_at`|DateTimeField|`auto_now_add=True`
+|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-one relationship* `on_delete='models.CASCADE', related_name='releases', blank='True', null='True'`
+|Release Title|Key|`title`|CharField|`max_length='100', blank='False', null='False'`
+|Release Date|Key|`release_date`|DateField|`blank='False', null='False'`
+|Description|Key|`description`|TextField|`max_length='1000', blank='True', null='True'`
+|Genre|Key|`genre`|CharField|`max_length='50', blank='True', null='True'`
+|Subgenre|Key|`subgenre`|CharField|`max_length='50', blank='True', null='True'`
+|Resolution|Key|`resolution`|CharField|`max_length='5', blank='True', null='True'`
+|Special Features|Key|`special_features`|TextField|`max_length='2000', blank='True', null='True'`
+|Edition|Key|`edition`|CharField|`max_length='50', blank='True', null='True'`
+|Censor Status|Key|`censor_status`|CharField|`max_length='10', blank='True', null='True'`
+|Copies Available|Key|`copies_available`|IntegerField|`blank='True', null='True'`
+|Packaging|Foreign|Key|`packaging`|CharField|`max_length='50', blank='True', null='True'`
+
+6. **Rating**
+
+This is a custom model that stores film ratings.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='rating'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='ratings'`
+|Rating|Key|`rating`|IntegerField|`blank='False', null='False'`
+|Review|Key|`review`|TextField|`max_length='1500', blank='True', null='True'`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add='True', blank='True', null='True'`
+
+7. **Images**
+
+This is a custom model that stores images related to films.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='releases', blank='True', null='True'`
+|Image|Key|`image`|CharField|`default='placeholder', blank='True', null='False'`
+|Caption|Key|`caption`|EmailField|`max_length='200', blank='True', null='False'`
+|Date Added|Key|`date_added`|TextField|`auto_now_add='True', blank='False', null='False'`
+|Featured Image?|Key|`is_featured`|DateTimeField|`default='False', blank='False', null='False'`
 
 #### C R U D Fulfilment
 
-In it's current form, the classes scheduled during the event are only editable via the admin portal, by an account with superuser privileges.
+Shown below is a breakdown of how the website satisfies these requirements:
 
-However, the website still satisfies full Create (C), Read (R), Update (U), and Delete (D) functionality, in the following ways:
-
-- C - Create a user account / Create a class enrolment
-- R - Read the list of classes available / Read changes to a user profile / Read class enrolments on a user's account page
-- U - Update user profile details
-- D - Delete a user account (and associated user profile) / Delete a course enrolment
+- Create (C) - add stock item / add an order / user's address
+- Read (R) - user account & profile / existing orders / about page / FAQ page / stock items / user's address
+- Update (U) - user account & profile / user's wishlist / stock item / user's address
+- Delete (D) - user account & profile / wishlist item / stock item / user's address
 
 ### Skeleton
 

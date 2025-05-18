@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import Profile, Address, Wishlist
 
 
-@admin.register(Profile, Address, Wishlist)
+@admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user']
     list_filter = ['user']
@@ -10,6 +10,7 @@ class ProfileAdmin(admin.ModelAdmin):
     ordering = ['user__username']
 
 
+@admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
     list_display = (
         'user', 'first_line', 'second_line',
@@ -24,6 +25,7 @@ class AddressAdmin(admin.ModelAdmin):
     ordering = ['user__username', 'city']
 
 
+@admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
     list_display = (
         'user', 'title', 'notes', 'priority', 'quantity', 'is_purchased')

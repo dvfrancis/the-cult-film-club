@@ -23,7 +23,7 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         related_name="profile",
         blank=False,
-        null=False)
+        null=True)
     loyalty_points = models.IntegerField(
         default=0,
         blank=False,
@@ -119,4 +119,5 @@ def create_or_update_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
     else:
+        Profile.objects.get_or_create(user=instance)
         instance.profile.save()

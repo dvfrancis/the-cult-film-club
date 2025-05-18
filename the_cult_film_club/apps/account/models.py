@@ -109,9 +109,8 @@ class Wishlist(models.Model):
         null=False
     )
 
-
-def __str__(self):
-    return f"This is {self.user.username}'s wishlist"
+    def __str__(self):
+        return f"This is {self.user.username}'s wishlist"
 
 
 @receiver(post_save, sender=User)

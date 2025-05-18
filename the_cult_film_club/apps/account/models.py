@@ -30,12 +30,6 @@ class Profile(models.Model):
         null=False
     )
 
-    def clean(self):
-        if (not self.location):
-            raise ValidationError(
-                "Please enter your location"
-            )
-
     def __str__(self):
         return (
             f"This is {self.user.username}'s profile"

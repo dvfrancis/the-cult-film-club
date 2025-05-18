@@ -515,16 +515,16 @@ Routes through the site can be compulsory or optional, as shown on the user flow
 <details>
 <summary>Click to view the entity relationship diagram (ERD)</summary>
 
-![Craftr ERD](documentation/flowcharts/entity-relationship-diagram.webp)
+![The Cult Film Club's ERD](documentation/flowcharts/entity-relationship-diagram.webp)
 </details>
 
-PostgreSQL was used to store the database for the site, and the ERD was created using [Figma](https://www.figma.com/).
+[Figma](https://www.figma.com/) was used to create the ERD, and [PostgreSQL](https://www.postgresql.org) was the database format used for the site. 
 
 #### Data Models
 
 1. **User**
 
-Django's User model was used for the creation of user accounts (and is extended by UserProfile). It is not a requirement for account creation that the email be confirmed.
+Django's User model was used for the creation of user accounts (and this is further extended by Profile).
 
 |Description|Key Type|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
@@ -534,16 +534,16 @@ Django's User model was used for the creation of user accounts (and is extended 
 |Last Name|Key|`last_name`|CharField|*Django ensures `last_name` is limited to 150 characters*
 |Email address|Key|`email`|EmailField|*Django provides built-in validation for `email`*
 
-2. **UserProfile**
+2. **Profile**
 
-Custom model that extends Django's User model by adding site-specific fields.
+This is a custom model that extends Django's User model by adding additional fields.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship*
-|Location|Key|`location`|CharField|`max_length=100`. Field required through validation by `def clean(self)`
-|Experience Level|Key|`experience`|ChoiceField|`choices=EXPERIENCE_CHOICES, default=BEGINNER, max_length=12`. Field required through validation by `def clean(self)`
-|User Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank=True, null=True`
+|Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank='True', null='True'`
+|Address|Foreign|`address`|CharField|`*Linked to the `Address` model, in a Many-to-One relationship*, blank='True', null='True'`.
+|Loyalty Points|Key|`loyalty_points`|IntegerField|`default='0', blank='false', null='False'`
 
 ```Python
 # Define the choices for experience levels

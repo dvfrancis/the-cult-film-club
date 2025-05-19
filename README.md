@@ -589,7 +589,7 @@ This is a custom model that stores details of all films being sold on the site.
 |Edition|Key|`edition`|CharField|`max_length=50, blank=True, null=True`
 |Censor Status|Key|`censor_status`|CharField|`max_length=10, blank=True, null=True`
 |Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
-|Packaging|Foreign|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
+|Packaging|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
 
 6. **Rating**
 
@@ -609,7 +609,7 @@ This is a custom model that stores images related to films.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a one-to-one relationship* `on_delete='models.CASCADE', related_name='releases'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete='models.CASCADE', related_name='releases'`
 |Image|Key|`image`|CloudinaryField|`default='placeholder', blank=True, null=False`
 |Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=False`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`

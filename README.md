@@ -513,7 +513,7 @@ Routes through the site can be compulsory or optional, as shown on the user flow
 <details>
 <summary>Click to view the entity relationship diagram (ERD)</summary>
 
-![The Cult Film Club's ERD](documentation/flowcharts/entity-relationship-diagram.webp)
+![The Cult Film Club's ERD](documentation/flowcharts/erd.webp)
 </details>
 
 [Figma](https://www.figma.com/) was used to create the ERD, and [PostgreSQL](https://www.postgresql.org) was the database format used for the site. 

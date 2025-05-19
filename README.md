@@ -621,11 +621,11 @@ This is a custom model that stores messages sent via the site contact form.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Created|Key|`created`|DateTimeField|`auto_now_add=True, blank=False, null=False`
-|First Name|Key|`first_name`|CharField|`max_length=30, blank=False, null=False`
-|Last Name|Key|`last_name`|CharField|`max_length=30, blank=False, null=False`
-|Email|Key|`email`|EmailField|*Django provides built-in validation for `email`* `blank=False, null=False`
-|Message|Key|`message`|TextField|`max_length=1000, blank=False, null=False`
+|Created|Key|`created`|DateTimeField|`auto_now_add=True`
+|First Name|Key|`first_name`|CharField|`max_length=50, blank=False, null=False`
+|Last Name|Key|`last_name`|CharField|`max_length=50, blank=False, null=False`
+|Email|Key|`email`|EmailField|`validators=[validate_email], blank=False, null=False`
+|Message|Key|`message`|TextField|`max_length=1000, blank=True, null=False`
 
 #### C R U D Fulfilment
 

@@ -6,6 +6,7 @@ from cloudinary.models import CloudinaryField
 
 class Releases(models.Model):
     class Meta:
+        verbose_name = "Release"
         verbose_name_plural = "Releases"
     image = models.ManyToManyField(
         'Images',
@@ -38,6 +39,7 @@ class Releases(models.Model):
 
 class Rating(models.Model):
     class Meta:
+        verbose_name = "Rating"
         verbose_name_plural = "Ratings"
     user = models.ForeignKey(
         User,
@@ -66,6 +68,7 @@ class Rating(models.Model):
 
 class Images(models.Model):
     class Meta:
+        verbose_name = "Image"
         verbose_name_plural = "Images"
     title = models.ForeignKey(
         'releases.Releases',

@@ -8,6 +8,7 @@ from enum import Enum
 
 class Profile(models.Model):
     class Meta:
+        verbose_name = "Profile"
         verbose_name_plural = "Profiles"
     user = models.OneToOneField(
         User,
@@ -38,6 +39,7 @@ class Profile(models.Model):
 
 class Address(models.Model):
     class Meta:
+        verbose_name = "Address"
         verbose_name_plural = "Addresses"
     user = models.ForeignKey(
         User,
@@ -77,6 +79,7 @@ class PriorityLevel(Enum):
 
 class Wishlist(models.Model):
     class Meta:
+        verbose_name = "Wishlist"
         verbose_name_plural = "Wishlists"
     user = models.ForeignKey(
         User,

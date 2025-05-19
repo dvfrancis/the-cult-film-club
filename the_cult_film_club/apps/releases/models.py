@@ -17,7 +17,7 @@ class Releases(models.Model):
     description = models.TextField(max_length=1000, blank=True, null=True)
     genre = models.CharField(max_length=50, blank=True, null=True)
     subgenre = models.CharField(max_length=50, blank=True, null=True)
-    resolution = models.CharField(max_length=5, blank=True, null=True)
+    resolution = models.CharField(max_length=10, blank=True, null=True)
     special_features = models.TextField(max_length=2000, blank=True, null=True)
     edition = models.CharField(max_length=50, blank=True, null=True)
     censor_status = models.CharField(max_length=10, blank=True, null=True)
@@ -31,16 +31,16 @@ class Releases(models.Model):
     def average_rating(self):
         return (
             Rating.objects
-            .filter(title__title=self.title)
+            .filter(title=self)
             .aggregate(avg=Avg('rating'))['avg']
         )
 
 
 class Rating(models.Model):
-    user = models.OneToOneField(
+    user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name="rating"
+        related_name="ratings"
     )
     title = models.OneToOneField(
         'releases.Releases',
@@ -58,12 +58,12 @@ class Rating(models.Model):
     def __str__(self):
         return (
             f"{self.user.username} rated "
-            f"{self.release.title} as {self.rating}"
+            f"{self.title.title} as {self.rating}"
         )
 
 
 class Images(models.Model):
-    title = models.OneToOneField(
+    title = models.ForeignKey(
         'releases.Releases',
         on_delete=models.CASCADE,
         related_name="images"
@@ -77,7 +77,7 @@ class Images(models.Model):
     caption = models.CharField(
         max_length=200,
         blank=True,
-        null=False
+        null=True
     )
     date_added = models.DateTimeField(
         auto_now_add=True,

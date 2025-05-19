@@ -662,8 +662,6 @@ Click to view the [tablet wireframes](documentation/wireframes/wireframes-tablet
 
 Click to view the [desktop wireframes](documentation/wireframes/wireframes-desktop.pdf).
 
-# SURFACE NOT YET UPDATED
-
 ### Surface
 
 #### Colours
@@ -675,26 +673,23 @@ Click to view the [desktop wireframes](documentation/wireframes/wireframes-deskt
 
 </details>
 
-- Website colours were inspired by the Sarah Renae Clarke Colour Catalogue (Volume 2), card 390:
-    - Apple Green (#7db657) - this was darkened to #2e6b05, later in the project, due to poor colour contrast
-    - Mint (#0091ac) - this was darkened to #006274, later in the project, due to poor colour contrast
-    - Royal Purple (#753da2)
-    - Crimson (#b40001) 
-    - Orange (#ff8500) - this was darkened to #a55500, later in the project, due to poor colour contrast
-    - Gold (#ffc500)
+- The website colour scheme was taken from the Sarah Renae Clarke Colour Catalogue (Volume 2), colour palette 251:
+    - Black (#080808)
+    - Crimson (#ca0000)
+    - Orange (#ff7900)
+    - Amber (#ffb700) 
+    - Platinum (#e1e1e3)
 
-- Other colours used:
+- Colours were also divided depending on intended button action:
 
-    - Off-White (#fafafa)
-    - Off-Black (#191945)
+    - Black for `TBC` / `TBC` / `TBC` actions
+    - Crimson for `TBC` / `TBC` / `TBC` actions
+    - Orange for `TBC` / `TBC` / `TBC` actions
+    - Amber for `TBC` / `TBC` / `TBC` actions
+    - Platinum for `TBC` / `TBC` / `TBC` actions
 
-- For buttons, colours were divided depending on intended action:
 
-    - Apple Green for `Save` / `Register` / `Submit` / `Enrol` actions
-    - Royal Purple for `Edit` / `Details` / `Home` / `Diary` / `Login` actions
-    - Mint for `Clear` actions
-    - Orange for `Logout` / `Withdraw` actions
-    - Crimson for `Reset` / `Delete` / `Cancel` / `Go Back` actions
+# TYPOGRAPHY / MEDIA / CONTENT NOT YET UPDATED
 
 #### Typography
 

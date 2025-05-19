@@ -28,8 +28,12 @@ class AddressAdmin(admin.ModelAdmin):
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
     list_display = (
-        'user', 'title', 'notes', 'priority', 'quantity', 'is_purchased')
+        'user', 'get_titles', 'notes', 'priority', 'quantity', 'is_purchased')
     list_filter = (
-        'user', 'title', 'notes', 'priority', 'quantity', 'is_purchased')
-    search_fields = ('user__username', 'title', 'notes', 'priority')
-    ordering = ['user__username', 'title', 'notes', 'priority']
+        'user', 'priority', 'quantity', 'is_purchased')
+    search_fields = ('user__username', 'notes', 'priority')
+    ordering = ['user__username', 'notes', 'priority']
+
+    def get_titles(self, obj):
+        return ", ".join([str(t) for t in obj.title.all()])
+    get_titles.short_description = 'Titles'

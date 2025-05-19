@@ -538,10 +538,10 @@ This is a custom model that extends Django's User model by adding additional fie
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='profile'`
-|Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank='True', null='True'`
-|Address|Foreign|`address`|CharField|*Linked to the `Address` model, in a Many-to-One relationship* `on_delete='models.CASCADE', blank='True', null='True'`.
-|Loyalty Points|Key|`loyalty_points`|IntegerField|`default='0', blank='false', null='False'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete=models.CASCADE, related_name='profile'`
+|Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank=True, null=True`
+|Address|Foreign|`address`|CharField|*Linked to the `Address` model, in a Many-to-One relationship* `on_delete=models.CASCADE, related_name='profile', default=0, null=True`.
+|Loyalty Points|Key|`loyalty_points`|IntegerField|`default=0, blank=False, null=False`
 
 3. **Address**
 
@@ -549,28 +549,28 @@ This is a custom model that stores the user's addresses.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='address'`
-|First Line|Key|`first_line`|CharField|`max_length='100', blank='False', null='False'`
-|Second Line|Key|`second_line`|CharField|`max_length='100', blank='True', null='False'`
-|City|Key|`city`|CharField|`max_length='50', blank='False', null='False'`
-|County|Key|`county`|CharField|`max_length='50', blank='False', null='False'`
-|Postcode|Key|`postcode`|CharField|`max_length='10', blank='False', null='False'`
-|Country|Key|`country`|CharField|`max_length='50', blank='False', null='False'`
-|Default Address|Key|`default_address`|BooleanField|`default='false', blank='False', null='False'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a One-to-Many relationship* `on_delete='models.CASCADE', related_name='address'`
+|First Line|Key|`first_line`|CharField|`max_length=100, blank=False, null=False`
+|Second Line|Key|`second_line`|CharField|`max_length=100, blank=True, null=True`
+|City|Key|`city`|CharField|`max_length=50, blank=False, null=False`
+|County|Key|`county`|CharField|`max_length=50, blank=False, null=False`
+|Postcode|Key|`postcode`|CharField|`max_length=10, blank=False, null=False`
+|Country|Key|`country`|CharField|`max_length=50, blank=False, null=False`
+|Default Address|Key|`default_address`|BooleanField|`default=False, blank=False, null=False`
 
 4. **Wishlist**
 
-This is a custom model that stores the user's wishlist.
+This is a custom model that stores the user's wishlist items.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='wishlist'`
-|Release Title|Foreign|`title`|TimeField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='wishlists'`
-|Date Added|Key|`date_added`|DateTimeField|`auto_now_add='True', blank='False', null='False'`
-|Notes|Key|`notes`|TextField|`max_length='1000', blank='False', null='False'`
-|Priority|Key|`priority`|CharField|`max_length='10', blank='False', null='False', choices=[('High', 'High'), ('Medium', 'Medium'), ('Low', 'Low')],`
-|Quantity|Key|`quantity`|IntegerField|`default='1', blank='False', null='False'`
-|Purchased?|Key|`is_purchased`|BooleanField|`default='False', blank='False', null='False'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a One-to-Many relationship* `on_delete='models.CASCADE', related_name='wishlist'`
+|Release Title|Foreign|`title`|TimeField|*Linked to the `Releases` model, in a Many-to-Many relationship* `related_name='wishlists'`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
+|Notes|Key|`notes`|TextField|`max_length=1000, blank=True, null=True`
+|Priority|Key|`priority`|CharField|`max_length=10, choices='High', 'Medium', or 'Low'`
+|Quantity|Key|`quantity`|IntegerField|`default=1`
+|Purchased?|Key|`is_purchased`|BooleanField|`default=False`
 
 5. **Releases**
 
@@ -578,18 +578,18 @@ This is a custom model that stores details of all films being sold on the site.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-one relationship* `on_delete='models.CASCADE', related_name='releases', blank='True', null='True'`
-|Release Title|Key|`title`|CharField|`max_length='100', blank='False', null='False'`
-|Release Date|Key|`release_date`|DateField|`blank='False', null='False'`
-|Description|Key|`description`|TextField|`max_length='1000', blank='True', null='True'`
-|Genre|Key|`genre`|CharField|`max_length='50', blank='True', null='True'`
-|Subgenre|Key|`subgenre`|CharField|`max_length='50', blank='True', null='True'`
-|Resolution|Key|`resolution`|CharField|`max_length='5', blank='True', null='True'`
-|Special Features|Key|`special_features`|TextField|`max_length='2000', blank='True', null='True'`
-|Edition|Key|`edition`|CharField|`max_length='50', blank='True', null='True'`
-|Censor Status|Key|`censor_status`|CharField|`max_length='10', blank='True', null='True'`
-|Copies Available|Key|`copies_available`|IntegerField|`blank='True', null='True'`
-|Packaging|Foreign|Key|`packaging`|CharField|`max_length='50', blank='True', null='True'`
+|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-one relationship* `on_delete='models.CASCADE', related_name='releases', blank=True, null=True`
+|Release Title|Key|`title`|CharField|`max_length=100, blank=False, null=False`
+|Release Date|Key|`release_date`|DateField|`blank=False, null=False`
+|Description|Key|`description`|TextField|`max_length=1000, blank=True, null=True`
+|Genre|Key|`genre`|CharField|`max_length=50, blank=True, null=True`
+|Subgenre|Key|`subgenre`|CharField|`max_length=50, blank=True, null=True`
+|Resolution|Key|`resolution`|CharField|`max_length=5, blank=True, null=True`
+|Special Features|Key|`special_features`|TextField|`max_length=2000, blank=True, null=True`
+|Edition|Key|`edition`|CharField|`max_length=50, blank=True, null=True`
+|Censor Status|Key|`censor_status`|CharField|`max_length=10, blank=True, null=True`
+|Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
+|Packaging|Foreign|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
 
 6. **Rating**
 
@@ -599,9 +599,9 @@ This is a custom model that stores film ratings.
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Username|Foreign|`username`|CharField|*Linked to the `User` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='rating'`
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='ratings'`
-|Rating|Key|`rating`|IntegerField|`blank='False', null='False'`
-|Review|Key|`review`|TextField|`max_length='1500', blank='True', null='True'`
-|Date Added|Key|`date_added`|DateTimeField|`auto_now_add='True', blank='True', null='True'`
+|Rating|Key|`rating`|IntegerField|`blank=False, null=False`
+|Review|Key|`review`|TextField|`max_length=1500, blank=True, null=True`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True, blank=True, null=True`
 
 7. **Images**
 
@@ -609,11 +609,23 @@ This is a custom model that stores images related to films.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='releases', blank='True', null='True'`
-|Image|Key|`image`|CharField|`default='placeholder', blank='True', null='False'`
-|Caption|Key|`caption`|EmailField|`max_length='200', blank='True', null='False'`
-|Date Added|Key|`date_added`|TextField|`auto_now_add='True', blank='False', null='False'`
-|Featured Image?|Key|`is_featured`|DateTimeField|`default='False', blank='False', null='False'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a 1-2-1 relationship* `on_delete='models.CASCADE', related_name='releases', blank=True, null=True`
+|Image|Key|`image`|CharField|`default='placeholder', blank=True, null=False`
+|Caption|Key|`caption`|EmailField|`max_length=200, blank=True, null=False`
+|Date Added|Key|`date_added`|TextField|`auto_now_add=True, blank=False, null=False`
+|Featured Image?|Key|`is_featured`|DateTimeField|`default=False, blank=False, null=False`
+
+8. **Contact**
+
+This is a custom model that stores messages sent via the site contact form.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Created|Key|`created`|DateTimeField|`auto_now_add=True, blank=False, null=False`
+|First Name|Key|`first_name`|CharField|`max_length=30, blank=False, null=False`
+|Last Name|Key|`last_name`|CharField|`max_length=30, blank=False, null=False`
+|Email|Key|`email`|EmailField|*Django provides built-in validation for `email`* `blank=False, null=False`
+|Message|Key|`message`|TextField|`max_length=1000, blank=False, null=False`
 
 #### C R U D Fulfilment
 

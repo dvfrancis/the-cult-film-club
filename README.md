@@ -673,7 +673,7 @@ Click to view the [desktop wireframes](documentation/wireframes/wireframes-deskt
 
 </details>
 
-- The website colour scheme was taken from the Sarah Renae Clarke Colour Catalogue (Volume 2), colour palette 251:
+- The website colour scheme was taken from the Sarah Renae Clarke Colour Catalogue: Volume 2, colour palette 251:
     - Black (#080808)
     - Crimson (#ca0000)
     - Orange (#ff7900)

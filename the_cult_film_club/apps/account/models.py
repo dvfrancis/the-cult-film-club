@@ -71,6 +71,38 @@ class Address(models.Model):
         return f"This is {self.user.username}'s address"
 
 
+# class PriorityLevel(Enum):
+#     HIGH = "High"
+#     MEDIUM = "Medium"
+#     LOW = "Low"
+
+# class Wishlist(models.Model):
+#     class Meta:
+#         verbose_name = "Wishlist"
+#         verbose_name_plural = "Wishlists"
+#     user = models.ForeignKey(
+#         User,
+#         on_delete=models.CASCADE,
+#         related_name="wishlists"
+#     )
+#     title = models.ManyToManyField(
+#         'releases.Releases',
+#         related_name="wishlists"
+#     )
+#     date_added = models.DateTimeField(auto_now_add=True)
+#     notes = models.TextField(max_length=1000, blank=True, null=True)
+#     priority = models.CharField(
+#         max_length=10,
+#         choices=[(tag.value, tag.value) for tag in PriorityLevel],
+#         default=PriorityLevel.MEDIUM.value
+#     )
+#     quantity = models.IntegerField(default=1)
+#     is_purchased = models.BooleanField(default=False, verbose_name="Purchased")
+
+#     def __str__(self):
+#         return f"This is {self.user.username}'s wishlist"
+
+
 class PriorityLevel(Enum):
     HIGH = "High"
     MEDIUM = "Medium"
@@ -88,8 +120,17 @@ class Wishlist(models.Model):
     )
     title = models.ManyToManyField(
         'releases.Releases',
+        through='WishlistItem',
         related_name="wishlists"
     )
+
+    def __str__(self):
+        return f"This is {self.user.username}'s wishlist"
+
+
+class WishlistItem(models.Model):
+    wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
+    title = models.ForeignKey('releases.Releases', on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
     notes = models.TextField(max_length=1000, blank=True, null=True)
     priority = models.CharField(
@@ -97,11 +138,10 @@ class Wishlist(models.Model):
         choices=[(tag.value, tag.value) for tag in PriorityLevel],
         default=PriorityLevel.MEDIUM.value
     )
-    quantity = models.IntegerField(default=1)
     is_purchased = models.BooleanField(default=False, verbose_name="Purchased")
 
     def __str__(self):
-        return f"This is {self.user.username}'s wishlist"
+        return f"{self.title} in {self.wishlist} (Priority: {self.priority})"
 
 
 @receiver(post_save, sender=User)

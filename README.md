@@ -549,7 +549,7 @@ This is a custom model that stores the user's addresses.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete='models.CASCADE', related_name='address'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='address'`
 |First Line|Key|`first_line`|CharField|`max_length=100, blank=False, null=False`
 |Second Line|Key|`second_line`|CharField|`max_length=100, blank=True, null=True`
 |City|Key|`city`|CharField|`max_length=50, blank=False, null=False`
@@ -564,21 +564,29 @@ This is a custom model that stores the user's wishlist items.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete='models.CASCADE', related_name='wishlist'`
-|Release Title|Foreign|`title`|TimeField|*Linked to the `Releases` model, in a Many-to-Many relationship* `related_name='wishlists'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='wishlist'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, `through='WishlistItem'`, in a many-to-many relationship* `related_name='wishlists'`
+
+5. **WishlistItem**
+
+This is a custom model that acts as an intermediate between the `Wishlist` and `Release` models, and stores additional information about each item added to the wishlist.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Wishlist|Foreign|`wishlist`|CharField|*Linked to the `Wishlist` model, in a many-to-many relationship* `on_delete=models.CASCADE`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete=models.CASCADE`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 |Notes|Key|`notes`|TextField|`max_length=1000, blank=True, null=True`
 |Priority|Key|`priority`|CharField|`max_length=10, choices='High', 'Medium', or 'Low'`
-|Quantity|Key|`quantity`|IntegerField|`default=1`
 |Purchased?|Key|`is_purchased`|BooleanField|`default=False, verbose_name='Purchased'`
 
-5. **Releases**
+6. **Releases**
 
 This is a custom model that stores details of all films being sold on the site.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-many relationship* `on_delete='models.CASCADE', related_name='releases', blank=True, null=True`
+|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases', blank=True, null=True`
 |Release Title|Key|`title`|CharField|`max_length=100, blank=False, null=False`
 |Release Date|Key|`release_date`|DateField|`blank=False, null=False`
 |Description|Key|`description`|TextField|`max_length=1000, blank=True, null=True`
@@ -591,31 +599,31 @@ This is a custom model that stores details of all films being sold on the site.
 |Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
 |Packaging|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
 
-6. **Rating**
+7. **Rating**
 
 This is a custom model that stores film ratings.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete='models.CASCADE', related_name='rating'`
-|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a one-to-one relationship* `on_delete='models.CASCADE', related_name='ratings'`
+|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='rating'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='ratings'`
 |Rating|Key|`rating`|IntegerField|`blank=False, null=False`
 |Review|Key|`review`|TextField|`max_length=1500, blank=True, null=True`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 
-7. **Images**
+8. **Images**
 
 This is a custom model that stores images related to films.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete='models.CASCADE', related_name='releases'`
+|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases'`
 |Image|Key|`image`|CloudinaryField|`default='placeholder', blank=True, null=False`
 |Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=False`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 |Featured Image?|Key|`is_featured`|BooleanField|`verbose_name='Featured Image', default=False, blank=False, null=False`
 
-8. **Contact**
+9. **Contact**
 
 This is a custom model that stores messages sent via the site contact form.
 

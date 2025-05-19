@@ -6,7 +6,7 @@ from .models import Releases, Images, Rating
 class ReleaseAdmin(admin.ModelAdmin):
     list_display = (
         'title', 'release_date', 'genre', 'subgenre',
-        'resolution', 'resolution', 'edition', 'packaging', 'image'
+        'resolution', 'resolution', 'edition', 'packaging', 'get_images'
     )
     list_filter = (
         'title', 'release_date', 'description', 'genre', 'subgenre',
@@ -18,6 +18,10 @@ class ReleaseAdmin(admin.ModelAdmin):
         'censor_status', 'packaging'
     )
     ordering = ['title', 'release_date', 'genre', 'subgenre']
+
+    def get_images(self, obj):
+        return ", ".join([str(img) for img in obj.image.all()])
+    get_images.short_description = 'Images'
 
 
 @admin.register(Images)

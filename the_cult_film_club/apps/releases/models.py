@@ -5,12 +5,12 @@ from cloudinary.models import CloudinaryField
 
 
 class Releases(models.Model):
-    image = models.ForeignKey(
+    class Meta:
+        verbose_name_plural = "Releases"
+    image = models.ManyToManyField(
         'Images',
-        on_delete=models.CASCADE,
         related_name="releases",
-        blank=True,
-        null=True
+        blank=True
     )
     title = models.CharField(max_length=100, blank=False, null=False)
     release_date = models.DateField(blank=False, null=False)
@@ -37,6 +37,8 @@ class Releases(models.Model):
 
 
 class Rating(models.Model):
+    class Meta:
+        verbose_name_plural = "Ratings"
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -63,6 +65,8 @@ class Rating(models.Model):
 
 
 class Images(models.Model):
+    class Meta:
+        verbose_name_plural = "Images"
     title = models.ForeignKey(
         'releases.Releases',
         on_delete=models.CASCADE,
@@ -85,6 +89,7 @@ class Images(models.Model):
         null=False
     )
     is_featured = models.BooleanField(
+        verbose_name="Featured Image",
         default=False,
         blank=False,
         null=False

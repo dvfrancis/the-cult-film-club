@@ -3,6 +3,8 @@ from django.core.validators import validate_email
 
 
 class ContactUs(models.Model):
+    class Meta:
+        verbose_name_plural = "Messages"
     created = models.DateTimeField(auto_now_add=True)
     first_name = models.CharField(max_length=50, blank=False, null=False)
     last_name = models.CharField(max_length=50, blank=False, null=False)

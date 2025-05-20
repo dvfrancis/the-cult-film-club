@@ -4,34 +4,42 @@
 
 ## Overview
 
-**A Home for Movie Rebels!**
+### Where Physical Media Reigns  
 
-*Rewind the past. Collect the Future*
+**Rewind the Past. Collect the Future.**  
 
-The Cult Film Club isn’t just an e-commerce site, it's a celebration of cinema that defies expectation and builds devoted communities. Whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, The Cult Film Club is here to help expand your collection in the best way possible…on physical media! Helping to ensure you own a piece of cinematic history.
+Streaming might be convenient, but at **The Cult Film Club**, we believe that real movie lovers deserve more than temporary access. Digital films can vanish at the whim of licensing agreements, but physical media? That’s **<u>forever</u>.**  
 
-The website offers:
+We’re not just an e-commerce site — we’re a movement dedicated to preserving and celebrating cinema in tangible form. Whether it's obscure horror gems, arthouse oddities, midnight-movie madness, or beloved B-movie classics, **The Cult Film Club** is here to help you build a collection that lasts a lifetime.  
 
-- **A curated selection** - from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored to the serious (and not-so-serious) collector alike.
-- **Exclusive & limited editions** - discover hard-to-find releases, special packaging, and collector’s items that you won’t find in retail stores.
-- **Loyalty scheme** - save money while you shop with The Cult Film Club Card…collect points and exchange them for future discounts.
-- **Secure shopping & fast delivery** - browse with ease, pay securely, and have your next movie obsession delivered to your door.
+### Why Physical Media?  
 
-Key features:
+With the rise of streaming, countless cult classics remain locked away, inaccessible or lost in the digital shuffle. At **The Cult Film Club**, we believe films should be **owned, not just borrowed** - ensuring that your favourite movies remain in your hands, not in the hands of corporations. No sudden removals. No low-bitrate compression. Just the purest cinematic experience, exactly as it was meant to be seen.
 
-- **Product catalogue and search** - a comprehensive, searchable database of cult films with detailed descriptions, pricing, and availability.
-- **User accounts and authentication** - secure user registration and authentication, customer order management, and "Collector's Vault" wish-list.
-- **Shopping cart and checkout** - a streamlined shopping experience with basket management, discount codes, loyalty points, and free shipping on larger orders.
-- **Admin dashboard** - robust backend tools for inventory management, sales tracking, and order fulfilment.
-- **Community** - users can share selected films to their social media platforms.
+### What We Offer  
 
-**Why The Cult Film Club?**
+- **Curated Selection** – from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored for serious collectors and passionate newcomers alike.  
+- **Exclusive & Limited Editions** – discover collector’s items with special packaging, and releases you won’t find in mainstream retail stores.  
+- **Loyalty Scheme** – The Cult Film Club Card lets you save money, collect points, and exchange them for discounts on future purchases.  
+- **Secure Shopping & Fast Delivery** – browse with ease, pay securely, and have your next cinematic obsession delivered straight to your door.  
 
-At its heart, The Cult Film Club is built on the love of cinema that breaks the rules. Some films go beyond simple entertainment - they provoke thought, spark discussion, and find audiences who cherish them for life. We believe that these movies deserve physical releases - not just digital access that might disappear after the next software update.
+### Features That Make Collecting Easier  
 
-For casual moviegoers curious about diving into the world of cult cinema, this is your gateway, and for seasoned collectors, this is your treasure trove.
+- **Comprehensive Product Catalogue** – a fully searchable database of cult films with detailed descriptions, pricing, and availability.  
+- **User Accounts & Authentication** – secure user registration, customer order management, and “Collector’s Vault” wish-list features.  
+- **Streamlined Shopping Experience** – basket management, discount codes, loyalty points, and free shipping on larger orders.  
+- **Robust Admin Dashboard** – inventory management, sales tracking, and seamless order fulfilment.  
+- **Community Connection** – share your collection and discoveries with fellow fans across social media.  
 
-Whether you're hunting down an obscure horror flick, an 80s sci-fi oddity, or a forgotten indie masterpiece, you’ve come to the right place - The Cult Film Club - where movies find their true fans.
+### Join the Movement  
+
+At its core, **The Cult Film Club** is built on a love of cinema that refuses to conform. Some films transcend simple entertainment; they provoke thought, spark discussion, and earn their place in history. **Physical media ensures that these treasures are never lost to the whims of streaming services.**  
+
+For casual moviegoers curious about diving into the world of cult cinema, **this is your gateway**. For seasoned collectors, **this is your sanctuary**.  
+
+**It’s time to take ownership of the movies you love**  
+
+Welcome to **The Cult Film Club**, where films find their forever home.
 
 ### Site Preview
 

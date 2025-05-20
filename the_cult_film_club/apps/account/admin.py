@@ -25,20 +25,6 @@ class AddressAdmin(admin.ModelAdmin):
     ordering = ['user__username', 'city']
 
 
-# @admin.register(Wishlist)
-# class WishlistAdmin(admin.ModelAdmin):
-#     list_display = (
-#         'user', 'get_titles', 'notes', 'priority',
-#         'quantity', 'is_purchased')
-#     list_filter = (
-#         'user', 'priority', 'quantity', 'is_purchased')
-#     search_fields = ('user__username', 'notes', 'priority')
-#     ordering = ['user__username', 'notes', 'priority']
-
-#     def get_titles(self, obj):
-#         return ", ".join([str(t) for t in obj.title.all()])
-#     get_titles.short_description = 'Titles'
-
 class WishlistItemInline(admin.TabularInline):
     model = WishlistItem
     extra = 1  # Number of empty forms to display

@@ -33,7 +33,7 @@ class ImageAdmin(admin.ModelAdmin):
 
 
 @admin.register(Rating)
-class RatingAdmin(admin.ModelAdmin):        
+class RatingAdmin(admin.ModelAdmin):
     list_display = ('user', 'title', 'rating', 'review', 'date_added')
     list_filter = ('user', 'title', 'rating', 'review', 'date_added')
     search_fields = ('user__username', 'title__title', 'rating', 'review')

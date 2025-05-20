@@ -97,7 +97,9 @@ class Address(models.Model):
 #         default=PriorityLevel.MEDIUM.value
 #     )
 #     quantity = models.IntegerField(default=1)
-#     is_purchased = models.BooleanField(default=False, verbose_name="Purchased")
+#     is_purchased = models.BooleanField(
+#         default=False, verbose_name="Purchased"
+#     )
 
 #     def __str__(self):
 #         return f"This is {self.user.username}'s wishlist"

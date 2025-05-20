@@ -1,3 +1,8 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def index(request):
+    """
+    Render the home page of the Cult Film Club.
+    """
+    return render(request, 'home/index.html')

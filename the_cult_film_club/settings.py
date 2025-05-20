@@ -1,41 +1,39 @@
 from pathlib import Path
 import os
 import dj_database_url
-if os.path.isfile('env.py'):
-    import env # noqa
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.fastmail.com'
+if os.path.isfile("env.py"):
+    import env  # noqa
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.fastmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_USER')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_PASSWORD')
+EMAIL_HOST_USER = os.getenv("EMAIL_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-ACCOUNT_LOGIN_METHODS = {'email', 'username'}
+ACCOUNT_LOGIN_METHODS = {"email", "username"}
 ACCOUNT_SIGNUP_FIELDS = [
-    'email*',
-    'email2*',
-    'username*',
-    'password1*',
-    'password2*'
+    "email*",
+    "email2*",
+    "username*",
+    "password1*",
+    "password2*",
 ]
-ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_MIN_LENGTH = 4
-LOGIN_URL = '/accounts/login/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/"
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000/",
-    "https://*.herokuapp.com"
-]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/", "https://*.herokuapp.com"]
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -56,8 +54,8 @@ INSTALLED_APPS = [
     "the_cult_film_club.apps.inventory",
     "the_cult_film_club.apps.newsletter",
     "the_cult_film_club.apps.releases",
-    'allauth',
-    'allauth.account',
+    "allauth",
+    "allauth.account",
 ]
 
 MIDDLEWARE = [
@@ -72,27 +70,31 @@ MIDDLEWARE = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
-    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
-    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 ROOT_URLCONF = "the_cult_film_club.urls"
 
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR / 'the_cult_film_club/templates'],
+        "DIRS": [
+            os.path.join(BASE_DIR, "the_cult_film_club", "templates"),
+            os.path.join(
+                BASE_DIR, "the_cult_film_club", "templates", "allauth"),
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
-                'django.template.context_processors.debug',
+                "django.template.context_processors.debug",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 # required by allauth
-                'django.template.context_processors.request',
+                "django.template.context_processors.request",
             ],
         },
     },
@@ -100,10 +102,9 @@ TEMPLATES = [
 
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
-    'django.contrib.auth.backends.ModelBackend',
-
+    "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by email
-    'allauth.account.auth_backends.AuthenticationBackend',
+    "allauth.account.auth_backends.AuthenticationBackend",
 ]
 
 WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
@@ -119,9 +120,7 @@ WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
-}
+DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 
 AUTH_PASSWORD_VALIDATORS = [
     {

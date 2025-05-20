@@ -28,7 +28,8 @@ class AddressAdmin(admin.ModelAdmin):
 # @admin.register(Wishlist)
 # class WishlistAdmin(admin.ModelAdmin):
 #     list_display = (
-#         'user', 'get_titles', 'notes', 'priority', 'quantity', 'is_purchased')
+#         'user', 'get_titles', 'notes', 'priority',
+#         'quantity', 'is_purchased')
 #     list_filter = (
 #         'user', 'priority', 'quantity', 'is_purchased')
 #     search_fields = ('user__username', 'notes', 'priority')

@@ -696,16 +696,15 @@ Click to view the [desktop wireframes](documentation/wireframes/wireframes-deskt
     - Amber for `TBC` / `TBC` / `TBC` actions
     - Platinum for `TBC` / `TBC` / `TBC` actions
 
-
-# TYPOGRAPHY / MEDIA / CONTENT NOT YET UPDATED
-
 #### Typography
 
-All fonts were sourced from Google Fonts, and were used as follows:
+The following fonts were used from [Google Fonts](https://fonts.google.com):
   
-- h1 tags - [Montserrat](https://fonts.google.com/specimen/Montserrat)
-- h2 and h3 tags - [Lora](https://fonts.google.com/specimen/Lora)
-- body and p tags - [Hind Madurai](https://fonts.google.com/specimen/Hind+Madurai)
+- [Raleway](https://fonts.google.com/specimen/Raleway)
+- [Habibi](https://fonts.google.com/specimen/Habibi)
+- [PT Sans Caption](https://fonts.google.com/specimen/PT+Sans+Caption)
+
+# MEDIA / CONTENT NOT YET UPDATED
 
 #### Media
 

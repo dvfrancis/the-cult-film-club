@@ -5,6 +5,8 @@ import dj_database_url
 if os.path.isfile("env.py"):
     import env  # noqa
 
+DEBUG = True
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.fastmail.com"
 EMAIL_PORT = 587
@@ -31,8 +33,6 @@ SECRET_KEY = os.environ.get("SECRET_KEY")
 
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/", "https://*.herokuapp.com"]
 
-DEBUG = True
-
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
 
 INSTALLED_APPS = [
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "cloudinary_storage",
     "cloudinary",
+    "whitenoise",
     "the_cult_film_club.apps.home",
     "the_cult_film_club.apps.about",
     "the_cult_film_club.apps.faq",
@@ -60,6 +61,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -83,9 +85,8 @@ TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
         "DIRS": [
-            os.path.join(BASE_DIR, "the_cult_film_club", "templates"),
-            os.path.join(
-                BASE_DIR, "the_cult_film_club", "templates", "allauth"),
+            os.path.join(BASE_DIR, "templates"),
+            os.path.join(BASE_DIR, "templates", "allauth"),
         ],
         "APP_DIRS": True,
         "OPTIONS": {
@@ -130,21 +131,13 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "MinimumLengthValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation." "MinimumLengthValidator"),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation."
-            "CommonPasswordValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation." "CommonPasswordValidator"),
     },
     {
-        "NAME": (
-            "django.contrib.auth.password_validation.NumericPasswordValidator"
-        ),
+        "NAME": ("django.contrib.auth.password_validation.NumericPasswordValidator"),
     },
 ]
 
@@ -157,5 +150,10 @@ USE_I18N = True
 USE_TZ = True
 
 STATIC_URL = "/static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_URL = "/assets/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
+
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"

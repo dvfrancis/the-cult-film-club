@@ -597,6 +597,7 @@ This is a custom model that stores details of all films being sold on the site.
 |Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases', blank=True, null=True`
 |Release Title|Key|`title`|CharField|`max_length=100, blank=False, null=False`
 |Release Date|Key|`release_date`|DateField|`blank=False, null=False`
+|Director|Key|`director`|CharField|`max_length=100, blank=True, null=True`
 |Description|Key|`description`|TextField|`max_length=1000, blank=True, null=True`
 |Genre|Key|`genre`|CharField|`max_length=50, blank=True, null=True`
 |Subgenre|Key|`subgenre`|CharField|`max_length=50, blank=True, null=True`

@@ -15,6 +15,7 @@ class Releases(models.Model):
     )
     title = models.CharField(max_length=100, blank=False, null=False)
     release_date = models.DateField(blank=False, null=False)
+    director = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(max_length=1000, blank=True, null=True)
     genre = models.CharField(max_length=50, blank=True, null=True)
     subgenre = models.CharField(max_length=50, blank=True, null=True)

@@ -1,0 +1,2720 @@
+[
+  {
+    "pk": 1,
+    "model": "releases.releases",
+    "fields": {
+      "title": "A Bay of Blood",
+      "release_date": "1971-09-08",
+      "director": "Mario Bava",
+      "description": "Mario Bava\u2019s gruesome proto-slasher with inventive kills and a tangled inheritance plot. Influenced \"Friday the 13th.\"",
+      "genre": "Horror",
+      "subgenre": "Giallo / Proto-Slasher",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Interviews with Lamberto Bava and critics. Commentary by Tim Lucas. Italian and English cuts. Illustrated insert booklet",
+      "edition": "Arrow Video",
+      "censor_status": "Censored in US and UK in 70s/80s",
+      "packaging": "Limited edition slipbox",
+      "copies_available": 384
+    }
+  },
+  {
+    "pk": 2,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Altered States",
+      "release_date": "1980-12-25",
+      "director": "Ken Russell",
+      "description": "A mind-bending sci-fi drama about an experiment pushing human consciousness to extremes.",
+      "genre": "Sci-Fi",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Cut (High-quality remaster), William Hurt Interview (Discussing method acting approach), Behind-the-Scenes Documentary (Examining special effects)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues",
+      "packaging": "Hardcase slipcover with abstract artwork",
+      "copies_available": 237
+    }
+  },
+  {
+    "pk": 3,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Alucarda",
+      "release_date": "1977-06-16",
+      "director": "Juan L\u00f3pez Moctezuma",
+      "description": "Juan L\u00f3pez Moctezuma's surreal Mexican horror about demonic possession in a convent. Known for its wild imagery and intense performances.",
+      "genre": "Horror",
+      "subgenre": "Mexican / Occult",
+      "resolution": "1080p",
+      "special_features": "HD remaster. Interview with Guillermo del Toro on Moctezuma. Commentary by film historian Abraham Castillo Flores. Trailers. Archival photos & posters",
+      "edition": "Mondo Macabro",
+      "censor_status": "Uncut in US, censored in UK upon release",
+      "packaging": "Red case with slipcover",
+      "copies_available": 0
+    }
+  },
+  {
+    "pk": 4,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Angst",
+      "release_date": "1983-09-01",
+      "director": "Gerald Kargl",
+      "description": "A harrowing psychological horror following the chilling mind of a violent killer.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Includes previously censored sequences), Making-of Featurette (Examining stark realism), Director\u2019s Commentary (Discussing controversial themes)",
+      "edition": "Limited",
+      "censor_status": "Banned in some regions for graphic violence; later restored",
+      "packaging": "Hardbound slipcase with minimalist horror aesthetic",
+      "copies_available": 258
+    }
+  },
+  {
+    "pk": 5,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Audition",
+      "release_date": "1999-10-06",
+      "director": "Takashi Miike",
+      "description": "A slow-burn horror-thriller about a widower\u2019s dating experiment gone wrong.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Includes previously censored torture sequences), Making-of Featurette (Examining pacing and tension), Director\u2019s Commentary (Miike discusses storytelling techniques)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally censored in the UK due to extreme violence; later released uncut",
+      "packaging": "Elegant slipcase with minimalist horror aesthetic",
+      "copies_available": 373
+    }
+  },
+  {
+    "pk": 6,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Basket Case",
+      "release_date": "1982-04-04",
+      "director": "Frank Henenlotter",
+      "description": "A man arrives in NYC with a basket \u2014 containing his deformed, telepathic twin. Frank Henenlotter\u2019s low-budget horror is weird and unforgettable.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "1080p",
+      "special_features": "4K digital restoration. Commentary with Henenlotter. \"What's in the Basket?\" doc (38 min). Behind-the-scenes footage and outtakes. Collector's booklet with essays. Archival interview with Kevin Van Hentenryck",
+      "edition": "Arrow Video",
+      "censor_status": "Banned in the UK in early 1980s; later released uncut",
+      "packaging": "Clear case with slipcover, poster, booklet",
+      "copies_available": 468
+    }
+  },
+  {
+    "pk": 7,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Battle Royale",
+      "release_date": "2000-12-16",
+      "director": "Kinji Fukasaku",
+      "description": "A controversial Japanese thriller where students fight to the death in a government-sanctioned event.",
+      "genre": "Action",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary. Deep dive into themes and impact.\u00a0Survival Guide Featurette. Exploring the film\u2019s cultural influence.\u00a0Deleted Scenes. Unseen footage from early edits.",
+      "edition": "Collector\u2019s",
+      "censor_status": "Initially refused classification in the UK, then released uncut.",
+      "packaging": "Hardbound slipcase featuring school uniform aesthetic.",
+      "copies_available": 65
+    }
+  },
+  {
+    "pk": 8,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Begotten",
+      "release_date": "1989-08-01",
+      "director": "E. Elias Merhige",
+      "description": "E. Elias Merhige\u2019s haunting, wordless tale of death and rebirth. Shot in extreme contrast, it has become an icon of underground cinema.",
+      "genre": "Horror",
+      "subgenre": "Avant-Garde / Experimental",
+      "resolution": "1080p",
+      "special_features": "Restoration from original negatives. Director commentary. \"Birth of a Film\" making-of featurette. Visual essays. Limited edition booklet",
+      "edition": "Unearthed Films",
+      "censor_status": "Uncut worldwide, but difficult to classify",
+      "packaging": "Clear case with lenticular slip",
+      "copies_available": 305
+    }
+  },
+  {
+    "pk": 9,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Beyond the Black Rainbow",
+      "release_date": "2010-06-03",
+      "director": "Panos Cosmatos",
+      "description": "A slow-burn psychedelic sci-fi thriller with hypnotic visuals.",
+      "genre": "Sci-Fi",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring cryptic storytelling), Deleted Scenes (Extended sequences), Behind-the-Scenes Documentary (Examining cinematography)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but widely debated for surreal storytelling",
+      "packaging": "Slipcase with stylized retro-futuristic artwork",
+      "copies_available": 351
+    }
+  },
+  {
+    "pk": 10,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Black Moon",
+      "release_date": "1975-09-24",
+      "director": "Louis Malle",
+      "description": "A surreal fantasy film blending Alice in Wonderland-inspired elements with dystopian themes.",
+      "genre": "Fantasy",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Restored Version (High-definition transfer), Behind-the-Scenes Documentary (Exploring dreamlike imagery), Director\u2019s Commentary (Examining avant-garde storytelling)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; remains an underappreciated gem",
+      "packaging": "Slipcase with dark fairytale-themed artwork",
+      "copies_available": 142
+    }
+  },
+  {
+    "pk": 11,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Black Sunday",
+      "release_date": "1960-08-11",
+      "director": "Jack Cardiff",
+      "description": "A gothic horror masterpiece about a cursed witch seeking revenge from beyond the grave.",
+      "genre": "Horror",
+      "subgenre": "Gothic",
+      "resolution": "1080p",
+      "special_features": "Restored Edition (Fully remastered visuals), Behind-the-Scenes Documentary (Examining gothic horror influences), Director\u2019s Commentary (Discussing cinematography)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally censored in the UK for violent imagery; later released uncut",
+      "packaging": "Slipcase featuring eerie black-and-white artwork",
+      "copies_available": 128
+    }
+  },
+  {
+    "pk": 12,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Blood Feast",
+      "release_date": "1963-07-06",
+      "director": "Herschell Gordon Lewis",
+      "description": "One of the earliest gore films, featuring violent ritual murders.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "720p",
+      "special_features": "Herschell Gordon Lewis Interview (Discussing gore impact), Behind-the-Scenes Featurette (Examining practical effects), Deleted Scenes (Previously cut content restored)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally censored in the UK due to extreme violence; later released uncut",
+      "packaging": "Retro-style slipcase with bold horror artwork",
+      "copies_available": 360
+    }
+  },
+  {
+    "pk": 13,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Bloodsucking Freaks",
+      "release_date": "1976-11-03",
+      "director": "Joel M. Reed",
+      "description": "A graphic horror-satire about a sadistic theatre group engaging in brutal acts.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Restored banned sequences). Behind-the-Scenes Featurette (Examining controversial production). Director\u2019s Commentary (Discussing cult legacy).",
+      "edition": "Limited",
+      "censor_status": "Originally banned in the UK for extreme violence; later released uncut",
+      "packaging": "Blood-red slipcase with underground theatre styling",
+      "copies_available": 222
+    }
+  },
+  {
+    "pk": 14,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Blue Velvet",
+      "release_date": "1986-09-19",
+      "director": "David Lynch",
+      "description": "David Lynch\u2019s mystery of small-town darkness begins with a severed ear and leads into a world of voyeurism, violence, and unforgettable performances.",
+      "genre": "Mystery",
+      "subgenre": "Neo-Noir",
+      "resolution": "1080p",
+      "special_features": "4K restoration approved by Lynch. \"Mysteries of Love\" doc (70 min). 50 mins of deleted scenes. Interview with Lynch and cast. Collector booklet with essays",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide, though faced criticism for content in 1986",
+      "packaging": "Standard case with booklet",
+      "copies_available": 0
+    }
+  },
+  {
+    "pk": 15,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Brazil",
+      "release_date": "1985-02-20",
+      "director": "Terry Gilliam",
+      "description": "A bureaucrat in a dystopian future is trapped in a totalitarian state\u2019s paperwork and fantasy. Gilliam\u2019s satire of surveillance and madness remains hauntingly relevant.",
+      "genre": "Sci-Fi",
+      "subgenre": "Dystopian",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s final cut (142 min) in HD. \"The Battle of Brazil\" documentary (55 min). Commentary with Terry Gilliam. Interviews with cast (Pryce, Palin, Greist). Deleted scenes. 30-page booklet with Gilliam\u2019s production notes",
+      "edition": "Criterion Collection",
+      "censor_status": "US theatrical cut trimmed by Universal; director\u2019s cut restored on home video",
+      "packaging": "Tri-fold digipack with artwork + booklet",
+      "copies_available": 16
+    }
+  },
+  {
+    "pk": 16,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Caf\u00e9 Flesh",
+      "release_date": "1982-03-19",
+      "director": "Stephen Sayadian",
+      "description": "A post-apocalyptic erotic sci-fi film set in a world where most people are too sick to have sex. Cult classic of alt-adult cinema.",
+      "genre": "Sci-Fi",
+      "subgenre": "Erotic / Post-Apocalyptic",
+      "resolution": "480p",
+      "special_features": "Restored uncut version. Interview with director Rinse Dream. Behind-the-scenes featurette. Collectible booklet. Rare promo artwork gallery",
+      "edition": "Cult Epics",
+      "censor_status": "Censored and banned in several countries",
+      "packaging": "Standard DVD case",
+      "copies_available": 263
+    }
+  },
+  {
+    "pk": 17,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Cannibal Holocaust",
+      "release_date": "1980-02-07",
+      "director": "Ruggero Deodato",
+      "description": "Ruggero Deodato\u2019s infamous found-footage horror that shocked the world with its realistic gore and social critique.",
+      "genre": "Horror",
+      "subgenre": "Exploitation / Cannibal",
+      "resolution": "1080p",
+      "special_features": "Newly remastered in HD. Commentary by Deodato. \"Animal Cruelty Controversy\" doc. Alternate cuts. Essay booklet",
+      "edition": "Grindhouse Releasing",
+      "censor_status": "Banned in over 50 countries",
+      "packaging": "Hard slipcase with booklet and art cards",
+      "copies_available": 153
+    }
+  },
+  {
+    "pk": 18,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Cemetery Man",
+      "release_date": "1994-03-16",
+      "director": "Michele Soavi",
+      "description": "A zombie film like no other, combining romance, absurdism, and Italian gore. Directed by Michele Soavi and starring Rupert Everett.",
+      "genre": "Horror",
+      "subgenre": "Italian / Zombie",
+      "resolution": "1080p",
+      "special_features": "New HD master from original negatives. Interviews with Michele Soavi. Commentary track by author Alan Jones. Theatrical and international trailers. Collector\u2019s booklet",
+      "edition": "Shameless Films",
+      "censor_status": "Originally censored in UK for gore",
+      "packaging": "Yellow case with reversible artwork",
+      "copies_available": 33
+    }
+  },
+  {
+    "pk": 19,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Combat Shock",
+      "release_date": "1986-01-01",
+      "director": "Buddy Giovinazzo",
+      "description": "A disturbing drama about a traumatized Vietnam vet spiraling into despair.",
+      "genre": "Drama",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Discussing harsh realism), Deleted Scenes (Extended sequences), Behind-the-Scenes Documentary (Examining gritty cinematography)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Not officially banned but considered highly disturbing",
+      "packaging": "Slipcase with raw urban-themed artwork",
+      "copies_available": 276
+    }
+  },
+  {
+    "pk": 20,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dagon",
+      "release_date": "2001-10-31",
+      "director": "Stuart Gordon",
+      "description": "A Lovecraft-inspired horror film about a man trapped in an eerie fishing town.",
+      "genre": "Horror",
+      "subgenre": "Supernatural",
+      "resolution": "1080p",
+      "special_features": "Restored Cut (Remastered version), Director\u2019s Commentary (Examining Lovecraftian themes), Deleted Scenes (Extended sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; widely appreciated in horror circles",
+      "packaging": "Slipcase with dark atmospheric sea-themed artwork",
+      "copies_available": 102
+    }
+  },
+  {
+    "pk": 21,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Daisies",
+      "release_date": "1966-10-30",
+      "director": "Vera Chytilov\u00e1",
+      "description": "V\u011bra Chytilov\u00e1\u2019s feminist Czech New Wave classic follows two rebellious women through anarchic acts of surrealism and destruction.",
+      "genre": "Drama",
+      "subgenre": "Experimental / Feminist",
+      "resolution": "1080p",
+      "special_features": "New 4K digital restoration. Interview with Czech scholars. Audio commentary. Archival photos and booklet. Fold-out poster",
+      "edition": "Second Run Films",
+      "censor_status": "Banned in Czechoslovakia (1966)",
+      "packaging": "Digipack with slipcase",
+      "copies_available": 412
+    }
+  },
+  {
+    "pk": 22,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dark Star",
+      "release_date": "1974-03-30",
+      "director": "John Carpenter",
+      "description": "John Carpenter\u2019s hilarious low-budget debut: stoned astronauts try to destroy unstable planets in deep space.",
+      "genre": "Sci-Fi",
+      "subgenre": "Comedy / Satire",
+      "resolution": "1080p",
+      "special_features": "2K scan of theatrical cut. Commentary by Carpenter and O\u2019Bannon. \"Let There Be Light\" doc. Student film version. Still gallery",
+      "edition": "VCI Entertainment",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Retro VHS-style slipcover",
+      "copies_available": 66
+    }
+  },
+  {
+    "pk": 23,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Daughters of Darkness",
+      "release_date": "1971-11-01",
+      "director": "Harry K\u00fcmel",
+      "description": "Belgian erotic vampire film starring Delphine Seyrig. Lavish visuals and sexual ambiguity make it a cult favorite in queer and gothic horror circles.",
+      "genre": "Horror",
+      "subgenre": "Gothic / Vampire",
+      "resolution": "1080p",
+      "special_features": "4K scan from original negative. Interviews with cast and crew. Commentary by Kat Ellinger. Archival trailers and photo gallery. 40-page booklet",
+      "edition": "Blue Underground",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Limited edition slipbox",
+      "copies_available": 74
+    }
+  },
+  {
+    "pk": 24,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dead Alive (Braindead)",
+      "release_date": "1992-08-13",
+      "director": "Peter Jackson",
+      "description": "A bizarre zombie outbreak begins after a Sumatran rat-monkey bites a domineering mother. Peter Jackson\u2019s film is pure splatter mayhem.",
+      "genre": "Horror",
+      "subgenre": "Splatter",
+      "resolution": "480p",
+      "special_features": "Full uncut version (97 min). Commentary with Peter Jackson. Featurette: \"Gore & Gags\" (18 min). Lobby card reproduction (Anchor Bay). Original trailer",
+      "edition": "Anchor Bay",
+      "censor_status": "Banned in South Korea and censored in Germany; uncut on most DVDs",
+      "packaging": "Standard DVD keep case",
+      "copies_available": 244
+    }
+  },
+  {
+    "pk": 25,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dead Heat",
+      "release_date": "1988-05-06",
+      "director": "Mark Goldblatt",
+      "description": "A horror-comedy about a pair of undead cops battling criminals from beyond the grave.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Restored Print (High-quality remaster), Making-of Featurette (Examining horror-comedy blend), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but regarded as obscure in horror circles",
+      "packaging": "Slipcase featuring neon-retro aesthetics",
+      "copies_available": 487
+    }
+  },
+  {
+    "pk": 26,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dead Ringers",
+      "release_date": "1988-09-23",
+      "director": "David Cronenberg",
+      "description": "Cronenberg\u2019s psychological thriller about twin gynecologists sharing disturbing obsessions.",
+      "genre": "Thriller",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Version (Enhanced transfer), Cast Interviews (Discussing performances), Director\u2019s Commentary (Exploring psychological themes)",
+      "edition": "Deluxe",
+      "censor_status": "No censorship issues but regarded as highly disturbing",
+      "packaging": "Slipcase with surgical-themed artwork",
+      "copies_available": 113
+    }
+  },
+  {
+    "pk": 27,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Deadbeat at Dawn",
+      "release_date": "1988-11-17",
+      "director": "Jim Van Bebber",
+      "description": "DIY cult action film by Jim Van Bebber, about gang warfare, martial arts, and revenge in gritty urban alleys.",
+      "genre": "Action",
+      "subgenre": "Cult / Grindhouse",
+      "resolution": "1080p",
+      "special_features": "2K scan from original 16mm. Interviews with Van Bebber. Deleted scenes. Making-of documentary. Commentary track",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Rigid case with booklet",
+      "copies_available": 359
+    }
+  },
+  {
+    "pk": 28,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Death Laid an Egg",
+      "release_date": "1968-04-05",
+      "director": "Giulio Questi",
+      "description": "A psychedelic Italian giallo set in a futuristic chicken farm. Genre-defying, stylish, and full of anti-capitalist subtext.",
+      "genre": "Thriller",
+      "subgenre": "Giallo / Experimental",
+      "resolution": "1080p",
+      "special_features": "2K scan. Commentary by film historians. Interviews with cast. Trailers and promo materials. Essay booklet",
+      "edition": "Cult Epics",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Transparent case with insert booklet",
+      "copies_available": 85
+    }
+  },
+  {
+    "pk": 29,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Deathdream",
+      "release_date": "1974-08-30",
+      "director": "Bob Clark",
+      "description": "A psychological horror exploring the haunting aftermath of a soldier returning from war\u2014possibly undead.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Examining Vietnam War themes), Restored Cut (Fully remastered), Behind-the-Scenes Featurette (Exploring practical effects)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but remained an underrated horror gem",
+      "packaging": "Slipcase featuring haunting war-themed artwork",
+      "copies_available": 187
+    }
+  },
+  {
+    "pk": 30,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Deep End",
+      "release_date": "1970-09-08",
+      "director": "Jerzy Skolimowski",
+      "description": "A psychological drama-thriller about obsession and youthful naivety.",
+      "genre": "Drama",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Print (High-quality transfer), Behind-the-Scenes Documentary (Exploring themes of teenage obsession), Deleted Scenes (Extended footage)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but considered controversial",
+      "packaging": "Slipcase with minimalist urban styling",
+      "copies_available": 311
+    }
+  },
+  {
+    "pk": 31,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Deep Red",
+      "release_date": "1975-03-07",
+      "director": "Dario Argento",
+      "description": "Dario Argento\u2019s masterpiece of giallo horror about a pianist who witnesses a brutal murder and uncovers a dark conspiracy.",
+      "genre": "Horror",
+      "subgenre": "Giallo",
+      "resolution": "1080p",
+      "special_features": "4K restoration. Both Italian and English versions. Interviews with Daria Nicolodi & Argento. Music videos and trailer reel. Booklet with essays",
+      "edition": "Arrow Video",
+      "censor_status": "Censored in US/UK on initial release",
+      "packaging": "Limited edition rigid slipbox",
+      "copies_available": 377
+    }
+  },
+  {
+    "pk": 32,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Donnie Darko",
+      "release_date": "2001-10-26",
+      "director": "Richard Kelly",
+      "description": "A troubled teen sees visions of a monstrous rabbit predicting the apocalypse. Part time-loop thriller, part teen angst drama, this cult hit gained a major following post-release.",
+      "genre": "Sci-Fi",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Cut + Theatrical (HD). 2 commentaries: Kelly + Gyllenhaal, cast/crew. \"The Philosophy of Time Travel\" doc (52 min). Deleted scenes and extended interviews. 40-page booklet with essays and artwork",
+      "edition": "Arrow Video Limited Edition",
+      "censor_status": "Uncut worldwide, but pulled from some US cinemas after 9/11 due to plane imagery",
+      "packaging": "Hardbound case with reversible sleeve and poster",
+      "copies_available": 445
+    }
+  },
+  {
+    "pk": 33,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Dust Devil",
+      "release_date": "1992-08-13",
+      "director": "Richard Stanley",
+      "description": "A psychological horror-thriller about a supernatural killer roaming South Africa.",
+      "genre": "Horror",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring folklore influences), Deleted Scenes (Extended sequences), Making-of Featurette (Examining production challenges)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Not banned but remained obscure for years",
+      "packaging": "Slipcase featuring eerie desert horror artwork",
+      "copies_available": 5
+    }
+  },
+  {
+    "pk": 34,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Eating Raoul",
+      "release_date": "1982-09-01",
+      "director": "Paul Bartel",
+      "description": "A dark horror-comedy about a couple turning to murder as their business model.",
+      "genre": "Comedy",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Documentary (Examining cult popularity), Cast Interviews (Discussing satirical elements), Deleted Scenes (Extended sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but remained obscure for years",
+      "packaging": "Retro slipcase with quirky artwork",
+      "copies_available": 400
+    }
+  },
+  {
+    "pk": 35,
+    "model": "releases.releases",
+    "fields": {
+      "title": "El Topo",
+      "release_date": "1970-12-01",
+      "director": "Alejandro Jodorowsky",
+      "description": "A mystical gunslinger wanders through allegorical duels in Jodorowsky\u2019s spiritual Western. Bizarre, violent, and profound.",
+      "genre": "Western",
+      "subgenre": "Acid Western",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary with Jodorowsky. \"Midnight Madness: The El Topo Story\" (40 min). Vintage interview with Allen Ginsberg on El Topo. 32-page booklet with film stills and symbolism breakdown",
+      "edition": "ABKCO",
+      "censor_status": "Banned in some Latin American countries in 1970s. Now restored.",
+      "packaging": "Hardcover book-style packaging with slipcase",
+      "copies_available": 234
+    }
+  },
+  {
+    "pk": 36,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Enter the Void",
+      "release_date": "2009-05-22",
+      "director": "Gaspar No\u00e9",
+      "description": "A psychedelic visual odyssey depicting life after death from a first-person perspective.",
+      "genre": "Drama",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Enhanced visual clarity), Gaspar No\u00e9 Interview (Exploring artistic vision), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "Not banned but heavily debated for explicit content",
+      "packaging": "Slipcase with hypnotic neon-inspired design",
+      "copies_available": 312
+    }
+  },
+  {
+    "pk": 37,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Eraserhead",
+      "release_date": "1977-03-19",
+      "director": "David Lynch",
+      "description": "David Lynch\u2019s nightmare industrial horror debut about a man navigating fatherhood and existential dread in a surreal, decaying world.",
+      "genre": "Horror",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Lynch-approved 4K restoration. Short film \"Six Men Getting Sick\". Interviews with cast and crew. 60-page hardcover booklet. Rare stills gallery",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Hardbound case",
+      "copies_available": 476
+    }
+  },
+  {
+    "pk": 38,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Evil Dead Trap",
+      "release_date": "1988-05-09",
+      "director": "Toshiharu Ikeda",
+      "description": "A Japanese horror cult classic involving deadly traps in an abandoned location.",
+      "genre": "Horror",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Complete remaster), Director\u2019s Commentary (Discussing stylistic influences), Special Effects Featurette (Examining practical gore effects)",
+      "edition": "Limited",
+      "censor_status": "Not banned but classified strictly due to violent content",
+      "packaging": "Hardcase slipcover with blood-red themed art",
+      "copies_available": 269
+    }
+  },
+  {
+    "pk": 39,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Faces of Death",
+      "release_date": "1978-11-10",
+      "director": "John Alan Schwartz",
+      "description": "A disturbing faux-documentary blending staged and real death footage.",
+      "genre": "Horror",
+      "subgenre": "Shockumentary",
+      "resolution": "1080p",
+      "special_features": "Staged Death Explanations. Breakdown of fake vs. real footage.\u00a0Banned Footage Compilation. Cut scenes restored for archival purposes.\u00a0Interview with Director. Examining the film\u2019s intent and controversy.",
+      "edition": "Limited",
+      "censor_status": "Banned outright in the UK\u00a0for decades due to graphic depictions. Later released with heavy cuts.",
+      "packaging": "Blood-red slipcase with distressed artwork.",
+      "copies_available": 255
+    }
+  },
+  {
+    "pk": 40,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Fantastic Planet",
+      "release_date": "1973-12-01",
+      "director": "Ren\u00e9 Laloux",
+      "description": "Ren\u00e9 Laloux\u2019s animated French sci-fi epic tells of a future where humans are kept as pets by giant blue aliens. Haunting and philosophical.",
+      "genre": "Animation",
+      "subgenre": "Sci-Fi",
+      "resolution": "1080p",
+      "special_features": "New digital restoration. \"Laloux sauvage\" making-of doc. 2 early short films by Laloux. Essay booklet and art cards. Original French audio with subs",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion packaging",
+      "copies_available": 236
+    }
+  },
+  {
+    "pk": 41,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Fear and Loathing in Las Vegas",
+      "release_date": "1998-05-22",
+      "director": "Terry Gilliam",
+      "description": "Terry Gilliam\u2019s hallucinatory adaptation of Hunter S. Thompson\u2019s gonzo odyssey, with Johnny Depp and Benicio del Toro at their manic peak.",
+      "genre": "Drama",
+      "subgenre": "Psychedelic",
+      "resolution": "1080p",
+      "special_features": "Director & Depp commentary. Hunter S. Thompson interview. \"Gonzo Journalism\" documentary. Storyboards and production designs. Booklet with Thompson writings",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion case",
+      "copies_available": 196
+    }
+  },
+  {
+    "pk": 42,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Female Prisoner #701: Scorpion",
+      "release_date": "1972-08-25",
+      "director": "Shunya It\u014d",
+      "description": "Matsu is wrongfully imprisoned and becomes a vengeful symbol of resistance in this stylized, brutal Japanese exploitation film.",
+      "genre": "Exploitation",
+      "subgenre": "Women in Prison",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary by Jasper Sharp. Archival interview with Shunya It\u014d (22 min). Japanese trailers. Gallery of original poster art. 20-page booklet by Tom Mes",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut in Japan; some brief nudity censored on initial US DVD",
+      "packaging": "Slipcover with reversible sleeve + booklet",
+      "copies_available": 158
+    }
+  },
+  {
+    "pk": 43,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Female Trouble",
+      "release_date": "1974-10-21",
+      "director": "John Waters",
+      "description": "John Waters and Divine explode with shocking trash glamour in this tale of crime, beauty obsession, and electroshock treatment.",
+      "genre": "Comedy",
+      "subgenre": "Trash / LGBTQ+",
+      "resolution": "1080p",
+      "special_features": "Restoration from original negatives. Waters commentary. Cast interviews. \"Divine Trash\" retrospective. Booklet essay by critic Alonso Duralde",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut in US, controversial internationally",
+      "packaging": "Glossy slipcover with booklet",
+      "copies_available": 278
+    }
+  },
+  {
+    "pk": 44,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Forbidden Zone",
+      "release_date": "1980-03-21",
+      "director": "Richard Elfman",
+      "description": "A black-and-white musical fantasy that plays like a Looney Tunes cartoon on acid. Danny Elfman's band Oingo Boingo stars.",
+      "genre": "Musical",
+      "subgenre": "Surreal / Comedy",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s commentary. Cast interviews. Restored color sequences. Alternate musical tracks. Behind-the-scenes feature",
+      "edition": "MVD Visual",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Illustrated digipack",
+      "copies_available": 168
+    }
+  },
+  {
+    "pk": 45,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Ganja & Hess",
+      "release_date": "1973-04-20",
+      "director": "Bill Gunn",
+      "description": "Bill Gunn\u2019s avant-garde vampire film reclaims Black cinema and critiques addiction and religion. A radical milestone.",
+      "genre": "Horror",
+      "subgenre": "Arthouse / Vampire",
+      "resolution": "1080p",
+      "special_features": "HD restoration by Museum of Modern Art. Gunn\u2019s recut \"Blood Couple\". Interviews and scholarly essays. Audio commentary by film historians. Essay booklet",
+      "edition": "Kino Lorber",
+      "censor_status": "Censored and recut without Gunn\u2019s approval originally",
+      "packaging": "Standard case with slipcover",
+      "copies_available": 108
+    }
+  },
+  {
+    "pk": 46,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Girly",
+      "release_date": "1970-05-01",
+      "director": "Freddie Francis",
+      "description": "A twisted British horror-comedy about a dysfunctional aristocratic family luring outsiders into deadly games.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Examining satirical horror). Making-of Documentary (Exploring cult legacy). Deleted Scenes (Extended sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but largely unknown outside niche audiences",
+      "packaging": "Slipcase featuring eerie vintage horror artwork",
+      "copies_available": 361
+    }
+  },
+  {
+    "pk": 47,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Goke, Body Snatcher from Hell",
+      "release_date": "1968-07-14",
+      "director": "Hajime Sat\u00f4",
+      "description": "A mind-bending Japanese alien horror film where survivors of a plane crash are hunted by a body-possessing alien parasite.",
+      "genre": "Sci-Fi",
+      "subgenre": "Japanese Horror",
+      "resolution": "1080p",
+      "special_features": "Remastered HD transfer. Audio commentary by Asian cinema expert Jasper Sharp. Trailer gallery. Illustrated booklet with film analysis",
+      "edition": "Criterion (Eclipse Series)",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Slim Blu-ray case",
+      "copies_available": 482
+    }
+  },
+  {
+    "pk": 48,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Gozu",
+      "release_date": "2003-03-25",
+      "director": "Takashi Miike",
+      "description": "A disturbing psychological horror with surreal Lynchian influences.",
+      "genre": "Horror",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring themes and inspirations), Deleted Scenes (Unseen footage), Making-of Documentary (Insights into bizarre practical effects)",
+      "edition": "Limited",
+      "censor_status": "Not banned, but some versions omitted explicit sequences",
+      "packaging": "Slipcase with minimalist surreal artwork",
+      "copies_available": 141
+    }
+  },
+  {
+    "pk": 49,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Gummo",
+      "release_date": "1997-09-12",
+      "director": "Harmony Korine",
+      "description": "A bizarre, non-linear film depicting life in an impoverished American town.",
+      "genre": "Drama",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Harmony Korine discusses influences), Behind-the-Scenes Documentary (Examining unconventional filmmaking techniques), Deleted Scenes (Additional unused footage)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Not banned, but faced extreme controversy for disturbing content",
+      "packaging": "Slipcase with raw, documentary-style cover art",
+      "copies_available": 487
+    }
+  },
+  {
+    "pk": 50,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Hardware",
+      "release_date": "1990-09-14",
+      "director": "Richard Stanley",
+      "description": "Richard Stanley\u2019s post-apocalyptic cyberpunk horror about a killer robot loose in a grungy future apartment.",
+      "genre": "Sci-Fi",
+      "subgenre": "Cyberpunk / Post-Apocalyptic",
+      "resolution": "1080p",
+      "special_features": "2K scan from original negatives. Stanley commentary. Behind-the-scenes doc. Deleted scenes. Collectors booklet",
+      "edition": "Severin Films",
+      "censor_status": "Banned in UK during Video Nasty panic",
+      "packaging": "Steelbook edition",
+      "copies_available": 204
+    }
+  },
+  {
+    "pk": 51,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Henry: Portrait of a Serial Killer",
+      "release_date": "1986-09-24",
+      "director": "John McNaughton",
+      "description": "A disturbing crime drama loosely based on real-life serial killer Henry Lee Lucas.",
+      "genre": "Crime",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Psychological Horror Documentary (Exploring its realistic violence), Restored Version (High-definition transfer), Director\u2019s Commentary (Discussing themes)",
+      "edition": "Limited",
+      "censor_status": "Initially banned in the UK for graphic violence; later released with cuts",
+      "packaging": "Matte-black slipcase featuring chilling portrait artwork",
+      "copies_available": 442
+    }
+  },
+  {
+    "pk": 52,
+    "model": "releases.releases",
+    "fields": {
+      "title": "House",
+      "release_date": "1977-07-30",
+      "director": "Nobuhiko Obayashi",
+      "description": "A group of schoolgirls visits a haunted house where they are devoured by beds, pianos, and more in a surreal, psychedelic nightmare.",
+      "genre": "Horror",
+      "subgenre": "Surreal / Experimental",
+      "resolution": "1080p",
+      "special_features": "Restored digital transfer. Interview with director Nobuhiko Obayashi (18 min). Appreciation by Ti West (10 min). Original trailers and posters. Fold-out poster and booklet with essay by Chuck Stephens",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide. Mild edits in rare early VHS editions",
+      "packaging": "Digipak with illustrated slipcover and fold-out poster",
+      "copies_available": 494
+    }
+  },
+  {
+    "pk": 53,
+    "model": "releases.releases",
+    "fields": {
+      "title": "House of 1000 Corpses",
+      "release_date": "2003-04-11",
+      "director": "Rob Zombie",
+      "description": "Rob Zombie\u2019s gruesome horror film about a family of sadistic killers.",
+      "genre": "Horror",
+      "subgenre": "Slasher",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Includes previously censored brutality), Behind-the-Scenes Documentary (Examining production design), Deleted Scenes (Additional violent sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally released in a cut version; uncut editions later available",
+      "packaging": "Slipcase featuring blood-red embossed artwork",
+      "copies_available": 125
+    }
+  },
+  {
+    "pk": 54,
+    "model": "releases.releases",
+    "fields": {
+      "title": "I Spit on Your Grave",
+      "release_date": "1978-11-22",
+      "director": "Meir Zarchi",
+      "description": "A revenge thriller depicting brutal assault and vengeance.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary. Behind-the-scenes with cast and director.\u00a0Uncut Version. Features restored sequences previously removed.\u00a0Rape-Revenge Discussion Featurette. Examining the controversial subgenre.",
+      "edition": "Limited",
+      "censor_status": "Initially banned in the UK, released with cuts before an uncut version emerged later.",
+      "packaging": "Classic-style slipcase with restored poster artwork.",
+      "copies_available": 355
+    }
+  },
+  {
+    "pk": 55,
+    "model": "releases.releases",
+    "fields": {
+      "title": "I Stand Alone",
+      "release_date": "1998-05-16",
+      "director": "Gaspar No\u00e9",
+      "description": "A bleak, nihilistic thriller about an angry butcher's descent into violent madness.",
+      "genre": "Drama",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Gaspar No\u00e9 discusses brutal themes), Behind-the-Scenes Documentary (Examining intense cinematography), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "Not banned but released with warnings due to extreme content",
+      "packaging": "Matte-black slipcase with minimalist brutalist design",
+      "copies_available": 101
+    }
+  },
+  {
+    "pk": 56,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Ichi the Killer",
+      "release_date": "2001-12-22",
+      "director": "Takashi Miike",
+      "description": "Takashi Miike\u2019s hyper-violent tale of sadism, loyalty, and gang warfare, infamous for its extreme content and satire.",
+      "genre": "Crime",
+      "subgenre": "Splatter / Yakuza",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s cut. Interview with Miike. \"Ichi Revisited\" featurette. Behind-the-scenes. Manga comparison feature",
+      "edition": "Arrow Video",
+      "censor_status": "Heavily censored in UK and Germany",
+      "packaging": "Steelbook edition with slipbox",
+      "copies_available": 176
+    }
+  },
+  {
+    "pk": 57,
+    "model": "releases.releases",
+    "fields": {
+      "title": "In a Glass Cage",
+      "release_date": "1986-11-21",
+      "director": "Agust\u00ed Villaronga",
+      "description": "A deeply disturbing psychological horror about a paralyzed ex-Nazi haunted by his past.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Includes previously censored sequences), Making-of Documentary (Examining dark themes), Director\u2019s Commentary (Discussing the film\u2019s impact)",
+      "edition": "Limited",
+      "censor_status": "Banned in some countries due to extreme subject matter",
+      "packaging": "Matte-black slipcase with minimalist brutalist design",
+      "copies_available": 117
+    }
+  },
+  {
+    "pk": 58,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Kuroneko",
+      "release_date": "1968-02-24",
+      "director": "Kaneto Shind\u00f4",
+      "description": "A hauntingly stylized Japanese ghost tale of two women who return as vengeful spirits to seduce and kill samurai. Beautifully shot, eerie, and tragic.",
+      "genre": "Horror",
+      "subgenre": "Japanese Ghost Story",
+      "resolution": "1080p",
+      "special_features": "Restored HD transfer. Interview with director Kaneto Shindo. Commentary by film historian Donald Richie. Illustrated booklet with essays",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion case with slip",
+      "copies_available": 367
+    }
+  },
+  {
+    "pk": 59,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Let the Right One In",
+      "release_date": "2008-10-24",
+      "director": "Tomas Alfredson",
+      "description": "A haunting Swedish vampire drama about a lonely boy who befriends a mysterious girl.",
+      "genre": "Horror",
+      "subgenre": "Drama",
+      "resolution": "1080p",
+      "special_features": "Deleted Scenes (Unused footage restored), Director\u2019s Commentary (Exploring character dynamics), Behind-the-Scenes Documentary (Examining production design)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; widely released uncut",
+      "packaging": "Elegant slipcase with cold-toned artwork",
+      "copies_available": 18
+    }
+  },
+  {
+    "pk": 60,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Let's Scare Jessica to Death",
+      "release_date": "1971-08-27",
+      "director": "John Hancock",
+      "description": "A psychological horror about a mentally fragile woman facing supernatural visions.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Remastered Cut (Restored from original print), Making-of Documentary (Examining tension-building techniques), Deleted Scenes (Extended footage)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but regarded as an underappreciated cult film",
+      "packaging": "Hardcover slipcase with retro eerie artwork",
+      "copies_available": 448
+    }
+  },
+  {
+    "pk": 61,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Liquid Sky",
+      "release_date": "1982-05-12",
+      "director": "Slava Tsukerman",
+      "description": "An androgynous model in NYC discovers that aliens are killing people during orgasm in this experimental cult sci-fi.",
+      "genre": "Sci-Fi",
+      "subgenre": "New Wave",
+      "resolution": "1080p",
+      "special_features": "Restored 4K transfer. Commentary with director Slava Tsukerman. \"Liquid Sky Revisited\" doc. Interviews with cast and crew. 28-page booklet with essays and photos",
+      "edition": "Vinegar Syndrome",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Transparent case with slipcover",
+      "copies_available": 229
+    }
+  },
+  {
+    "pk": 62,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Man Bites Dog",
+      "release_date": "1992-05-15",
+      "director": "R\u00e9my Belvaux, Andr\u00e9 Bonzel",
+      "description": "A dark satire following a documentary crew filming a charismatic serial killer.",
+      "genre": "Thriller",
+      "subgenre": "Mockumentary",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary. Behind-the-scenes insight into the film\u2019s realism.\u00a0Deleted Scenes. Footage removed for pacing and censorship reasons.\u00a0Cinematic Violence Featurette. Exploring the ethical questions posed by the film.",
+      "edition": "Deluxe",
+      "censor_status": "Banned in the UK on first release, later restored uncut.",
+      "packaging": "Matte-black slipcase with minimalist design.",
+      "copies_available": 98
+    }
+  },
+  {
+    "pk": 63,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Mandy",
+      "release_date": "2018-09-14",
+      "director": "Panos Cosmatos",
+      "description": "A psychedelic revenge thriller starring Nicolas Cage, drenched in neon visuals and brutality.",
+      "genre": "Horror",
+      "subgenre": "Thriller",
+      "resolution": "4K",
+      "special_features": "Making-of Documentary (Examining neon horror aesthetics), Director\u2019s Commentary (Exploring themes), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; widely praised for bold visuals",
+      "packaging": "Hardbound slipcover with vivid red artwork",
+      "copies_available": 300
+    }
+  },
+  {
+    "pk": 64,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Maniac",
+      "release_date": "1980-12-26",
+      "director": "William Lustig",
+      "description": "Frank Zito, a disturbed killer haunted by his abusive mother, prowls NYC murdering women. One of the grimiest entries in 1980s slasher cinema, elevated by Tom Savini\u2019s unforgettable FX.",
+      "genre": "Horror",
+      "subgenre": "Slasher",
+      "resolution": "1080p",
+      "special_features": "4K remaster from original negative. Audio commentary with William Lustig and Tom Savini. \"The Joe Spinell Story\" (49 min doc). Deleted scenes. Still gallery and trailers. 28-page booklet with essay by Michael Gingold",
+      "edition": "Blue Underground",
+      "censor_status": "Banned in Germany and the UK during the Video Nasties era. Later released uncut.",
+      "packaging": "Embossed slipcover with lenticular artwork + booklet",
+      "copies_available": 8
+    }
+  },
+  {
+    "pk": 65,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Manos: The Hands of Fate",
+      "release_date": "1966-11-15",
+      "director": "Harold P. Warren",
+      "description": "A bizarre low-budget horror about a cult leader with supernatural control.",
+      "genre": "Horror",
+      "subgenre": "B-Movie",
+      "resolution": "720p",
+      "special_features": "Restored Version (Remastered from original print), Documentary on Cult Legacy (Exploring the film\u2019s infamous reputation), Audio Commentary (Film historians analyze production flaws)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but widely mocked for poor production",
+      "packaging": "Slipcase with vintage horror styling",
+      "copies_available": 290
+    }
+  },
+  {
+    "pk": 66,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Martin",
+      "release_date": "1976-05-07",
+      "director": "George A. Romero",
+      "description": "George A. Romero\u2019s psychological vampire film exploring the nature of vampirism.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Print (High-definition transfer), Romero\u2019s Commentary (Discussing influences), Deleted Scenes (Previously lost footage)",
+      "edition": "Limited",
+      "censor_status": "Released with minor cuts in the UK; later restored",
+      "packaging": "Slipcase with classic poster artwork",
+      "copies_available": 287
+    }
+  },
+  {
+    "pk": 67,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Mondo Cane",
+      "release_date": "1962-04-04",
+      "director": "Gualtiero Jacopetti, Franco Prosperi",
+      "description": "A shocking documentary blending bizarre global rituals with exploitation-style filmmaking.",
+      "genre": "Documentary",
+      "subgenre": "Exploitation",
+      "resolution": "1080p",
+      "special_features": "Historical Context Featurette (Examining global cultures), Restored Edition (Enhanced transfer), Director\u2019s Commentary (Discussing impact on cinema)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Some versions censored due to graphic real-life scenes",
+      "packaging": "Embossed slipcase with vintage documentary styling",
+      "copies_available": 294
+    }
+  },
+  {
+    "pk": 68,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Ms. 45",
+      "release_date": "1981-04-24",
+      "director": "Abel Ferrara",
+      "description": "After being assaulted twice in one day, a mute seamstress turns vigilante in Abel Ferrara\u2019s gritty, feminist revenge film.",
+      "genre": "Thriller",
+      "subgenre": "Vigilante",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary with Ferrara. \"Femme Fatale: Zo\u00eb Lund Remembered\" (28 min). Theatrical and promo trailers. 20-page booklet with new essays",
+      "edition": "Arrow Video",
+      "censor_status": "Heavily cut in UK VHS release (1980s); now uncut",
+      "packaging": "Slipcase with reversible sleeve and booklet",
+      "copies_available": 378
+    }
+  },
+  {
+    "pk": 69,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Naked Lunch",
+      "release_date": "1991-12-27",
+      "director": "David Cronenberg",
+      "description": "Cronenberg adapts William S. Burroughs\u2019 hallucinatory novel into a surreal vision of addiction, paranoia, and Kafkaesque bureaucracy.",
+      "genre": "Drama",
+      "subgenre": "Surrealism",
+      "resolution": "1080p",
+      "special_features": "New 2K restoration. Commentary with Cronenberg and actor Peter Weller. Interviews with crew and Burroughs scholars. Archival making-of featurette. 36-page booklet with artwork and essays",
+      "edition": "Criterion Collection",
+      "censor_status": "Mildly censored in some European TV broadcasts due to drug content",
+      "packaging": "Criterion case with illustrated insert + booklet",
+      "copies_available": 437
+    }
+  },
+  {
+    "pk": 70,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Nekromantik",
+      "release_date": "1987-11-01",
+      "director": "J\u00f6rg Buttgereit",
+      "description": "A shocking horror film about necrophilia and disturbing romance.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "720p",
+      "special_features": "Director\u2019s Interview. Discussing the film\u2019s impact and censorship.\u00a0Uncut Version. Features sequences previously banned.\u00a0Special Gore Effects Breakdown. How the visuals were achieved.",
+      "edition": "Limited",
+      "censor_status": "Banned outright in the UK\u00a0until recently released in uncensored format.",
+      "packaging": "Coffin-shaped slipcase with distressed textures.",
+      "copies_available": 336
+    }
+  },
+  {
+    "pk": 71,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Nightbreed",
+      "release_date": "1990-02-16",
+      "director": "Clive Barker",
+      "description": "Clive Barker\u2019s monster-filled horror-fantasy about an underground society of creatures.",
+      "genre": "Horror",
+      "subgenre": "Fantasy",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Cut (Includes restored sequences), Behind-the-Scenes Documentary (Exploring creature effects), Deleted Scenes (Extended footage)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally censored in the UK for violent imagery; later released fully uncut",
+      "packaging": "Slipcase featuring vivid monster-themed artwork",
+      "copies_available": 390
+    }
+  },
+  {
+    "pk": 72,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Onibaba",
+      "release_date": "1964-11-21",
+      "director": "Kaneto Shind\u00f4",
+      "description": "A stark and eerie black-and-white Japanese horror film set in feudal times, where two women survive by murdering samurai and selling their goods.",
+      "genre": "Horror",
+      "subgenre": "Japanese / Folk",
+      "resolution": "1080p",
+      "special_features": "New HD transfer from 35mm print. Interviews with Kaneto Shind\u014d. Audio commentary by Asian horror scholar. Illustrated booklet. Theatrical trailer",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion case",
+      "copies_available": 7
+    }
+  },
+  {
+    "pk": 73,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Paris, Texas",
+      "release_date": "1984-05-19",
+      "director": "Wim Wenders",
+      "description": "Wim Wenders\u2019 haunting story of a man reconnecting with his son and estranged wife across the American landscape. Stunning visuals and Ry Cooder\u2019s score elevate this classic.",
+      "genre": "Drama",
+      "subgenre": "Road Movie / Existential",
+      "resolution": "1080p",
+      "special_features": "4K restoration from original negative. Interviews with Wim Wenders and cast. Commentary by author Peter Cowie. Deleted scenes. 48-page booklet",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Digipack with soft-touch slipcase",
+      "copies_available": 175
+    }
+  },
+  {
+    "pk": 74,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Peeping Tom",
+      "release_date": "1960-05-16",
+      "director": "Michael Powell",
+      "description": "A psychological thriller about a film-obsessed killer documenting his murders.",
+      "genre": "Thriller",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Digitally enhanced version), Director\u2019s Commentary (Examining themes of voyeurism), Behind-the-Scenes Documentary (Exploring production challenges)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Initially condemned as obscene in the UK; later reassessed as a classic",
+      "packaging": "Hardbound slipcase with film reel-style artwork",
+      "copies_available": 63
+    }
+  },
+  {
+    "pk": 75,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Phantom of the Paradise",
+      "release_date": "1974-10-31",
+      "director": "Brian De Palma",
+      "description": "Brian De Palma\u2019s cult rock opera blending horror, music, and satire.",
+      "genre": "Musical",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring influences), Deleted Scenes (Recovered lost footage), Making-of Featurette (Examining musical elements)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but was underappreciated on release",
+      "packaging": "Slipcase with flashy neon artwork",
+      "copies_available": 264
+    }
+  },
+  {
+    "pk": 76,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Phase IV",
+      "release_date": "1974-09-01",
+      "director": "Saul Bass",
+      "description": "The only film directed by famed graphic designer Saul Bass, blending science fiction and experimental visuals in a tale of hyper-intelligent ants.",
+      "genre": "Sci-Fi",
+      "subgenre": "Eco-Horror",
+      "resolution": "1080p",
+      "special_features": "4K restoration. Commentary by Jonathan Rigby. Rare alternate ending. Archival making-of stills. Saul Bass design retrospective",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Clear case with booklet and alternate art",
+      "copies_available": 406
+    }
+  },
+  {
+    "pk": 77,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Pink Flamingos",
+      "release_date": "1972-03-17",
+      "director": "John Waters",
+      "description": "John Waters\u2019 shock comedy featuring Divine in a contest for the filthiest person alive. One of the most infamous underground films.",
+      "genre": "Comedy",
+      "subgenre": "Trash Cinema",
+      "resolution": "1080p",
+      "special_features": "New 4K restoration. Commentary by Waters. Interviews with cast (incl. Divine archival). Deleted scenes + trailers. 28-page booklet",
+      "edition": "Criterion Collection",
+      "censor_status": "Banned in multiple countries; uncut since 2000s",
+      "packaging": "Criterion digipack",
+      "copies_available": 67
+    }
+  },
+  {
+    "pk": 78,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Pinocchio\u2019s Revenge",
+      "release_date": "1996-10-08",
+      "director": "Kevin S. Tenney",
+      "description": "A bizarre horror film about a murderous wooden puppet wreaking havoc.",
+      "genre": "Horror",
+      "subgenre": "Slasher",
+      "resolution": "1080p",
+      "special_features": "Restored Print (HD remaster), Director\u2019s Commentary (Examining slasher influences), Deleted Scenes (Extended sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Not censored but regarded as obscure in horror circles",
+      "packaging": "Slipcase featuring eerie puppet-themed imagery",
+      "copies_available": 337
+    }
+  },
+  {
+    "pk": 79,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Possession",
+      "release_date": "1981-05-27",
+      "director": "Andrzej \u017bu\u0142awski",
+      "description": "A woman\u2019s breakdown unravels into supernatural horror and domestic madness. Andrzej \u017bu\u0142awski\u2019s cult psychological horror is a wild, symbolic ride.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "2K restoration by Second Sight. 3 audio commentaries. \"The Other Side of the Wall\" doc (52 min). Interview with \u017bu\u0142awski and Isabelle Adjani. 80-page hardback book",
+      "edition": "Second Sight Limited Edition",
+      "censor_status": "Banned in the UK as a \"Video Nasty\"; uncut since 1999",
+      "packaging": "Rigid box with 3 discs, hardback book, art cards",
+      "copies_available": 457
+    }
+  },
+  {
+    "pk": 80,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Q: The Winged Serpent",
+      "release_date": "1982-10-08",
+      "director": "Larry Cohen",
+      "description": "A bizarre horror-action hybrid about an ancient dragon terrorizing New York City.",
+      "genre": "Horror",
+      "subgenre": "Monster",
+      "resolution": "1080p",
+      "special_features": "Monster Effects Breakdown (Examining stop-motion techniques), Director\u2019s Commentary (Discussing inspiration), Deleted Scenes (Unused footage)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but regarded as an odd cult film",
+      "packaging": "Slipcase featuring retro monster movie design",
+      "copies_available": 186
+    }
+  },
+  {
+    "pk": 81,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Re-Animator",
+      "release_date": "1985-10-18",
+      "director": "Stuart Gordon",
+      "description": "A horror-comedy based on H.P. Lovecraft\u2019s tale of reanimated corpses and twisted science.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Documentary (Insights into practical effects), Unrated Cut (Restored graphic content), Cast Interviews (Discussing cult status)",
+      "edition": "Limited",
+      "censor_status": "Originally cut in the UK, later released fully uncut",
+      "packaging": "Slipcase featuring vibrant horror artwork",
+      "copies_available": 59
+    }
+  },
+  {
+    "pk": 82,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Repo Man",
+      "release_date": "1984-03-02",
+      "director": "Alex Cox",
+      "description": "Otto, a disillusioned punk, gets pulled into the world of car repossession and a surreal government conspiracy involving a radioactive Chevy Malibu. Alex Cox\u2019s cult debut is a satirical sci-fi masterpiece.",
+      "genre": "Sci-Fi",
+      "subgenre": "Punk/Counterculture",
+      "resolution": "1080p",
+      "special_features": "New 2K digital transfer, supervised by Alex Cox. Audio commentary by Alex Cox and producer Michael Nesmith. \"Repossessed\": retrospective documentary (30 min). Interviews with Cox, Estevez, Sy Richardson. Original theatrical trailer, TV spots. Booklet with essay by critic Sam McPheeters (24 pages)",
+      "edition": "Criterion Collection",
+      "censor_status": "Heavily edited for TV broadcast in 1980s; uncensored for home release",
+      "packaging": "Standard Criterion keep case with illustrated booklet",
+      "copies_available": 307
+    }
+  },
+  {
+    "pk": 83,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Riki-Oh: The Story of Ricky",
+      "release_date": "1991-07-05",
+      "director": "Lam Nai-choi",
+      "description": "An ultraviolent Hong Kong martial arts gorefest, known for its cartoonish brutality and insane prison fights.",
+      "genre": "Action",
+      "subgenre": "Splatter / Martial Arts",
+      "resolution": "1080p",
+      "special_features": "HD transfer from Fortune Star. Cantonese and English dub. Interview with Fan Siu-Wong. Trailers and commentary. Reversible cover art",
+      "edition": "88 Films",
+      "censor_status": "Heavily censored in UK and US on VHS",
+      "packaging": "O-ring slipcase with booklet",
+      "copies_available": 0
+    }
+  },
+  {
+    "pk": 84,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Rubber",
+      "release_date": "2010-11-26",
+      "director": "Quentin Dupieux",
+      "description": "A surreal film about a sentient, killer tire wreaking havoc.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Examining absurd storytelling), Making-of Documentary (Exploring visual techniques), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; widely released uncut",
+      "packaging": "Slipcase with unique textured rubber-themed artwork",
+      "copies_available": 422
+    }
+  },
+  {
+    "pk": 85,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Rubin & Ed",
+      "release_date": "1991-01-01",
+      "director": "Trent Harris",
+      "description": "Crispin Glover and Howard Hesseman star in this absurd buddy comedy about a man trying to bury his frozen cat. Cult to the core.",
+      "genre": "Comedy",
+      "subgenre": "Absurdist / Road Movie",
+      "resolution": "1080p",
+      "special_features": "HD scan from archival print. Interview with Trent Harris. \"Crispin Goes Off\" video. Original trailer. Liner notes",
+      "edition": "Vinegar Syndrome",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Transparent Blu-ray case",
+      "copies_available": 72
+    }
+  },
+  {
+    "pk": 86,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Sal\u00f2, or the 120 Days of Sodom",
+      "release_date": "1975-11-23",
+      "director": "Pier Paolo Pasolini",
+      "description": "A deeply disturbing film based on de Sade\u2019s novel, depicting extreme cruelty.",
+      "genre": "Drama",
+      "subgenre": "Political",
+      "resolution": "4K",
+      "special_features": "Director\u2019s Interview. Pier Paolo Pasolini discusses the film\u2019s themes.\u00a0Historical Context Featurette. Exploring fascism and repression in the film.\u00a0Restored Cut. High-quality version after years of censorship.",
+      "edition": "Collector\u2019s",
+      "censor_status": "Banned in the UK for years, only later released in a cut format before full restoration.",
+      "packaging": "Slipcase with stark minimalist design reflecting film\u2019s themes.",
+      "copies_available": 488
+    }
+  },
+  {
+    "pk": 87,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Santa Sangre",
+      "release_date": "1989-10-19",
+      "director": "Alejandro Jodorowsky",
+      "description": "A baroque and bloody masterpiece from Alejandro Jodorowsky, blending circus horror, psychodrama, and trauma.",
+      "genre": "Horror",
+      "subgenre": "Surreal / Circus",
+      "resolution": "1080p",
+      "special_features": "2K restoration supervised by Jodorowsky. Multiple interviews. Commentary by Alan Jones. Documentary: \"Forget Everything You Have Ever Seen\". Booklet",
+      "edition": "Severin Films",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Slipcover with fold-out poster",
+      "copies_available": 440
+    }
+  },
+  {
+    "pk": 88,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Scanners",
+      "release_date": "1981-01-14",
+      "director": "David Cronenberg",
+      "description": "Telepaths wage a psychic war in this body horror sci-fi classic from David Cronenberg, famous for its head-exploding scene.",
+      "genre": "Horror",
+      "subgenre": "Sci-Fi / Horror",
+      "resolution": "1080p",
+      "special_features": "2K restoration approved by Cronenberg. \"The Scanners Way\" doc (52 min). 2013 interview with Michael Ironside. Trailer, stills, and rare promotional video. 40-page booklet",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Slipcase with digipack and booklet",
+      "copies_available": 144
+    }
+  },
+  {
+    "pk": 89,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Seconds",
+      "release_date": "1966-10-05",
+      "director": "John Frankenheimer",
+      "description": "Directed by John Frankenheimer, this sci-fi cult classic stars Rock Hudson as a man who undergoes extreme surgery to begin a new life. A paranoid, Kafkaesque thriller.",
+      "genre": "Sci-Fi",
+      "subgenre": "Psychological / Thriller",
+      "resolution": "1080p",
+      "special_features": "4K restoration. Audio commentary by Frankenheimer. Archival Rock Hudson interview. Featurette: \"A Second Look\". Deleted scenes",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Clear Criterion case",
+      "copies_available": 210
+    }
+  },
+  {
+    "pk": 90,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Shogun Assassin",
+      "release_date": "1980-11-11",
+      "director": "Robert Houston",
+      "description": "A re-edited mash-up of Lone Wolf and Cub, this hyper-violent samurai epic became a cult hit in the US grindhouse circuit.",
+      "genre": "Action",
+      "subgenre": "Samurai / Exploitation",
+      "resolution": "1080p",
+      "special_features": "Restored HD presentation. Interview with producer David Weisman. Commentary by film historians. Artwork gallery and liner notes",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut but heavily edited from source material",
+      "packaging": "Steelbook",
+      "copies_available": 226
+    }
+  },
+  {
+    "pk": 91,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Singapore Sling",
+      "release_date": "1990-11-21",
+      "director": "Nikos Nikolaidis",
+      "description": "A deeply disturbing Greek film mixing noir, horror, and surrealism.",
+      "genre": "Thriller",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Restored Edition (Enhanced visuals), Director\u2019s Commentary (Exploring surrealist influences), Uncut Version (Includes sequences previously omitted)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Faced censorship battles for extreme graphic content",
+      "packaging": "Slipcase with haunting noir-stylized design",
+      "copies_available": 20
+    }
+  },
+  {
+    "pk": 92,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Society",
+      "release_date": "1989-09-20",
+      "director": "Brian Yuzna",
+      "description": "A Beverly Hills teen discovers the elite are literally consuming the lower classes. A blend of satire, surrealism, and stomach-turning effects.",
+      "genre": "Horror",
+      "subgenre": "Body Horror",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary by Brian Yuzna & Billy Warlock. \"Masters of the Hunt\" FX doc (22 min). Interviews with FX team and cast. Exclusive Arrow art cards. 24-page collector\u2019s booklet with essay by Alan Jones",
+      "edition": "Arrow Video",
+      "censor_status": "Briefly banned in Spain; uncut worldwide now",
+      "packaging": "Slipcover with reversible sleeve + art cards + booklet",
+      "copies_available": 497
+    }
+  },
+  {
+    "pk": 93,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Spider Baby",
+      "release_date": "1967-12-24",
+      "director": "Jack Hill",
+      "description": "A cult horror-comedy about a bizarre family suffering from a degenerative disease.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Documentary (Examining odd horror humor), Deleted Scenes (Additional footage), Director\u2019s Commentary (Discussing cult legacy)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; widely praised for unique storytelling",
+      "packaging": "Slipcase with eerie retro horror artwork",
+      "copies_available": 419
+    }
+  },
+  {
+    "pk": 94,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Street Trash",
+      "release_date": "1987-10-01",
+      "director": "James M. Muro",
+      "description": "A gross-out horror comedy about toxic liquor that causes violent body meltdowns.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Effects Breakdown (How the melting gore was achieved), Restored Print (High-definition transfer), Cast Reunion Interview (Reflecting on the cult status)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Not banned but heavily criticized for extreme content",
+      "packaging": "Neon-styled slipcase with vivid artwork",
+      "copies_available": 307
+    }
+  },
+  {
+    "pk": 95,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Suspiria",
+      "release_date": "1977-02-01",
+      "director": "Dario Argento",
+      "description": "A ballet student uncovers a coven of witches in a color-drenched nightmare. Argento\u2019s horror classic is lauded for its lighting, music, and set design.",
+      "genre": "Horror",
+      "subgenre": "Giallo",
+      "resolution": "4K",
+      "special_features": "4K restoration supervised by TLE Films. Commentary with Troy Howarth. \"Do You Know Anything About Witches?\" doc (52 min). Goblin concert footage. 40-page booklet and original soundtrack CD",
+      "edition": "Synapse SteelBook",
+      "censor_status": "Censored in UK, Germany (1970s); now uncut",
+      "packaging": "SteelBook with slipcover, booklet, soundtrack",
+      "copies_available": 151
+    }
+  },
+  {
+    "pk": 96,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Sweet Movie",
+      "release_date": "1974-11-01",
+      "director": "Du\u0161an Makavejev",
+      "description": "A surreal, sexually provocative and politically charged film by Du\u0161an Makavejev, banned in many countries for graphic content.",
+      "genre": "Drama",
+      "subgenre": "Experimental / Political",
+      "resolution": "1080p",
+      "special_features": "HD transfer supervised by the director. Archival interviews. Illustrated essay booklet. Trailers and alternate scenes. Controversy featurette",
+      "edition": "Masters of Cinema",
+      "censor_status": "Banned in UK and Canada",
+      "packaging": "Slim Blu-ray case",
+      "copies_available": 403
+    }
+  },
+  {
+    "pk": 97,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Tetsuo: The Iron Man",
+      "release_date": "1989-07-01",
+      "director": "Shinya Tsukamoto",
+      "description": "A man transforms into a metallic creature in this black-and-white cyberpunk nightmare.",
+      "genre": "Horror",
+      "subgenre": "Cyberpunk",
+      "resolution": "1080p",
+      "special_features": "HD restoration approved by director. Interviews with Shinya Tsukamoto. Behind-the-scenes footage. Short film \"The Adventures of Electric Rod Boy\". Booklet with Tsukamoto interview",
+      "edition": "Third Window Films",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Clear case with reversible sleeve",
+      "copies_available": 399
+    }
+  },
+  {
+    "pk": 98,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Baby",
+      "release_date": "1973-03-01",
+      "director": "Ted Post",
+      "description": "A twisted and bizarre horror-drama about a grown man who lives as an infant, and the mysterious social worker investigating his family.",
+      "genre": "Horror",
+      "subgenre": "Psychodrama",
+      "resolution": "1080p",
+      "special_features": "Remastered HD print. Commentary by film historian Travis Crawford. Archival interviews. Alternate artwork and trailer gallery. Booklet with essay",
+      "edition": "Severin Films",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Hardcase with slipcover",
+      "copies_available": 379
+    }
+  },
+  {
+    "pk": 99,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Beyond",
+      "release_date": "1981-04-29",
+      "director": "Lucio Fulci",
+      "description": "A woman inherits a hotel that turns out to be one of the seven gates of hell. Fulci\u2019s gory masterpiece mixes dream logic and occult horror.",
+      "genre": "Horror",
+      "subgenre": "Italian Gothic",
+      "resolution": "4K",
+      "special_features": "4K restoration from original negative by Grindhouse Releasing. 2 audio commentaries (Catriona MacColl + Stephen Thrower). \"Lucio Fulci: In His Own Words\" (50 min). Soundtrack CD (Fabio Frizzi score). Extensive gallery, trailers. 32-page booklet with essays by Anton Bitel and David Flint",
+      "edition": "Grindhouse Deluxe Edition",
+      "censor_status": "Banned in Germany and UK (Video Nasties list); now uncut",
+      "packaging": "Rigid slipcase with reversible sleeve + soundtrack CD",
+      "copies_available": 121
+    }
+  },
+  {
+    "pk": 100,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Brood",
+      "release_date": "1979-05-25",
+      "director": "David Cronenberg",
+      "description": "David Cronenberg\u2019s psychological body horror about a woman whose rage manifests in the form of monstrous children.",
+      "genre": "Horror",
+      "subgenre": "Body Horror / Psychological",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary by David Cronenberg. \"Birth Pains\" featurette. Archival behind-the-scenes. Booklet by Kim Newman",
+      "edition": "Criterion Collection",
+      "censor_status": "Originally trimmed for violence in UK",
+      "packaging": "Clear case with artwork and booklet",
+      "copies_available": 498
+    }
+  },
+  {
+    "pk": 101,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Burning",
+      "release_date": "1981-05-08",
+      "director": "Tony Maylam",
+      "description": "A classic slasher inspired by urban legends, featuring a brutal revenge plot.",
+      "genre": "Horror",
+      "subgenre": "Slasher",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Remastered picture and sound), Uncut Version (Previously censored scenes), Behind-the-Scenes Documentary (Examining production challenges)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Initially censored in the UK due to extreme violence; later released fully uncut",
+      "packaging": "Hardcase slipcover with embossed fiery artwork",
+      "copies_available": 64
+    }
+  },
+  {
+    "pk": 102,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Cell",
+      "release_date": "2000-08-17",
+      "director": "Tarsem Singh",
+      "description": "A psychological sci-fi thriller about a therapist entering a serial killer\u2019s mind.",
+      "genre": "Sci-Fi",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Cut (High-definition transfer), Behind-the-Scenes Featurette (Examining visuals), Director\u2019s Commentary (Discussing themes)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but regarded as unsettling",
+      "packaging": "Slipcase featuring surreal dream-themed artwork",
+      "copies_available": 438
+    }
+  },
+  {
+    "pk": 103,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Cook, the Thief, His Wife & Her Lover",
+      "release_date": "1989-10-13",
+      "director": "Peter Greenaway",
+      "description": "Peter Greenaway\u2019s lavish and grotesque critique of consumerism, betrayal, and revenge, set in a decadent French restaurant.",
+      "genre": "Drama",
+      "subgenre": "Arthouse",
+      "resolution": "1080p",
+      "special_features": "2K remaster. Commentary with Greenaway. \"Food and Filth\" featurette. Rare behind-the-scenes footage. 40-page booklet with essays",
+      "edition": "Lionsgate StudioCanal Release",
+      "censor_status": "Censored in US until NC-17 release",
+      "packaging": "Standard case with booklet",
+      "copies_available": 119
+    }
+  },
+  {
+    "pk": 104,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Devils",
+      "release_date": "1971-07-16",
+      "director": "Ken Russell",
+      "description": "Ken Russell\u2019s violent and controversial story of demonic possession and political power in 17th-century France, starring Oliver Reed and Vanessa Redgrave.",
+      "genre": "Drama",
+      "subgenre": "Historical Horror",
+      "resolution": "1080p",
+      "special_features": "UK X-rated cut with optional commentary. \"Hell on Earth\" documentary. Interview with Ken Russell. Audio essay on censorship history. Booklet with banned scenes analysis",
+      "edition": "BFI (UK-only release)",
+      "censor_status": "Heavily censored; full version still unreleased officially",
+      "packaging": "Standard BFI packaging",
+      "copies_available": 219
+    }
+  },
+  {
+    "pk": 105,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Driller Killer",
+      "release_date": "1979-11-01",
+      "director": "Abel Ferrara",
+      "description": "Abel Ferrara\u2019s gritty underground horror about an artist driven to madness. Notorious Video Nasty.",
+      "genre": "Horror",
+      "subgenre": "Urban / Punk",
+      "resolution": "1080p",
+      "special_features": "2K restoration. Commentary by Ferrara. Making-of featurette. Trailer gallery. Essay booklet",
+      "edition": "Arrow Video",
+      "censor_status": "Banned in UK (Video Nasty)",
+      "packaging": "Rigid slipcase with booklet",
+      "copies_available": 0
+    }
+  },
+  {
+    "pk": 106,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Forbidden Room",
+      "release_date": "2015-01-31",
+      "director": "Guy Maddin, Evan Johnson",
+      "description": "A surreal adventure blending old silent film aesthetics with bizarre narratives.",
+      "genre": "Fantasy",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Documentary (Examining unique filmmaking techniques), Restored Scenes (Additional material reinserted), Director\u2019s Commentary (Exploring visual design)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; widely praised for originality",
+      "packaging": "Hardcover slipcase with vintage film-style artwork",
+      "copies_available": 118
+    }
+  },
+  {
+    "pk": 107,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Funhouse",
+      "release_date": "1981-03-13",
+      "director": "Tobe Hooper",
+      "description": "A slasher horror set inside a terrifying carnival attraction with deadly secrets.",
+      "genre": "Horror",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Documentary (Exploring creepy carnival aesthetics), Deleted Scenes (Extended footage), Director\u2019s Commentary (Examining slasher elements)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but considered unsettling",
+      "packaging": "Slipcase featuring retro carnival horror styling",
+      "copies_available": 277
+    }
+  },
+  {
+    "pk": 108,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Greasy Strangler",
+      "release_date": "2016-10-07",
+      "director": "Jim Hosking",
+      "description": "A grotesque horror-comedy following a father and son operating a bizarre business.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Examining absurd humor), Deleted Scenes (Extended sequences), Behind-the-Scenes Featurette (Exploring exaggerated aesthetics)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but regarded as shockingly crude",
+      "packaging": "Slipcase with neon-colored artwork reflecting bizarre themes",
+      "copies_available": 327
+    }
+  },
+  {
+    "pk": 109,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Happiness of the Katakuris",
+      "release_date": "2001-09-15",
+      "director": "Takashi Miike",
+      "description": "Takashi Miike\u2019s genre-bending zombie musical comedy, blending claymation, horror, and heartfelt drama.",
+      "genre": "Comedy",
+      "subgenre": "Horror Musical / Japanese",
+      "resolution": "1080p",
+      "special_features": "Remastered HD transfer. Interview with Miike. Audio commentary. Original trailers. Collector\u2019s booklet",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Digipack with reversible sleeve",
+      "copies_available": 153
+    }
+  },
+  {
+    "pk": 110,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Holy Mountain",
+      "release_date": "1973-05-01",
+      "director": "Alejandro Jodorowsky",
+      "description": "A thief is guided by a mystical alchemist on a surreal spiritual journey through greed, power, and illusion. Jodorowsky\u2019s definitive psychedelic film.",
+      "genre": "Fantasy",
+      "subgenre": "Surrealism",
+      "resolution": "1080p",
+      "special_features": "2K restoration supervised by Alejandro Jodorowsky. Director\u2019s commentary. \"The Tarot as Filmmaking\" lecture (40 min). Deleted scenes with commentary. 48-page hardcover booklet with essays, artwork. Archival interviews with Jodorowsky",
+      "edition": "Anchor Bay",
+      "censor_status": "Banned in UK and US in 1970s for blasphemous imagery; restored in 2007",
+      "packaging": "Hard case with art cards + hardcover booklet",
+      "copies_available": 56
+    }
+  },
+  {
+    "pk": 111,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Hourglass Sanatorium",
+      "release_date": "1973-03-24",
+      "director": "Wojciech Has",
+      "description": "A surreal Polish fantasy-horror blending dreamlike imagery and mysterious storytelling.",
+      "genre": "Fantasy",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Restored Edition (Enhanced visuals and sound), Behind-the-Scenes Documentary (Exploring production design), Director\u2019s Commentary (Analyzing surreal themes)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but remained obscure internationally",
+      "packaging": "Hardcover slipcase with vintage artistic styling",
+      "copies_available": 336
+    }
+  },
+  {
+    "pk": 112,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The House by the Cemetery",
+      "release_date": "1981-08-14",
+      "director": "Lucio Fulci",
+      "description": "A chilling Italian horror film involving a haunted house hiding dark secrets.",
+      "genre": "Horror",
+      "subgenre": "Supernatural",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Enhanced visuals and sound), Lucio Fulci Interview (Discussing the film\u2019s legacy), Deleted Scenes (Scenes cut for pacing)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Initially released with cuts in the UK; later uncut versions available",
+      "packaging": "Glossy slipcase with atmospheric cover art",
+      "copies_available": 239
+    }
+  },
+  {
+    "pk": 113,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The House That Jack Built",
+      "release_date": "2018-10-14",
+      "director": "Lars von Trier",
+      "description": "Lars von Trier\u2019s disturbing psychological drama about a meticulous serial killer.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "4K",
+      "special_features": "Uncut Version (Restores censored sequences), Director\u2019s Commentary (Exploring controversial themes), Making-of Featurette (Examining artistic intent)",
+      "edition": "Limited",
+      "censor_status": "Originally censored in the UK due to graphic violence; later released fully uncut",
+      "packaging": "Matte-black slipcase featuring minimalist artwork",
+      "copies_available": 392
+    }
+  },
+  {
+    "pk": 114,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Howling",
+      "release_date": "1981-04-10",
+      "director": "Joe Dante",
+      "description": "A groundbreaking werewolf horror known for its stunning transformation effects.",
+      "genre": "Horror",
+      "subgenre": "Supernatural",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Discussing visual effects and themes), Behind-the-Scenes Documentary (Examining transformation sequences), Deleted Scenes (Restored material)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; widely praised for practical effects",
+      "packaging": "Slipcase featuring eerie werewolf-themed artwork",
+      "copies_available": 321
+    }
+  },
+  {
+    "pk": 115,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Keep",
+      "release_date": "1983-12-16",
+      "director": "Michael Mann",
+      "description": "Michael Mann\u2019s visually ambitious but studio-interfered gothic horror set in WWII, featuring Nazis, ancient evil, and Tangerine Dream's score.",
+      "genre": "Horror",
+      "subgenre": "Supernatural / Fantasy",
+      "resolution": "1080p",
+      "special_features": "Rare transfer from 35mm print. Fan commentary and restoration notes. Tangerine Dream isolated score. Trailer. Poster art gallery",
+      "edition": "Bootleg/Fan Release",
+      "censor_status": "Cut by Paramount (never officially restored)",
+      "packaging": "Clear case with printed disc art",
+      "copies_available": 190
+    }
+  },
+  {
+    "pk": 116,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Last House on the Left",
+      "release_date": "1972-08-30",
+      "director": "Wes Craven",
+      "description": "Wes Craven\u2019s disturbing revenge thriller about kidnapped teenagers and brutal consequences.",
+      "genre": "Horror",
+      "subgenre": "Exploitation",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary (Insights into production), Uncut Version (Previously censored sequences included), Slasher Influence Featurette (Impact on horror genre)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Initially banned in the UK, later released with cuts; full version restored",
+      "packaging": "Hardbound digipak with embossed artwork",
+      "copies_available": 456
+    }
+  },
+  {
+    "pk": 117,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Last Wave",
+      "release_date": "1977-12-01",
+      "director": "Peter Weir",
+      "description": "Peter Weir\u2019s mysterious Australian cult film merges legal drama and Aboriginal mysticism, exploring apocalyptic visions and ancient prophecy.",
+      "genre": "Thriller",
+      "subgenre": "Supernatural / Environmental",
+      "resolution": "1080p",
+      "special_features": "New 2K scan. Interviews with Peter Weir. Commentary with critic Alexandra Heller-Nicholas. \"Dreaming the Apocalypse\" doc. Trailers and still gallery",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion packaging",
+      "copies_available": 213
+    }
+  },
+  {
+    "pk": 118,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Legend of the Holy Drinker",
+      "release_date": "1988-09-06",
+      "director": "Ermanno Olmi",
+      "description": "Directed by Ermanno Olmi and based on the novella by Joseph Roth, this allegorical tale follows a homeless man in Paris granted a chance at redemption. Cult status stems from its meditative tone and rare release history.",
+      "genre": "Drama",
+      "subgenre": "Art-House / European",
+      "resolution": "1080p",
+      "special_features": "2K digital restoration. New interview with screenwriter Tullio Kezich. Archival Olmi interviews. Collector\u2019s booklet with critical analysis",
+      "edition": "Arrow Academy",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard clear case with insert",
+      "copies_available": 132
+    }
+  },
+  {
+    "pk": 119,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Love Witch",
+      "release_date": "2016-11-11",
+      "director": "Anna Biller",
+      "description": "A beautifully stylized horror-comedy paying homage to 1960s witchcraft cinema.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary (Examining retro production design), Director\u2019s Commentary (Exploring feminist themes), Cast Interviews (Reflecting on cult status)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; released in full",
+      "packaging": "Slipcase with vintage-inspired artwork",
+      "copies_available": 335
+    }
+  },
+  {
+    "pk": 120,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Man Who Fell to Earth",
+      "release_date": "1976-03-28",
+      "director": "Nicolas Roeg",
+      "description": "A sci-fi drama about an alien struggling to survive on Earth.",
+      "genre": "Sci-Fi",
+      "subgenre": "Drama",
+      "resolution": "1080p",
+      "special_features": "Restored Edition (Enhanced picture and sound), David Bowie Interview (Discussing role), Behind-the-Scenes Featurette (Examining production design)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but considered intellectually challenging",
+      "packaging": "Slipcase with striking alien-themed design",
+      "copies_available": 348
+    }
+  },
+  {
+    "pk": 121,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Naked Lunch",
+      "release_date": "1991-12-27",
+      "director": "David Cronenberg",
+      "description": "David Cronenberg\u2019s adaptation of the surreal William Burroughs novel, blending science fiction and hallucinatory horror.",
+      "genre": "Sci-Fi",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Behind-the-Scenes Featurette (Examining Burroughs' influence), Restored Cut (Enhanced visuals), Director\u2019s Commentary (Discussing surreal elements)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but widely debated for bizarre content",
+      "packaging": "Slipcase featuring grotesque typewriter artwork",
+      "copies_available": 350
+    }
+  },
+  {
+    "pk": 122,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Night of the Hunter",
+      "release_date": "1955-07-26",
+      "director": "Charles Laughton",
+      "description": "A noir thriller about a sinister preacher hunting two children for hidden loot.",
+      "genre": "Thriller",
+      "subgenre": "Noir",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Insight into stylistic choices), Restored Cut (Remastered edition), Behind-the-Scenes Documentary (Filmmaking process)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; released intact",
+      "packaging": "Slipcase featuring original poster art",
+      "copies_available": 103
+    }
+  },
+  {
+    "pk": 123,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Ninth Configuration",
+      "release_date": "1980-02-29",
+      "director": "William Peter Blatty",
+      "description": "A surreal psychological thriller set in a military asylum.",
+      "genre": "Thriller",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Restored Print (High-definition transfer), Behind-the-Scenes Documentary (Examining themes), Director\u2019s Commentary (Discussing story development)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but widely underappreciated",
+      "packaging": "Slipcase with atmospheric military design",
+      "copies_available": 340
+    }
+  },
+  {
+    "pk": 124,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Paperhouse",
+      "release_date": "1988-09-10",
+      "director": "Bernard Rose",
+      "description": "A dark fantasy film about a young girl trapped in a surreal world she draws.",
+      "genre": "Fantasy",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring dreamlike themes), Remastered Cut (Fully restored version), Deleted Scenes (Additional footage)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues; widely appreciated in cult circles",
+      "packaging": "Slipcase with sketchbook-style embossed cover",
+      "copies_available": 309
+    }
+  },
+  {
+    "pk": 125,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Reflecting Skin",
+      "release_date": "1990-08-10",
+      "director": "Philip Ridley",
+      "description": "A young boy\u2019s imagination merges with dark reality in this haunting Gothic mystery set in rural 1950s America.",
+      "genre": "Drama",
+      "subgenre": "Gothic / Surreal",
+      "resolution": "1080p",
+      "special_features": "2K restoration approved by director. Commentary with Philip Ridley. Interview with Viggo Mortensen. Illustrated collector's booklet. Trailer",
+      "edition": "Severin Films",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Rigid slipcase with booklet",
+      "copies_available": 69
+    }
+  },
+  {
+    "pk": 126,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Shout",
+      "release_date": "1978-05-15",
+      "director": "Jerzy Skolimowski",
+      "description": "A psychological horror about a man who claims he can kill with a supernatural scream.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Exploring tension-building techniques), Making-of Documentary (Examining eerie sound design), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "No censorship issues but remained obscure for years",
+      "packaging": "Hardcover slipcase with retro artistic styling",
+      "copies_available": 272
+    }
+  },
+  {
+    "pk": 127,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Strange Color of Your Body's Tears",
+      "release_date": "2013-03-18",
+      "director": "H\u00e9l\u00e8ne Cattet, Bruno Forzani",
+      "description": "A neo-giallo horror with striking visuals and cryptic storytelling.",
+      "genre": "Horror",
+      "subgenre": "Giallo",
+      "resolution": "1080p",
+      "special_features": "Restored Print (Fully enhanced visuals), Behind-the-Scenes Documentary (Examining giallo influences), Director\u2019s Commentary (Discussing surreal cinematography)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but regarded as deeply unsettling",
+      "packaging": "Slipcase with stylish neon giallo aesthetics",
+      "copies_available": 447
+    }
+  },
+  {
+    "pk": 128,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Strange Vice of Mrs. Wardh",
+      "release_date": "1971-03-12",
+      "director": "Sergio Martino",
+      "description": "A stylish Italian giallo horror following a woman caught in a web of murder and manipulation.",
+      "genre": "Horror",
+      "subgenre": "Giallo",
+      "resolution": "1080p",
+      "special_features": "Restored Cut (High-quality transfer), Deleted Scenes (Previously lost footage), Director\u2019s Commentary (Exploring psychological themes)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; released intact",
+      "packaging": "Slipcase with vintage Italian horror aesthetic",
+      "copies_available": 339
+    }
+  },
+  {
+    "pk": 129,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Stuff",
+      "release_date": "1985-06-14",
+      "director": "Larry Cohen",
+      "description": "A satirical horror film about a delicious but deadly alien substance taking over consumers.",
+      "genre": "Horror",
+      "subgenre": "Comedy",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary (Examining campy horror themes), Deleted Scenes (Unused sequences), Director\u2019s Commentary (Discussing corporate satire)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues; widely enjoyed as a cult horror-comedy",
+      "packaging": "Slipcase with vibrant 80s horror artwork",
+      "copies_available": 366
+    }
+  },
+  {
+    "pk": 130,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Texas Chainsaw Massacre",
+      "release_date": "1974-10-01",
+      "director": "Tobe Hooper",
+      "description": "A gritty horror classic about a deranged family and their chainsaw-wielding killer.",
+      "genre": "Horror",
+      "subgenre": "Slasher",
+      "resolution": "4K",
+      "special_features": "Behind-the-Scenes Featurette. Interviews with cast and crew.\u00a0Deleted Scenes. Never-before-seen footage cut from the original film.\u00a0Slasher Documentary. Analysis of the film\u2019s influence on the genre.",
+      "edition": "Deluxe",
+      "censor_status": "Originally banned in the UK\u00a0before being approved with cuts. Fully uncut versions later released.",
+      "packaging": "Retro VHS-style packaging with leather texture.",
+      "copies_available": 197
+    }
+  },
+  {
+    "pk": 131,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Texas Chainsaw Massacre 2",
+      "release_date": "1986-08-22",
+      "director": "Tobe Hooper",
+      "description": "Tobe Hooper returns with a wild, satirical, ultra-violent sequel to his horror classic. Over-the-top and drenched in gore.",
+      "genre": "Horror",
+      "subgenre": "Splatter / Comedy Horror",
+      "resolution": "1080p",
+      "special_features": "2K scan. Commentary by Hooper. \"It Runs in the Family\" doc. Deleted scenes. Collector\u2019s booklet",
+      "edition": "Arrow Video",
+      "censor_status": "Heavily censored in UK, now uncut",
+      "packaging": "Steelbook or rigid case",
+      "copies_available": 2
+    }
+  },
+  {
+    "pk": 132,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Thing",
+      "release_date": "1982-06-25",
+      "director": "John Carpenter",
+      "description": "In Antarctica, a shape-shifting alien infiltrates a remote research base. Carpenter\u2019s claustrophobic sci-fi horror was misunderstood on release but gained legendary status.",
+      "genre": "Sci-Fi",
+      "subgenre": "Creature Feature",
+      "resolution": "4K",
+      "special_features": "New 4K restoration by Arrow. Commentary with Carpenter and Kurt Russell. \"Who Goes There?\" making-of doc (90 min). Vintage featurettes, trailers, stills gallery. 60-page hardcover booklet",
+      "edition": "Arrow Video UHD Edition",
+      "censor_status": "Uncut worldwide; initial reviews criticized violence",
+      "packaging": "Rigid slipbox with 4K disc, poster, booklet",
+      "copies_available": 120
+    }
+  },
+  {
+    "pk": 133,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Toxic Avenger",
+      "release_date": "1984-04-11",
+      "director": "Michael Herz, Lloyd Kaufman",
+      "description": "Troma's iconic cult splatter comedy about a nerd turned mutant superhero after falling into toxic waste. Irreverent, gory, and bizarre.",
+      "genre": "Horror",
+      "subgenre": "Comedy Splatter",
+      "resolution": "1080p",
+      "special_features": "Uncut director's cut. \"Birth of a Hero\" doc. Lloyd Kaufman commentary. Behind-the-scenes footage. Collector\u2019s postcard and reversible art",
+      "edition": "Troma Collector\u2019s Edition",
+      "censor_status": "Censored in UK and Australia",
+      "packaging": "Slipcover with custom art",
+      "copies_available": 237
+    }
+  },
+  {
+    "pk": 134,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Visitor",
+      "release_date": "1979-09-25",
+      "director": "Giulio Paradisi",
+      "description": "A surreal sci-fi horror blending biblical themes and extraterrestrial mystery.",
+      "genre": "Sci-Fi",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Examining unique themes), Behind-the-Scenes Documentary (Exploring visual techniques), Deleted Scenes (Extended sequences)",
+      "edition": "Collector\u2019s",
+      "censor_status": "No censorship issues but largely forgotten upon release",
+      "packaging": "Slipcase featuring stylized psychedelic artwork",
+      "copies_available": 491
+    }
+  },
+  {
+    "pk": 135,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Warriors",
+      "release_date": "1979-02-09",
+      "director": "Walter Hill",
+      "description": "A street gang must fight its way back home through hostile NYC after being framed for murder. Stylish, tense, and hugely influential.",
+      "genre": "Action",
+      "subgenre": "Urban",
+      "resolution": "1080p",
+      "special_features": "Theatrical and Director\u2019s Cut. \"Come Out to Play\" retrospective doc. Interviews with cast and crew. Featurette on the original novel. Collector\u2019s booklet",
+      "edition": "Paramount Special Edition",
+      "censor_status": "Uncut worldwide; theatrical version rarely seen until recent re-release",
+      "packaging": "Standard case with slipcover and insert",
+      "copies_available": 198
+    }
+  },
+  {
+    "pk": 136,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Wicker Man",
+      "release_date": "1973-12-06",
+      "director": "Robin Hardy",
+      "description": "A devout police sergeant investigates a missing girl on a remote island and encounters pagan rituals in this iconic British folk horror.",
+      "genre": "Horror",
+      "subgenre": "Folk Horror",
+      "resolution": "1080p",
+      "special_features": "Final Cut, Director\u2019s Cut, and Theatrical versions. Commentary with Robin Hardy and Christopher Lee. \"Worshipping The Wicker Man\" doc (34 min). Interview with Edward Woodward. 48-page booklet with essays and restored photos",
+      "edition": "Studiocanal Collector\u2019s Edition",
+      "censor_status": "Original US release heavily cut (1970s); now restored.",
+      "packaging": "Rigid box with 3-disc digipack + booklet + poster",
+      "copies_available": 474
+    }
+  },
+  {
+    "pk": 137,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Wicker Tree",
+      "release_date": "2012-01-27",
+      "director": "Robin Hardy",
+      "description": "A spiritual sequel to The Wicker Man, this film explores the culture clash between devout American Christians and a Scottish pagan cult. Directed by Robin Hardy.",
+      "genre": "Horror",
+      "subgenre": "Folk Horror",
+      "resolution": "1080p",
+      "special_features": "Audio commentary with Robin Hardy. Behind-the-scenes documentary. Deleted scenes. Interview with Christopher Lee. Trailer",
+      "edition": "Anchor Bay",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Blu-ray case",
+      "copies_available": 486
+    }
+  },
+  {
+    "pk": 138,
+    "model": "releases.releases",
+    "fields": {
+      "title": "The Witch Who Came from the Sea",
+      "release_date": "1976-08-01",
+      "director": "Matt Cimber",
+      "description": "A psychological horror about a woman\u2019s descent into hallucinations and murder.",
+      "genre": "Horror",
+      "subgenre": "Psychological",
+      "resolution": "1080p",
+      "special_features": "Making-of Documentary (Examining cult horror), Deleted Scenes (Extended sequences), Director\u2019s Commentary (Exploring storytelling techniques)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally banned in the UK under the \"Video Nasties\" list; later released uncut",
+      "packaging": "Slipcase featuring psychedelic horror artwork",
+      "copies_available": 486
+    }
+  },
+  {
+    "pk": 139,
+    "model": "releases.releases",
+    "fields": {
+      "title": "They Live",
+      "release_date": "1988-11-04",
+      "director": "John Carpenter",
+      "description": "A drifter discovers a pair of sunglasses that reveal subliminal messages and aliens controlling the world. A satirical sci-fi cult favorite by John Carpenter.",
+      "genre": "Sci-Fi",
+      "subgenre": "Satire",
+      "resolution": "1080p",
+      "special_features": "2K restoration from original negative. Commentary with John Carpenter and Roddy Piper. \"Independent Thoughts\" interview with Carpenter (20 min). Vintage TV spots and trailers. Reversible sleeve + 20-page booklet",
+      "edition": "Shout! Factory Collector\u2019s Edition",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Slipcover with original poster art",
+      "copies_available": 345
+    }
+  },
+  {
+    "pk": 140,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Thundercrack!",
+      "release_date": "1975-10-01",
+      "director": "Curt McDowell",
+      "description": "A bizarre underground cult film blending horror, surrealism, and explicit content.",
+      "genre": "Horror",
+      "subgenre": "Experimental",
+      "resolution": "1080p",
+      "special_features": "Uncut Version (Previously censored sequences restored), Making-of Documentary (Examining avant-garde style), Deleted Scenes (Extended sequences)",
+      "edition": "Limited",
+      "censor_status": "Faced censorship battles due to explicit material",
+      "packaging": "Matte-black slipcase featuring surreal vintage artwork",
+      "copies_available": 381
+    }
+  },
+  {
+    "pk": 141,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Time Bandits",
+      "release_date": "1981-11-13",
+      "director": "Terry Gilliam",
+      "description": "A boy joins a time-traveling troupe of dwarfs stealing treasure from history in Terry Gilliam\u2019s dark fantasy adventure.",
+      "genre": "Fantasy",
+      "subgenre": "Adventure",
+      "resolution": "1080p",
+      "special_features": "2K restoration approved by Gilliam. Commentary with Gilliam and cast. \"The Directors: Terry Gilliam\" doc. Interview with David Warner. Collector booklet with film stills",
+      "edition": "Criterion Collection",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Standard Criterion case",
+      "copies_available": 214
+    }
+  },
+  {
+    "pk": 142,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Tokyo Drifter",
+      "release_date": "1966-04-10",
+      "director": "Seijun Suzuki",
+      "description": "A former yakuza hitman tries to go straight but is drawn into a psychedelic spiral of betrayal and stylized violence.",
+      "genre": "Crime",
+      "subgenre": "Yakuza",
+      "resolution": "1080p",
+      "special_features": "HD transfer, uncompressed audio. Commentary by Tony Rayns. Interview with Seijun Suzuki (17 min). Original trailers. Booklet with essay by Howard Hampton",
+      "edition": "Criterion Collection",
+      "censor_status": "Mildly cut on early Japanese TV broadcasts for violence",
+      "packaging": "Standard Criterion Blu-ray case",
+      "copies_available": 203
+    }
+  },
+  {
+    "pk": 143,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Tokyo Gore Police",
+      "release_date": "2008-10-03",
+      "director": "Yoshihiro Nishimura",
+      "description": "In a dystopian Tokyo, a samurai-cop battles grotesque mutants in this ultraviolent Japanese body horror action hybrid.",
+      "genre": "Horror",
+      "subgenre": "Cyberpunk Splatter",
+      "resolution": "1080p",
+      "special_features": "Making-of doc. Commentary with director Yoshihiro Nishimura. Special FX featurette. Trailers and behind-the-scenes reel. Poster and booklet",
+      "edition": "Tokyo Shock Collector\u2019s Edition",
+      "censor_status": "Uncut in Japan; censored in US on DVD release",
+      "packaging": "O-card slip with reversible sleeve",
+      "copies_available": 0
+    }
+  },
+  {
+    "pk": 144,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Valerie and Her Week of Wonders",
+      "release_date": "1970-10-09",
+      "director": "Jaromil Jire\u0161",
+      "description": "A surreal fairy tale blending horror, fantasy, and sexuality, set in a dreamlike Czech landscape. A key work of 70s arthouse.",
+      "genre": "Fantasy",
+      "subgenre": "Surrealism",
+      "resolution": "1080p",
+      "special_features": "New 4K transfer. Audio commentary. Archival short films by Jaromil Jire\u0161. Illustrated booklet. New subtitle translation",
+      "edition": "Second Run Films",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Soft digipack",
+      "copies_available": 213
+    }
+  },
+  {
+    "pk": 145,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Vampyros Lesbos",
+      "release_date": "1971-07-15",
+      "director": "Jes\u00fas Franco",
+      "description": "A surreal erotic horror film by Jess Franco, starring Soledad Miranda as a seductive female vampire in a dreamlike world.",
+      "genre": "Horror",
+      "subgenre": "Erotic / Eurocult",
+      "resolution": "1080p",
+      "special_features": "Restored from original elements. Alternate opening credits. Jess Franco interviews. Vintage soundtrack featurette. Collector\u2019s insert booklet",
+      "edition": "Severin Films",
+      "censor_status": "Censored in UK, Germany",
+      "packaging": "Standard Blu-ray case",
+      "copies_available": 183
+    }
+  },
+  {
+    "pk": 146,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Videodrome",
+      "release_date": "1983-02-04",
+      "director": "David Cronenberg",
+      "description": "A sleazy cable-TV exec stumbles upon a brutal signal that warps reality. Cronenberg\u2019s tech-noir horror predicts media obsession and body modification.",
+      "genre": "Horror",
+      "subgenre": "Body Horror",
+      "resolution": "1080p",
+      "special_features": "Restored HD transfer supervised by David Cronenberg. Audio commentary with Cronenberg and Mark Irwin. \"Forging the New Flesh\" doc (26 min). Vintage featurette with Rick Baker (18 min). \"Samurai Dreams\" full video. Theatrical trailers and stills. 40-page booklet with essays and production notes",
+      "edition": "Criterion Collection",
+      "censor_status": "Cut in UK (1983); banned in some provinces in Canada for graphic content. Now fully uncut.",
+      "packaging": "Clear Criterion keep case with booklet",
+      "copies_available": 462
+    }
+  },
+  {
+    "pk": 147,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Wake in Fright",
+      "release_date": "1971-10-09",
+      "director": "Ted Kotcheff",
+      "description": "A harrowing descent into the Australian outback, where civilized exteriors give way to primal madness. A lost classic, now restored.",
+      "genre": "Thriller",
+      "subgenre": "Psychological / Outback",
+      "resolution": "1080p",
+      "special_features": "Restored by National Film and Sound Archive of Australia. Interview with Ted Kotcheff. \"To Wake in Fright\" doc. Booklet with historical analysis",
+      "edition": "Drafthouse Films",
+      "censor_status": "Censored and thought lost for decades",
+      "packaging": "Clear case with original art",
+      "copies_available": 150
+    }
+  },
+  {
+    "pk": 148,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Who Can Kill a Child?",
+      "release_date": "1976-04-26",
+      "director": "Narciso Ib\u00e1\u00f1ez Serrador",
+      "description": "A chilling Spanish horror film about a couple trapped on an island where children have turned murderous.",
+      "genre": "Horror",
+      "subgenre": "Thriller",
+      "resolution": "1080p",
+      "special_features": "Restored Print (High-quality transfer), Behind-the-Scenes Documentary (Examining psychological horror), Director\u2019s Commentary (Exploring moral dilemmas)",
+      "edition": "Collector\u2019s",
+      "censor_status": "Originally censored in the UK for disturbing child violence; later released uncut",
+      "packaging": "Slipcase with eerie island-themed design",
+      "copies_available": 162
+    }
+  },
+  {
+    "pk": 149,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Wild at Heart",
+      "release_date": "1990-08-17",
+      "director": "David Lynch",
+      "description": "David Lynch\u2019s surreal road movie romance starring Nicolas Cage and Laura Dern, blending violence, sex, and Wizard of Oz references.",
+      "genre": "Romance",
+      "subgenre": "Crime Surrealism",
+      "resolution": "1080p",
+      "special_features": "4K scan from original negative. Lynch-approved audio mix. \"Love and Chaos\" making-of doc. Deleted scenes and trailers. Interview with Laura Dern",
+      "edition": "Shout! Select",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Clear case with booklet",
+      "copies_available": 321
+    }
+  },
+  {
+    "pk": 150,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Xtro",
+      "release_date": "1983-01-06",
+      "director": "Harry Bromley Davenport",
+      "description": "A surreal sci-fi horror about alien abduction and grotesque mutations.",
+      "genre": "Sci-Fi",
+      "subgenre": "Horror",
+      "resolution": "1080p",
+      "special_features": "Director\u2019s Commentary (Discussing inspirations), Deleted Scenes (Restored explicit sequences), Practical Effects Breakdown (Examining creature design)",
+      "edition": "Limited",
+      "censor_status": "Originally censored in the UK; later released in full",
+      "packaging": "Slipcase with eerie alien-themed artwork",
+      "copies_available": 267
+    }
+  },
+  {
+    "pk": 151,
+    "model": "releases.releases",
+    "fields": {
+      "title": "Zardoz",
+      "release_date": "1974-02-06",
+      "director": "John Boorman",
+      "description": "Sean Connery in a red diaper. John Boorman\u2019s psychedelic sci-fi cult messiah story, loved for its weirdness.",
+      "genre": "Sci-Fi",
+      "subgenre": "Dystopian / Fantasy",
+      "resolution": "1080p",
+      "special_features": "4K remaster. Commentary by Boorman. Interviews and essays. Retrospective doc. Alternate art gallery",
+      "edition": "Arrow Video",
+      "censor_status": "Uncut worldwide",
+      "packaging": "Red case with foil slip",
+      "copies_available": 369
+    }
+  }
+]

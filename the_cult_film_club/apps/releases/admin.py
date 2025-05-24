@@ -24,15 +24,15 @@ class ReleaseAdmin(admin.ModelAdmin):
 
 @admin.register(Images)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ['title']
-    list_filter = ['title']
-    search_fields = ['title']
-    ordering = ['title']
+    list_display = ['title', 'caption']
+    list_filter = ['date_added']
+    search_fields = ['title', 'caption']
+    ordering = ['caption']
 
 
 @admin.register(Rating)
 class RatingAdmin(admin.ModelAdmin):
-    list_display = ('user', 'title', 'rating', 'review', 'date_added')
-    list_filter = ('user', 'title', 'rating', 'review', 'date_added')
+    list_display = ('user', 'title', 'rating', 'date_added')
+    list_filter = ('rating', 'date_added')
     search_fields = ('user__username', 'title__title', 'rating', 'review')
     ordering = ['user__username', 'title__title', 'rating']

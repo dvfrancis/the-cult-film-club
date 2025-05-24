@@ -22,9 +22,9 @@ class Releases(models.Model):
     resolution = models.CharField(max_length=10, blank=True, null=True)
     special_features = models.TextField(max_length=2000, blank=True, null=True)
     edition = models.CharField(max_length=50, blank=True, null=True)
-    censor_status = models.CharField(max_length=10, blank=True, null=True)
+    censor_status = models.CharField(max_length=500, blank=True, null=True)
+    packaging = models.CharField(max_length=500, blank=True, null=True)
     copies_available = models.IntegerField(blank=True, null=True)
-    packaging = models.CharField(max_length=50, blank=True, null=True)
 
     def __str__(self):
         return f"{self.title} ({self.release_date})"

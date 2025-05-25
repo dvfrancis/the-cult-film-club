@@ -11,15 +11,11 @@ class ReleaseAdmin(admin.ModelAdmin):
         'genre', 'resolution'
     )
     search_fields = (
-        'title', 'release_date', 'director', 'description', 'genre', 'subgenre',
-        'resolution', 'special_features', 'edition',
+        'title', 'release_date', 'director', 'description', 'genre',
+        'subgenre', 'resolution', 'special_features', 'edition',
         'censor_status', 'packaging'
     )
     ordering = ['title', 'release_date', 'director', 'genre']
-
-    def get_images(self, obj):
-        return ", ".join([str(img) for img in obj.image.all()])
-    get_images.short_description = 'Images'
 
 
 @admin.register(Images)

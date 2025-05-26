@@ -54,7 +54,7 @@ class Rating(models.Model):
         on_delete=models.CASCADE,
         related_name="ratings"
     )
-    title = models.OneToOneField(
+    title = models.ForeignKey(
         'releases.Releases',
         on_delete=models.CASCADE,
         related_name="ratings"

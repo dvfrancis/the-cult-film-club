@@ -22,7 +22,7 @@ class ReleaseAdmin(admin.ModelAdmin):
 class ImageAdmin(admin.ModelAdmin):
     list_display = ['title', 'caption']
     list_filter = ['date_added']
-    search_fields = ['title', 'caption']
+    search_fields = ['title__title', 'caption']
     ordering = ['caption']
 
 

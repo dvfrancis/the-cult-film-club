@@ -115,3 +115,9 @@ class Images(models.Model):
 
     def __str__(self):
         return f"Image for {self.title.title}"
+    
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.title:
+            self.title.image.add(self)
+            # Assign image to release's ManyToManyField

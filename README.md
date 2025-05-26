@@ -551,6 +551,8 @@ This is a custom model that extends Django's User model by adding additional fie
 |Address|Foreign|`address`|CharField|*Linked to the `Address` model, in a Many-to-One relationship* `on_delete=models.CASCADE, related_name='profile', default=0, null=True`.
 |Loyalty Points|Key|`loyalty_points`|IntegerField|`default=0, blank=False, null=False`
 
+Meta classes used `verbose_name = "Profile", verbose_name_plural = "profiles"`
+
 3. **Address**
 
 This is a custom model that stores the user's addresses.
@@ -566,6 +568,10 @@ This is a custom model that stores the user's addresses.
 |Country|Key|`country`|CharField|`max_length=50, blank=False, null=False`
 |Default Address|Key|`default_address`|BooleanField|`default=False, blank=False, null=False`
 
+Custom class method sets all other addresses for this user to `default_address=False` whenever any address's `default_address` is set to True.
+
+Meta classes used `verbose_name = "Address", verbose_name_plural = "Addresses"`
+
 4. **Wishlist**
 
 This is a custom model that stores the user's wishlist items.
@@ -574,6 +580,8 @@ This is a custom model that stores the user's wishlist items.
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='wishlist'`
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, `through='WishlistItem'`, in a many-to-many relationship* `related_name='wishlists'`
+
+Meta classes used `verbose_name = "Wishlist", verbose_name_plural = "Wishlists"`
 
 5. **WishlistItem**
 
@@ -587,6 +595,11 @@ This is a custom model that acts as an intermediate between the `Wishlist` and `
 |Notes|Key|`notes`|TextField|`max_length=1000, blank=True, null=True`
 |Priority|Key|`priority`|CharField|`max_length=10, choices='High', 'Medium', or 'Low'`
 |Purchased?|Key|`is_purchased`|BooleanField|`default=False, verbose_name='Purchased'`
+
+`class PriorityLevel(Enum):
+    HIGH = "High"
+    MEDIUM = "Medium"
+    LOW = "Low"`
 
 6. **Releases**
 
@@ -611,6 +624,8 @@ This is a custom model that stores details of all films being sold on the site.
 
 `average_rating` is an additional property calculated from entries of the Rating model, and added to `Releases` using the `@property` syntax.
 
+Meta classes used `verbose_name = "Release", verbose_name_plural = "Releases"`
+
 7. **Rating**
 
 This is a custom model that stores film ratings.
@@ -622,6 +637,8 @@ This is a custom model that stores film ratings.
 |Rating|Key|`rating`|IntegerField|`blank=False, null=False`
 |Review|Key|`review`|TextField|`max_length=1500, blank=True, null=True`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
+
+Meta classes used `verbose_name = "Rating", verbose_name_plural = "Ratings", unique_together = (('user', 'title'),)`
 
 8. **Images**
 
@@ -635,6 +652,8 @@ This is a custom model that stores images related to films.
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 |Featured Image?|Key|`is_featured`|BooleanField|`verbose_name='Featured Image', default=False, blank=False, null=False`
 
+Meta classes used `verbose_name = "Image", verbose_name_plural = "Images"`
+
 9. **Contact**
 
 This is a custom model that stores messages sent via the site contact form.
@@ -646,6 +665,8 @@ This is a custom model that stores messages sent via the site contact form.
 |Last Name|Key|`last_name`|CharField|`max_length=50, blank=False, null=False`
 |Email|Key|`email`|EmailField|`validators=[validate_email], blank=False, null=False`
 |Message|Key|`message`|TextField|`max_length=1000, blank=True, null=False`
+
+Meta classes used `verbose_name = "Message", verbose_name_plural = "Messages"`
 
 #### C R U D Fulfilment
 

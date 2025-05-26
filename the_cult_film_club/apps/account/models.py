@@ -4,6 +4,7 @@ from cloudinary.models import CloudinaryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from enum import Enum
+from django.db.models import UniqueConstraint
 
 
 class Profile(models.Model):
@@ -81,6 +82,10 @@ class Wishlist(models.Model):
     class Meta:
         verbose_name = "Wishlist"
         verbose_name_plural = "Wishlists"
+        constraints = [
+            UniqueConstraint(fields=['user'], name='unique_user_wishlist')
+            # Restricts each user to a single wishlist
+        ]
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

@@ -92,7 +92,7 @@ class Images(models.Model):
     )
     image = CloudinaryField(
         'image',
-        default='placeholder',
+        default='holding_image',
         blank=True,
         null=False
     )

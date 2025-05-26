@@ -605,8 +605,11 @@ This is a custom model that stores details of all films being sold on the site.
 |Special Features|Key|`special_features`|TextField|`max_length=2000, blank=True, null=True`
 |Edition|Key|`edition`|CharField|`max_length=50, blank=True, null=True`
 |Censor Status|Key|`censor_status`|CharField|`max_length=10, blank=True, null=True`
-|Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
 |Packaging|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
+|Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
+|Price|Key|`price`|DecimalField|`max_digits=10, decimal_place=2, blank=False, null=False`
+
+`average_rating` is an additional property calculated from entries of the Rating model, and added to `Releases` using the `@property` syntax.
 
 7. **Rating**
 

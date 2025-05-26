@@ -49,6 +49,9 @@ class Rating(models.Model):
     class Meta:
         verbose_name = "Rating"
         verbose_name_plural = "Ratings"
+        unique_together = (
+            ('user', 'title'),
+        )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

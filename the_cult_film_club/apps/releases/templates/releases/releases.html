@@ -29,12 +29,12 @@
                   <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
                   {% if release.average_rating %}
                     <small class="text-muted">
-                      <i class="fas fa-star mr-1"></i>
+                      Rating: 
                       {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
                         {{ release.average_rating|floatformat:0 }}
                       {% else %}
                         {{ release.average_rating|floatformat:2 }}
-                      {% endif %}out of 5
+                      {% endif %}/ 5
                     </small>
                   {% else %}
                     <small class="text-muted">No Rating</small>

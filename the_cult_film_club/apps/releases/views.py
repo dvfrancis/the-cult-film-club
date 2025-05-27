@@ -1,14 +1,15 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
+from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
 from .models import Releases
+from django.core.paginator import Paginator
 
 
 def releases(request):
     """
-    Display all releases, including sort and search queries.
+    Display all releases, including sort and search queries, with pagination.
     """
-    releases = Releases.objects.all().order_by('title')
+    releases_list = Releases.objects.all().order_by('title')
     query = None
     if request.GET:
         if 'q' in request.GET:
@@ -39,11 +40,16 @@ def releases(request):
                 Q(copies_available__icontains=query) |
                 Q(price__icontains=query)
             )
-            releases = releases.filter(queries)
+            releases_list = releases_list.filter(queries)
+
+    paginator = Paginator(releases_list, 8)  # Show 8 releases per page
+    page_number = request.GET.get('page')
+    releases = paginator.get_page(page_number)
+
     context = {
-            "releases": releases,
-            "search_term": query,
-        }
+        "releases": releases,
+        "search_term": query,
+    }
     return render(request, "releases/releases.html", context)
 
 

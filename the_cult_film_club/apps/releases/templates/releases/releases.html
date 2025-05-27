@@ -12,7 +12,7 @@
           <div class="card h-100 border-0">
             {% if release.featured_image %}
             <a href="{% url 'release_details' release.id %}">
-              <img class="card-img-top img-fluid" src="{{ release.featured_image.image.url }}"
+              <img class="card-img-top img-fluid w-75" src="{{ release.featured_image.image.url }}"
                 alt="{{ release.title }}" />
             </a>
             {% else %}
@@ -47,8 +47,8 @@
     </div>
   </div>
 </div>
-<nav aria-label="Page navigation">
-  <ul class="pagination justify-content-center">
+<nav aria-label="Page navigation" class="mb-5">
+  <ul class="pagination justify-content-center flex-wrap">
     {% if releases.has_previous %}
     <li class="page-item">
       <a class="page-link"

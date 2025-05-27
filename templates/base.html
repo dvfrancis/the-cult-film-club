@@ -49,7 +49,7 @@
           <a href="{% url 'home' %}" class="nav-link"><h2 class="logo-font text-black">The <strong>Cult Film</strong> Club</h2></a>
         </div>
         <div class="col-12 col-lg-6 d-flex justify-content-center justify-content-lg-end">
-          <form method="GET" action="" class="w-100 w-md-75 w-lg-auto">
+          <form method="GET" action="{% url 'releases' %}" class="w-100 w-md-75 w-lg-auto">
             <div class="input-group">
               <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search the site" />
               <div class="input-group-append">

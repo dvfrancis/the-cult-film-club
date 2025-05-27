@@ -44,6 +44,10 @@ class Releases(models.Model):
             .aggregate(avg=Avg('rating'))['avg']
         )
 
+    @property
+    def featured_image(self):
+        return self.image.filter(is_featured=True).first()
+
 
 class Rating(models.Model):
     class Meta:
@@ -115,9 +119,16 @@ class Images(models.Model):
 
     def __str__(self):
         return f"Image for {self.title.title}"
-    
+
     def save(self, *args, **kwargs):
+        # If this image is being set as featured,
+        # unset all others for this release
+        if self.is_featured and self.title:
+            Images.objects.filter(
+                title=self.title,
+                is_featured=True
+            ).exclude(pk=self.pk).update(is_featured=False)
+        # Assign image to release's ManyToManyField
         super().save(*args, **kwargs)
         if self.title:
             self.title.image.add(self)
-            # Assign image to release's ManyToManyField

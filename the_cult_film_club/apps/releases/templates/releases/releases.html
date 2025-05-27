@@ -1,50 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block page_header %}
-  <div class="container header-container">
-    <div class="row">
-      <div class="col"></div>
-    </div>
-  </div>
 {% endblock %}
 {% block content %}
-  <div class="container header-container">
-    <div class="row">
-      <div class="col">
-        <div class="row">
-          {% for release in releases %}
-            <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
-              <div class="card h-100 border-0">
-                {% if release.image.all %}
-                  {% for img in release.image.all %}
-                    <a href="#"><img class="card-img-top img-fluid" src="{{ img.image.url }}" alt="{{ release.title }}" /></a>
-                  {% endfor %}
-                {% else %}
-                  <a href="#"><img class="card-img-top img-fluid" src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp" alt="{{ release.title }}" /></a>
-                {% endif %}
-                <div class="card-body pb-0">
-                  <p class="mb-0">{{ release.title }}</p>
-                </div>
-                <div class="card-footer bg-white pt-0 border-0 text-left">
-                  <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
-                  {% if release.average_rating %}
-                    <small class="text-muted">
-                      Rating: 
-                      {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                        {{ release.average_rating|floatformat:0 }}
-                      {% else %}
-                        {{ release.average_rating|floatformat:2 }}
-                      {% endif %}/ 5
-                    </small>
-                  {% else %}
-                    <small class="text-muted">No Rating</small>
-                  {% endif %}
-                </div>
-              </div>
+<div class="container header-container">
+  <div class="row">
+    <div class="col">
+      <div class="row">
+        {% for release in releases %}
+        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+          <div class="card h-100 border-0">
+            {% if release.featured_image %}
+            <a href="{% url 'release_details' release.id %}">
+              <img class="card-img-top img-fluid" src="{{ release.featured_image.image.url }}"
+                alt="{{ release.title }}" />
+            </a>
+            {% else %}
+            <a href="{% url 'release_details' release.id %}">
+              <img class="card-img-top img-fluid"
+                src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
+                alt="{{ release.title }}" />
+            </a>
+            {% endif %}
+            <div class="card-body pb-0">
+              <p class="mb-0">{{ release.title }}</p>
             </div>
-          {% endfor %}
+            <div class="card-footer bg-white pt-0 border-0 text-left">
+              <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
+              {% if release.average_rating %}
+              <small class="text-muted">
+                Rating:
+                {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                {{ release.average_rating|floatformat:0 }}
+                {% else %}
+                {{ release.average_rating|floatformat:2 }}
+                {% endif %}/ 5
+              </small>
+              {% else %}
+              <small class="text-muted">No Rating</small>
+              {% endif %}
+            </div>
+          </div>
         </div>
+        {% endfor %}
       </div>
     </div>
   </div>
+</div>
 {% endblock %}

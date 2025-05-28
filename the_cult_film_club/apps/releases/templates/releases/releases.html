@@ -4,51 +4,91 @@
 {% endblock %}
 {% block content %}
 <div class="container header-container">
-  <div class="row">
-    <div class="col">
-      <div class="row">
-        {% for release in releases %}
-        <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
-          <div class="card h-100 border-0">
-            {% if release.featured_image %}
-            <a href="{% url 'release_details' release.id %}">
-              <img class="card-img-top img-fluid w-75 mx-auto d-block" src="{{ release.featured_image.image.url }}"
-                alt="{{ release.title }}" />
-            </a>
-            {% else %}
-            <a href="{% url 'release_details' release.id %}">
-              <img class="card-img-top img-fluid mx-auto d-block"
-                src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-                alt="{{ release.title }}" />
-            </a>
-            {% endif %}
-            <div class="card-body pb-0">
-              <div class="d-flex justify-content-between align-items-center mb-3">
-                <strong class="w-50 text-wrap">{{ release.title }}</strong>
-                <span class="w-50 text-right">
-                  {% if release.average_rating %}
-                    <small><i class="fa-solid fa-star"></i>
-                      {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                        {{ release.average_rating|floatformat:0 }}
-                      {% else %}
-                        {{ release.average_rating|floatformat:2 }}
-                      {% endif %}/ 5
-                    </small>
+  <form method="get" class="mb-4" id="filter-form" autocomplete="off">
+    <div class="form-row">
+      <div class="col">
+        <select id="genre-select" name="genre" class="form-control">
+          <option value="">All Genres</option>
+          {% for g in genres %}
+          <option value="{{ g }}" {% if request.GET.genre == g %}selected{% endif %}>{{ g }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <select id="subgenre-select" name="subgenre" class="form-control">
+          <option value="">All Subgenres</option>
+          {% for s in subgenres %}
+          <option value="{{ s }}" {% if request.GET.subgenre == s %}selected{% endif %}>{{ s }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <select id="director-select" name="director" class="form-control">
+          <option value="">All Directors</option>
+          {% for d in directors %}
+          <option value="{{ d }}" {% if request.GET.director == d %}selected{% endif %}>{{ d }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <select id="decade-select" name="decade" class="form-control">
+          <option value="">All Decades</option>
+          {% for dec in decades %}
+          <option value="{{ dec }}" {% if request.GET.decade == dec|stringformat:"s" %}selected{% endif %}>{{ dec }}s
+          </option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col">
+        <a href="{% url "releases" %}"><button id="reset-filters-btn" type="button"
+            class="btn btn-secondary w-100">Reset</button></a></div>
+    </div>
+</div>
+</form>
+<div class="row">
+  <div class="col">
+    <div class="row">
+      {% for release in releases %}
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
+        <div class="card h-100 border-0">
+          {% if release.featured_image %}
+          <a href="{% url 'release_details' release.id %}">
+            <img class="card-img-top img-fluid w-75 mx-auto d-block" src="{{ release.featured_image.image.url }}"
+              alt="{{ release.title }}" />
+          </a>
+          {% else %}
+          <a href="{% url 'release_details' release.id %}">
+            <img class="card-img-top img-fluid mx-auto d-block"
+              src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
+              alt="{{ release.title }}" />
+          </a>
+          {% endif %}
+          <div class="card-body pb-0">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+              <strong class="w-50 text-wrap">{{ release.title }}</strong>
+              <span class="w-50 text-right">
+                {% if release.average_rating %}
+                <small><i class="fa-solid fa-star"></i>
+                  {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                  {{ release.average_rating|floatformat:0 }}
                   {% else %}
-                    <small>Not rated</small>
-                  {% endif %}
-                </span>
-              </div>
-              <p class="mb-2 text-left">Dir(s): {{ release.director }}</p>
-              <p class="mb-2 text-left">Year: {{ release.release_date|date:"Y" }}</p>
+                  {{ release.average_rating|floatformat:2 }}
+                  {% endif %}/ 5
+                </small>
+                {% else %}
+                <small>Not rated</small>
+                {% endif %}
+              </span>
             </div>
-            <div class="card-footer bg-white pt-0 border-0 text-right font-weight-bold">
-              £{{ release.price }}
-            </div>
+            <p class="mb-2 text-left">Dir(s): {{ release.director }}</p>
+            <p class="mb-2 text-left">Year: {{ release.release_date|date:"Y" }}</p>
+          </div>
+          <div class="card-footer bg-white pt-0 border-0 text-right font-weight-bold">
+            £{{ release.price }}
           </div>
         </div>
-        {% endfor %}
       </div>
+      {% endfor %}
     </div>
   </div>
 </div>
@@ -56,36 +96,34 @@
 <nav aria-label="Page navigation" class="mb-5">
   <ul class="pagination justify-content-center flex-wrap">
     {% if releases.has_previous %}
-      <li class="page-item">
-        <a class="page-link"
-           href="?page={{ releases.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"
-           aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
+    <li class="page-item">
+      <a class="page-link"
+        href="?page={{ releases.previous_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"
+        aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
     {% else %}
-      <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
+    <li class="page-item disabled"><span class="page-link">&laquo;</span></li>
     {% endif %}
     {% for num in releases.paginator.page_range %}
-      {% if releases.number == num %}
-        <li class="page-item active"><span class="page-link">{{ num }}</span></li>
-      {% else %}
-        <li class="page-item">
-          <a class="page-link"
-             href="?page={{ num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ num }}</a>
-        </li>
-      {% endif %}
+    {% if releases.number == num %}
+    <li class="page-item active"><span class="page-link">{{ num }}</span></li>
+    {% else %}
+    <li class="page-item">
+      <a class="page-link" href="?page={{ num }}{% if querystring %}&{{ querystring }}{% endif %}">{{ num }}</a>
+    </li>
+    {% endif %}
     {% endfor %}
     {% if releases.has_next %}
-      <li class="page-item">
-        <a class="page-link"
-           href="?page={{ releases.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"
-           aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
+    <li class="page-item">
+      <a class="page-link" href="?page={{ releases.next_page_number }}{% if querystring %}&{{ querystring }}{% endif %}"
+        aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
     {% else %}
-      <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
+    <li class="page-item disabled"><span class="page-link">&raquo;</span></li>
     {% endif %}
   </ul>
 </nav>
@@ -99,4 +137,118 @@
   {% endfor %}
 </div>
 {% endif %}
+</div>
+{{ all_filters|json_script:"all-filters-data" }}
+<script>
+    // Make sure allFilters is available in your context!
+const allFilters = JSON.parse(document.getElementById('all-filters-data').textContent);
+
+  function updateDropdowns() {
+  const genreSelect = document.getElementById('genre-select');
+  const subgenreSelect = document.getElementById('subgenre-select');
+  const directorSelect = document.getElementById('director-select');
+  const decadeSelect = document.getElementById('decade-select');
+  const genre = genreSelect.value;
+  const subgenre = subgenreSelect.value;
+  const director = directorSelect.value;
+  const decade = decadeSelect.value;
+
+  // GENRES
+  const genres = [...new Set(
+    allFilters
+      .filter(f =>
+        (!subgenre || f.subgenre === subgenre) &&
+        (!director || f.director === director) &&
+        (!decade || String(f.decade) === decade)
+      )
+      .map(f => f.genre)
+      .filter(Boolean)
+  )].sort();
+  genreSelect.innerHTML = '<option value="">All Genres</option>' +
+    genres.map(g => `<option value="${g}"${g === genre ? ' selected' : ''}>${g}</option>`).join('');
+
+  // SUBGENRES
+  const subgenres = [...new Set(
+    allFilters
+      .filter(f =>
+        (!genre || f.genre === genre) &&
+        (!director || f.director === director) &&
+        (!decade || String(f.decade) === decade)
+      )
+      .map(f => f.subgenre)
+      .filter(Boolean)
+  )].sort();
+  subgenreSelect.innerHTML = '<option value="">All Subgenres</option>' +
+    subgenres.map(s => `<option value="${s}"${s === subgenre ? ' selected' : ''}>${s}</option>`).join('');
+
+  // DIRECTORS
+  const directors = [...new Set(
+    allFilters
+      .filter(f =>
+        (!genre || f.genre === genre) &&
+        (!subgenre || f.subgenre === subgenre) &&
+        (!decade || String(f.decade) === decade)
+      )
+      .map(f => f.director)
+      .filter(Boolean)
+  )].sort();
+  directorSelect.innerHTML = '<option value="">All Directors</option>' +
+    directors.map(d => `<option value="${d}"${d === director ? ' selected' : ''}>${d}</option>`).join('');
+
+  // DECADES
+  const decades = [...new Set(
+    allFilters
+      .filter(f =>
+        (!genre || f.genre === genre) &&
+        (!subgenre || f.subgenre === subgenre) &&
+        (!director || f.director === director)
+      )
+      .map(f => f.decade)
+      .filter(Boolean)
+  )].sort((a, b) => a - b);
+  decadeSelect.innerHTML = '<option value="">All Decades</option>' +
+    decades.map(d => `<option value="${d}"${String(d) === decade ? ' selected' : ''}>${d}s</option>`).join('');
+}
+  document.addEventListener('DOMContentLoaded', function () {
+    const genreSelect = document.getElementById('genre-select');
+    const subgenreSelect = document.getElementById('subgenre-select');
+    const directorSelect = document.getElementById('director-select');
+    const decadeSelect = document.getElementById('decade-select');
+    const resetBtn = document.getElementById('reset-filters-btn');
+
+    // Initial update
+    updateDropdowns();
+
+    function handleChange(changed) {
+      updateDropdowns(changed);
+      setTimeout(() => {
+        document.getElementById('filter-form').submit();
+      }, 0); // Let the DOM update before submitting
+    }
+
+    genreSelect.addEventListener('change', function () {
+      handleChange('genre');
+    });
+    subgenreSelect.addEventListener('change', function () {
+      handleChange('subgenre');
+    });
+    directorSelect.addEventListener('change', function () {
+      handleChange('director');
+    });
+    decadeSelect.addEventListener('change', function () {
+      handleChange('decade');
+    });
+    resetBtn.addEventListener('click', function (e) {
+      e.preventDefault();
+      genreSelect.value = '';
+      subgenreSelect.value = '';
+      directorSelect.value = '';
+      decadeSelect.value = '';
+      updateDropdowns();
+      setTimeout(() => {
+        document.getElementById('filter-form').submit();
+      }, 0);
+    });
+  });
+</script>
 {% endblock %}

@@ -3,7 +3,9 @@ from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
 from .models import Releases
 from django.core.paginator import Paginator
-from django.db.models.functions import Length, Substr, Reverse, StrIndex
+from django.db.models.functions import (
+    Length, Substr, Reverse, StrIndex, ExtractYear
+)
 
 
 def releases(request):
@@ -11,6 +13,50 @@ def releases(request):
     query = None
     sort = None
     direction = None
+    # Get all years from releases for the decade dropdown
+    years = (
+        Releases.objects
+        .annotate(year=ExtractYear('release_date'))
+        .values_list('year', flat=True)
+    )
+    decades = sorted(set((y // 10) * 10 for y in years if y))
+
+    # Filtering logic
+    genre = request.GET.get('genre')
+    subgenre = request.GET.get('subgenre')
+    director = request.GET.get('director')
+    decade = request.GET.get('decade')
+
+    if genre:
+        releases_list = releases_list.filter(genre=genre)
+    if subgenre:
+        releases_list = releases_list.filter(subgenre=subgenre)
+    if director:
+        releases_list = releases_list.filter(director=director)
+    if decade:
+        releases_list = releases_list.annotate(
+            year=ExtractYear('release_date')
+        ).filter(
+            year__gte=int(decade),
+            year__lt=int(decade) + 10
+        )
+
+    # For filter dropdowns, get unique genres and directors
+    genres = (
+        Releases.objects.values_list('genre', flat=True)
+        .distinct()
+        .order_by('genre')
+    )
+    subgenres = (
+        releases_list.values_list('subgenre', flat=True)
+        .distinct()
+        .order_by('subgenre')
+    )
+    directors = (
+        releases_list.values_list('director', flat=True)
+        .distinct()
+        .order_by('director')
+    )
 
     # Search logic
     if 'q' in request.GET:
@@ -80,7 +126,7 @@ def releases(request):
         else:
             releases_list = releases_list.order_by(sortkey)
     else:
-        # Default to alphabetical by title, when no sort is specified
+        # Default to alphabetical sorting, by title, when no sort is specified
         releases_list = releases_list.order_by('title')
 
     paginator = Paginator(releases_list, 8)
@@ -92,12 +138,31 @@ def releases(request):
         querydict.pop('page')
     querystring = querydict.urlencode()
 
+    # For JavaScript filtering: get all unique combinations including decade
+    all_filters = []
+    for r in Releases.objects.values(
+        "genre", "subgenre", "director", "release_date"
+    ).distinct():
+        year = r["release_date"].year if r["release_date"] else None
+        decade_val = (year // 10) * 10 if year else None
+        all_filters.append({
+            "genre": r["genre"],
+            "subgenre": r["subgenre"],
+            "director": r["director"],
+            "decade": decade_val,
+        })
+
     context = {
         "releases": releases,
         "search_term": query,
         "current_sort": sort,
         "current_direction": direction,
         "querystring": querystring,
+        "genres": genres,
+        "subgenres": subgenres,
+        "decades": decades,
+        "directors": directors,
+        "all_filters": all_filters,
     }
     return render(request, "releases/releases.html", context)
 

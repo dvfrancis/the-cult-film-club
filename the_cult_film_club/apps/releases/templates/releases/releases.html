@@ -40,11 +40,12 @@
         </select>
       </div>
       <div class="col">
-        <a href="{% url "releases" %}"><button id="reset-filters-btn" type="button"
-            class="btn btn-secondary w-100">Reset</button></a></div>
+       <button id="reset-filters-btn" type="button"
+            class="btn btn-secondary w-100"><a href="{% url "releases" %}">Reset</a></button></div>
     </div>
 </div>
 </form>
+<div id="results-count" class="mb-3 text-center lead">{{ releases.paginator.count }} result{{ releases.paginator.count|pluralize }}</div>
 <div class="row">
   <div class="col">
     <div class="row">
@@ -209,46 +210,34 @@ const allFilters = JSON.parse(document.getElementById('all-filters-data').textCo
   decadeSelect.innerHTML = '<option value="">All Decades</option>' +
     decades.map(d => `<option value="${d}"${String(d) === decade ? ' selected' : ''}>${d}s</option>`).join('');
 }
-  document.addEventListener('DOMContentLoaded', function () {
-    const genreSelect = document.getElementById('genre-select');
-    const subgenreSelect = document.getElementById('subgenre-select');
-    const directorSelect = document.getElementById('director-select');
-    const decadeSelect = document.getElementById('decade-select');
-    const resetBtn = document.getElementById('reset-filters-btn');
 
-    // Initial update
-    updateDropdowns();
+document.addEventListener('DOMContentLoaded', function () {
+  const genreSelect = document.getElementById('genre-select');
+  const subgenreSelect = document.getElementById('subgenre-select');
+  const directorSelect = document.getElementById('director-select');
+  const decadeSelect = document.getElementById('decade-select');
+  const resetBtn = document.getElementById('reset-filters-btn');
 
-    function handleChange(changed) {
-      updateDropdowns(changed);
-      setTimeout(() => {
-        document.getElementById('filter-form').submit();
-      }, 0); // Let the DOM update before submitting
-    }
-
-    genreSelect.addEventListener('change', function () {
-      handleChange('genre');
-    });
-    subgenreSelect.addEventListener('change', function () {
-      handleChange('subgenre');
-    });
-    directorSelect.addEventListener('change', function () {
-      handleChange('director');
-    });
-    decadeSelect.addEventListener('change', function () {
-      handleChange('decade');
-    });
-    resetBtn.addEventListener('click', function (e) {
-      e.preventDefault();
-      genreSelect.value = '';
-      subgenreSelect.value = '';
-      directorSelect.value = '';
-      decadeSelect.value = '';
-      updateDropdowns();
-      setTimeout(() => {
-        document.getElementById('filter-form').submit();
-      }, 0);
-    });
+  genreSelect.addEventListener('change', function () {
+    document.getElementById('filter-form').submit();
   });
+  subgenreSelect.addEventListener('change', function () {
+    document.getElementById('filter-form').submit();
+  });
+  directorSelect.addEventListener('change', function () {
+    document.getElementById('filter-form').submit();
+  });
+  decadeSelect.addEventListener('change', function () {
+    document.getElementById('filter-form').submit();
+  });
+  resetBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    genreSelect.value = '';
+    subgenreSelect.value = '';
+    directorSelect.value = '';
+    decadeSelect.value = '';
+    document.getElementById('filter-form').submit();
+  });
+});
 </script>
 {% endblock %}

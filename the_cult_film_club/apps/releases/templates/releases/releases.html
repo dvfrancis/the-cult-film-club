@@ -23,9 +23,9 @@
             </a>
             {% endif %}
             <div class="card-body pb-0">
-              <p class="mb-0">{{ release.title }}</p>
-              <p class="mb-0">Dir: {{ release.director }}</p>
-              <p class="mb-0">Released: {{ release.release_date }}</p>
+              <p class="mb-0"><strong>{{ release.title }}</strong></p>
+              <p class="mb-0">Dir(s): {{ release.director }}</p>
+              <p class="mb-0">Year: {{ release.release_date|date:"Y" }}</p>
             </div>
             <div class="card-footer bg-white pt-0 border-0 text-left">
               {% if release.average_rating %}

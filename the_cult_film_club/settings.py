@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "the_cult_film_club.apps.releases",
     "allauth",
     "allauth.account",
+    "django_ckeditor_5",
 ]
 
 MIDDLEWARE = [
@@ -127,6 +128,32 @@ WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
+
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': ['heading', '|', 'bold', 'italic', 'link'],
+    },
+    'extends': {
+        'block-toolbar': [
+            'paragraph', 'heading1', 'heading2', 'heading3', '|',
+            'bulletedList', 'numberedList', 'blockQuote',
+        ],
+        'toolbar': [
+            'bold', 'italic', 'link', 'underline', 'strikethrough', 'code', 'subscript', 'superscript',
+            '|', 'outdent', 'indent', 'alignment',
+            '|', 'imageUpload', 'insertTable', 'blockQuote', 'mediaEmbed',
+            '|', 'undo', 'redo'
+        ],
+        'heading': {
+            'options': [
+                {'model': 'paragraph', 'title': 'Paragraph', 'class': 'ck-heading_paragraph'},
+                {'model': 'heading1', 'view': 'h1', 'title': 'Heading 1', 'class': 'ck-heading_heading1'},
+                {'model': 'heading2', 'view': 'h2', 'title': 'Heading 2', 'class': 'ck-heading_heading2'},
+                {'model': 'heading3', 'view': 'h3', 'title': 'Heading 3', 'class': 'ck-heading_heading3'},
+            ]
+        }
+    }
+}
 
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 

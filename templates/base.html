@@ -68,14 +68,7 @@
                 <a class="logo-font nav-link text-black" href="{% url 'home' %}" id="home-page" aria-label="Home Page">Home</a>
               </li>
               <li class="nav-item dropdown text-center mx-auto">
-                <a class="logo-font nav-link text-black" href="#" id="film-releases" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Releases</a>
-                <div class="dropdown-menu border-0 text-center mx-auto" aria-labelledby="film-releases">
-                  <a href="{% url 'releases' %}" class="dropdown-item">All Releases</a>
-                  <a href="{% url 'releases' %}?sort=director=asc" class="dropdown-item">Director</a>
-                  <a href="{% url 'releases' %}?sort=genre=asc" class="dropdown-item">Genre</a>
-                  <a href="{% url 'releases' %}?sort=release_date=asc" class="dropdown-item">Release Date</a>
-                  <a href="{% url 'releases' %}?sort=edition=asc" class="dropdown-item">Edition</a>
-                </div>
+                <a class="logo-font nav-link text-black" href="{% url 'releases' %}" id="film-releases" aria-label="Releases">Releases</a>
               </li>
               <li class="nav-item dropdown text-center mx-auto">
                 <a class="logo-font text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

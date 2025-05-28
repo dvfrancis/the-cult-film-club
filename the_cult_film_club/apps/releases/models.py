@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.db.models import Avg
 from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Releases(models.Model):
@@ -17,11 +18,11 @@ class Releases(models.Model):
     title = models.CharField(max_length=100, blank=False, null=False)
     release_date = models.DateField(blank=False, null=False)
     director = models.CharField(max_length=100, blank=True, null=True)
-    description = models.TextField(max_length=1000, blank=True, null=True)
+    description = CKEditor5Field(max_length=1000, blank=True, null=True)
     genre = models.CharField(max_length=50, blank=True, null=True)
     subgenre = models.CharField(max_length=50, blank=True, null=True)
     resolution = models.CharField(max_length=10, blank=True, null=True)
-    special_features = models.TextField(max_length=2000, blank=True, null=True)
+    special_features = CKEditor5Field(max_length=2000, blank=True, null=True)
     edition = models.CharField(max_length=50, blank=True, null=True)
     censor_status = models.CharField(max_length=500, blank=True, null=True)
     packaging = models.CharField(max_length=500, blank=True, null=True)
@@ -71,7 +72,7 @@ class Rating(models.Model):
         blank=False,
         null=False
     )
-    review = models.TextField(max_length=1500, blank=True, null=True)
+    review = CKEditor5Field(max_length=1500, blank=True, null=True)
     date_added = models.DateTimeField(
         auto_now_add=True,
         blank=False,

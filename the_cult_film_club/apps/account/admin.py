@@ -1,6 +1,16 @@
 from django.contrib import admin
 from .models import Profile, Address, Wishlist, WishlistItem
+from django import forms
+from django_ckeditor_5.widgets import CKEditor5Widget
 
+
+class WishlistItemAdminForm(forms.ModelForm):
+    class Meta:
+        model = WishlistItem
+        fields = "__all__"
+        widgets = {
+            "notes": CKEditor5Widget(config_name="extends"),
+        }
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):

@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.validators import validate_email
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class ContactUs(models.Model):
@@ -14,7 +15,7 @@ class ContactUs(models.Model):
         blank=False,
         null=False
     )
-    message = models.TextField(max_length=1000, blank=True, null=False)
+    message = CKEditor5Field(max_length=1000, blank=True, null=False)
 
     def __str__(self):
         return (

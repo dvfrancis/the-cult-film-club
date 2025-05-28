@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from enum import Enum
 from django.db.models import UniqueConstraint
+from django_ckeditor_5.fields import CKEditor5Field
 
 
 class Profile(models.Model):
@@ -105,7 +106,7 @@ class WishlistItem(models.Model):
     wishlist = models.ForeignKey(Wishlist, on_delete=models.CASCADE)
     title = models.ForeignKey('releases.Releases', on_delete=models.CASCADE)
     date_added = models.DateTimeField(auto_now_add=True)
-    notes = models.TextField(max_length=1000, blank=True, null=True)
+    notes = CKEditor5Field(max_length=1000, blank=True, null=True)
     priority = models.CharField(
         max_length=10,
         choices=[(tag.value, tag.value) for tag in PriorityLevel],

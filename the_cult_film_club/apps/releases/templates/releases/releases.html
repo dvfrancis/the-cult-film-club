@@ -24,12 +24,13 @@
             {% endif %}
             <div class="card-body pb-0">
               <p class="mb-0">{{ release.title }}</p>
+              <p class="mb-0">Dir: {{ release.director }}</p>
+              <p class="mb-0">Released: {{ release.release_date }}</p>
             </div>
             <div class="card-footer bg-white pt-0 border-0 text-left">
-              <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
               {% if release.average_rating %}
               <small class="text-muted">
-                Rating:
+                <i class="fa-solid fa-film"></i>
                 {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
                 {{ release.average_rating|floatformat:0 }}
                 {% else %}
@@ -37,8 +38,9 @@
                 {% endif %}/ 5
               </small>
               {% else %}
-              <small class="text-muted">No Rating</small>
+              <small class="text-muted"><i class="fa-solid fa-clapperboard"></i> No Rating</small>
               {% endif %}
+              <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
             </div>
           </div>
         </div>

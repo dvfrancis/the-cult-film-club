@@ -143,7 +143,7 @@ html {
 }
 
 body {
-    font-family: 'PT Sans Caption';
+    font-family: 'Raleway', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -157,15 +157,16 @@ h1,
 h2 {
     font-family: 'Raleway', sans-serif;
     font-size: xx-large;
-    font-weight: 400;
+    font-weight: 900;
 }
 
 h3,
 h4,
 h5,
 h6 {
-    font-family: 'Habibi', serif;
+    font-family: 'Raleway', sans-serif;
     font-size: large;
+    font-weight: 700;
 }
 
 /* U T I L I T Y */

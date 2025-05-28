@@ -12,35 +12,38 @@
           <div class="card h-100 border-0">
             {% if release.featured_image %}
             <a href="{% url 'release_details' release.id %}">
-              <img class="card-img-top img-fluid w-75" src="{{ release.featured_image.image.url }}"
+              <img class="card-img-top img-fluid w-75 mx-auto d-block" src="{{ release.featured_image.image.url }}"
                 alt="{{ release.title }}" />
             </a>
             {% else %}
             <a href="{% url 'release_details' release.id %}">
-              <img class="card-img-top img-fluid"
+              <img class="card-img-top img-fluid mx-auto d-block"
                 src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
                 alt="{{ release.title }}" />
             </a>
             {% endif %}
             <div class="card-body pb-0">
-              <p class="mb-0"><strong>{{ release.title }}</strong></p>
-              <p class="mb-0">Dir(s): {{ release.director }}</p>
-              <p class="mb-0">Year: {{ release.release_date|date:"Y" }}</p>
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <strong class="w-50 text-wrap">{{ release.title }}</strong>
+                <span class="w-50 text-right">
+                  {% if release.average_rating %}
+                    <small><i class="fa-solid fa-star"></i>
+                      {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                        {{ release.average_rating|floatformat:0 }}
+                      {% else %}
+                        {{ release.average_rating|floatformat:2 }}
+                      {% endif %}/ 5
+                    </small>
+                  {% else %}
+                    <small>Not rated</small>
+                  {% endif %}
+                </span>
+              </div>
+              <p class="mb-2 text-left">Dir(s): {{ release.director }}</p>
+              <p class="mb-2 text-left">Year: {{ release.release_date|date:"Y" }}</p>
             </div>
-            <div class="card-footer bg-white pt-0 border-0 text-left">
-              {% if release.average_rating %}
-              <small class="text-muted">
-                <i class="fa-solid fa-film"></i>
-                {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                {{ release.average_rating|floatformat:0 }}
-                {% else %}
-                {{ release.average_rating|floatformat:2 }}
-                {% endif %}/ 5
-              </small>
-              {% else %}
-              <small class="text-muted"><i class="fa-solid fa-clapperboard"></i> No Rating</small>
-              {% endif %}
-              <p class="lead mb-0 text-left font-weight-bold">£{{ release.price }}</p>
+            <div class="card-footer bg-white pt-0 border-0 text-right font-weight-bold">
+              £{{ release.price }}
             </div>
           </div>
         </div>

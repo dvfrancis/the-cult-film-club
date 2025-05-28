@@ -14,8 +14,7 @@
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                             <a href="#" data-toggle="modal" data-target="#lightboxModal"
                                 data-img-url="{{ img.image.url }}">
-                                <img class="d-block rounded shadow" src="{{ img.image.url }}"
-                                    alt="{{ release.title }}" style="cursor:pointer;">
+                                <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}" alt="{{ release.title }}" style="cursor:pointer;">
                             </a>
                             {% if img.caption %}
                             <div class="carousel-caption d-none d-md-block">
@@ -44,42 +43,45 @@
             </div>
         </div>
         <div class="col-12 col-md-7 col-lg-6">
-            <div class="mb-5 mt-md-5 p-4 bg-white rounded shadow text-center text-md-left">
+            <div class="mb-5 mt-md-5 p-4 bg-white rounded shadow text-left text-md-left">
                 <h2 class="mb-3 font-weight-bold">{{ release.title }}</h2>
-                <h3 class="mb-4 text-muted">Released: {{ release.release_date }}</h5>
-                    <hr>
-                    <h4 class="mt-3 mb-2">Director</h4>
-                    <p>{{ release.director }}</p>
-                    <h4 class="mt-3 mb-2">Description</h4>
-                    <p>{{ release.description|safe }}</p>
-                    <h4 class="mt-3 mb-2">Details</h4>
-                    <ul class="list-unstyled mb-4">
-                        <li><strong>Genre:</strong> {{ release.genre }}</li>
-                        <li><strong>Subgenre:</strong> {{ release.subgenre }}</li>
-                        <li><strong>Resolution:</strong> {{ release.resolution }}</li>
-                        <li><strong>Edition:</strong> {{ release.edition }}</li>
-                        <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
-                        <li><strong>Packaging:</strong> {{ release.packaging }}</li>
-                        <li><strong>Copies Available:</strong> {{ release.copies_available }}</li>
-                    </ul>
-                    <h4 class="mt-3 mb-2">Special Features</h4>
-                    <div class="ml-3">
-                        {{ release.special_features|safe }}
-                    </div>
-                    <hr>
-                    <p class="lead font-weight-bold text-success mb-2">£{{ release.price }}</p>
-                    {% if release.average_rating %}
-                    <small class="text-muted">
-                        <strong>Rating:</strong>
-                        {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                        {{ release.average_rating|floatformat:0 }}
+                <hr>
+                <h4 class="mt-3 mb-2">Description</h4>
+                <p>{{ release.description|safe }}</p>
+                <h4 class="mt-3 mb-2">Special Features</h4>
+                <div class="ml-3">
+                    {{ release.special_features|safe }}
+                </div>
+                <h4 class="mt-3 mb-2 text-right">Production Details</h4>
+                <ul class="list-unstyled mb-4 text-right">
+                    <li><strong>Director:</strong> {{ release.director }}</li>
+                    <li><strong>Genre:</strong> {{ release.genre }}</li>
+                    <li><strong>Subgenre:</strong> {{ release.subgenre }}</li>
+                    <li><strong>Resolution:</strong> {{ release.resolution }}</li>
+                    <li><strong>Edition:</strong> {{ release.edition }}</li>
+                    <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
+                    <li><strong>Packaging:</strong> {{ release.packaging }}</li>
+                    <li><strong>Rating:</strong>
+                        {% if release.average_rating %}
+                        <small>
+                            {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                            {{ release.average_rating|floatformat:0 }}
+                            {% else %}
+                            {{ release.average_rating|floatformat:2 }}
+                            {% endif %} out of 5
+                        </small>
                         {% else %}
-                        {{ release.average_rating|floatformat:2 }}
-                        {% endif %}/ 5
-                    </small>
-                    {% else %}
-                    <small class="text-muted">No Rating</small>
-                    {% endif %}
+                        <small>None</small>
+                        {% endif %}
+                    </li>
+                </ul>
+                <div class="text-right mb-4">
+                    Originally released on {{ release.release_date|date:"l, j F Y" }}
+                </div>
+                <hr>
+                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">{{ release.copies_available }} copies available</p>
+
             </div>
         </div>
     </div>

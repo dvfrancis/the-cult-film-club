@@ -139,11 +139,11 @@ table {
 /* G E N E R A L */
 
 html {
+    font-family: 'Raleway', sans-serif;
     height: 100%;
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
     display: flex;
     min-height: 100vh;
     flex-direction: column;
@@ -155,7 +155,6 @@ main {
 
 h1,
 h2 {
-    font-family: 'Raleway', sans-serif;
     font-size: xx-large;
     font-weight: 900;
 }
@@ -164,7 +163,6 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'Raleway', sans-serif;
     font-size: large;
     font-weight: 700;
 }

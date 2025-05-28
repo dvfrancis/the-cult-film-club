@@ -80,8 +80,13 @@
                 </div>
                 <hr>
                 <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
+                {% if release.copies_available == 0 %}
+                <p class="text-right">Out of stock</p>
+                {% elif release.copies_available < 5 %}
+                <p class="text-right">Only {{ release.copies_available }} copies left</p>
+                {% else %}
                 <p class="text-right">{{ release.copies_available }} copies available</p>
-
+                {% endif %}
             </div>
         </div>
     </div>

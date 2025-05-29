@@ -64,7 +64,7 @@
               <strong class="w-50 text-wrap">{{ release.title }}</strong>
               <span class="w-50 text-right">
                 {% if release.average_rating %}
-                <small><i class="fa-solid fa-star"></i>
+                <small><i class="fa-solid fa-certificate"></i>
                   {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
                   {{ release.average_rating|floatformat:0 }}
                   {% else %}

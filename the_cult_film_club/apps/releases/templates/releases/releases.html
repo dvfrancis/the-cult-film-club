@@ -40,18 +40,19 @@
         </select>
       </div>
       <div class="col">
-       <button id="reset-filters-btn" type="button"
-            class="btn btn-secondary w-100"><a href="{% url "releases" %}">Reset</a></button></div>
+        <button id="reset-filters-btn" type="button" class="btn btn-secondary w-100"><a
+            href="{% url "releases" %}">Reset</a></button></div>
     </div>
 </div>
 </form>
-<div id="results-count" class="mt-4 mb-5 text-center lead">{{ releases.paginator.count }} result{{ releases.paginator.count|pluralize }}</div>
+<div id="results-count" class="mt-4 mb-5 text-center lead">{{ releases.paginator.count }}
+  result{{ releases.paginator.count|pluralize }}</div>
 <div class="row">
   <div class="col">
     <div class="row">
       {% for release in releases %}
-      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-4">
-        <div class="card h-100 border-0">
+      <div class="col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5 px-5">
+        <div class="card h-100 border-0 pt-5">
           {% if release.featured_image %}
           <a href="{% url 'release_details' release.id %}">
             <img class="card-img-top img-fluid w-75 mx-auto d-block" src="{{ release.featured_image.image.url }}"
@@ -64,7 +65,7 @@
               alt="{{ release.title }}" />
           </a>
           {% endif %}
-          <div class="card-body pb-0">
+          <div class="card-body p-5">
             <div class="d-flex justify-content-between align-items-center mb-3">
               <strong class="w-50 text-wrap">{{ release.title }}</strong>
               <span class="w-50 text-right">
@@ -84,17 +85,15 @@
             <p class="mb-2 text-left">Dir(s): {{ release.director }}</p>
             <p class="mb-2 text-left">Year: {{ release.release_date|date:"Y" }}</p>
           </div>
-          <div class="card-footer bg-white pt-0 border-0 text-right font-weight-bold">
-                {% if release.copies_available == 0 %}
-                <p class="lead font-weight-bold text-danger mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">Out of stock</p>
-                {% elif release.copies_available < 5 %}
-                <p class="lead font-weight-bold text-warning mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">Only {{ release.copies_available }} remaining</p>
-                {% else %}
-                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">{{ release.copies_available }} available</p>
-                {% endif %}
+          <div class="card-footer bg-white pb-5 px-5 border-0 d-flex flex-column align-items-end">
+            <p class="lead font-weight-bold mb-2">£{{ release.price }}</p>
+            {% if release.copies_available == 0 %}
+            <p class="text-danger availability mt-2 p-2 mb-0">Out of stock</p>
+            {% elif release.copies_available < 5 %}
+            <p class="text-warning availability mt-2 p-2 mb-0">Only {{ release.copies_available }} remaining</p>
+            {% else %}
+            <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
+            {% endif %}
           </div>
         </div>
       </div>

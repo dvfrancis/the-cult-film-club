@@ -272,6 +272,22 @@ strong {
     text-align: center;
 }
 
+.card,
+.card-body,
+.card-footer {
+    background-color: #e1e1e3 !important;
+}
+
+.availability {
+    background-color: #080808 !important;
+    color: #fff;
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    text-align: right;
+    border-radius: 0.5em;
+    font-weight: bold;
+}
+
 .icon {
     align-items: center;
     display: inline-flex;

@@ -14,7 +14,8 @@
                         <div class="carousel-item {% if forloop.first %}active{% endif %}">
                             <a href="#" data-toggle="modal" data-target="#lightboxModal"
                                 data-img-url="{{ img.image.url }}">
-                                <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}" alt="{{ release.title }}" style="cursor:pointer;">
+                                <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}"
+                                    alt="{{ release.title }}" style="cursor:pointer;">
                             </a>
                             {% if img.caption %}
                             <div class="carousel-caption d-none d-md-block">
@@ -79,16 +80,16 @@
                     Originally released on {{ release.release_date|date:"l, j F Y" }}
                 </div>
                 <hr>
-                {% if release.copies_available == 0 %}
-                <p class="lead font-weight-bold text-danger mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">Out of stock</p>
-                {% elif release.copies_available < 5 %}
-                <p class="lead font-weight-bold text-warning mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">Only {{ release.copies_available }} remaining</p>
-                {% else %}
-                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
-                <p class="text-right">{{ release.copies_available }} available</p>
-                {% endif %}
+                <div class="bg-white border-0 d-flex flex-column align-items-end">
+                    <p class="lead font-weight-bold mb-2">£{{ release.price }}</p>
+                    {% if release.copies_available == 0 %}
+                    <p class="text-danger availability mt-2 p-2 mb-0">Out of stock</p>
+                    {% elif release.copies_available < 5 %}
+                    <p class="text-warning availability mt-2 p-2 mb-0">Only {{ release.copies_available }} remaining</p>
+                    {% else %}
+                    <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

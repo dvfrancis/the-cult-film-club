@@ -4,6 +4,20 @@
 {% endblock %}
 {% block content %}
 <main>
-    <h1>Your Cart</h1>
+    <div class="row">
+        <div class="col">
+            {% if purchases %}
+            <div class="table-responsive rounded"></div>
+            {% else %}
+            <p class="lead mb-5">There is nothing in your shopping cart</p>
+            <a href="{% url 'releases' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                <span class="icon">
+                    <i class="fas fa-chevron-left"></i>
+                </span>
+                <span class="text-uppercase">Buy a Film</span>
+            </a>
+            {% endif %}
+        </div>
+    </div>
 </main>
 {% endblock %}

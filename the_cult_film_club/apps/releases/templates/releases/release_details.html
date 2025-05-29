@@ -79,13 +79,15 @@
                     Originally released on {{ release.release_date|date:"l, j F Y" }}
                 </div>
                 <hr>
-                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
                 {% if release.copies_available == 0 %}
+                <p class="lead font-weight-bold text-danger mb-2 text-right">£{{ release.price }}</p>
                 <p class="text-right">Out of stock</p>
                 {% elif release.copies_available < 5 %}
-                <p class="text-right">Only {{ release.copies_available }} copies left</p>
+                <p class="lead font-weight-bold text-warning mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">Only {{ release.copies_available }} remaining</p>
                 {% else %}
-                <p class="text-right">{{ release.copies_available }} copies available</p>
+                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">{{ release.copies_available }} available</p>
                 {% endif %}
             </div>
         </div>

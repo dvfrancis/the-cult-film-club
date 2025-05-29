@@ -85,7 +85,16 @@
             <p class="mb-2 text-left">Year: {{ release.release_date|date:"Y" }}</p>
           </div>
           <div class="card-footer bg-white pt-0 border-0 text-right font-weight-bold">
-            £{{ release.price }}
+                {% if release.copies_available == 0 %}
+                <p class="lead font-weight-bold text-danger mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">Out of stock</p>
+                {% elif release.copies_available < 5 %}
+                <p class="lead font-weight-bold text-warning mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">Only {{ release.copies_available }} remaining</p>
+                {% else %}
+                <p class="lead font-weight-bold text-success mb-2 text-right">£{{ release.price }}</p>
+                <p class="text-right">{{ release.copies_available }} available</p>
+                {% endif %}
           </div>
         </div>
       </div>

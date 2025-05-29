@@ -69,14 +69,16 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" aria-label="Releases">Releases</a>
               <div class="dropdown-menu border-0" aria-labelledby="film-releases">
                 <a href="{% url 'releases' %}" class="dropdown-item">All Releases</a>
+                <a href="{% url 'releases' %}?sort=rating&direction=asc" class="dropdown-item">Sort by Rating (Lowest
+                  Rated)</a>
+                <a href="{% url 'releases' %}?sort=rating&direction=desc" class="dropdown-item">Sort by Rating (Highest
+                  Rated)</a>
                 <a href="{% url 'releases' %}?sort=price&direction=asc" class="dropdown-item">Sort by Price
                   (Low to High)</a>
                 <a href="{% url 'releases' %}?sort=price&direction=desc" class="dropdown-item">Sort by Price
                   (High to Low)</a>
-                <a href="{% url 'releases' %}?sort=rating&direction=desc" class="dropdown-item">Sort by Rating (Highest
-                  Rated)</a>
-                <a href="{% url 'releases' %}?sort=rating&direction=asc" class="dropdown-item">Sort by Rating (Lowest
-                  Rated)</a>
+                <a href="{% url 'releases' %}?sort=copies_available&direction=asc" class="dropdown-item">Sort by Copies Available (Low to High)</a> 
+                <a href="{% url 'releases' %}?sort=copies_available&direction=desc" class="dropdown-item">Sort by Copies Available (High to Low)</a>
                 <a href="{% url 'releases' %}?sort=director_last&direction=asc" class="dropdown-item">Sort by Director
                   (Last Name, A-Z)</a>
                 <a href="{% url 'releases' %}?sort=director_last&direction=desc" class="dropdown-item">Sort by Director

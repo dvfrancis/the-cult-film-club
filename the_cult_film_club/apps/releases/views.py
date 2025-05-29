@@ -13,13 +13,6 @@ def releases(request):
     query = None
     sort = None
     direction = None
-    # Get all years from releases for the decade dropdown
-    years = (
-        Releases.objects
-        .annotate(year=ExtractYear('release_date'))
-        .values_list('year', flat=True)
-    )
-    decades = sorted(set((y // 10) * 10 for y in years if y))
 
     # Filtering logic
     genre = request.GET.get('genre')
@@ -58,6 +51,14 @@ def releases(request):
         .order_by('director')
     )
 
+    # Get all years from releases for the decade filter dropdown
+    years = (
+        Releases.objects
+        .annotate(year=ExtractYear('release_date'))
+        .values_list('year', flat=True)
+    )
+    decades = sorted(set((y // 10) * 10 for y in years if y))
+
     # Search logic
     if 'q' in request.GET:
         query = request.GET['q']
@@ -95,6 +96,8 @@ def releases(request):
         sortkey = sort
         if sort == 'price':
             sortkey = 'price'
+        elif sort == 'copies_available':
+            sortkey = 'copies_available'
         elif sort == 'director_last':
             releases_list = releases_list.annotate(
                 rev_dir=Reverse('director'),

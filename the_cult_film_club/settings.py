@@ -104,6 +104,7 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # required by allauth
                 "django.template.context_processors.request",
+                "the_cult_film_club.apps.cart.contexts.purchases",
             ],
         },
     },
@@ -198,3 +199,10 @@ MEDIA_URL = "/assets/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+FREE_DELIVERY = 100
+DELIVERY_RATE = 15
+DISCOUNT_CODES = [
+    {"code": "SIGNUP", "percent": 10, "expires": "2025-12-31"},
+    {"code": "SUMMER2025", "percent": 15, "expires": "2025-08-31"},
+]

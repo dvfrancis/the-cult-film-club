@@ -3,119 +3,110 @@
 {% block page_header %}
 {% endblock %}
 {% block content %}
-<div class="container header-container py-5">
-    <div class="row justify-content-center">
-        <div class="col-12 col-md-5 col-lg-4 d-flex align-items-center justify-content-center">
-            <div class="image-container my-4 text-center w-100">
-                {% if release.image.exists %}
-                <div id="releaseCarousel" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        {% for img in release.image.all %}
-                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                            <a href="#" data-toggle="modal" data-target="#lightboxModal"
-                                data-img-url="{{ img.image.url }}">
-                                <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}"
-                                    alt="{{ release.title }}" style="cursor:pointer;">
-                            </a>
-                            {% if img.caption %}
-                            <div class="carousel-caption d-none d-md-block">
-                                <p>{{ img.caption }}</p>
+<main>
+    <div class="container header-container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-5 col-lg-4 d-flex align-items-center justify-content-center">
+                <div class="image-container my-4 text-center w-100">
+                    {% if release.image.exists %}
+                    <div id="releaseCarousel" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            {% for img in release.image.all %}
+                            <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                <a href="#" data-toggle="modal" data-target="#lightboxModal"
+                                    data-img-url="{{ img.image.url }}">
+                                    <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}"
+                                        alt="{{ release.title }}" style="cursor:pointer;">
+                                </a>
+                                {% if img.caption %}
+                                <div class="carousel-caption d-none d-md-block">
+                                    <p>{{ img.caption }}</p>
+                                </div>
+                                {% endif %}
                             </div>
-                            {% endif %}
+                            {% endfor %}
                         </div>
-                        {% endfor %}
-                    </div>
-                    {% if release.image.count > 1 %}
-                    <a class="carousel-control-prev" href="#releaseCarousel" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#releaseCarousel" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                    {% endif %}
-                </div>
-                {% else %}
-                <img class="card-img-top img-fluid rounded shadow"
-                    src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-                    alt="{{ release.title }}" />
-                {% endif %}
-            </div>
-        </div>
-        <div class="col-12 col-md-7 col-lg-6">
-            <div class="mb-5 mt-md-5 p-4 bg-white rounded shadow text-left text-md-left">
-                <h2 class="mb-3 font-weight-bold">{{ release.title }}</h2>
-                <hr>
-                <h4 class="mt-3 mb-2">Description</h4>
-                <p>{{ release.description|safe }}</p>
-                <h4 class="mt-3 mb-2">Special Features</h4>
-                <div class="ml-3">
-                    {{ release.special_features|safe }}
-                </div>
-                <h4 class="mt-3 mb-2 text-right">Production Details</h4>
-                <ul class="list-unstyled mb-4 text-right">
-                    <li><strong>Director:</strong> {{ release.director }}</li>
-                    <li><strong>Genre:</strong> {{ release.genre }}</li>
-                    <li><strong>Subgenre:</strong> {{ release.subgenre }}</li>
-                    <li><strong>Resolution:</strong> {{ release.resolution }}</li>
-                    <li><strong>Edition:</strong> {{ release.edition }}</li>
-                    <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
-                    <li><strong>Packaging:</strong> {{ release.packaging }}</li>
-                    <li><strong>Rating:</strong>
-                        {% if release.average_rating %}
-                        <small>
-                            {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                            {{ release.average_rating|floatformat:0 }}
-                            {% else %}
-                            {{ release.average_rating|floatformat:2 }}
-                            {% endif %} out of 5
-                        </small>
-                        {% else %}
-                        <small>None</small>
+                        {% if release.image.count > 1 %}
+                        <a class="carousel-control-prev" href="#releaseCarousel" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#releaseCarousel" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                         {% endif %}
-                    </li>
-                </ul>
-                <div class="text-right mb-4">
-                    Originally released on {{ release.release_date|date:"l, j F Y" }}
-                </div>
-                <hr>
-                <div class="bg-white border-0 d-flex flex-column align-items-end">
-                    <p class="lead font-weight-bold mb-2">£{{ release.price }}</p>
-                    {% if release.copies_available == 0 %}
-                    <p class="text-danger availability mt-2 p-2 mb-0">Out of stock</p>
-                    {% elif release.copies_available < 5 %}
-                    <p class="text-warning availability mt-2 p-2 mb-0">Only {{ release.copies_available }} remaining</p>
+                    </div>
                     {% else %}
-                    <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
+                    <img class="card-img-top img-fluid rounded shadow"
+                        src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
+                        alt="{{ release.title }}" />
                     {% endif %}
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-
-<!-- Lightbox modal -->
-<div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centred" role="document">
-        <div class="modal-content bg-transparent border-0">
-            <div class="modal-body p-0 text-center">
-                <img id="lightboxImage" src="" alt="Large image" class="img-fluid rounded shadow" />
+            <div class="col-12 col-md-7 col-lg-6">
+                <div class="mb-5 mt-md-5 p-4 bg-white rounded shadow text-left text-md-left">
+                    <h2 class="mb-3 font-weight-bold">{{ release.title }}</h2>
+                    <hr>
+                    <h4 class="mt-3 mb-2">Description</h4>
+                    <p>{{ release.description|safe }}</p>
+                    <h4 class="mt-3 mb-2">Special Features</h4>
+                    <div class="ml-3">
+                        {{ release.special_features|safe }}
+                    </div>
+                    <h4 class="mt-3 mb-2 text-right">Production Details</h4>
+                    <ul class="list-unstyled mb-4 text-right">
+                        <li><strong>Director:</strong> {{ release.director }}</li>
+                        <li><strong>Genre:</strong> {{ release.genre }}</li>
+                        <li><strong>Subgenre:</strong> {{ release.subgenre }}</li>
+                        <li><strong>Resolution:</strong> {{ release.resolution }}</li>
+                        <li><strong>Edition:</strong> {{ release.edition }}</li>
+                        <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
+                        <li><strong>Packaging:</strong> {{ release.packaging }}</li>
+                        <li><strong>Rating:</strong>
+                            {% if release.average_rating %}
+                            <small>
+                                {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                                {{ release.average_rating|floatformat:0 }}
+                                {% else %}
+                                {{ release.average_rating|floatformat:2 }}
+                                {% endif %} out of 5
+                            </small>
+                            {% else %}
+                            <small>None</small>
+                            {% endif %}
+                        </li>
+                    </ul>
+                    <div class="text-right mb-4">
+                        Originally released on {{ release.release_date|date:"l, j F Y" }}
+                    </div>
+                    <hr>
+                    <div class="bg-white border-0 d-flex flex-column align-items-end">
+                        <p class="lead font-weight-bold mb-2">£{{ release.price }}</p>
+                        {% if release.copies_available == 0 %}
+                        <p class="text-danger availability mt-2 p-2 mb-0">Out of stock</p>
+                        {% elif release.copies_available < 5 %}
+                        <p class="text-warning availability mt-2 p-2 mb-0">Only {{ release.copies_available }} remaining
+                        </p>
+                        {% else %}
+                        <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
+                        {% endif %}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-<!-- JavaScript to update modal image -->
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        $('#lightboxModal').on('show.bs.modal', function (event) {
-            var trigger = $(event.relatedTarget);
-            var imgUrl = trigger.data('img-url');
-            var modal = $(this);
-            modal.find('#lightboxImage').attr('src', imgUrl);
-        });
-    });
-</script>
+    <!-- Lightbox modal -->
+    <div class="modal fade" id="lightboxModal" tabindex="-1" role="dialog" aria-labelledby="lightboxModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centred" role="document">
+            <div class="modal-content bg-transparent border-0">
+                <div class="modal-body p-0 text-center">
+                    <img id="lightboxImage" src="" alt="Large image" class="img-fluid rounded shadow" />
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
 {% endblock %}

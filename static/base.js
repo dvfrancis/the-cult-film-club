@@ -95,3 +95,13 @@ document.addEventListener('DOMContentLoaded', function () {
     // Initial call to populate dropdowns
     updateDropdowns();
 });
+
+// Lightbox functionality for image preview on release details page
+document.addEventListener('DOMContentLoaded', function () {
+    $('#lightboxModal').on('show.bs.modal', function (event) {
+        var trigger = $(event.relatedTarget);
+        var imgUrl = trigger.data('img-url');
+        var modal = $(this);
+        modal.find('#lightboxImage').attr('src', imgUrl);
+    });
+});

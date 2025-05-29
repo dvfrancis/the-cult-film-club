@@ -60,14 +60,14 @@
             class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="navbar-nav w-100 d-flex justify-content-end">
-            <li class="nav-item text-center">
+            <li class="nav-item text-center text-md-left">
               <a class="logo-font nav-link text-black" href="{% url 'home' %}" id="home-page"
                 aria-label="Home Page">Home</a>
             </li>
-            <li class="nav-item dropdown text-center">
+            <li class="nav-item dropdown text-center text-md-left">
               <a class="logo-font nav-link text-black" href="#" id="film-releases" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" aria-label="Releases">Releases</a>
-              <div class="dropdown-menu border-0 text-center" aria-labelledby="film-releases">
+              <div class="dropdown-menu border-0 text-center text-md-left" aria-labelledby="film-releases">
                 <a href="{% url 'releases' %}" class="dropdown-item">All Releases</a>
                 <a href="{% url 'releases' %}?sort=rating&direction=asc" class="dropdown-item">Sort by Rating (Lowest
                   Rated)</a>
@@ -87,14 +87,14 @@
                   (Last Name, Z-A)</a>
               </div>
             </li>
-            <li class="nav-item dropdown text-center">
+            <li class="nav-item dropdown text-center text-md-left">
               <a class="logo-font text-black nav-link" href="#" id="user-options" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <div>
                   <p class="my-0">Account</p>
                 </div>
               </a>
-              <div class="dropdown-menu border-0 text-center" aria-labelledby="user-options">
+              <div class="dropdown-menu border-0 text-center text-md-left" aria-labelledby="user-options">
                 {% if request.user.is_authenticated %}
                 {% if request.user.is_superuser %}
                 <a href="" class="dropdown-item">Product Management</a>
@@ -107,8 +107,8 @@
                 {% endif %}
               </div>
             </li>
-            <li class="nav-item text-center">
-              <a class="{% if grand_total %} font-weight-bold {% endif %} logo-font text-black nav-link" href="">
+            <li class="nav-item text-center text-md-left">
+              <a class="{% if grand_total %} font-weight-bold {% endif %} logo-font text-black nav-link" href="{% url 'cart' %}">
                 <div>
                   {% if grand_total %}
                   £ {{ grand_total|floatformat:2 }}
@@ -136,7 +136,7 @@
 
   {% endblock %}
 
-  <div id="delivery-banner" class="row text-center">
+  <div id="delivery-banner" class="row text-center text-md-left">
     <div class="col bg-black text-white">
       <h4 class="logo-font my-1">Free delivery on orders over £{{ free_shipping_threshold }}!</h4>
     </div>

@@ -322,6 +322,43 @@ strong {
     padding-top: 140px;
 }
 
+button:disabled,
+input[type="submit"]:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.65;
+}
+
+/* Hide number input spinners in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide number input spinners in Firefox */
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+.qty-tooltip {
+    position: absolute;
+    background: #e1e1e3;
+    color: #080808;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    z-index: 1000;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
 /* M E D I A  Q U E R I E S */
 
 /* Enforce max width for the search bar */

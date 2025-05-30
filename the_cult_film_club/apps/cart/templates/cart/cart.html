@@ -35,9 +35,41 @@
                             </p>
                         </td>
                         <td class="py-3 w-25">
-                            <p class="my-0">
-                                {{ item.quantity }}
-                            </p>
+                            <form action="" class="form update-form" method="POST">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <div class="input-group justify-content-center text-center">
+                                        <div class="input-group-prepend">
+                                            <button type="button"
+                                                class="decrement-qty btn btn-sm btn-outline-black rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
+                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                                <span>
+                                                    <i class="fas fa-minus fa-sm"></i>
+                                                </span>
+                                            </button>
+                                            <input class="form-control form-control-sm qty_input" type="number"
+                                                name="quantity"
+                                                value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
+                                                min="{% if item.release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                                max="{{ item.release.copies_available }}"
+                                                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}"
+                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                            <button type="button"
+                                                class="increment-qty btn btn-sm btn-outline-black rounded-0"
+                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
+                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                                <span>
+                                                    <i class="fas fa-plus fa-sm"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <a class="update-link text-success"><small>Update</small></a>
+                            <a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"
+                                data-size="{{ item.size }}"><small>Remove</small></a>
                         </td>
                         <td class="py-3">
                             <p class="my-0">
@@ -53,7 +85,8 @@
                             <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
                             {% if free_delivery_diff > 0 %}
                             <p class="mb-1 text-danger">
-                                <strong>FREE DELIVERY</strong> if you spend an additional <strong>£{{ free_delivery_diff }}</strong>
+                                <strong>FREE DELIVERY</strong> if you spend an additional
+                                <strong>£{{ free_delivery_diff }}</strong>
                             </p>
                             {% endif %}
                         </td>

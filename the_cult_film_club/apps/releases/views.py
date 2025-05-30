@@ -130,7 +130,7 @@ def releases(request):
             releases_list = releases_list.order_by(sortkey)
     else:
         # Default to alphabetical sorting, by title, when no sort is specified
-        releases_list = releases_list.order_by('title')
+        releases_list = releases_list.order_by('release_date', 'title')
 
     paginator = Paginator(releases_list, 8)
     page_number = request.GET.get('page')

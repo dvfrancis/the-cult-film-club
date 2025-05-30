@@ -90,6 +90,25 @@
               {% else %}
               <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
               {% endif %}
+              <form class="form mt-4" action="{% url 'add_to_cart' release.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                  <div class="col-12">
+                    <p class="mb-3"><strong>Quantity</strong></p>
+                    <div class="form-group w-25">
+                      <div class="input-group">
+                        <input class="form-control qty_input" type="number" name="quantity" value="1" min="1" max="99"
+                          data-item_id="{{ release.id }}" id="id_qty_{{ release.id }}">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <input type="submit" class="btn btn-outline-black rounded-0 rounded-0 text-uppercase"
+                      value="Add to Cart">
+                  </div>
+                  <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                </div>
+              </form>
             </div>
           </div>
         </div>

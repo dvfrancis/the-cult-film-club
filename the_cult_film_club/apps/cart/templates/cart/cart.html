@@ -11,7 +11,7 @@
                 <table class="table table-borderless">
                     <thead class="text-black">
                         <tr class="text-center">
-                            <th scope="col"><strong>Release Info</strong></th>
+                            <th scope="col"><strong>Item</strong></th>
                             <th scope="col"><strong>Title</strong></th>
                             <th scope="col"><strong>Price</strong></th>
                             <th scope="col"><strong>Quantity</strong></th>
@@ -31,7 +31,7 @@
                         </td>
                         <td class="py-3">
                             <p class="my-0">
-                                {{ item.release.price }}
+                                £{{ item.release.price }}
                             </p>
                         </td>
                         <td class="py-3 w-25">
@@ -41,16 +41,16 @@
                         </td>
                         <td class="py-3">
                             <p class="my-0">
-                                {{ item.release.price }}
+                                £{{ item.release.price }}
                             </p>
                         </td>
                     </tr>
                     {% endfor %}
                     <tr>
                         <td colspan="5" class="text-right">
-                            <h6><strong>Subtotal: £ {{ subtotal|floatformat:2 }}</strong></h6>
-                            <h6>Delivery: £ {{ delivery|floatformat:2 }}</h6>
-                            <h6 class="mt-4 mb-4"><strong>Total: £ {{ total|floatformat:2 }}</strong></h6>
+                            <h6><strong>Subtotal: £{{ subtotal|floatformat:2 }}</strong></h6>
+                            <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
+                            <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
                             {% if free_delivery_diff > 0 %}
                             <p class="mb-1 text-danger">
                                 <strong>FREE DELIVERY</strong> if you spend an additional <strong>£{{ free_delivery_diff }}</strong>

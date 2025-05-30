@@ -1,3 +1,18 @@
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     const allFilters = JSON.parse(document.getElementById('all-filters-data').textContent);
 
@@ -165,14 +180,12 @@ document.querySelectorAll('.update-link').forEach(function (link) {
     });
 });
 
-// Remove item and reload on click
 document.querySelectorAll('.remove-item').forEach(function (link) {
     link.addEventListener('click', function (e) {
-        var csrfToken = "{{ csrf_token }}";
+        var csrfToken = getCookie('csrftoken');
         var itemId = this.id.split('remove_')[1];
-        var size = this.getAttribute('data-size');
-        var url = `/bag/remove/${itemId}`;
-        var data = `csrfmiddlewaretoken=${encodeURIComponent(csrfToken)}&size=${encodeURIComponent(size)}`;
+        var url = `/cart/remove/${itemId}/`;
+        var data = `csrfmiddlewaretoken=${encodeURIComponent(csrfToken)}`;
 
         fetch(url, {
             method: 'POST',

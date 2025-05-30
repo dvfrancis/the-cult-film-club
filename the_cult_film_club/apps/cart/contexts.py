@@ -1,5 +1,7 @@
 from decimal import Decimal
 from django.conf import settings
+from django.shortcuts import get_object_or_404
+from the_cult_film_club.apps.releases.models import Releases
 
 
 def purchases(request):
@@ -7,6 +9,17 @@ def purchases(request):
     purchases = []
     subtotal = 0
     item_count = 0
+    cart = request.session.get('cart', {})
+
+    for item_id, quantity in cart.items():
+        release = get_object_or_404(Releases, pk=item_id)
+        subtotal += quantity * release.price
+        item_count += quantity
+        purchases.append({
+            'item_id': item_id,
+            'quantity': quantity,
+            'release': release,
+        })
 
     if subtotal < settings.FREE_DELIVERY:
         delivery = subtotal * Decimal(settings.DELIVERY_RATE / 100)

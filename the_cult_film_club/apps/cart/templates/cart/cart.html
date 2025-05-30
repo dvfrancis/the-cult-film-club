@@ -7,7 +7,76 @@
     <div class="header-container row">
         <div class="col">
             {% if purchases %}
-            <div class="table-responsive rounded"></div>
+            <div class="table-responsive rounded">
+                <table class="table table-borderless">
+                    <thead class="text-black">
+                        <tr class="text-center">
+                            <th scope="col"><strong>Release Info</strong></th>
+                            <th scope="col"><strong>Title</strong></th>
+                            <th scope="col"><strong>Price</strong></th>
+                            <th scope="col"><strong>Quantity</strong></th>
+                            <th scope="col"><strong>Subtotal</strong></th>
+                        </tr>
+                    </thead>
+
+                    {% for item in purchases %}
+                    <tr class="text-center">
+                        <td class="w-25">
+                            <img class="img-fluid rounded w-25" src="{{ item.release.featured_image.image.url }}">
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">
+                                {{ item.release.title }}
+                            </p>
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">
+                                {{ item.release.price }}
+                            </p>
+                        </td>
+                        <td class="py-3 w-25">
+                            <p class="my-0">
+                                {{ item.quantity }}
+                            </p>
+                        </td>
+                        <td class="py-3">
+                            <p class="my-0">
+                                {{ item.release.price }}
+                            </p>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <h6><strong>Subtotal: £ {{ subtotal|floatformat:2 }}</strong></h6>
+                            <h6>Delivery: £ {{ delivery|floatformat:2 }}</h6>
+                            <h6 class="mt-4 mb-4"><strong>Total: £ {{ total|floatformat:2 }}</strong></h6>
+                            {% if free_delivery_diff > 0 %}
+                            <p class="mb-1 text-danger">
+                                Free delivery if you spend <strong>£{{ free_delivery_diff }}</strong>
+                                more...
+                            </p>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="5" class="text-right">
+                            <a href="{% url 'releases' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                                <span class="icon">
+                                    <i class="fas fa-chevron-left"></i>
+                                </span>
+                                <span class="text-uppercase">Keep Shopping</span>
+                            </a>
+                            <a href="" class="btn btn-outline-black rounded-0 btn-lg">
+                                <span class="text-uppercase">Secure Checkout</span>
+                                <span class="icon">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
             {% else %}
             <p class="lead mb-5">There is nothing in your shopping cart</p>
             <a href="{% url 'releases' %}" class="btn btn-outline-black rounded-0 btn-lg">

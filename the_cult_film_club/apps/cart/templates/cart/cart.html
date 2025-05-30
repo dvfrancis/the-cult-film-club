@@ -53,8 +53,7 @@
                             <h6 class="mt-4 mb-4"><strong>Total: £ {{ total|floatformat:2 }}</strong></h6>
                             {% if free_delivery_diff > 0 %}
                             <p class="mb-1 text-danger">
-                                Free delivery if you spend <strong>£{{ free_delivery_diff }}</strong>
-                                more...
+                                <strong>FREE DELIVERY</strong> if you spend an additional <strong>£{{ free_delivery_diff }}</strong>
                             </p>
                             {% endif %}
                         </td>
@@ -65,7 +64,7 @@
                                 <span class="icon">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>
-                                <span class="text-uppercase">Keep Shopping</span>
+                                <span class="text-uppercase">Buy More Films</span>
                             </a>
                             <a href="" class="btn btn-outline-black rounded-0 btn-lg">
                                 <span class="text-uppercase">Secure Checkout</span>
@@ -83,7 +82,7 @@
                 <span class="icon">
                     <i class="fas fa-chevron-left"></i>
                 </span>
-                <span class="text-uppercase">Buy a Film</span>
+                <span class="text-uppercase">Buy Films</span>
             </a>
             {% endif %}
         </div>

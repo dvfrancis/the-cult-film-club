@@ -11,4 +11,5 @@ urlpatterns = [
         views.set_delivery_option,
         name="set_delivery_option"
     ),
+    path("apply_discount/", views.apply_discount, name="apply_discount"),
 ]

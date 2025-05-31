@@ -4,6 +4,8 @@ from django.shortcuts import (
 from django.contrib import messages
 from the_cult_film_club.apps.releases.models import Releases
 from django.views.decorators.http import require_POST
+from django.conf import settings
+from datetime import date
 
 
 def shopping_cart(request):
@@ -66,6 +68,26 @@ def remove_from_cart(request, item_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
+
+
+def apply_discount(request):
+    if request.method == "POST":
+        code = request.POST.get("discount_code", "").strip().upper()
+        discount = None
+        today = date.today()
+        for d in settings.DISCOUNT_CODES:
+            if d["code"] == code and today <= date.fromisoformat(d["expires"]):
+                discount = d
+                break
+        if discount:
+            request.session["discount_code"] = code
+            request.session["discount_percent"] = discount["percent"]
+            messages.success(request, f"Discount code '{code}' applied!")
+        else:
+            request.session["discount_code"] = ""
+            request.session["discount_percent"] = 0
+            messages.error(request, "Invalid or expired discount code.")
+    return redirect("cart")
 
 
 @require_POST

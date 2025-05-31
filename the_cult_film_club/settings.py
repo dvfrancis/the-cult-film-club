@@ -225,6 +225,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 FREE_DELIVERY = 100
 DELIVERY_RATE = Decimal('15')
 DISCOUNT_CODES = [
-    {"code": "SIGNUP", "percent": 10, "expires": "2025-12-31"},
-    {"code": "SUMMER2025", "percent": 15, "expires": "2025-08-31"},
+    {"code": "SIGNUP", "percent": 10, "expires": "2024-12-31"},
+    {"code": "SUMMER2025", "percent": 5, "expires": "2025-08-31"},
 ]

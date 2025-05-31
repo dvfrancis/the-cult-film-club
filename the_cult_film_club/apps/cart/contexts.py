@@ -12,7 +12,11 @@ def purchases(request):
     cart = request.session.get('cart', {})
     next_day_flat_rate = Decimal('7.99')
     can_next_day = request.user.is_authenticated
+    discount_code = request.session.get("discount_code", "")
+    discount_percent = request.session.get("discount_percent", 0)
+    discount_amount = Decimal('0.00')
 
+    # Calculate subtotal
     for item_id, quantity in cart.items():
         release = get_object_or_404(Releases, pk=item_id)
         subtotal += quantity * release.price
@@ -23,22 +27,32 @@ def purchases(request):
             'quantity': quantity,
             'release': release,
         })
-        
-    standard_delivery = subtotal * (Decimal(str(settings.DELIVERY_RATE)) / Decimal('100')) \
+
+    # Calculate delivery based on subtotal (not discounted)
+    standard_delivery = (
+        subtotal * (Decimal(str(settings.DELIVERY_RATE)) / Decimal('100'))
         if subtotal < settings.FREE_DELIVERY else Decimal('0.00')
+    )
 
     delivery_option = request.session.get('delivery_option', 'standard')
     if delivery_option == 'next_day' and can_next_day:
         delivery = next_day_flat_rate
         free_delivery_diff = 0
     elif subtotal < settings.FREE_DELIVERY:
-        delivery = subtotal * (Decimal(str(settings.DELIVERY_RATE)) / Decimal('100'))
+        delivery = standard_delivery
         free_delivery_diff = settings.FREE_DELIVERY - subtotal
     else:
         delivery = Decimal('0.00')
         free_delivery_diff = 0
 
-    total = delivery + subtotal
+    # Calculate discount (on subtotal only)
+    if discount_percent:
+        discount_amount = subtotal * Decimal(discount_percent) / Decimal('100')
+    else:
+        discount_amount = Decimal('0.00')
+
+    # Final total: subtotal + delivery - discount
+    total = subtotal + delivery - discount_amount
 
     context = {
         'purchases': purchases,
@@ -54,5 +68,8 @@ def purchases(request):
         'standard_delivery': standard_delivery,
         'next_day_flat_rate': next_day_flat_rate,
         'delivery_option': delivery_option,
+        'discount_code': discount_code,
+        'discount_percent': discount_percent,
+        'discount_amount': discount_amount,
     }
     return context

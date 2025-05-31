@@ -245,3 +245,13 @@ document.querySelectorAll('.toast').forEach(function(toastEl) {
     var toast = new bootstrap.Toast(toastEl);
     toast.show();
 });
+
+// Update delivery option on change
+document.addEventListener('DOMContentLoaded', function() {
+    var deliverySelect = document.getElementById('delivery_option');
+    if (deliverySelect) {
+        deliverySelect.addEventListener('change', function() {
+            this.form.submit();
+        });
+    }
+});

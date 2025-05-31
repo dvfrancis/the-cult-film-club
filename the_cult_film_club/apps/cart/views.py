@@ -3,6 +3,7 @@ from django.shortcuts import (
 )
 from django.contrib import messages
 from the_cult_film_club.apps.releases.models import Releases
+from django.views.decorators.http import require_POST
 
 
 def shopping_cart(request):
@@ -35,6 +36,8 @@ def amend_cart(request, item_id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     release = get_object_or_404(Releases, pk=item_id)
+    delivery_option = request.POST.get('delivery_option', 'standard')
+    request.session['delivery_option'] = delivery_option
     if quantity > 0:
         cart[item_id] = quantity
         messages.success(
@@ -63,3 +66,10 @@ def remove_from_cart(request, item_id):
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')
         return HttpResponse(status=500)
+
+
+@require_POST
+def set_delivery_option(request):
+    option = request.POST.get('delivery_option', 'standard')
+    request.session['delivery_option'] = option
+    return redirect('cart')

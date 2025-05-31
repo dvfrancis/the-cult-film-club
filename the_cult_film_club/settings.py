@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
 import dj_database_url
+from decimal import Decimal
 
 if os.path.isfile("env.py"):
     import env  # noqa
@@ -222,7 +223,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 FREE_DELIVERY = 100
-DELIVERY_RATE = 15
+DELIVERY_RATE = Decimal('15')
 DISCOUNT_CODES = [
     {"code": "SIGNUP", "percent": 10, "expires": "2025-12-31"},
     {"code": "SUMMER2025", "percent": 15, "expires": "2025-08-31"},

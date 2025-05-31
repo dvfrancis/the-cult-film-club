@@ -35,6 +35,7 @@ def purchases(request):
         'subtotal': subtotal,
         'item_count': item_count,
         'total_quantity': total_quantity,
+        'delivery_rate': settings.DELIVERY_RATE,
         'delivery': delivery,
         'free_delivery_diff': free_delivery_diff,
         'free_delivery_threshold': settings.FREE_DELIVERY,

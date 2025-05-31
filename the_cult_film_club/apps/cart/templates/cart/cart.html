@@ -80,14 +80,16 @@
                     {% endfor %}
                     <tr>
                         <td colspan="5" class="text-right">
-                            <h6><strong>Subtotal: £{{ subtotal|floatformat:2 }}</strong></h6>
-                            <h6>Delivery: £{{ delivery|floatformat:2 }}</h6>
-                            <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
                             {% if free_delivery_diff > 0 %}
-                            <p class="mb-1 text-danger">
-                                <strong>FREE DELIVERY</strong> if you spend an additional
-                                <strong>£{{ free_delivery_diff }}</strong>
-                            </p>
+                                <h6><strong>Subtotal: £{{ subtotal|floatformat:2 }}</strong></h6>
+                                <h6 class="mt-2">Delivery ({{ delivery_rate }}%): £{{ delivery|floatformat:2 }}</h6>
+                                <h6 class="mt-3 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
+                                <p class="mb-1 text-danger">
+                                    <strong>FREE DELIVERY</strong> if you spend an additional
+                                    <strong>£{{ free_delivery_diff }}</strong>
+                                </p>
+                            {% elif free_delivery_diff <= 0 %}
+                                <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
                             {% endif %}
                         </td>
                     </tr>

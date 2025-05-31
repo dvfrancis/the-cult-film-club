@@ -624,6 +624,8 @@ This is a custom model that stores details of all films being sold on the site.
 
 `average_rating` is an additional property calculated from entries of the Rating model, and added to `Releases` using the `@property` syntax.
 
+`featured_image` is an additional property calculated to easily access featured images, and added to `Releases` using the `@property` syntax.
+
 Meta classes used `verbose_name = "Release", verbose_name_plural = "Releases"`
 
 7. **Rating**
@@ -651,6 +653,8 @@ This is a custom model that stores images related to films.
 |Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=False`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 |Featured Image?|Key|`is_featured`|BooleanField|`verbose_name='Featured Image', default=False, blank=False, null=False`
+
+`save` is a custom method to ensure each release only has one featured image, and that it is set as the default displayed when viewing releases via `releases.html` and `release_details`
 
 Meta classes used `verbose_name = "Image", verbose_name_plural = "Images"`
 

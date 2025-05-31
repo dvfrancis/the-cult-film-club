@@ -180,6 +180,7 @@ document.querySelectorAll('.update-link').forEach(function (link) {
     });
 });
 
+// Remove item from cart and redirect to homepage if cart empty
 document.querySelectorAll('.remove-item').forEach(function (link) {
     link.addEventListener('click', function (e) {
         var csrfToken = getCookie('csrftoken');
@@ -195,7 +196,15 @@ document.querySelectorAll('.remove-item').forEach(function (link) {
             body: data
         }).then(function (response) {
             if (response.ok) {
-                location.reload();
+                response.json().then(function(data) {
+                    if (data.redirect) {
+                        window.location.href = data.redirect;
+                    } else {
+                        location.reload();
+                    }
+                }).catch(function() {
+                    location.reload();
+                });
             }
         });
     });
@@ -241,16 +250,18 @@ document.querySelectorAll('.qty_input').forEach(function (input) {
 
 // Show all Bootstrap toasts
 
-document.querySelectorAll('.toast').forEach(function(toastEl) {
-    var toast = new bootstrap.Toast(toastEl);
+document.querySelectorAll('.toast').forEach(function (toastEl) {
+    var toast = new bootstrap.Toast(toastEl, {
+        delay: 3000
+    });
     toast.show();
 });
 
 // Update delivery option on change
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     var deliverySelect = document.getElementById('delivery_option');
     if (deliverySelect) {
-        deliverySelect.addEventListener('change', function() {
+        deliverySelect.addEventListener('change', function () {
             this.form.submit();
         });
     }

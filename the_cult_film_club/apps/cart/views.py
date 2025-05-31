@@ -6,6 +6,7 @@ from the_cult_film_club.apps.releases.models import Releases
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from datetime import date
+from django.http import JsonResponse
 
 
 def shopping_cart(request):
@@ -61,9 +62,11 @@ def remove_from_cart(request, item_id):
         release = get_object_or_404(Releases, pk=item_id)
         cart.pop(item_id)
         messages.success(
-                request, f'Removed {release.title} from your shopping cart'
-            )
+            request, f'Removed {release.title} from your shopping cart'
+        )
         request.session['cart'] = cart
+        if not cart:
+            return JsonResponse({'redirect': '/'})
         return HttpResponse(status=200)
     except Exception as e:
         messages.error(request, f'Error removing item: {e}')

@@ -81,16 +81,50 @@
                         Originally released on {{ release.release_date|date:"l, j F Y" }}
                     </div>
                     <hr>
-                    <div class="bg-white border-0 d-flex flex-column align-items-end">
-                        <p class="lead font-weight-bold mb-2">£{{ release.price }}</p>
-                        {% if release.copies_available == 0 %}
-                        <p class="text-danger availability mt-2 p-2 mb-0">Out of stock</p>
-                        {% elif release.copies_available < 5 %}
-                        <p class="text-warning availability mt-2 p-2 mb-0">Only {{ release.copies_available }} remaining
-                        </p>
-                        {% else %}
-                        <p class="text-success availability mt-2 p-2 mb-0">{{ release.copies_available }} available</p>
-                        {% endif %}
+                    <div class="bg-white border-0 d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                        <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}"
+                            method="POST">
+                            {% csrf_token %}
+                            <div class="input-group input-group-sm quantity-group">
+                                <div class="input-group-prepend">
+                                    <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
+                                        data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
+                                        {% if release.copies_available == 0 %}disabled{% endif %}>
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <input class="form-control form-control-sm qty_input text-center quantity-input"
+                                    type="number" name="quantity"
+                                    value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                    min="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                    max="{{ release.copies_available }}" data-item_id="{{ release.id }}"
+                                    id="id_qty_{{ release.id }}"
+                                    {% if release.copies_available == 0 %}disabled{% endif %}>
+                                <div class="input-group-append">
+                                    <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
+                                        data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
+                                        {% if release.copies_available == 0 %}disabled{% endif %}>
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                            </div> <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn"
+                                value="Add" {% if release.copies_available == 0 %}disabled{% endif %}>
+                            <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                        </form>
+                        <div>
+                            <span class="lead font-weight-bold mr-3">£{{ release.price }}</span>
+                            {% if release.copies_available == 0 %}
+                            <span class="text-danger availability">Out of stock</span>
+                            {% elif release.copies_available < 10 %}
+                            <span class="text-warning availability">{{ release.copies_available }} left</span>
+                            {% else %}
+                            <span class="text-success availability">{{ release.copies_available }} available</span>
+                            {% endif %}
+                        </div>
                     </div>
                 </div>
             </div>

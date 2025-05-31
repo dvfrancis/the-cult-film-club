@@ -359,6 +359,44 @@ input[type="number"] {
     white-space: nowrap;
 }
 
+.quantity-group,
+.quantity-group .btn,
+.quantity-group .form-control,
+.add-to-cart-btn {
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+}
+
+.quantity-group .form-control,
+.quantity-input {
+    max-width: 40px;
+    min-width: 40px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 0.92rem;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    border-width: 1px;
+}
+
+.add-to-cart-btn {
+    font-size: 1.1rem;
+    padding: 0 1.2rem;
+    margin-left: 8px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+.input-group-prepend,
+.input-group-append {
+    display: flex;
+}
+
 /* B O O T S T R A P  T O A S T S */
 
 .message-container {

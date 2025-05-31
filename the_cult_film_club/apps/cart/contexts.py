@@ -15,6 +15,7 @@ def purchases(request):
     discount_code = request.session.get("discount_code", "")
     discount_percent = request.session.get("discount_percent", 0)
     discount_amount = Decimal('0.00')
+    sorting_by_copies = request.GET.get('sort') == 'copies_available'
 
     # Calculate subtotal
     for item_id, quantity in cart.items():
@@ -71,5 +72,6 @@ def purchases(request):
         'discount_code': discount_code,
         'discount_percent': discount_percent,
         'discount_amount': discount_amount,
+        'sorting_by_copies': sorting_by_copies,
     }
     return context

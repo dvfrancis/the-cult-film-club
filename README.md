@@ -723,11 +723,9 @@ Click to view the [desktop wireframes](documentation/wireframes/wireframes-deskt
 
 #### Typography
 
-The following fonts were used from [Google Fonts](https://fonts.google.com):
+The following font (from [Google Fonts](https://fonts.google.com)) was used for the entire site:
   
 - [Raleway](https://fonts.google.com/specimen/Raleway)
-- [Habibi](https://fonts.google.com/specimen/Habibi)
-- [PT Sans Caption](https://fonts.google.com/specimen/PT+Sans+Caption)
 
 # MEDIA / CONTENT NOT YET UPDATED
 

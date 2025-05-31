@@ -276,6 +276,7 @@ strong {
 .card-body,
 .card-footer {
     background-color: #e1e1e3 !important;
+    border-radius: 15px;
 }
 
 .availability {

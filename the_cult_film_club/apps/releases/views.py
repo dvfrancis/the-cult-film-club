@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
 from .models import Releases
@@ -65,13 +65,9 @@ def releases(request):
         if not query:
             messages.error(
                 request,
-                "You didn't enter a search term!"
+                "You didn't enter a search term. Please try again."
             )
-            context = {
-                "releases": [],
-                "search_term": query,
-            }
-            return render(request, "releases/releases.html", context)
+            return redirect(reverse("home"))
         queries = (
             Q(image__caption__icontains=query) |
             Q(title__icontains=query) |

@@ -238,3 +238,10 @@ document.querySelectorAll('.qty_input').forEach(function (input) {
         }
     });
 });
+
+// Show all Bootstrap toasts
+
+document.querySelectorAll('.toast').forEach(function(toastEl) {
+    var toast = new bootstrap.Toast(toastEl);
+    toast.show();
+});

@@ -108,7 +108,8 @@
               </div>
             </li>
             <li class="nav-item text-center text-md-left">
-              <a class="{% if total %} font-weight-bold {% endif %} logo-font text-black nav-link" href="{% url 'cart' %}">
+              <a class="{% if total %} font-weight-bold {% endif %} logo-font text-black nav-link"
+                href="{% url 'cart' %}">
                 <div>
                   {% if total %}
                   £{{ total|floatformat:2 }}
@@ -124,8 +125,22 @@
     </div>
   </header>
 
-  {% if messages %}
-  <div class="message-container"></div>
+ {% if messages %}
+  <div class="message-container">    
+      {% for message in messages %}
+          {% with message.level as level %}
+              {% if level == 40 %}
+                  {% include 'includes/toast_error.html' %}
+              {% elif level == 30 %}
+                  {% include 'includes/toast_warning.html' %}
+              {% elif level == 25 %}
+                  {% include 'includes/toast_success.html' %}
+              {% else %}
+                  {% include 'includes/toast_info.html' %}
+              {% endif %}
+          {% endwith %}
+      {% endfor %}
+  </div>
   {% endif %}
 
   {% block page_header %}

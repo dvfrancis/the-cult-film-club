@@ -12,6 +12,7 @@ class WishlistItemAdminForm(forms.ModelForm):
             "notes": CKEditor5Widget(config_name="extends"),
         }
 
+
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
     list_display = ['user']

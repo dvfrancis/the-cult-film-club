@@ -2,12 +2,9 @@ from pathlib import Path
 import os
 import dj_database_url
 from decimal import Decimal
-
 if os.path.isfile("env.py"):
     import env  # noqa
-
 DEBUG = True
-
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.fastmail.com"
 EMAIL_PORT = 587
@@ -15,7 +12,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-ACCOUNT_LOGIN_METHODS = {"email", "username"}
+ACCOUNT_AUTHENTICATION_METHOD = "username_email"
 ACCOUNT_SIGNUP_FIELDS = [
     "email*",
     "email2*",
@@ -23,19 +20,16 @@ ACCOUNT_SIGNUP_FIELDS = [
     "password1*",
     "password2*",
 ]
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/"
-
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 SECRET_KEY = os.environ.get("SECRET_KEY")
-
 CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/", "https://*.herokuapp.com"]
-
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
-
 INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
@@ -79,17 +73,13 @@ CLOUDINARY_STORAGE = {
     "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
     "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
 }
-
 STORAGES = {
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
-
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-
 ROOT_URLCONF = "the_cult_film_club.urls"
-
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -110,18 +100,14 @@ TEMPLATES = [
         },
     },
 ]
-
 MESSAGE_STORAGE = "django.contrib.messages.storage.session.SessionStorage"
-
 AUTHENTICATION_BACKENDS = [
     # Needed to login by username in Django admin, regardless of `allauth`
     "django.contrib.auth.backends.ModelBackend",
     # `allauth` specific authentication methods, such as login by email
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
-
 WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
-
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 # This code commented out but kept for future automated testing
@@ -132,7 +118,6 @@ WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-
 CKEDITOR_5_CONFIGS = {
     'default': {
         'toolbar': ['heading', '|', 'bold', 'italic', 'link'],
@@ -177,9 +162,7 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
-
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": (
@@ -205,23 +188,16 @@ AUTH_PASSWORD_VALIDATORS = [
         ),
     },
 ]
-
 LANGUAGE_CODE = "en-gb"
-
 TIME_ZONE = "UTC"
-
 USE_I18N = True
-
 USE_TZ = True
-
 STATIC_URL = "/static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "/assets/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
 FREE_DELIVERY = 100
 DELIVERY_RATE = Decimal('15')
 DISCOUNT_CODES = [

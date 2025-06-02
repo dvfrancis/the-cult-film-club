@@ -23,9 +23,21 @@ class RatingAdminForm(forms.ModelForm):
         }
 
 
+class ImageInline(admin.TabularInline):
+    model = Images
+    extra = 1
+
+
+class RatingInline(admin.TabularInline):
+    model = Rating
+    form = RatingAdminForm
+    extra = 1
+
+
 @admin.register(Releases)
 class ReleaseAdmin(admin.ModelAdmin):
     form = ReleasesAdminForm
+    inlines = [ImageInline, RatingInline]
     list_display = (
         'title', 'release_date', 'director', 'genre'
     )
@@ -38,20 +50,3 @@ class ReleaseAdmin(admin.ModelAdmin):
         'censor_status', 'packaging'
     )
     ordering = ['title', 'release_date', 'director', 'genre']
-
-
-@admin.register(Images)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ['title', 'caption']
-    list_filter = ['date_added']
-    search_fields = ['title__title', 'caption']
-    ordering = ['caption']
-
-
-@admin.register(Rating)
-class RatingAdmin(admin.ModelAdmin):
-    form = RatingAdminForm
-    list_display = ('user', 'title', 'rating', 'date_added')
-    list_filter = ('rating', 'date_added')
-    search_fields = ('user__username', 'title__title', 'rating', 'review')
-    ordering = ['user__username', 'title__title', 'rating']

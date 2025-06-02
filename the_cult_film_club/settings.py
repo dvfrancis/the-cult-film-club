@@ -12,16 +12,8 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
-ACCOUNT_AUTHENTICATION_METHOD = "username_email"
-ACCOUNT_SIGNUP_FIELDS = [
-    "email*",
-    "email2*",
-    "username*",
-    "password1*",
-    "password2*",
-]
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_LOGIN_METHODS = {"email", "username"}
+ACCOUNT_SIGNUP_FIELDS = ["email*", "email2*", "username*", "password1*", "password2*"]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"

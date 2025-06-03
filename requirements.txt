@@ -2,6 +2,7 @@ asgiref==3.8.1
 certifi==2025.4.26
 charset-normalizer==3.4.2
 cloudinary==1.44.0
+crispy-bootstrap4==2024.10
 dj-database-url==2.3.0
 Django==5.2.1
 django-allauth==65.8.0

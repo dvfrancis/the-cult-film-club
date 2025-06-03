@@ -1,12 +1,12 @@
 from django.shortcuts import (
-    render, redirect, reverse, HttpResponse, get_object_or_404
-)
+    render, redirect, reverse, HttpResponse, get_object_or_404)
 from django.contrib import messages
 from the_cult_film_club.apps.releases.models import Releases
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from datetime import date
 from django.http import JsonResponse
+from .forms import OrderForm
 
 
 def shopping_cart(request):
@@ -98,3 +98,18 @@ def set_delivery_option(request):
     option = request.POST.get('delivery_option', 'standard')
     request.session['delivery_option'] = option
     return redirect('cart')
+
+
+def checkout(request):
+    cart = request.session.get('cart', {})
+    if not cart:
+        messages.error(request, "There's nothing in your bag at the moment")
+        return redirect(reverse('releases'))
+
+    order_form = OrderForm()
+    template = 'cart/checkout.html'
+    context = {
+        'order_form': order_form,
+    }
+
+    return render(request, template, context)

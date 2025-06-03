@@ -15,7 +15,7 @@
             </div>
         </div>
         {% if total %}
-            <p class="logo-font bg-white text-black py-1 mb-3">Your Bag ({{ total_quantity }})</p>
+            <p class="logo-font bg-white text-black py-1 mb-3">You have {{ total_quantity }} items in your cart</p>
             <div class="cart-notification-wrapper">
                 {% for item in purchases %}
                     <div class="row text-right">

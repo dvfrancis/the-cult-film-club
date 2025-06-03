@@ -13,7 +13,13 @@ EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 ACCOUNT_LOGIN_METHODS = {"email", "username"}
-ACCOUNT_SIGNUP_FIELDS = ["email*", "email2*", "username*", "password1*", "password2*"]
+ACCOUNT_SIGNUP_FIELDS = [
+    "email*",
+    "email2*",
+    "username*",
+    "password1*",
+    "password2*",
+]
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_USERNAME_MIN_LENGTH = 4
 LOGIN_URL = "/accounts/login/"
@@ -46,7 +52,11 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "django_ckeditor_5",
+    "crispy_forms",
+    "crispy_bootstrap4",
 ]
+
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -88,6 +98,10 @@ TEMPLATES = [
                 # required by allauth
                 "django.template.context_processors.request",
                 "the_cult_film_club.apps.cart.contexts.purchases",
+            ],
+            "builtins": [
+                "crispy_forms.templatetags.crispy_forms_tags",
+                "crispy_forms.templatetags.crispy_forms_field",
             ],
         },
     },
@@ -154,6 +168,8 @@ CKEDITOR_5_CONFIGS = {
         }
     }
 }
+
+SESSION_ENGINE = "django.contrib.sessions.backends.db"
 DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
 AUTH_PASSWORD_VALIDATORS = [
     {

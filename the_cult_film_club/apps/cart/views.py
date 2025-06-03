@@ -103,13 +103,16 @@ def set_delivery_option(request):
 def checkout(request):
     cart = request.session.get('cart', {})
     if not cart:
-        messages.error(request, "There's nothing in your bag at the moment")
+        messages.error(request, "There's nothing in your cart at the moment")
         return redirect(reverse('releases'))
 
     order_form = OrderForm()
     template = 'cart/checkout.html'
     context = {
         'order_form': order_form,
+        'stripe_public_key':
+            'pk_test_51RVzOPH7L2EgRCWxx8DR3FIas1okDZYrTAZODAUCnOwidZn5xKFsnAW6'
+            'LtmbcuRCkPdtka3xy3sNXmMAasAMTddi00ewTH7B4Q',
+        'client_secret': 'test_client_secret',
     }
-
     return render(request, template, context)

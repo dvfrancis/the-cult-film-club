@@ -266,3 +266,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+/*
+    Core logic/payment flow for this comes from here:
+    https://stripe.com/docs/payments/accept-a-payment
+
+    CSS from here: 
+    https://stripe.com/docs/stripe-js
+*/
+
+document.addEventListener('DOMContentLoaded', function () {
+    var stripe_public_key_elem = document.getElementById('id_stripe_public_key');
+    var client_secret_elem = document.getElementById('id_client_secret');
+    if (!stripe_public_key_elem || !client_secret_elem) {
+        return; // Stripe not needed on this page
+    }
+    var stripe_public_key = stripe_public_key_elem.textContent.trim().slice(1, -1);
+    var client_secret = client_secret_elem.textContent.trim().slice(1, -1);
+    var stripe = Stripe(stripe_public_key);
+    var elements = stripe.elements();
+    var style = {
+        base: {
+            color: '#000',
+            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+            fontSmoothing: 'antialiased',
+            fontSize: '16px',
+            '::placeholder': {
+                color: '#aab7c4'
+            }
+        },
+        invalid: {
+            color: '#dc3545',
+            iconColor: '#dc3545'
+        }
+    };
+    var card = elements.create('card', {style: style});
+    card.mount('#card-element');
+});

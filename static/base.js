@@ -196,13 +196,13 @@ document.querySelectorAll('.remove-item').forEach(function (link) {
             body: data
         }).then(function (response) {
             if (response.ok) {
-                response.json().then(function(data) {
+                response.json().then(function (data) {
                     if (data.redirect) {
                         window.location.href = data.redirect;
                     } else {
                         location.reload();
                     }
-                }).catch(function() {
+                }).catch(function () {
                     location.reload();
                 });
             }
@@ -276,14 +276,15 @@ document.addEventListener('DOMContentLoaded', function () {
 */
 
 document.addEventListener('DOMContentLoaded', function () {
+    // Stripe setup
     var stripe_public_key_elem = document.getElementById('id_stripe_public_key');
     var client_secret_elem = document.getElementById('id_client_secret');
     if (!stripe_public_key_elem || !client_secret_elem) {
         return; // Stripe not needed on this page
     }
-    var stripe_public_key = stripe_public_key_elem.textContent.trim().slice(1, -1);
-    var client_secret = client_secret_elem.textContent.trim().slice(1, -1);
-    var stripe = Stripe(stripe_public_key);
+    var stripePublicKey = stripe_public_key_elem.textContent.trim().slice(1, -1);
+    var clientSecret = client_secret_elem.textContent.trim().slice(1, -1);
+    var stripe = Stripe(stripePublicKey);
     var elements = stripe.elements();
     var style = {
         base: {
@@ -300,6 +301,61 @@ document.addEventListener('DOMContentLoaded', function () {
             iconColor: '#dc3545'
         }
     };
-    var card = elements.create('card', {style: style});
+    var card = elements.create('card', { style: style });
     card.mount('#card-element');
+
+    // Handle realtime validation errors on the card element
+    card.addEventListener('change', function (event) {
+        var errorDiv = document.getElementById('card-errors');
+        if (event.error) {
+            var html = `
+                <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>${event.error.message}</span>
+            `;
+            errorDiv.innerHTML = html;
+        } else {
+            errorDiv.textContent = '';
+        }
+    });
+
+    // Handle form submission and payment confirmation
+    var form = document.getElementById('payment-form');
+    var submitButton = document.getElementById('submit-button');
+
+    form.addEventListener('submit', function(ev) {
+        ev.preventDefault();
+
+        if (typeof card.update === 'function') {
+            card.update({ disabled: true });
+        }
+        submitButton.disabled = true;
+
+        stripe.confirmCardPayment(clientSecret, {
+            payment_method: {
+                card: card,
+            }
+        }).then(function(result) {
+            var errorDiv = document.getElementById('card-errors');
+            if (result.error) {
+                var html = `
+                    <span class="icon" role="alert">
+                        <i class="fas fa-times"></i>
+                    </span>
+                    <span>${result.error.message}</span>
+                `;
+                errorDiv.innerHTML = html;
+
+                if (typeof card.update === 'function') {
+                    card.update({ disabled: false });
+                }
+                submitButton.disabled = false;
+            } else {
+                if (result.paymentIntent.status === 'succeeded') {
+                    form.submit();
+                }
+            }
+        });
+    });
 });

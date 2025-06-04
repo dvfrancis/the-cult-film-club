@@ -212,3 +212,9 @@ DISCOUNT_CODES = [
     {"code": "SIGNUP", "percent": 10, "expires": "2024-12-31"},
     {"code": "SUMMER2025", "percent": 5, "expires": "2025-08-31"},
 ]
+# Stripe
+FREE_DELIVERY_THRESHOLD = 50
+STANDARD_DELIVERY_PERCENTAGE = 10
+STRIPE_CURRENCY = 'gbp'
+STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')

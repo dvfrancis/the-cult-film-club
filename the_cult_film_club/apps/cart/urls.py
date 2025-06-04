@@ -13,4 +13,9 @@ urlpatterns = [
     ),
     path("apply_discount/", views.apply_discount, name="apply_discount"),
     path("checkout/", views.checkout, name="checkout"),
+    path(
+        "checkout_success/<order_number>/",
+        views.checkout_success,
+        name="checkout_success"
+    ),
 ]

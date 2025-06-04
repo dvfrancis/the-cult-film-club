@@ -41,7 +41,7 @@ class Order(models.Model):
         self.subtotal = (
             self.lineitems.aggregate(
                 Sum('lineitem_total')
-            )['lineitem_total__sum']
+            )['lineitem_total__sum'] or 0
         )
         if self.subtotal < settings.FREE_DELIVERY:
             self.delivery_cost = (

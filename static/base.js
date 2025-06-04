@@ -301,7 +301,9 @@ document.addEventListener('DOMContentLoaded', function () {
             iconColor: '#dc3545'
         }
     };
-    var card = elements.create('card', { style: style });
+    var card = elements.create('card', {
+        style: style
+    });
     card.mount('#card-element');
 
     // Handle realtime validation errors on the card element
@@ -320,35 +322,62 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // Handle form submission and payment confirmation
+    // Helper for fadeToggle effect
+    function fadeToggle(element, duration = 100) {
+        if (!element) return;
+        const isHidden = window.getComputedStyle(element).display === 'none';
+        if (isHidden) {
+            element.style.opacity = 0;
+            element.style.display = '';
+            setTimeout(() => {
+                element.style.transition = `opacity ${duration}ms`;
+                element.style.opacity = 1;
+            }, 10);
+        } else {
+            element.style.transition = `opacity ${duration}ms`;
+            element.style.opacity = 0;
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, duration);
+        }
+    }
+
+    // Handle form submit
     var form = document.getElementById('payment-form');
     var submitButton = document.getElementById('submit-button');
+    var paymentForm = document.getElementById('payment-form');
+    var loadingOverlay = document.getElementById('loading-overlay');
 
-    form.addEventListener('submit', function(ev) {
+    form.addEventListener('submit', function (ev) {
         ev.preventDefault();
-
         if (typeof card.update === 'function') {
-            card.update({ disabled: true });
+            card.update({
+                disabled: true
+            });
         }
         submitButton.disabled = true;
+        fadeToggle(paymentForm, 100);
+        fadeToggle(loadingOverlay, 100);
 
         stripe.confirmCardPayment(clientSecret, {
             payment_method: {
                 card: card,
             }
-        }).then(function(result) {
+        }).then(function (result) {
             var errorDiv = document.getElementById('card-errors');
             if (result.error) {
                 var html = `
-                    <span class="icon" role="alert">
-                        <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>
-                `;
+                <span class="icon" role="alert">
+                    <i class="fas fa-times"></i>
+                </span>
+                <span>${result.error.message}</span>`;
                 errorDiv.innerHTML = html;
-
+                fadeToggle(paymentForm, 100);
+                fadeToggle(loadingOverlay, 100);
                 if (typeof card.update === 'function') {
-                    card.update({ disabled: false });
+                    card.update({
+                        disabled: false
+                    });
                 }
                 submitButton.disabled = false;
             } else {

@@ -8,5 +8,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("releases/", include("the_cult_film_club.apps.releases.urls")),
-    path("cart/", include("the_cult_film_club.apps.cart.urls")),
+    path("checkout/", include("the_cult_film_club.apps.cart.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

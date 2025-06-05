@@ -10,6 +10,7 @@ from .forms import OrderForm
 from .contexts import purchases
 from the_cult_film_club.apps.cart.models import OrderLineItem, Order
 import stripe
+import json
 
 
 def shopping_cart(request):
@@ -101,6 +102,22 @@ def set_delivery_option(request):
     option = request.POST.get('delivery_option', 'standard')
     request.session['delivery_option'] = option
     return redirect('cart')
+
+@require_POST
+def cache_checkout_data(request):
+    try:
+        pid = request.POST.get('client_secret').split('_secret')[0]
+        stripe.api_key = settings.STRIPE_SECRET_KEY
+        stripe.PaymentIntent.modify(pid, metadata={
+            'bag': json.dumps(request.session.get('bag', {})),
+            'save_info': request.POST.get('save_info'),
+            'username': request.user,
+        })
+        return HttpResponse(status=200)
+    except Exception as e:
+        messages.error(request, 'Sorry, your payment cannot be \
+            processed. Please try again later.')
+        return HttpResponse(content=e, status=400)
 
 
 def checkout(request):

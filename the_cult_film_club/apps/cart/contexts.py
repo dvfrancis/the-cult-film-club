@@ -17,6 +17,28 @@ def purchases(request):
     discount_amount = Decimal('0.00')
     sorting_by_copies = request.GET.get('sort') == 'copies_available'
 
+    if not cart:
+        context = {
+            'purchases': [],
+            'subtotal': Decimal('0.00'),
+            'item_count': 0,
+            'total_quantity': 0,
+            'delivery_rate': settings.DELIVERY_RATE,
+            'delivery': Decimal('0.00'),
+            'free_delivery_diff': settings.FREE_DELIVERY,
+            'free_delivery_threshold': settings.FREE_DELIVERY,
+            'total': Decimal('0.00'),
+            'can_next_day': can_next_day,
+            'standard_delivery': Decimal('0.00'),
+            'next_day_flat_rate': next_day_flat_rate,
+            'delivery_option': 'standard',
+            'discount_code': '',
+            'discount_percent': 0,
+            'discount_amount': Decimal('0.00'),
+            'sorting_by_copies': sorting_by_copies,
+        }
+        return context
+
     # Calculate subtotal
     for item_id, quantity in cart.items():
         release = get_object_or_404(Releases, pk=item_id)

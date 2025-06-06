@@ -185,7 +185,7 @@ document.querySelectorAll('.remove-item').forEach(function (link) {
     link.addEventListener('click', function (e) {
         var csrfToken = getCookie('csrftoken');
         var itemId = this.id.split('remove_')[1];
-        var url = `/cart/remove/${itemId}/`;
+        var url = `/checkout/remove/${itemId}/`;
         var data = `csrfmiddlewaretoken=${encodeURIComponent(csrfToken)}`;
 
         fetch(url, {

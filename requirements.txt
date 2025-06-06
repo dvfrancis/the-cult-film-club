@@ -16,6 +16,7 @@ django-countries==7.6.1
 django-crispy-forms==2.4
 django-js-asset==3.1.2
 django-storages==1.14.6
+gunicorn
 idna==3.10
 oauthlib==3.2.2
 pillow==10.3.0

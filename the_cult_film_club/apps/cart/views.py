@@ -103,6 +103,7 @@ def set_delivery_option(request):
     request.session['delivery_option'] = option
     return redirect('cart')
 
+
 @require_POST
 def cache_checkout_data(request):
     try:

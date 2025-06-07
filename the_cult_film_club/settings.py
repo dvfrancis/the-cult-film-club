@@ -11,7 +11,10 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = os.getenv("EMAIL_USER")
 EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
-
+DEFAULT_FROM_EMAIL = "The Cult Film Club <tcfc@dominicfrancis.co.uk>"
+ACCOUNT_FORMS = {
+    'signup': 'the_cult_film_club.apps.account.forms.AccountSignupForm',
+}
 ACCOUNT_LOGIN_METHODS = {"email", "username"}
 ACCOUNT_SIGNUP_FIELDS = [
     "email*",

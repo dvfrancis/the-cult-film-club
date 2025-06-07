@@ -49,22 +49,23 @@ class Address(models.Model):
         on_delete=models.CASCADE,
         related_name="address"
     )
-    phone_number = models.CharField(
-        max_length=20,
-        blank=True,
-        null=True
-    )
     first_line = models.CharField(max_length=100, blank=True, null=True)
     second_line = models.CharField(max_length=100, blank=True, null=True)
     city = models.CharField(max_length=50, blank=True, null=True)
     county = models.CharField(max_length=50, blank=True, null=True)
     postcode = models.CharField(max_length=10, blank=True, null=True)
-    country = CountryField(blank_label="Country *", blank=True, null=True)
-    default_address = models.BooleanField(
-        default=False,
+    country = CountryField(blank=False, null=False)
+    phone_number = models.CharField(
+        max_length=20,
         blank=True,
         null=True
     )
+    default_address = models.BooleanField(
+        default=False,
+        blank=True,
+        null=False
+    )
+
 
     def save(self, *args, **kwargs):
         if self.default_address:

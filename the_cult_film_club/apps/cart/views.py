@@ -11,6 +11,7 @@ from .contexts import purchases
 from the_cult_film_club.apps.cart.models import OrderLineItem, Order
 import stripe
 import json
+from the_cult_film_club.apps.account.models import Profile
 
 
 def shopping_cart(request):
@@ -140,7 +141,14 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
-            order = order_form.save()
+            order = order_form.save(commit=False)
+            if request.user.is_authenticated:
+                try:
+                    profile = Profile.objects.get(user=request.user)
+                    order.user_profile = profile
+                except Profile.DoesNotExist:
+                    order.user_profile = None
+            order.save()
             for item_id, item_data in cart.items():
                 try:
                     release = Releases.objects.get(id=item_id)

@@ -398,6 +398,16 @@ input[type="number"] {
     display: flex;
 }
 
+select,
+select option {
+    color: #000;
+}
+
+select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+}
+
 /* S T R I P E */
 
 .StripeElement,

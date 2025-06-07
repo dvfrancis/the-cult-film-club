@@ -1,3 +1,11 @@
 from django.shortcuts import render
 
-# Create your views here.
+
+def user_profile(request):
+    """
+    Display the user profile page
+    """
+    template = 'account/account.html'
+    context = {}
+
+    return render(request, template, context)

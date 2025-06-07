@@ -9,4 +9,5 @@ urlpatterns = [
     path("accounts/", include("allauth.urls")),
     path("releases/", include("the_cult_film_club.apps.releases.urls")),
     path("checkout/", include("the_cult_film_club.apps.cart.urls")),
+    path("account/", include("the_cult_film_club.apps.account.urls")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

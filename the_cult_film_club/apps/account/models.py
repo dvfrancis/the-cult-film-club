@@ -6,6 +6,7 @@ from django.dispatch import receiver
 from enum import Enum
 from django.db.models import UniqueConstraint
 from django_ckeditor_5.fields import CKEditor5Field
+from django_countries.fields import CountryField
 
 
 class Profile(models.Model):
@@ -48,16 +49,21 @@ class Address(models.Model):
         on_delete=models.CASCADE,
         related_name="address"
     )
-    first_line = models.CharField(max_length=100, blank=False, null=False)
+    phone_number = models.CharField(
+        max_length=20,
+        blank=True,
+        null=True
+    )
+    first_line = models.CharField(max_length=100, blank=True, null=True)
     second_line = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=False, null=False)
-    county = models.CharField(max_length=50, blank=False, null=False)
-    postcode = models.CharField(max_length=10, blank=False, null=False)
-    country = models.CharField(max_length=50, blank=False, null=False)
+    city = models.CharField(max_length=50, blank=True, null=True)
+    county = models.CharField(max_length=50, blank=True, null=True)
+    postcode = models.CharField(max_length=10, blank=True, null=True)
+    country = CountryField(blank_label="Country *", blank=True, null=True)
     default_address = models.BooleanField(
         default=False,
-        blank=False,
-        null=False
+        blank=True,
+        null=True
     )
 
     def save(self, *args, **kwargs):

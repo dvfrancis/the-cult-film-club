@@ -26,7 +26,7 @@ class Releases(models.Model):
     edition = models.CharField(max_length=50, blank=True, null=True)
     censor_status = models.CharField(max_length=500, blank=True, null=True)
     packaging = models.CharField(max_length=500, blank=True, null=True)
-    copies_available = models.IntegerField(blank=True, null=True)
+    copies_available = models.IntegerField(blank=False, null=False, default=0)
     price = models.DecimalField(
         max_digits=10,
         decimal_places=2,

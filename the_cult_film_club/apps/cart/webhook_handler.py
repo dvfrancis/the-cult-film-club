@@ -51,6 +51,7 @@ class StripeWH_Handler:
         """
         Handle the payment_intent.succeeded webhook from Stripe
         """
+        print("Webhook handler called")
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
@@ -114,6 +115,7 @@ class StripeWH_Handler:
                 status=200)
         else:
             order = None
+            print("Checking if order exists")
             try:
                 order = Order.objects.create(
                     full_name=shipping_details.name,
@@ -138,6 +140,14 @@ class StripeWH_Handler:
                             quantity=item_data,
                         )
                         order_line_item.save()
+                        # --- Update stock ---
+                        if release.copies_available is not None:
+                            release.copies_available = max(
+                                release.copies_available - item_data, 0
+                            )
+                            print("Creating order and reducing stock")
+                            release.save()
+                            print(f"Updated stock for {release.title}: {release.copies_available}")
             except Exception as e:
                 if order:
                     order.delete()

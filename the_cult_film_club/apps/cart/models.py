@@ -45,6 +45,7 @@ class Order(models.Model):
         blank=False,
         default=''
     )
+    discount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
 
     def _generate_order_number(self):
         """

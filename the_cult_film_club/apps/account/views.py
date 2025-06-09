@@ -70,7 +70,7 @@ def user_profile(request):
                     first_address.default_address = True
                     first_address.save()
             messages.success(request, "Address deleted successfully")
-            return redirect('user_profile')        
+            return redirect('user_profile')
         else:
             address_form = (
                 AddressForm(instance=selected_address)

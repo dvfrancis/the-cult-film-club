@@ -66,7 +66,6 @@ class Address(models.Model):
         null=False
     )
 
-
     def save(self, *args, **kwargs):
         if self.default_address:
             # Set all other addresses for this user to default_address=False

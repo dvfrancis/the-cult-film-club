@@ -1,0 +1,17 @@
+Dear {{ order.full_name }},
+
+Thank you for purchasing from The Cult Film Club!
+
+We're happy to confirm your order (ref: {{ order.order_number }}).
+
+The details of your order are as follows:
+
+{% for item in order.lineitems.all %}{{ item.quantity }} x {{ item.release.title }} @ £{{ item.lineitem_total|floatformat:2 }}{% endfor %}
+
+Subtotal: £{{ order.subtotal|floatformat:2 }}
+{% if order.discount %}Discount: £{{ order.discount|floatformat:2 }}{% endif %}
+{% if order.delivery_cost %}Shipping: £{{ order.delivery_cost|floatformat:2 }}{% endif %}
+
+Total: £{{ order.total|floatformat:2 }}
+
+If you have any questions, or need further assistance, please do not hesitate to contact us.

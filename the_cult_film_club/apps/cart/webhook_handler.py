@@ -1,7 +1,9 @@
 from django.http import HttpResponse
-
 from .models import Order, OrderLineItem
 from the_cult_film_club.apps.releases.models import Releases
+from django.core.mail import send_mail
+from django.conf import settings
+from django.template.loader import render_to_string
 import json
 import time
 import stripe
@@ -12,6 +14,33 @@ class StripeWH_Handler:
 
     def __init__(self, request):
         self.request = request
+
+    def _send_confirmation_email(self, order):
+        """
+        Send confirmation email to the user
+        """
+        cust_email = order.email
+        subject = render_to_string(
+            'cart/conf_subject.txt',
+            {
+                'order_number': order.order_number,
+                'email': settings.DEFAULT_FROM_EMAIL
+            }
+        ).strip()
+        body = render_to_string(
+            'cart/conf_body.txt',
+            {
+                'order_number': order.order_number,
+                'email': settings.DEFAULT_FROM_EMAIL,
+                'order': order,
+            }
+        )
+        send_mail(
+            subject,
+            body,
+            settings.DEFAULT_FROM_EMAIL,
+            [cust_email]
+        )
 
     def handle_event(self, event):
         return HttpResponse(
@@ -25,7 +54,7 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
-        save_info = intent.metadata.save_info
+        # save_info = intent.metadata.save_info
         shipping_details = intent.shipping
 
         # Always get the charge using latest_charge
@@ -76,6 +105,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=(
                     f'Webhook received: {event["type"]} | '
@@ -114,7 +144,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500)
-
+        self._send_confirmation_email(order)
         return HttpResponse(
             content=(
                 f'Webhook received: {event["type"]} | '

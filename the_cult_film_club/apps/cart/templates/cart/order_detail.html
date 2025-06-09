@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h2 class="mb-4">Order Confirmation</h2>
+    <div class="card mb-4">
+        <div class="card-header">
+            <strong>Order #{{ order.order_number }}</strong>
+        </div>
+        <div class="card-body">
+            <p><strong>Order Number:</strong> {{order.order_number}}</p>
+            <p><strong>Date:</strong> {{ order.date }}</p>
+            <p><strong>Name:</strong> {{ order.full_name }}</p>
+            <p><strong>Email:</strong> {{ order.email }}</p>
+            <p><strong>Phone:</strong> {{ order.phone_number }}</p>
+            <p><strong>Address:</strong><br>
+                {{ order.street_address1 }}<br>
+                {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+                {{ order.town_or_city }}<br>
+                {% if order.county %}{{ order.county }}<br>{% endif %}
+                {{ order.postcode }}<br>
+                {{ order.country.name }}
+            </p>
+            <hr>
+            <h5>Items:</h5>
+            <ul class="list-group mb-3">
+                {% for item in order.lineitems.all %}
+                <li class="list-group-item">
+                    <strong>{{ item.release.title }}</strong><br>
+                    Quantity: {{ item.quantity }}<br>
+                    Price: £{{ item.lineitem_total|floatformat:2 }}
+                    {% if item.release.featured_image %}
+                        <div><img src="{{ item.release.featured_image.image.url }}" alt="{{ item.release.title }}" style="max-width:100px;"/></div>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+            <hr>
+            <p><strong>Subtotal:</strong> £{{ order.subtotal|floatformat:2 }}</p>
+            <p><strong>Delivery:</strong> £{{ order.delivery_cost|floatformat:2 }}</p>
+            <p><strong>Total:</strong> £{{ order.total|floatformat:2 }}</p>
+        </div>
+    </div>
+    <a href="{% url 'user_profile' %}" class="btn btn-outline-black">Back to My Profile</a>
+</div>
+{% endblock %}

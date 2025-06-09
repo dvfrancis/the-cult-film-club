@@ -25,4 +25,5 @@ urlpatterns = [
         views.cache_checkout_data,
         name="cache_checkout_data"
     ),
+    path('order/<order_number>/', views.order_detail, name='order_detail'),
 ]

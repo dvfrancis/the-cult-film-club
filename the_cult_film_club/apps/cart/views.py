@@ -11,12 +11,27 @@ from .contexts import purchases
 from the_cult_film_club.apps.cart.models import OrderLineItem, Order
 import stripe
 import json
-from the_cult_film_club.apps.account.models import Profile
+from the_cult_film_club.apps.account.models import Profile, Address
+from the_cult_film_club.apps.cart.webhook_handler import StripeWH_Handler
+from decimal import Decimal
 
 
 def shopping_cart(request):
     """Render the shopping cart page"""
     return render(request, 'cart/cart.html')
+
+
+def order_detail(request, order_number):
+    order = get_object_or_404(
+        Order,
+        order_number=order_number,
+        user_profile__user=request.user
+    )
+    messages.info(
+        request,
+        f"Viewing details for successful order #{order.order_number}"
+    )
+    return render(request, 'cart/order_detail.html', {'order': order})
 
 
 def add_to_cart(request, item_id):
@@ -141,7 +156,18 @@ def checkout(request):
         }
         order_form = OrderForm(form_data)
         if order_form.is_valid():
+            discount_percent = request.session.get("discount_percent", 0)
+            discount_code = request.session.get("discount_code", "")
+            current_cart = purchases(request)
+            subtotal = current_cart['subtotal']
+            discount_amount = 0
+            if discount_percent:
+                discount_amount = (
+                    Decimal(discount_percent) / Decimal(100)
+                ) * subtotal
             order = order_form.save(commit=False)
+            order.discount = discount_amount
+            order.discount_code = discount_code
             if request.user.is_authenticated:
                 try:
                     profile = Profile.objects.get(user=request.user)
@@ -168,29 +194,96 @@ def checkout(request):
                     return redirect(reverse('cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
+
+            # Save delivery info to profile address if requested
+            if request.user.is_authenticated and 'save-info' in request.POST:
+                profile = Profile.objects.get(user=request.user)
+                # Try to get the default address, or create a new one
+                address, created = Address.objects.get_or_create(
+                    user=request.user,
+                    default_address=True,
+                    defaults={
+                        'first_line': order.street_address1,
+                        'second_line': order.street_address2,
+                        'city': order.town_or_city,
+                        'county': order.county,
+                        'postcode': order.postcode,
+                        'country': order.country,
+                        'phone_number': order.phone_number,
+                    }
+                )
+                if not created:
+                    # Update existing default address
+                    address.first_line = order.street_address1
+                    address.second_line = order.street_address2
+                    address.city = order.town_or_city
+                    address.county = order.county
+                    address.postcode = order.postcode
+                    address.country = order.country
+                    address.phone_number = order.phone_number
+                    address.save()
+                # Ensure this address is linked to the profile (ManyToMany)
+                profile.address.add(address)
+                profile.save()
+
             return redirect(
                 reverse('checkout_success', args=[order.order_number])
             )
         else:
             messages.error(request, 'There was an error with your form. \
                 Please check the information you entered.')
-    else:
-        cart = request.session.get('cart', {})
-        if not cart:
-            messages.error(
-                request,
-                ("There's nothing in your cart at the moment")
-            )
-            return redirect(reverse('releases'))
-        current_cart = purchases(request)
-        grand_total = current_cart['total']
-        stripe_total = round(grand_total * 100)  # Convert to cents for Stripe
-        stripe.api_key = stripe_secret_key
-        intent = stripe.PaymentIntent.create(
-            amount=stripe_total,
-            currency=settings.STRIPE_CURRENCY,
+    cart = request.session.get('cart', {})
+    if not cart:
+        messages.error(
+            request,
+            ("There's nothing in your cart at the moment")
         )
-        order_form = OrderForm()
+        return redirect(reverse('releases'))
+    current_cart = purchases(request)
+    grand_total = current_cart['total']
+    stripe_total = round(grand_total * 100)  # Convert to cents for Stripe
+    stripe.api_key = stripe_secret_key
+    intent = stripe.PaymentIntent.create(
+        amount=stripe_total,
+        currency=settings.STRIPE_CURRENCY,
+    )
+
+    if request.user.is_authenticated:
+        try:
+            profile = Profile.objects.get(user=request.user)
+            default_address = Address.objects.filter(
+                user=request.user,
+                default_address=True
+            ).first()
+            initial_data = {
+                'full_name': (
+                    request.user.get_full_name() or profile.user.username
+                ),
+                'email': request.user.email,
+                'phone_number': (
+                    default_address.phone_number if default_address else ''
+                ),
+                'street_address1': (
+                    default_address.first_line if default_address else ''
+                ),
+                'street_address2': (
+                    default_address.second_line if default_address else ''
+                ),
+                'town_or_city': (
+                    default_address.city if default_address else ''
+                ),
+                'postcode': (
+                    default_address.postcode if default_address else ''
+                ),
+                'county': default_address.county if default_address else '',
+                'country': default_address.country if default_address else '',
+            }
+        except Profile.DoesNotExist:
+            initial_data = {}
+    else:
+        initial_data = {}
+
+    order_form = OrderForm(initial=initial_data)
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
             Did you forget to set it in your environment?')
@@ -207,8 +300,8 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    save_info = request.session.get('save_info')
     order = get_object_or_404(Order, order_number=order_number)
+    StripeWH_Handler(request)._send_confirmation_email(order)
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')

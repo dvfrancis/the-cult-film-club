@@ -46,6 +46,7 @@ class Order(models.Model):
         default=''
     )
     discount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
+    discount_code = models.CharField(max_length=50, blank=True, null=True)
 
     def _generate_order_number(self):
         """
@@ -55,8 +56,8 @@ class Order(models.Model):
 
     def update_total(self):
         """
-        Update grand total each time a line item is added,
-        accounting for delivery costs.
+        Update total each time a line item is added,
+        accounting for delivery costs and discount.
         """
         self.subtotal = (
             self.lineitems.aggregate(
@@ -69,7 +70,8 @@ class Order(models.Model):
             )
         else:
             self.delivery_cost = 0
-        self.total = self.subtotal + self.delivery_cost
+        # Subtract discount from subtotal + delivery
+        self.total = max(self.subtotal + self.delivery_cost - self.discount, 0)
         self.save()
 
     def save(self, *args, **kwargs):

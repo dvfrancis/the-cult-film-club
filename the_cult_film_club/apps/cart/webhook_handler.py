@@ -7,6 +7,7 @@ from django.template.loader import render_to_string
 import json
 import time
 import stripe
+from decimal import Decimal
 
 
 class StripeWH_Handler:
@@ -124,9 +125,10 @@ class StripeWH_Handler:
                     street_address1=shipping_details.address.line1,
                     street_address2=shipping_details.address.line2,
                     county=shipping_details.address.state,
-                    total=grand_total,
                     original_bag=bag,
                     stripe_pid=pid,
+                    discount=Decimal(intent.metadata.get('discount', 0)),
+                    discount_code=intent.metadata.get('discount_code', ''),
                 )
                 for item_id, item_data in json.loads(bag).items():
                     release = Releases.objects.get(id=item_id)
@@ -143,6 +145,7 @@ class StripeWH_Handler:
                                 release.copies_available - item_data, 0
                             )
                             release.save()
+                order.update_total()
             except Exception as e:
                 if order:
                     order.delete()

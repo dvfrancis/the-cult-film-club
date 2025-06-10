@@ -37,7 +37,12 @@ def order_detail(request, order_number):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
     release = get_object_or_404(Releases, pk=item_id)
-    quantity = int(request.POST.get('quantity'))
+    quantity_str = request.POST.get('quantity')
+    try:
+        quantity = int(quantity_str)
+    except (TypeError, ValueError):
+        messages.error(request, "Invalid quantity")
+        return redirect(request.POST.get('redirect_url', '/'))
     redirect_url = request.POST.get('redirect_url')
     cart = request.session.get('cart', {})
     if item_id in list(cart.keys()):
@@ -140,7 +145,8 @@ def cache_checkout_data(request):
 def checkout(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
-
+    discount_amount = 0
+    discount_code = ""
     if request.method == 'POST':
         cart = request.session.get('cart', {})
         form_data = {
@@ -175,29 +181,56 @@ def checkout(request):
                     user=request.user,
                     default_address=True,
                     defaults={
-                        'first_line': order_form.cleaned_data['street_address1'],
-                        'second_line': order_form.cleaned_data['street_address2'],
-                        'city': order_form.cleaned_data['town_or_city'],
-                        'county': order_form.cleaned_data['county'],
-                        'postcode': order_form.cleaned_data['postcode'],
-                        'country': order_form.cleaned_data['country'],
-                        'phone_number': order_form.cleaned_data['phone_number'],
+                        'first_line': order_form.cleaned_data[
+                            'street_address1'
+                        ],
+                        'second_line': order_form.cleaned_data[
+                            'street_address2'
+                        ],
+                        'city': order_form.cleaned_data[
+                            'town_or_city'
+                        ],
+                        'county': order_form.cleaned_data[
+                            'county'
+                        ],
+                        'postcode': order_form.cleaned_data[
+                            'postcode'
+                        ],
+                        'country': order_form.cleaned_data[
+                            'country'
+                        ],
+                        'phone_number': order_form.cleaned_data[
+                            'phone_number'
+                        ],
                     }
                 )
                 if not created:
-                    address.first_line = order_form.cleaned_data['street_address1']
-                    address.second_line = order_form.cleaned_data['street_address2']
+                    address.first_line = (
+                        order_form.cleaned_data['street_address1']
+                    )
+                    address.second_line = (
+                        order_form.cleaned_data['street_address2']
+                    )
                     address.city = order_form.cleaned_data['town_or_city']
                     address.county = order_form.cleaned_data['county']
                     address.postcode = order_form.cleaned_data['postcode']
                     address.country = order_form.cleaned_data['country']
-                    address.phone_number = order_form.cleaned_data['phone_number']
+                    address.phone_number = (
+                        order_form.cleaned_data['phone_number']
+                    )
                     address.save()
                 profile.address.add(address)
                 profile.save()
 
-            # Redirect to checkout success page (order number will be set by webhook)
-            messages.success(request, "Your order is being processed! You will receive a confirmation email shortly.")
+            # Redirect to checkout success page
+            # (order number will be set by webhook)
+            messages.success(
+                request,
+                (
+                    "Your order is being processed! "
+                    "You will receive a confirmation email shortly."
+                )
+            )
             return redirect(reverse('checkout-success'))
         else:
             messages.error(request, 'There was an error with your form. \
@@ -211,12 +244,25 @@ def checkout(request):
         )
         return redirect(reverse('releases'))
     current_cart = purchases(request)
+    subtotal = current_cart['subtotal']
     grand_total = current_cart['total']
     stripe_total = round(grand_total * 100)  # Convert to cents for Stripe
     stripe.api_key = stripe_secret_key
+    discount_percent = request.session.get("discount_percent", 0)
+    discount_code = request.session.get("discount_code", "")
+    discount_amount = 0
+    if discount_percent:
+        discount_amount = (
+            Decimal(discount_percent) / Decimal(100)
+        ) * subtotal
     intent = stripe.PaymentIntent.create(
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
+        metadata={
+            'bag': json.dumps(cart),
+            'discount': str(discount_amount),
+            'discount_code': discount_code,
+        }
     )
 
     if request.user.is_authenticated:

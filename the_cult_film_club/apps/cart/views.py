@@ -8,7 +8,7 @@ from datetime import date
 from django.http import JsonResponse
 from .forms import OrderForm
 from .contexts import purchases
-from the_cult_film_club.apps.cart.models import OrderLineItem, Order
+from the_cult_film_club.apps.cart.models import Order
 import stripe
 import json
 from the_cult_film_club.apps.account.models import Profile, Address
@@ -126,7 +126,7 @@ def cache_checkout_data(request):
         pid = request.POST.get('client_secret').split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
-            'bag': json.dumps(request.session.get('bag', {})),
+            'bag': json.dumps(request.session.get('cart', {})),
             'save_info': request.POST.get('save_info'),
             'username': request.user,
         })
@@ -165,73 +165,44 @@ def checkout(request):
                 discount_amount = (
                     Decimal(discount_percent) / Decimal(100)
                 ) * subtotal
-            order = order_form.save(commit=False)
-            order.discount = discount_amount
-            order.discount_code = discount_code
-            if request.user.is_authenticated:
-                try:
-                    profile = Profile.objects.get(user=request.user)
-                    order.user_profile = profile
-                except Profile.DoesNotExist:
-                    order.user_profile = None
-            order.save()
-            for item_id, item_data in cart.items():
-                try:
-                    release = Releases.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            release=release,
-                            quantity=item_data,
-                        )
-                        order_line_item.save()
-                except Releases.DoesNotExist:
-                    messages.error(request, (
-                        "One of the products in your cart wasn't found in our "
-                        "database. Please call us for assistance!")
-                    )
-                    order.delete()
-                    return redirect(reverse('cart'))
 
             request.session['save_info'] = 'save-info' in request.POST
 
             # Save delivery info to profile address if requested
             if request.user.is_authenticated and 'save-info' in request.POST:
                 profile = Profile.objects.get(user=request.user)
-                # Try to get the default address, or create a new one
                 address, created = Address.objects.get_or_create(
                     user=request.user,
                     default_address=True,
                     defaults={
-                        'first_line': order.street_address1,
-                        'second_line': order.street_address2,
-                        'city': order.town_or_city,
-                        'county': order.county,
-                        'postcode': order.postcode,
-                        'country': order.country,
-                        'phone_number': order.phone_number,
+                        'first_line': order_form.cleaned_data['street_address1'],
+                        'second_line': order_form.cleaned_data['street_address2'],
+                        'city': order_form.cleaned_data['town_or_city'],
+                        'county': order_form.cleaned_data['county'],
+                        'postcode': order_form.cleaned_data['postcode'],
+                        'country': order_form.cleaned_data['country'],
+                        'phone_number': order_form.cleaned_data['phone_number'],
                     }
                 )
                 if not created:
-                    # Update existing default address
-                    address.first_line = order.street_address1
-                    address.second_line = order.street_address2
-                    address.city = order.town_or_city
-                    address.county = order.county
-                    address.postcode = order.postcode
-                    address.country = order.country
-                    address.phone_number = order.phone_number
+                    address.first_line = order_form.cleaned_data['street_address1']
+                    address.second_line = order_form.cleaned_data['street_address2']
+                    address.city = order_form.cleaned_data['town_or_city']
+                    address.county = order_form.cleaned_data['county']
+                    address.postcode = order_form.cleaned_data['postcode']
+                    address.country = order_form.cleaned_data['country']
+                    address.phone_number = order_form.cleaned_data['phone_number']
                     address.save()
-                # Ensure this address is linked to the profile (ManyToMany)
                 profile.address.add(address)
                 profile.save()
 
-            return redirect(
-                reverse('checkout_success', args=[order.order_number])
-            )
+            # Redirect to checkout success page (order number will be set by webhook)
+            messages.success(request, "Your order is being processed! You will receive a confirmation email shortly.")
+            return redirect(reverse('checkout-success'))
         else:
             messages.error(request, 'There was an error with your form. \
                 Please check the information you entered.')
+
     cart = request.session.get('cart', {})
     if not cart:
         messages.error(
@@ -292,6 +263,7 @@ def checkout(request):
         'order_form': order_form,
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
+        'discount_amount': locals().get('discount_amount', 0),
     }
     return render(request, template, context)
 
@@ -314,3 +286,15 @@ def checkout_success(request, order_number):
         'order': order,
     }
     return render(request, template, context)
+
+
+def get_latest_order_number(request):
+    # You may want to filter by user/session/email for security
+    order = (
+        Order.objects.filter(email=request.user.email)
+        .order_by('-date')
+        .first()
+    )
+    if order:
+        return JsonResponse({'order_number': order.order_number})
+    return JsonResponse({'order_number': None})

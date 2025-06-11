@@ -14,6 +14,7 @@ import json
 from the_cult_film_club.apps.account.models import Profile, Address
 from the_cult_film_club.apps.cart.webhook_handler import StripeWH_Handler
 from decimal import Decimal
+from django.contrib.auth.decorators import login_required
 
 
 def shopping_cart(request):
@@ -142,7 +143,10 @@ def cache_checkout_data(request):
         return HttpResponse(content=e, status=400)
 
 
+@login_required
 def checkout(request):
+    print("CHECKOUT VIEW CALLED", request.method)
+    print("CART CONTENTS:", request.session.get('cart'))
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     discount_amount = 0
@@ -231,11 +235,22 @@ def checkout(request):
                     "You will receive a confirmation email shortly."
                 )
             )
-            return redirect(reverse('checkout-success'))
+            return HttpResponse(status=200)
         else:
-            messages.error(request, 'There was an error with your form. \
-                Please check the information you entered.')
-
+            messages.error(
+                request,
+                (
+                    'There was an error with your form. '
+                    'Please check the information you entered.'
+                )
+            )
+            template = 'cart/checkout.html'
+            context = {
+                'order_form': order_form,
+                'stripe_public_key': stripe_public_key,
+                'discount_amount': locals().get('discount_amount', 0),
+            }
+            return render(request, template, context)
     cart = request.session.get('cart', {})
     if not cart:
         messages.error(
@@ -314,6 +329,7 @@ def checkout(request):
     return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
@@ -334,10 +350,12 @@ def checkout_success(request, order_number):
     return render(request, template, context)
 
 
+@login_required
 def get_latest_order_number(request):
-    # You may want to filter by user/session/email for security
+    if not request.user.is_authenticated:
+        return JsonResponse({'order_number': None}, status=401)
     order = (
-        Order.objects.filter(email=request.user.email)
+        Order.objects.filter(user_profile__user=request.user)
         .order_by('-date')
         .first()
     )

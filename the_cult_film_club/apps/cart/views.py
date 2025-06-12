@@ -5,6 +5,7 @@ from the_cult_film_club.apps.releases.models import Releases
 from django.views.decorators.http import require_POST
 from django.conf import settings
 from datetime import date
+from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import OrderForm
 from .contexts import purchases
@@ -14,7 +15,6 @@ import json
 from the_cult_film_club.apps.account.models import Profile, Address
 from the_cult_film_club.apps.cart.webhook_handler import StripeWH_Handler
 from decimal import Decimal
-from django.contrib.auth.decorators import login_required
 
 
 def shopping_cart(request):
@@ -81,22 +81,27 @@ def amend_cart(request, item_id):
     return redirect(reverse('cart'))
 
 
+@require_POST
 def remove_from_cart(request, item_id):
     """ Remove the item from the shopping bag """
-    try:
-        cart = request.session.get('cart', {})
-        release = get_object_or_404(Releases, pk=item_id)
-        cart.pop(item_id)
+    cart = request.session.get('cart', {})
+    release = get_object_or_404(Releases, pk=item_id)
+    removed = cart.pop(item_id, None)
+    if removed is not None:
         messages.success(
             request, f'Removed {release.title} from your shopping cart'
         )
         request.session['cart'] = cart
+        response = {'success': True}
         if not cart:
-            return JsonResponse({'redirect': '/'})
-        return HttpResponse(status=200)
-    except Exception as e:
-        messages.error(request, f'Error removing item: {e}')
-        return HttpResponse(status=500)
+            response['redirect'] = '/'
+        return JsonResponse(response)
+    else:
+        messages.error(request, f'Item not found in cart.')
+        return JsonResponse(
+            {'success': False, 'error': 'Item not in cart.'},
+            status=404
+        )
 
 
 def apply_discount(request):
@@ -129,30 +134,34 @@ def set_delivery_option(request):
 @require_POST
 def cache_checkout_data(request):
     try:
-        pid = request.POST.get('client_secret').split('_secret')[0]
+        client_secret = request.POST.get('client_secret')
+        if not client_secret:
+            return HttpResponse("Missing client_secret", status=400)
+        pid = client_secret.split('_secret')[0]
         stripe.api_key = settings.STRIPE_SECRET_KEY
         stripe.PaymentIntent.modify(pid, metadata={
             'bag': json.dumps(request.session.get('cart', {})),
             'save_info': request.POST.get('save_info'),
-            'username': request.user,
+            'username': request.user.username,
         })
         return HttpResponse(status=200)
     except Exception as e:
-        messages.error(request, 'Sorry, your payment cannot be \
-            processed. Please try again later.')
+        messages.error(
+            request,
+            'Sorry, your payment cannot be processed. Please try again later.'
+        )
         return HttpResponse(content=e, status=400)
 
 
 @login_required
 def checkout(request):
-    print("CHECKOUT VIEW CALLED", request.method)
-    print("CART CONTENTS:", request.session.get('cart'))
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
     stripe_secret_key = settings.STRIPE_SECRET_KEY
     discount_amount = 0
     discount_code = ""
+    cart = request.session.get('cart', {})
+
     if request.method == 'POST':
-        cart = request.session.get('cart', {})
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -165,93 +174,7 @@ def checkout(request):
             'country': request.POST['country'],
         }
         order_form = OrderForm(form_data)
-        if order_form.is_valid():
-            discount_percent = request.session.get("discount_percent", 0)
-            discount_code = request.session.get("discount_code", "")
-            current_cart = purchases(request)
-            subtotal = current_cart['subtotal']
-            discount_amount = 0
-            if discount_percent:
-                discount_amount = (
-                    Decimal(discount_percent) / Decimal(100)
-                ) * subtotal
 
-            request.session['save_info'] = 'save-info' in request.POST
-
-            # Save delivery info to profile address if requested
-            if request.user.is_authenticated and 'save-info' in request.POST:
-                profile = Profile.objects.get(user=request.user)
-                address, created = Address.objects.get_or_create(
-                    user=request.user,
-                    default_address=True,
-                    defaults={
-                        'first_line': order_form.cleaned_data[
-                            'street_address1'
-                        ],
-                        'second_line': order_form.cleaned_data[
-                            'street_address2'
-                        ],
-                        'city': order_form.cleaned_data[
-                            'town_or_city'
-                        ],
-                        'county': order_form.cleaned_data[
-                            'county'
-                        ],
-                        'postcode': order_form.cleaned_data[
-                            'postcode'
-                        ],
-                        'country': order_form.cleaned_data[
-                            'country'
-                        ],
-                        'phone_number': order_form.cleaned_data[
-                            'phone_number'
-                        ],
-                    }
-                )
-                if not created:
-                    address.first_line = (
-                        order_form.cleaned_data['street_address1']
-                    )
-                    address.second_line = (
-                        order_form.cleaned_data['street_address2']
-                    )
-                    address.city = order_form.cleaned_data['town_or_city']
-                    address.county = order_form.cleaned_data['county']
-                    address.postcode = order_form.cleaned_data['postcode']
-                    address.country = order_form.cleaned_data['country']
-                    address.phone_number = (
-                        order_form.cleaned_data['phone_number']
-                    )
-                    address.save()
-                profile.address.add(address)
-                profile.save()
-
-            # Redirect to checkout success page
-            # (order number will be set by webhook)
-            messages.success(
-                request,
-                (
-                    "Your order is being processed! "
-                    "You will receive a confirmation email shortly."
-                )
-            )
-            return HttpResponse(status=200)
-        else:
-            messages.error(
-                request,
-                (
-                    'There was an error with your form. '
-                    'Please check the information you entered.'
-                )
-            )
-            template = 'cart/checkout.html'
-            context = {
-                'order_form': order_form,
-                'stripe_public_key': stripe_public_key,
-                'discount_amount': locals().get('discount_amount', 0),
-            }
-            return render(request, template, context)
-    cart = request.session.get('cart', {})
     if not cart:
         messages.error(
             request,
@@ -279,7 +202,6 @@ def checkout(request):
             'discount_code': discount_code,
         }
     )
-
     if request.user.is_authenticated:
         try:
             profile = Profile.objects.get(user=request.user)
@@ -314,7 +236,6 @@ def checkout(request):
             initial_data = {}
     else:
         initial_data = {}
-
     order_form = OrderForm(initial=initial_data)
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -339,21 +260,17 @@ def checkout_success(request, order_number):
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
-
     if 'cart' in request.session:
         del request.session['cart']
-
-    template = 'cart/checkout_success.html'
-    context = {
-        'order': order,
-    }
-    return render(request, template, context)
+    # Render the checkout success page for this order
+    return render(request, 'cart/checkout_success.html', {'order': order})
 
 
 @login_required
 def get_latest_order_number(request):
-    if not request.user.is_authenticated:
-        return JsonResponse({'order_number': None}, status=401)
+    """
+    Return the latest order number for the logged-in user.
+    """
     order = (
         Order.objects.filter(user_profile__user=request.user)
         .order_by('-date')

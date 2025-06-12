@@ -8,7 +8,7 @@ import json
 import time
 import stripe
 from decimal import Decimal
-
+from django.contrib.auth import get_user_model
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
@@ -16,9 +16,6 @@ class StripeWH_Handler:
         self.request = request
 
     def _send_confirmation_email(self, order):
-        """
-        Send confirmation email to the user
-        """
         cust_email = order.email
         subject = render_to_string(
             'cart/conf_subject.txt',
@@ -54,7 +51,6 @@ class StripeWH_Handler:
         intent = event.data.object
         pid = intent.id
         bag = intent.metadata.bag
-        # save_info = intent.metadata.save_info
         shipping_details = intent.shipping
 
         # Always get the charge using latest_charge
@@ -62,10 +58,8 @@ class StripeWH_Handler:
         if charge_id:
             charge = stripe.Charge.retrieve(charge_id)
             billing_details = charge.billing_details
-            grand_total = round(charge.amount / 100, 2)
         else:
             billing_details = None
-            grand_total = round(intent.amount / 100, 2)
 
         # Clean data in the shipping details
         for field, value in shipping_details.address.items():
@@ -83,27 +77,19 @@ class StripeWH_Handler:
                 status=400
             )
 
+        # Only use unique, guaranteed fields for lookup
         while attempt <= 5:
             try:
                 order = Order.objects.get(
-                    full_name__iexact=billing_details.name,
-                    email__iexact=billing_details.email,
-                    phone_number__iexact=shipping_details.phone,
-                    country__iexact=shipping_details.address.country,
-                    postcode__iexact=shipping_details.address.postal_code,
-                    town_or_city__iexact=shipping_details.address.city,
-                    street_address1__iexact=shipping_details.address.line1,
-                    street_address2__iexact=shipping_details.address.line2,
-                    county__iexact=shipping_details.address.state,
-                    total=grand_total,
-                    original_bag=bag,
                     stripe_pid=pid,
+                    original_bag=bag,
                 )
                 order_exists = True
                 break
             except Order.DoesNotExist:
                 attempt += 1
                 time.sleep(1)
+
         if order_exists:
             self._send_confirmation_email(order)
             return HttpResponse(
@@ -130,6 +116,19 @@ class StripeWH_Handler:
                     discount=Decimal(intent.metadata.get('discount', 0)),
                     discount_code=intent.metadata.get('discount_code', ''),
                 )
+                # --- Associate user profile if username is present ---
+                username = intent.metadata.get('username')
+                if username:
+                    User = get_user_model()
+                    try:
+                        user = User.objects.get(username=username)
+                        # Adjust this line if your profile relation is different
+                        profile = user.profile
+                        order.user_profile = profile
+                        order.save()
+                    except User.DoesNotExist:
+                        pass
+
                 for item_id, item_data in json.loads(bag).items():
                     release = Releases.objects.get(id=item_id)
                     if isinstance(item_data, int):
@@ -161,9 +160,6 @@ class StripeWH_Handler:
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
-        """
-        Handle the payment_intent.payment_failed webhook from Stripe
-        """
         return HttpResponse(
             content=f'Webhook received: {event["type"]}',
             status=200)

@@ -5,10 +5,11 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.template.loader import render_to_string
 import json
-import time
 import stripe
 from decimal import Decimal
 from django.contrib.auth import get_user_model
+from django.db import IntegrityError
+
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""

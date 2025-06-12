@@ -43,7 +43,8 @@ class Order(models.Model):
         max_length=254,
         null=False,
         blank=False,
-        default=''
+        default='',
+        unique=True
     )
     discount = models.DecimalField(max_digits=6, decimal_places=2, default=0)
     discount_code = models.CharField(max_length=50, blank=True, null=True)

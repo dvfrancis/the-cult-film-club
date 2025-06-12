@@ -66,8 +66,6 @@ class StripeWH_Handler:
             if value == "":
                 shipping_details.address[field] = None
 
-        order_exists = False
-        attempt = 1
         if not billing_details:
             return HttpResponse(
                 content=(
@@ -77,20 +75,9 @@ class StripeWH_Handler:
                 status=400
             )
 
-        # Only use unique, guaranteed fields for lookup
-        while attempt <= 5:
-            try:
-                order = Order.objects.get(
-                    stripe_pid=pid,
-                    original_bag=bag,
-                )
-                order_exists = True
-                break
-            except Order.DoesNotExist:
-                attempt += 1
-                time.sleep(1)
-
-        if order_exists:
+        # --- Idempotency: Only create order if it doesn't exist ---
+        try:
+            order = Order.objects.get(stripe_pid=pid)
             self._send_confirmation_email(order)
             return HttpResponse(
                 content=(
@@ -98,59 +85,65 @@ class StripeWH_Handler:
                     'SUCCESS: Verified order already in database'
                 ),
                 status=200)
-        else:
-            order = None
-            try:
-                order = Order.objects.create(
-                    full_name=shipping_details.name,
-                    email=billing_details.email,
-                    phone_number=shipping_details.phone,
-                    country=shipping_details.address.country,
-                    postcode=shipping_details.address.postal_code,
-                    town_or_city=shipping_details.address.city,
-                    street_address1=shipping_details.address.line1,
-                    street_address2=shipping_details.address.line2,
-                    county=shipping_details.address.state,
-                    original_bag=bag,
-                    stripe_pid=pid,
-                    discount=Decimal(intent.metadata.get('discount', 0)),
-                    discount_code=intent.metadata.get('discount_code', ''),
-                )
-                # --- Associate user profile if username is present ---
-                username = intent.metadata.get('username')
-                if username:
-                    User = get_user_model()
-                    try:
-                        user = User.objects.get(username=username)
-                        # Adjust this line if your profile relation is different
-                        profile = user.profile
-                        order.user_profile = profile
-                        order.save()
-                    except User.DoesNotExist:
-                        pass
+        except Order.DoesNotExist:
+            pass
 
-                for item_id, item_data in json.loads(bag).items():
-                    release = Releases.objects.get(id=item_id)
-                    if isinstance(item_data, int):
-                        order_line_item = OrderLineItem(
-                            order=order,
-                            release=release,
-                            quantity=item_data,
+        # Try to create the order, handle race condition with IntegrityError
+        order = None
+        try:
+            order = Order.objects.create(
+                full_name=shipping_details.name,
+                email=billing_details.email,
+                phone_number=shipping_details.phone,
+                country=shipping_details.address.country,
+                postcode=shipping_details.address.postal_code,
+                town_or_city=shipping_details.address.city,
+                street_address1=shipping_details.address.line1,
+                street_address2=shipping_details.address.line2,
+                county=shipping_details.address.state,
+                original_bag=bag,
+                stripe_pid=pid,
+                discount=Decimal(intent.metadata.get('discount', 0)),
+                discount_code=intent.metadata.get('discount_code', ''),
+            )
+            # --- Associate user profile if username is present ---
+            username = intent.metadata.get('username')
+            if username:
+                User = get_user_model()
+                try:
+                    user = User.objects.get(username=username)
+                    profile = user.profile
+                    order.user_profile = profile
+                    order.save()
+                except User.DoesNotExist:
+                    pass
+
+            for item_id, item_data in json.loads(bag).items():
+                release = Releases.objects.get(id=item_id)
+                if isinstance(item_data, int):
+                    order_line_item = OrderLineItem(
+                        order=order,
+                        release=release,
+                        quantity=item_data,
+                    )
+                    order_line_item.save()
+                    # --- Update stock ---
+                    if release.copies_available is not None:
+                        release.copies_available = max(
+                            release.copies_available - item_data, 0
                         )
-                        order_line_item.save()
-                        # --- Update stock ---
-                        if release.copies_available is not None:
-                            release.copies_available = max(
-                                release.copies_available - item_data, 0
-                            )
-                            release.save()
-                order.update_total()
-            except Exception as e:
-                if order:
-                    order.delete()
-                return HttpResponse(
-                    content=f'Webhook received: {event["type"]} | ERROR: {e}',
-                    status=500)
+                        release.save()
+            order.update_total()
+        except IntegrityError:
+            # Order was created in the meantime by another webhook attempt
+            order = Order.objects.get(stripe_pid=pid)
+        except Exception as e:
+            if order:
+                order.delete()
+            return HttpResponse(
+                content=f'Webhook received: {event["type"]} | ERROR: {e}',
+                status=500)
+
         self._send_confirmation_email(order)
         return HttpResponse(
             content=(

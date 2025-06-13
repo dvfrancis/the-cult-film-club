@@ -255,14 +255,12 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    order = get_object_or_404(Order, order_number=order_number)
-    StripeWH_Handler(request)._send_confirmation_email(order)
+    order = get_object_or_404(Order, order_number=order_number, user_profile__user=request.user)
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
     if 'cart' in request.session:
         del request.session['cart']
-    # Render the checkout success page for this order
     return render(request, 'cart/checkout_success.html', {'order': order})
 
 

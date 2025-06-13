@@ -13,6 +13,7 @@ from django.db import IntegrityError
 
 class StripeWH_Handler:
     """Handle Stripe webhooks"""
+
     def __init__(self, request):
         self.request = request
 
@@ -79,7 +80,7 @@ class StripeWH_Handler:
         # --- Idempotency: Only create order if it doesn't exist ---
         try:
             order = Order.objects.get(stripe_pid=pid)
-            self._send_confirmation_email(order)
+            # Do NOT send confirmation email again!
             return HttpResponse(
                 content=(
                     f'Webhook received: {event["type"]} | '
@@ -138,6 +139,13 @@ class StripeWH_Handler:
         except IntegrityError:
             # Order was created in the meantime by another webhook attempt
             order = Order.objects.get(stripe_pid=pid)
+            # Do NOT send confirmation email again!
+            return HttpResponse(
+                content=(
+                    f'Webhook received: {event["type"]} | '
+                    'SUCCESS: Order already created by another process'
+                ),
+                status=200)
         except Exception as e:
             if order:
                 order.delete()
@@ -145,7 +153,14 @@ class StripeWH_Handler:
                 content=f'Webhook received: {event["type"]} | ERROR: {e}',
                 status=500)
 
+        # Only send confirmation email after order is fully built!
         self._send_confirmation_email(order)
+
+        # --- Step 3: Set a flag to clear the cart (if possible) ---
+        if order.user_profile and hasattr(self.request, 'session'):
+            self.request.session['cart'] = {}
+            self.request.session.modified = True
+
         return HttpResponse(
             content=(
                 f'Webhook received: {event["type"]} | '

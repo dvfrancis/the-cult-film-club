@@ -2,7 +2,7 @@ from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404)
 from django.contrib import messages
 from the_cult_film_club.apps.releases.models import Releases
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.conf import settings
 from datetime import date
 from django.contrib.auth.decorators import login_required
@@ -13,7 +13,6 @@ from the_cult_film_club.apps.cart.models import Order
 import stripe
 import json
 from the_cult_film_club.apps.account.models import Profile, Address
-from the_cult_film_club.apps.cart.webhook_handler import StripeWH_Handler
 from decimal import Decimal
 
 
@@ -277,3 +276,16 @@ def get_latest_order_number(request):
     if order:
         return JsonResponse({'order_number': order.order_number})
     return JsonResponse({'order_number': None})
+
+
+@login_required
+@require_GET
+def get_order_number_by_pid(request, pid):
+    print(f"Received poll for PID: {pid} by user: {request.user}")
+    try:
+        order = Order.objects.get(stripe_pid=pid, user_profile__user=request.user)
+        print(f"Order found: {order.order_number}")
+        return JsonResponse({'order_number': order.order_number})
+    except Order.DoesNotExist:
+        print("Order not found yet.")
+        return JsonResponse({'order_number': None})

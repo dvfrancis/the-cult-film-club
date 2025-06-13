@@ -282,31 +282,32 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         // Helper for polling order and redirecting
-        function pollForOrderAndRedirect(attempts = 0, maxAttempts = 10) {
-            fetch('/checkout/get-latest-order-number/')
+        function pollForOrderAndRedirectByPid(pid, attempts = 0, maxAttempts = 30) {
+            fetch(`/checkout/get-order-number-by-pid/${pid}/`)
                 .then(response => response.json())
                 .then(data => {
                     if (data.order_number) {
                         window.location.href = `/checkout/checkout_success/${data.order_number}/`;
                     } else if (attempts < maxAttempts) {
                         setTimeout(function () {
-                            pollForOrderAndRedirect(attempts + 1, maxAttempts);
-                        }, 1000);
+                            pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
+                        }, 2000); // 2 seconds
                     } else {
+                        alert('Order processing is taking longer than expected. Please check your email for confirmation.');
                         window.location.href = '/checkout/';
                     }
                 })
                 .catch(() => {
                     if (attempts < maxAttempts) {
                         setTimeout(function () {
-                            pollForOrderAndRedirect(attempts + 1, maxAttempts);
-                        }, 1000);
+                            pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
+                        }, 2000);
                     } else {
+                        alert('Order processing is taking longer than expected. Please check your email for confirmation.');
                         window.location.href = '/checkout/';
                     }
                 });
-        }
-
+        }        
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function (ev) {
             ev.preventDefault();
@@ -373,7 +374,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     } else {
                         if (result.paymentIntent.status === 'succeeded') {
                             // Poll for the order and redirect to success page
-                            pollForOrderAndRedirect();
+                            console.log('Polling for PID:', result.paymentIntent.id);
+                            pollForOrderAndRedirectByPid(result.paymentIntent.id);
                         }
                     }
                 });

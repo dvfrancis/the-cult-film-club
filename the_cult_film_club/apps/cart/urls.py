@@ -31,4 +31,9 @@ urlpatterns = [
         views.get_latest_order_number,
         name="get_latest_order_number"
     ),
+    path(
+        'get-order-number-by-pid/<str:pid>/',
+        views.get_order_number_by_pid,
+        name='get_order_number_by_pid'
+    ),
 ]

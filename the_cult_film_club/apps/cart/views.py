@@ -96,7 +96,7 @@ def remove_from_cart(request, item_id):
             response['redirect'] = '/'
         return JsonResponse(response)
     else:
-        messages.error(request, f'Item not found in cart.')
+        messages.error(request, 'Item not found in cart.')
         return JsonResponse(
             {'success': False, 'error': 'Item not in cart.'},
             status=404
@@ -254,7 +254,11 @@ def checkout_success(request, order_number):
     """
     Handle successful checkouts
     """
-    order = get_object_or_404(Order, order_number=order_number, user_profile__user=request.user)
+    order = get_object_or_404(
+        Order,
+        order_number=order_number,
+        user_profile__user=request.user
+    )
     messages.success(request, f'Order successfully processed! \
         Your order number is {order_number}. A confirmation \
         email will be sent to {order.email}.')
@@ -283,7 +287,10 @@ def get_latest_order_number(request):
 def get_order_number_by_pid(request, pid):
     print(f"Received poll for PID: {pid} by user: {request.user}")
     try:
-        order = Order.objects.get(stripe_pid=pid, user_profile__user=request.user)
+        order = Order.objects.get(
+            stripe_pid=pid,
+            user_profile__user=request.user
+        )
         print(f"Order found: {order.order_number}")
         return JsonResponse({'order_number': order.order_number})
     except Order.DoesNotExist:

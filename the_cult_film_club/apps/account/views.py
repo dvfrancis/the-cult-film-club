@@ -97,8 +97,23 @@ def user_profile(request):
             return redirect('user_profile')
         elif 'remove_item' in request.POST:
             item_id = request.POST.get('remove_item')
-            WishlistItem.objects.filter(id=item_id, wishlist=wishlist).delete()
-            messages.success(request, "Item removed from wishlist.")
+            wishlist_item = (
+                WishlistItem.objects
+                .filter(id=item_id, wishlist=wishlist)
+                .first()
+            )
+            if wishlist_item:
+                title = wishlist_item.title
+                wishlist_item.delete()
+                messages.success(
+                    request,
+                    f"{title} removed from wishlist"
+                )
+            else:
+                messages.error(
+                    request,
+                    "Wishlist item not found"
+                )
             return redirect('user_profile')
         elif 'add_item' in request.POST:
             form = WishlistItemForm(request.POST)
@@ -109,7 +124,9 @@ def user_profile(request):
                 wishlist_item = form.save(commit=False)
                 wishlist_item.wishlist = wishlist
                 wishlist_item.save()
-                messages.success(request, "Item added to wishlist.")
+                messages.success(
+                    request, f"{wishlist_item.title} added to wishlist"
+                )
                 return redirect('user_profile')
 
     # --- Address selection logic ---

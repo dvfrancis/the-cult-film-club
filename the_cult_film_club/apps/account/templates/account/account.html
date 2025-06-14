@@ -12,12 +12,11 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-3">
             <h3 class="mb-3">Welcome, {{ user_profile.user.get_full_name|default:user_profile.user.username }}</h3>
-            <p class="mb-4"><strong>Loyalty Points:</strong> {{ user_profile.loyalty_points }}</p>
             <p>
                 {% if user_profile.photograph %}
-                <img src="{{ user_profile.photograph.url }}" alt="Profile Photo">
+                <img src="{{ user_profile.photograph.url }}" alt="Profile Photo" class="profile-photo">
                 {% else %}
                 <em>No photo uploaded.</em>
                 {% endif %}
@@ -25,12 +24,16 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ photo_form.photograph }}
-                <div class="form-text text-muted" style="margin-bottom: 10px;">
+                <div class="form-text text-muted">
                     Accepts BMP, JPG, GIF, PNG, WebP | Max size: 5MB
                 </div>
                 <button type="submit" name="update_photo" class="btn btn-outline-black btn-sm">Update Photo</button>
             </form>
-            <h3 class="mt-4 mb-4">Addresses</h3>
+            <p class="mt-4"><strong>Loyalty Points:</strong> {{ user_profile.loyalty_points }}</p>
+
+        </div>
+        <div class="col-12 col-lg-4">
+            <h3>Addresses</h3>
             <!-- Address Dropdown -->
             <form method="get" class="mb-3">
                 <label for="address-select">Select address to edit:</label>
@@ -69,7 +72,8 @@
                 </div>
             </form>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-5">
+
             <h3>My Wishlist</h3>
             {% if wishlist_items %}
             <ul class="list-group mb-3">
@@ -83,12 +87,17 @@
                         {% endif %}
                         <div class="small text-muted">{{ item.notes|default:"No notes"|safe }}</div>
                     </div>
-                    <form method="post" action="{% url 'add_to_cart' item.title.id %}" style="display:inline;">
+                    {% if item.title.copies_available > 0 %}
+                    <form method="post" action="{% url 'add_to_cart' item.title.id %}">
                         {% csrf_token %}
-                        <input type="number" name="quantity" value="1" min="1">
+                        <input type="number" name="quantity" value="1" min="1" max="{{ item.title.copies_available }}">
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         <button type="submit" class="btn btn-sm btn-success">Add to Cart</button>
+                        <span class="text-muted small ms-2">{{ item.title.copies_available }} in stock</span>
                     </form>
+                    {% else %}
+                    <button class="btn btn-sm btn-secondary" disabled>Out of Stock</button>
+                    {% endif %}
                     <form method="post">
                         {% csrf_token %}
                         <button type="submit" name="remove_item" value="{{ item.id }}"
@@ -107,8 +116,7 @@
                 {{ form.as_p }}
                 <button type="submit" name="add_item" class="btn btn-primary">Add</button>
             </form>
-        </div>
-        <div class="col-12 col-lg-6">
+
             <h3 class="mb-4">Order History</h3>
             {% if orders %}
             <ul class="list-group">
@@ -119,12 +127,12 @@
                     </a><br>
                     Date: {{ order.date }}<br>
                     {% for item in order.lineitems.all %}
-                    {% if item.release.featured_image %}
+                    {% comment %} {% if item.release.featured_image %}
                     <img src="{{ item.release.featured_image.image.url }}" alt="{{ item.release.title }}" /><br>
                     {% else %}
                     <img src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
                         alt="{{ item.release.title }}" /><br>
-                    {% endif %}
+                    {% endif %} {% endcomment %}
                     Item: {{ item.release.title }}<br>
                     Quantity: {{ item.quantity }}<br>
                     {% endfor %}
@@ -136,6 +144,7 @@
             <p>No orders found.</p>
             {% endif %}
         </div>
+
     </div>
 </div>
 {% endblock %}

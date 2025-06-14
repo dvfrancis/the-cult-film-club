@@ -40,6 +40,9 @@ def order_detail(request, order_number):
 def add_to_cart(request, item_id):
     """ Add a quantity of the specified product to the shopping cart """
     release = get_object_or_404(Releases, pk=item_id)
+    if release.copies_available < 1:
+        messages.error(request, "Sorry, this item is out of stock.")
+        return redirect(request.POST.get('redirect_url', '/'))
     quantity_str = request.POST.get('quantity')
     try:
         quantity = int(quantity_str)
@@ -108,9 +111,9 @@ def remove_from_cart(request, item_id):
             response['redirect'] = '/'
         return JsonResponse(response)
     else:
-        messages.error(request, 'Item not found in cart.')
+        messages.error(request, 'Item not found in cart')
         return JsonResponse(
-            {'success': False, 'error': 'Item not in cart.'},
+            {'success': False, 'error': 'Item not in cart'},
             status=404
         )
 

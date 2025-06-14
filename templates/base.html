@@ -112,7 +112,7 @@
                 href="{% url 'cart' %}">
                 <div>
                   {% if total %}
-                  £{{ total|floatformat:2 }}
+                  <i class="fa-solid fa-cart-shopping"></i> £{{ total|floatformat:2 }}
                   {% else %}
                   <i class="fa-solid fa-cart-shopping"></i>
                   {% endif %}

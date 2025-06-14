@@ -24,7 +24,7 @@
             </p>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ photo_form|crispy }}
+                {{ photo_form.photograph }}
                 <button type="submit" name="update_photo" class="btn btn-outline-black btn-sm">Update Photo</button>
             </form>
             <h3 class="mt-4 mb-4">Addresses</h3>
@@ -36,7 +36,7 @@
                     {% for address in addresses %}
                     <option value="{{ address.id }}"
                         {% if selected_address and address.id == selected_address.id %}selected{% endif %}>
-                        {{ address.first_line }}, {{ address.city }}, {{ address.postcode }}
+                        {{ address.city }}, {{ address.postcode }}
                     </option>
                     {% endfor %}
                 </select>

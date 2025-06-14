@@ -49,11 +49,11 @@ class Address(models.Model):
         on_delete=models.CASCADE,
         related_name="address"
     )
-    first_line = models.CharField(max_length=100, blank=True, null=True)
+    first_line = models.CharField(max_length=100, blank=False, null=False)
     second_line = models.CharField(max_length=100, blank=True, null=True)
-    city = models.CharField(max_length=50, blank=True, null=True)
+    city = models.CharField(max_length=50, blank=False, null=False)
     county = models.CharField(max_length=50, blank=True, null=True)
-    postcode = models.CharField(max_length=10, blank=True, null=True)
+    postcode = models.CharField(max_length=10, blank=False, null=False)
     country = CountryField(blank=False, null=False)
     phone_number = models.CharField(
         max_length=20,

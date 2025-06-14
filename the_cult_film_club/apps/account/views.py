@@ -54,21 +54,45 @@ def user_profile(request):
         elif 'update_address' in request.POST and selected_address:
             address_form = AddressForm(request.POST, instance=selected_address)
             if address_form.is_valid():
+                # If user tries to untick default and no other address is
+                # default, prevent it
+                if not address_form.cleaned_data.get('default_address'):
+                    other_defaults = Address.objects.filter(
+                        user=request.user, default_address=True
+                    ).exclude(id=selected_address.id)
+                    if not other_defaults.exists():
+                        messages.error(
+                            request,
+                            "At least one address must be set as "
+                            "default"
+                        )
+                        return redirect(
+                            f"{request.path}?address={selected_address.id}"
+                        )
                 address_form.save()
                 messages.success(request, "Address updated successfully")
                 return redirect(
                     f"{request.path}?address={selected_address.id}"
                 )
         elif 'delete_address' in request.POST and selected_address:
+            # Prevent deleting the last address
+            if addresses.count() <= 1:
+                messages.error(
+                    request,
+                    (
+                        "You must have at least one address - "
+                        "add another before deleting this one"
+                    )
+                )
+                return redirect('user_profile')
             was_default = selected_address.default_address
             selected_address.delete()
             # If the deleted address was default, set another as default
-            if was_default:
-                remaining = Address.objects.filter(user=request.user)
-                if remaining.exists():
-                    first_address = remaining.first()
-                    first_address.default_address = True
-                    first_address.save()
+            remaining = Address.objects.filter(user=request.user)
+            if was_default and remaining.exists():
+                first_address = remaining.first()
+                first_address.default_address = True
+                first_address.save()
             messages.success(request, "Address deleted successfully")
             return redirect('user_profile')
         else:

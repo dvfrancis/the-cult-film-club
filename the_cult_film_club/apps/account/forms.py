@@ -11,7 +11,7 @@ class AccountSignupForm(SignupForm):
         widget=forms.ClearableFileInput(attrs={'placeholder': 'Profile photo'})
     )
     first_line = forms.CharField(
-        max_length=100, required=False,
+        max_length=100, required=True,
         widget=forms.TextInput(attrs={'placeholder': 'Address line 1'})
     )
     second_line = forms.CharField(
@@ -19,7 +19,7 @@ class AccountSignupForm(SignupForm):
         widget=forms.TextInput(attrs={'placeholder': 'Address line 2'})
     )
     city = forms.CharField(
-        max_length=50, required=False,
+        max_length=50, required=True,
         widget=forms.TextInput(attrs={'placeholder': 'City'})
     )
     county = forms.CharField(
@@ -27,11 +27,11 @@ class AccountSignupForm(SignupForm):
         widget=forms.TextInput(attrs={'placeholder': 'County'})
     )
     postcode = forms.CharField(
-        max_length=10, required=False,
+        max_length=10, required=True,
         widget=forms.TextInput(attrs={'placeholder': 'Postcode'})
     )
     country = CountryField().formfield(
-        required=False,
+        required=True,
         widget=CountrySelectWidget(attrs={'placeholder': 'Country'})
     )
     phone_number = forms.CharField(
@@ -62,13 +62,38 @@ class AccountSignupForm(SignupForm):
         return user
 
 
+class NoClearableFileInput(forms.ClearableFileInput):
+    template_name = 'widgets/no_clearable_file_input.html'
+
+
 class ProfilePhotoForm(forms.ModelForm):
     class Meta:
         model = Profile
         fields = ['photograph']
+        widgets = {
+            'photograph': NoClearableFileInput,
+        }
 
 
 class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
+        fields = [
+            'first_line', 'second_line', 'city', 'county',
+            'postcode', 'phone_number', 'default_address'
+        ]
+        widgets = {
+            'first_line': forms.TextInput(
+                attrs={'placeholder': 'Address line 1'}
+            ),
+            'second_line': forms.TextInput(
+                attrs={'placeholder': 'Address line 2'}
+            ),
+            'city': forms.TextInput(attrs={'placeholder': 'City'}),
+            'county': forms.TextInput(attrs={'placeholder': 'County'}),
+            'postcode': forms.TextInput(attrs={'placeholder': 'Postcode'}),
+            'phone_number': forms.TextInput(
+                attrs={'placeholder': 'Phone number'}
+            ),
+        }
         exclude = ['user']  # user will be set in the view

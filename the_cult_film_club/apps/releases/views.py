@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
+from .forms import ReleaseForm
 
 
 def releases(request):
@@ -173,3 +174,46 @@ def release_details(request, release_id):
     release = get_object_or_404(Releases, pk=release_id)
     context = {"release": release}
     return render(request, "releases/release_details.html", context)
+
+
+def product_management(request):
+    releases = Releases.objects.all().order_by('id')
+    if request.method == 'POST':
+        form = ReleaseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Release added successfully")
+            return redirect('product_management')
+    else:
+        form = ReleaseForm()
+    return render(request, 'releases/product_management.html', {
+        'releases': releases,
+        'form': form,
+    })
+
+
+def edit_release(request, release_id):
+    release = get_object_or_404(Releases, id=release_id)
+    if request.method == 'POST':
+        form = ReleaseForm(request.POST, request.FILES, instance=release)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Release updated successfully")
+            return redirect('product_management')
+    else:
+        form = ReleaseForm(instance=release)
+    return render(request, 'releases/edit_release.html', {
+        'form': form,
+        'release': release,
+    })
+
+
+def delete_release(request, release_id):
+    release = get_object_or_404(Releases, id=release_id)
+    if request.method == 'POST':
+        release.delete()
+        messages.success(request, "Release deleted successfully")
+        return redirect('product_management')
+    return render(request, 'releases/delete_release.html', {
+        'release': release,
+    })

@@ -266,7 +266,7 @@ document.addEventListener('DOMContentLoaded', function () {
             style: style
         });
         card.mount('#card-element');
-        card.addEventListener('change', function (event) {
+        card.on('change', function (event) {
             var errorDiv = document.getElementById('card-errors');
             if (event.error) {
                 var html = `
@@ -311,75 +311,80 @@ document.addEventListener('DOMContentLoaded', function () {
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function (ev) {
             ev.preventDefault();
-            card.update({
-                'disabled': true
-            });
-            $('#submit-button').attr('disabled', true);
-            $('#payment-form').fadeToggle(100);
-            $('#loading-overlay').fadeToggle(100);
+            card.update({ 'disabled': true });
+            document.getElementById('submit-button').disabled = true;
+            document.getElementById('payment-form').style.display = 'none';
+            document.getElementById('loading-overlay').style.display = 'block';
 
-            var saveInfo = Boolean($('#id-save-info').attr('checked'));
-            var csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
-            var postData = {
-                'csrfmiddlewaretoken': form.csrfmiddlewaretoken.value,
+            var saveInfo = document.getElementById('id-save-info') && document.getElementById('id-save-info').checked;
+            var csrfToken = form.csrfmiddlewaretoken.value;
+            var postData = new URLSearchParams({
+                'csrfmiddlewaretoken': csrfToken,
                 'client_secret': clientSecret,
                 'save_info': saveInfo,
-            };
+            });
             var url = '/checkout/cache_checkout_data/';
 
-            $.post(url, postData).done(function () {
-                stripe.confirmCardPayment(clientSecret, {
-                    payment_method: {
-                        card: card,
-                        billing_details: {
-                            name: $.trim(form.full_name.value),
-                            phone: $.trim(form.phone_number.value),
-                            email: $.trim(form.email.value),
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: postData.toString()
+            }).then(function (response) {
+                if (response.ok) {
+                    stripe.confirmCardPayment(clientSecret, {
+                        payment_method: {
+                            card: card,
+                            billing_details: {
+                                name: form.full_name.value.trim(),
+                                phone: form.phone_number.value.trim(),
+                                email: form.email.value.trim(),
+                                address: {
+                                    line1: form.street_address1.value.trim(),
+                                    line2: form.street_address2.value.trim(),
+                                    city: form.town_or_city.value.trim(),
+                                    country: form.country.value.trim(),
+                                    state: form.county.value.trim(),
+                                }
+                            }
+                        },
+                        shipping: {
+                            name: form.full_name.value.trim(),
+                            phone: form.phone_number.value.trim(),
                             address: {
-                                line1: $.trim(form.street_address1.value),
-                                line2: $.trim(form.street_address2.value),
-                                city: $.trim(form.town_or_city.value),
-                                country: $.trim(form.country.value),
-                                state: $.trim(form.county.value),
+                                line1: form.street_address1.value.trim(),
+                                line2: form.street_address2.value.trim(),
+                                city: form.town_or_city.value.trim(),
+                                country: form.country.value.trim(),
+                                postal_code: form.postcode.value.trim(),
+                                state: form.county.value.trim(),
+                            }
+                        },
+                    }).then(function (result) {
+                        if (result.error) {
+                            var errorDiv = document.getElementById('card-errors');
+                            var html = `
+                                <span class="icon" role="alert">
+                                <i class="fas fa-times"></i>
+                                </span>
+                                <span>${result.error.message}</span>`;
+                            errorDiv.innerHTML = html;
+                            document.getElementById('payment-form').style.display = 'block';
+                            document.getElementById('loading-overlay').style.display = 'none';
+                            card.update({ 'disabled': false });
+                            document.getElementById('submit-button').disabled = false;
+                        } else {
+                            if (result.paymentIntent.status === 'succeeded') {
+                                // Poll for the order and redirect to success page
+                                pollForOrderAndRedirectByPid(result.paymentIntent.id);
                             }
                         }
-                    },
-                    shipping: {
-                        name: $.trim(form.full_name.value),
-                        phone: $.trim(form.phone_number.value),
-                        address: {
-                            line1: $.trim(form.street_address1.value),
-                            line2: $.trim(form.street_address2.value),
-                            city: $.trim(form.town_or_city.value),
-                            country: $.trim(form.country.value),
-                            postal_code: $.trim(form.postcode.value),
-                            state: $.trim(form.county.value),
-                        }
-                    },
-                }).then(function (result) {
-                    if (result.error) {
-                        var errorDiv = document.getElementById('card-errors');
-                        var html = `
-                    <span class="icon" role="alert">
-                    <i class="fas fa-times"></i>
-                    </span>
-                    <span>${result.error.message}</span>`;
-                        $(errorDiv).html(html);
-                        $('#payment-form').fadeToggle(100);
-                        $('#loading-overlay').fadeToggle(100);
-                        card.update({
-                            'disabled': false
-                        });
-                        $('#submit-button').attr('disabled', false);
-                    } else {
-                        if (result.paymentIntent.status === 'succeeded') {
-                            // Poll for the order and redirect to success page
-                            console.log('Polling for PID:', result.paymentIntent.id);
-                            pollForOrderAndRedirectByPid(result.paymentIntent.id);
-                        }
-                    }
-                });
-            }).fail(function () {
+                    });
+                } else {
+                    location.reload();
+                }
+            }).catch(function () {
                 location.reload();
             });
         });

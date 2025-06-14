@@ -4,6 +4,8 @@ from django.db.models import Sum
 from django.conf import settings
 from the_cult_film_club.apps.releases.models import Releases
 from django_countries.fields import CountryField
+from django.utils import timezone
+
 
 
 class Order(models.Model):
@@ -121,3 +123,27 @@ class OrderLineItem(models.Model):
 
     def __str__(self):
         return f'{self.order.order_number}'
+
+
+class DiscountCode(models.Model):
+    code = models.CharField(max_length=50, unique=True)
+    percent = models.PositiveIntegerField(
+        help_text="Discount percent (For example, 10 for 10%)"
+    )
+    valid_from = models.DateField(help_text="Start date (DD-MM-YYYY)")
+    valid_to = models.DateField(help_text="End date (DD-MM-YYYY)")
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return (
+            f"{self.code} ({self.percent}% off, "
+            f"{self.valid_from.strftime('%d-%m-%Y')} to "
+            f"{self.valid_to.strftime('%d-%m-%Y')})"
+        )
+
+    def is_valid(self):
+        today = timezone.now().date()
+        return (
+            self.is_active and
+            self.valid_from <= today <= self.valid_to
+        )

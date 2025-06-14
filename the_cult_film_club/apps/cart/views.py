@@ -2,9 +2,10 @@ from django.shortcuts import (
     render, redirect, reverse, HttpResponse, get_object_or_404)
 from django.contrib import messages
 from the_cult_film_club.apps.releases.models import Releases
+from the_cult_film_club.apps.cart.models import DiscountCode
+from the_cult_film_club.apps.cart.forms import DiscountCodeForm
 from django.views.decorators.http import require_POST, require_GET
 from django.conf import settings
-from datetime import date
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 from .forms import OrderForm
@@ -105,18 +106,21 @@ def remove_from_cart(request, item_id):
 
 def apply_discount(request):
     if request.method == "POST":
-        code = request.POST.get("discount_code", "").strip().upper()
-        discount = None
-        today = date.today()
-        for d in settings.DISCOUNT_CODES:
-            if d["code"] == code and today <= date.fromisoformat(d["expires"]):
-                discount = d
-                break
-        if discount:
-            request.session["discount_code"] = code
-            request.session["discount_percent"] = discount["percent"]
-            messages.success(request, f"Discount code '{code}' applied!")
-        else:
+        code = request.POST.get("discount_code", "").strip()
+        try:
+            discount = DiscountCode.objects.get(code__iexact=code)
+            if discount.is_valid():
+                request.session["discount_code"] = discount.code
+                request.session["discount_percent"] = discount.percent
+                messages.success(
+                    request,
+                    f"Discount code '{discount.code}' applied!"
+                )
+            else:
+                request.session["discount_code"] = ""
+                request.session["discount_percent"] = 0
+                messages.error(request, "Invalid or expired discount code.")
+        except DiscountCode.DoesNotExist:
             request.session["discount_code"] = ""
             request.session["discount_percent"] = 0
             messages.error(request, "Invalid or expired discount code.")
@@ -160,7 +164,26 @@ def checkout(request):
     discount_code = ""
     cart = request.session.get('cart', {})
 
+    # Handle discount code submission
     if request.method == 'POST':
+        # Check for discount code in POST
+        code_entered = request.POST.get('discount_code', '').strip()
+        if code_entered:
+            try:
+                discount = DiscountCode.objects.get(code__iexact=code_entered)
+                if discount.is_valid():
+                    request.session["discount_percent"] = discount.percent
+                    request.session["discount_code"] = discount.code
+                    messages.success(request, f"Discount code '{discount.code}' applied!")
+                else:
+                    request.session["discount_percent"] = 0
+                    request.session["discount_code"] = ""
+                    messages.error(request, "This discount code is not valid.")
+            except DiscountCode.DoesNotExist:
+                request.session["discount_percent"] = 0
+                request.session["discount_code"] = ""
+                messages.error(request, "Discount code not found.")
+
         form_data = {
             'full_name': request.POST['full_name'],
             'email': request.POST['email'],
@@ -180,6 +203,7 @@ def checkout(request):
             ("There's nothing in your cart at the moment")
         )
         return redirect(reverse('releases'))
+
     current_cart = purchases(request)
     subtotal = current_cart['subtotal']
     grand_total = current_cart['total']
@@ -192,6 +216,7 @@ def checkout(request):
         discount_amount = (
             Decimal(discount_percent) / Decimal(100)
         ) * subtotal
+
     intent = stripe.PaymentIntent.create(
         amount=stripe_total,
         currency=settings.STRIPE_CURRENCY,
@@ -201,6 +226,7 @@ def checkout(request):
             'discount_code': discount_code,
         }
     )
+
     if request.user.is_authenticated:
         try:
             profile = Profile.objects.get(user=request.user)
@@ -235,6 +261,7 @@ def checkout(request):
             initial_data = {}
     else:
         initial_data = {}
+
     order_form = OrderForm(initial=initial_data)
     if not stripe_public_key:
         messages.warning(request, 'Stripe public key is missing. \
@@ -245,6 +272,8 @@ def checkout(request):
         'stripe_public_key': stripe_public_key,
         'client_secret': intent.client_secret,
         'discount_amount': locals().get('discount_amount', 0),
+        'discount_code': discount_code,
+        'discount_percent': discount_percent,
     }
     return render(request, template, context)
 
@@ -296,3 +325,46 @@ def get_order_number_by_pid(request, pid):
     except Order.DoesNotExist:
         print("Order not found yet.")
         return JsonResponse({'order_number': None})
+
+
+def discount_codes_management(request):
+    discount_codes = DiscountCode.objects.all().order_by('-valid_from')
+    if request.method == 'POST':
+        form = DiscountCodeForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Discount code added successfully")
+            return redirect('discount_codes_management')
+    else:
+        form = DiscountCodeForm()
+    return render(request, 'cart/discount_codes.html', {
+        'discount_codes': discount_codes,
+        'form': form,
+    })
+
+
+def edit_discount_code(request, code_id):
+    code = get_object_or_404(DiscountCode, id=code_id)
+    if request.method == 'POST':
+        form = DiscountCodeForm(request.POST, instance=code)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Discount code updated successfully")
+            return redirect('discount_codes_management')
+    else:
+        form = DiscountCodeForm(instance=code)
+    return render(request, 'cart/edit_discount_code.html', {
+        'form': form,
+        'code': code,
+    })
+
+
+def delete_discount_code(request, code_id):
+    code = get_object_or_404(DiscountCode, id=code_id)
+    if request.method == 'POST':
+        code.delete()
+        messages.success(request, "Discount code deleted successfully")
+        return redirect('discount_codes_management')
+    return render(request, 'cart/delete_discount_code.html', {
+        'code': code,
+    })

@@ -36,4 +36,19 @@ urlpatterns = [
         views.get_order_number_by_pid,
         name='get_order_number_by_pid'
     ),
+    path(
+        'discount-codes/',
+        views.discount_codes_management,
+        name='discount_codes_management'
+    ),
+    path(
+        'discount-codes/edit/<int:code_id>/',
+        views.edit_discount_code,
+        name='edit_discount_code'
+    ),
+    path(
+        'discount-codes/delete/<int:code_id>/',
+        views.delete_discount_code,
+        name='delete_discount_code'
+    ),
 ]

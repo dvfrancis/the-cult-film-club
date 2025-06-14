@@ -211,10 +211,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 FREE_DELIVERY = 100
 DELIVERY_RATE = Decimal('15')
-DISCOUNT_CODES = [
-    {"code": "SIGNUP", "percent": 10, "expires": "2024-12-31"},
-    {"code": "SUMMER2025", "percent": 5, "expires": "2025-08-31"},
-]
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10

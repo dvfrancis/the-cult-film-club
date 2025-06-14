@@ -1,5 +1,5 @@
 from django import forms
-from .models import Order
+from .models import Order, DiscountCode
 
 
 class OrderForm(forms.ModelForm):
@@ -37,3 +37,24 @@ class OrderForm(forms.ModelForm):
             self.fields[field].widget.attrs['placeholder'] = placeholder
             self.fields[field].widget.attrs['class'] = 'stripe-style-input'
             self.fields[field].label = False
+
+
+class DiscountCodeForm(forms.ModelForm):
+    class Meta:
+        model = DiscountCode
+        fields = ['code', 'percent', 'valid_from', 'valid_to', 'is_active']
+        widgets = {
+            'valid_from': forms.DateInput(
+                attrs={'type': 'date'},
+                format='%Y-%m-%d'
+            ),
+            'valid_to': forms.DateInput(
+                attrs={'type': 'date'},
+                format='%Y-%m-%d'
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in ['valid_from', 'valid_to']:
+            self.fields[field].input_formats = ['%Y-%m-%d']

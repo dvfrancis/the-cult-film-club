@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
-from .models import Releases, Images
+from .models import Releases, Images, Rating
 from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
-from .forms import ReleaseForm, ReleaseEditForm, ImageForm
+from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
 
 
 def releases(request):
@@ -168,11 +168,36 @@ def releases(request):
 
 
 def release_details(request, release_id):
-    """
-    Display details of a release.
-    """
     release = get_object_or_404(Releases, pk=release_id)
-    context = {"release": release}
+    user_rating = None
+    if request.user.is_authenticated:
+        user_rating = (
+            Rating.objects
+            .filter(user=request.user, title=release)
+            .first()
+        )
+        if request.method == 'POST':
+            form = RatingForm(request.POST, instance=user_rating)
+            if form.is_valid():
+                rating = form.save(commit=False)
+                rating.user = request.user
+                rating.title = release
+                rating.save()
+                messages.success(
+                    request,
+                    "Your rating has been submitted. Thank you!"
+                )
+                return redirect('release_details', release_id=release.id)
+        else:
+            form = RatingForm(instance=user_rating)
+    else:
+        form = None
+
+    context = {
+        "release": release,
+        "form": form,
+        "user_rating": user_rating,
+    }
     return render(request, "releases/release_details.html", context)
 
 

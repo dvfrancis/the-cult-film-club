@@ -1,5 +1,5 @@
 from django import forms
-from .models import Releases, Images
+from .models import Releases, Images, Rating
 from django_ckeditor_5.widgets import CKEditor5Widget
 
 
@@ -118,4 +118,13 @@ class ReleaseEditForm(forms.ModelForm):
         widgets = {
             "description": CKEditor5Widget(config_name="extends"),
             "special_features": CKEditor5Widget(config_name="extends"),
+        }
+
+
+class RatingForm(forms.ModelForm):
+    class Meta:
+        model = Rating
+        fields = ['rating', 'review']
+        widgets = {
+            'rating': forms.NumberInput(attrs={'min': 1, 'max': 5}),
         }

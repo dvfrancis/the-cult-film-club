@@ -7,7 +7,6 @@ from django_countries.fields import CountryField
 from django.utils import timezone
 
 
-
 class Order(models.Model):
     order_number = models.CharField(max_length=32, null=False, editable=False)
     user_profile = models.ForeignKey(

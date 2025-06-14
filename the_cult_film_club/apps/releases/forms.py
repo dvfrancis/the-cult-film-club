@@ -1,5 +1,6 @@
 from django import forms
 from .models import Releases, Images
+from django_ckeditor_5.widgets import CKEditor5Widget
 
 
 class ReleaseForm(forms.ModelForm):
@@ -108,3 +109,13 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Images
         fields = ['image', 'caption', 'is_featured']
+
+
+class ReleaseEditForm(forms.ModelForm):
+    class Meta:
+        model = Releases
+        fields = "__all__"
+        widgets = {
+            "description": CKEditor5Widget(config_name="extends"),
+            "special_features": CKEditor5Widget(config_name="extends"),
+        }

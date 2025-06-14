@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.utils.html import format_html
 from django import forms
 from django_ckeditor_5.widgets import CKEditor5Widget
 from .models import Releases, Images, Rating
@@ -39,7 +40,7 @@ class ReleaseAdmin(admin.ModelAdmin):
     form = ReleasesAdminForm
     inlines = [ImageInline, RatingInline]
     list_display = (
-        'title', 'release_date', 'director', 'genre'
+        'title', 'release_date', 'director', 'genre', 'description_html'
     )
     list_filter = (
         'genre', 'resolution'
@@ -50,3 +51,11 @@ class ReleaseAdmin(admin.ModelAdmin):
         'censor_status', 'packaging'
     )
     ordering = ['title', 'release_date', 'director', 'genre']
+
+    def description_html(self, obj):
+        return format_html(obj.description)
+    description_html.short_description = 'Description'
+
+    def special_features_html(self, obj):
+        return format_html(obj.special_features)
+    special_features_html.short_description = 'Special Features'

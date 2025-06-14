@@ -35,7 +35,7 @@ class Releases(models.Model):
     )
 
     def __str__(self):
-        return f"{self.title} ({self.release_date})"
+        return f"{self.title}"
 
     @property
     def average_rating(self):

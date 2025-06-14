@@ -2,6 +2,7 @@ from django.contrib import admin
 from .models import Profile, Address, Wishlist, WishlistItem
 from django import forms
 from django_ckeditor_5.widgets import CKEditor5Widget
+from django.utils.html import format_html
 
 
 class WishlistItemAdminForm(forms.ModelForm):
@@ -42,6 +43,20 @@ class WishlistItemInline(admin.TabularInline):
     autocomplete_fields = ['title']
     fields = ('title', 'date_added', 'priority', 'is_purchased', 'notes')
     readonly_fields = ('date_added',)
+
+
+@admin.register(WishlistItem)
+class WishlistItemAdmin(admin.ModelAdmin):
+    form = WishlistItemAdminForm
+    list_display = (
+        'wishlist', 'title', 'priority', 'is_purchased', 'notes_html'
+    )
+    search_fields = ('wishlist__user__username', 'title__title')
+    ordering = ['wishlist__user__username', 'title__title']
+
+    def notes_html(self, obj):
+        return format_html(obj.notes)
+    notes_html.short_description = 'Notes'
 
 
 @admin.register(Wishlist)

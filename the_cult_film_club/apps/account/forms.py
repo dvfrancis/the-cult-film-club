@@ -1,6 +1,6 @@
 from allauth.account.forms import SignupForm
 from django import forms
-from .models import Profile, Address
+from .models import Profile, Address, WishlistItem, PriorityLevel
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
@@ -100,3 +100,15 @@ class AddressForm(forms.ModelForm):
             ),
         }
         exclude = ['user']  # user will be set in the view
+
+
+class WishlistItemForm(forms.ModelForm):
+    class Meta:
+        model = WishlistItem
+        fields = ['title', 'notes', 'priority']
+        widgets = {
+            'notes': forms.Textarea(attrs={'rows': 2}),
+            'priority': forms.Select(
+                choices=[(tag.value, tag.value) for tag in PriorityLevel]
+            ),
+        }

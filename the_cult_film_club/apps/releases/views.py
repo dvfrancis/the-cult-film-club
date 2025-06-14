@@ -6,7 +6,7 @@ from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
-from .forms import ReleaseForm, ImageForm
+from .forms import ReleaseForm, ReleaseEditForm, ImageForm
 
 
 def releases(request):
@@ -201,7 +201,7 @@ def edit_release(request, release_id):
             messages.success(request, "Release updated successfully")
             return redirect('product_management')
     else:
-        form = ReleaseForm(instance=release)
+        form = ReleaseEditForm(instance=release)
     return render(request, 'releases/edit_release.html', {
         'form': form,
         'release': release,

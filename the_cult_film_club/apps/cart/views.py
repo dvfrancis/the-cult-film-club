@@ -13,7 +13,9 @@ from .contexts import purchases
 from the_cult_film_club.apps.cart.models import Order
 import stripe
 import json
-from the_cult_film_club.apps.account.models import Profile, Address
+from the_cult_film_club.apps.account.models import (
+    Profile, Address, Wishlist, WishlistItem
+)
 from decimal import Decimal
 
 
@@ -44,7 +46,7 @@ def add_to_cart(request, item_id):
     except (TypeError, ValueError):
         messages.error(request, "Invalid quantity")
         return redirect(request.POST.get('redirect_url', '/'))
-    redirect_url = request.POST.get('redirect_url')
+    redirect_url = request.POST.get('redirect_url', '/')
     cart = request.session.get('cart', {})
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
@@ -57,6 +59,15 @@ def add_to_cart(request, item_id):
             request, f'Added {release.title} to your shopping cart'
         )
     request.session['cart'] = cart
+    # --- Remove from wishlist if present ---
+    if request.user.is_authenticated:
+        try:
+            wishlist = Wishlist.objects.get(user=request.user)
+            WishlistItem.objects.filter(
+                wishlist=wishlist, title=release
+            ).delete()
+        except Wishlist.DoesNotExist:
+            pass
     return redirect(redirect_url)
 
 
@@ -174,7 +185,10 @@ def checkout(request):
                 if discount.is_valid():
                     request.session["discount_percent"] = discount.percent
                     request.session["discount_code"] = discount.code
-                    messages.success(request, f"Discount code '{discount.code}' applied!")
+                    messages.success(
+                        request,
+                        f"Discount code '{discount.code}' applied!"
+                    )
                 else:
                     request.session["discount_percent"] = 0
                     request.session["discount_code"] = ""

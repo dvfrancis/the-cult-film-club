@@ -17,5 +17,14 @@ urlpatterns = [
         views.delete_release,
         name='delete_release'
     ),
+    path(
+        'images/<int:release_id>/',
+        views.manage_images,
+        name='manage_images'
+    ),
+    path(
+        'images/delete/<int:image_id>/',
+        views.delete_image,
+        name='delete_image'
+    ),
 ]
-

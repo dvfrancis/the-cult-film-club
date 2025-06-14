@@ -37,6 +37,7 @@
                 <td>
                     <a href="{% url 'edit_release' release.id %}" class="btn btn-sm btn-primary">Edit</a>
                     <a href="{% url 'delete_release' release.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    <a href="{% url 'manage_images' release.id %}" class="btn btn-sm btn-info">Manage Images</a>
                 </td>
             </tr>
             {% empty %}

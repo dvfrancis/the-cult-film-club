@@ -1,12 +1,12 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
-from .models import Releases
+from .models import Releases, Images
 from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
-from .forms import ReleaseForm
+from .forms import ReleaseForm, ImageForm
 
 
 def releases(request):
@@ -217,3 +217,32 @@ def delete_release(request, release_id):
     return render(request, 'releases/delete_release.html', {
         'release': release,
     })
+
+
+def manage_images(request, release_id):
+    release = get_object_or_404(Releases, id=release_id)
+    images = release.images.all()
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.title = release
+            image.save()
+            messages.success(request, "Image added successfully.")
+            return redirect('manage_images', release_id=release.id)
+    else:
+        form = ImageForm()
+    return render(request, 'releases/manage_images.html', {
+        'release': release,
+        'images': images,
+        'form': form,
+    })
+
+
+def delete_image(request, image_id):
+    image = get_object_or_404(Images, id=image_id)
+    release_id = image.title.id
+    if request.method == 'POST':
+        image.delete()
+        messages.success(request, "Image deleted successfully.")
+    return redirect('manage_images', release_id=release_id)

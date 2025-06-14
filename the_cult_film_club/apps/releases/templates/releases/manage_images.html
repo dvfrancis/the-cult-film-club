@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container header-container mt-4">
+    <h2>Manage Images for {{ release.title }}</h2>
+    <hr>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add Image</button>
+    </form>
+    <hr>
+<div class="row">
+    {% for image in images %}
+    <div class="col-md-3">
+        <div class="card mb-3">
+            <img src="{{ image.image.url }}" class="card-img-top" alt="{{ image.caption }}">
+            <div class="card-body">
+                <p class="card-text">{{ image.caption }}</p>
+                {% if image.is_featured %}
+                    <span class="badge bg-success">Featured</span>
+                {% endif %}
+                <form method="post" action="{% url 'delete_image' image.id %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-sm btn-danger mt-2"
+                        onclick="return confirm('Are you sure you want to delete this image?');">
+                        Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% empty %}
+    <p>No images for this release yet.</p>
+    {% endfor %}
+</div>
+<a href="{% url 'product_management' %}" class="btn btn-secondary">Back to Product Management</a>
+</div>
+{% endblock %}

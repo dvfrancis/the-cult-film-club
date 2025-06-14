@@ -1,5 +1,5 @@
 from django import forms
-from .models import Releases
+from .models import Releases, Images
 
 
 class ReleaseForm(forms.ModelForm):
@@ -102,3 +102,9 @@ class ReleaseForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['release_date'].input_formats = ['%Y-%m-%d']
+
+
+class ImageForm(forms.ModelForm):
+    class Meta:
+        model = Images
+        fields = ['image', 'caption', 'is_featured']

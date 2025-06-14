@@ -25,6 +25,9 @@
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{ photo_form.photograph }}
+                <div class="form-text text-muted" style="margin-bottom: 10px;">
+                    Accepts BMP, JPG, GIF, PNG, WebP | Max size: 5MB
+                </div>
                 <button type="submit" name="update_photo" class="btn btn-outline-black btn-sm">Update Photo</button>
             </form>
             <h3 class="mt-4 mb-4">Addresses</h3>
@@ -36,7 +39,7 @@
                     {% for address in addresses %}
                     <option value="{{ address.id }}"
                         {% if selected_address and address.id == selected_address.id %}selected{% endif %}>
-                        {{ address.city }}, {{ address.postcode }}
+                        {{ address.label }} - {{ address.city }}, {{ address.postcode }}
                     </option>
                     {% endfor %}
                 </select>

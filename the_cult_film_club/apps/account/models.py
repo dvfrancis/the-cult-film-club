@@ -65,6 +65,11 @@ class Address(models.Model):
         blank=True,
         null=False
     )
+    label = models.CharField(
+        max_length=15,
+        blank=False,
+        help_text="For example, 'Home' or 'Work'"
+    )
 
     def save(self, *args, **kwargs):
         if self.default_address:

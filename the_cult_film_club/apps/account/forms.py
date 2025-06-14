@@ -79,15 +79,18 @@ class AddressForm(forms.ModelForm):
     class Meta:
         model = Address
         fields = [
-            'first_line', 'second_line', 'city', 'county',
+            'label', 'first_line', 'second_line', 'city', 'county',
             'postcode', 'phone_number', 'default_address'
         ]
         widgets = {
+            'label': forms.TextInput(
+                attrs={'placeholder': 'Address Label'}
+            ),
             'first_line': forms.TextInput(
-                attrs={'placeholder': 'Address line 1'}
+                attrs={'placeholder': 'Address Line 1'}
             ),
             'second_line': forms.TextInput(
-                attrs={'placeholder': 'Address line 2'}
+                attrs={'placeholder': 'Address Line 2'}
             ),
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'county': forms.TextInput(attrs={'placeholder': 'County'}),

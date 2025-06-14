@@ -32,7 +32,7 @@
             <p class="mt-4"><strong>Loyalty Points:</strong> {{ user_profile.loyalty_points }}</p>
 
         </div>
-        <div class="col-12 col-lg-4">
+        <div class="col-12 col-lg-3">
             <h3>Addresses</h3>
             <!-- Address Dropdown -->
             <form method="get" class="mb-3">
@@ -72,7 +72,7 @@
                 </div>
             </form>
         </div>
-        <div class="col-12 col-lg-5">
+        <div class="col-12 col-lg-6">
 
             <h3>My Wishlist</h3>
             {% if wishlist_items %}
@@ -80,20 +80,20 @@
                 {% for item in wishlist_items %}
                 <li class="list-group-item d-flex justify-content-between align-items-center">
                     <div>
-                        <strong>{{ item.title.title }}</strong>
-                        <span class="badge bg-secondary ms-2">{{ item.priority }} priority</span>
+                        <strong class="mx-0">{{ item.title.title }}</strong>
+                        <span class="badge bg-secondary">{{ item.priority }} priority</span>
                         {% if item.is_purchased %}
-                        <span class="badge bg-success ms-2">Purchased</span>
+                        <span class="badge bg-success">Purchased</span>
                         {% endif %}
                         <div class="small text-muted">{{ item.notes|default:"No notes"|safe }}</div>
                     </div>
                     {% if item.title.copies_available > 0 %}
                     <form method="post" action="{% url 'add_to_cart' item.title.id %}">
                         {% csrf_token %}
+                        <span class="text-muted small">{{ item.title.copies_available }} avail</span>
+                        <button type="submit" class="btn btn-sm btn-success">Buy</button>
                         <input type="number" name="quantity" value="1" min="1" max="{{ item.title.copies_available }}">
                         <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                        <button type="submit" class="btn btn-sm btn-success">Add to Cart</button>
-                        <span class="text-muted small ms-2">{{ item.title.copies_available }} in stock</span>
                     </form>
                     {% else %}
                     <button class="btn btn-sm btn-secondary" disabled>Out of Stock</button>
@@ -127,12 +127,6 @@
                     </a><br>
                     Date: {{ order.date }}<br>
                     {% for item in order.lineitems.all %}
-                    {% comment %} {% if item.release.featured_image %}
-                    <img src="{{ item.release.featured_image.image.url }}" alt="{{ item.release.title }}" /><br>
-                    {% else %}
-                    <img src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-                        alt="{{ item.release.title }}" /><br>
-                    {% endif %} {% endcomment %}
                     Item: {{ item.release.title }}<br>
                     Quantity: {{ item.quantity }}<br>
                     {% endfor %}

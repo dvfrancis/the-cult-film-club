@@ -1,12 +1,16 @@
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
-from .models import Releases, Images, Rating
+from the_cult_film_club.apps.releases.models import Releases, Rating, Images
+from the_cult_film_club.apps.account.models import Wishlist, WishlistItem
+from the_cult_film_club.apps.account.forms import WishlistItemForm
 from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
 from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
+from django.contrib.auth.decorators import login_required
+from django.utils.safestring import mark_safe
 
 
 def releases(request):
@@ -169,17 +173,19 @@ def releases(request):
 
 def release_details(request, release_id):
     release = get_object_or_404(Releases, pk=release_id)
+    wishlist_form = WishlistItemForm()
     user_rating = None
+
     if request.user.is_authenticated:
         user_rating = (
             Rating.objects
             .filter(user=request.user, title=release)
             .first()
         )
-        if request.method == 'POST':
-            form = RatingForm(request.POST, instance=user_rating)
-            if form.is_valid():
-                rating = form.save(commit=False)
+        if request.method == 'POST' and 'rating_submit' in request.POST:
+            rating_form = RatingForm(request.POST, instance=user_rating)
+            if rating_form.is_valid():
+                rating = rating_form.save(commit=False)
                 rating.user = request.user
                 rating.title = release
                 rating.save()
@@ -189,13 +195,14 @@ def release_details(request, release_id):
                 )
                 return redirect('release_details', release_id=release.id)
         else:
-            form = RatingForm(instance=user_rating)
+            rating_form = RatingForm(instance=user_rating)
     else:
-        form = None
+        rating_form = None
 
     context = {
         "release": release,
-        "form": form,
+        "rating_form": rating_form,
+        "wishlist_form": wishlist_form,
         "user_rating": user_rating,
     }
     return render(request, "releases/release_details.html", context)
@@ -269,5 +276,40 @@ def delete_image(request, image_id):
     release_id = image.title.id
     if request.method == 'POST':
         image.delete()
-        messages.success(request, "Image deleted successfully.")
+        messages.success(request, "Image deleted successfully")
     return redirect('manage_images', release_id=release_id)
+
+
+@login_required
+def add_to_wishlist(request, release_id):
+    release = get_object_or_404(Releases, pk=release_id)
+    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    if request.method == "POST":
+        form = WishlistItemForm(request.POST)
+        if form.is_valid():
+            WishlistItem.objects.update_or_create(
+                wishlist=wishlist,
+                title=release,
+                defaults={
+                    'priority': form.cleaned_data['priority'],
+                    'notes': form.cleaned_data['notes'],
+                }
+            )
+
+            profile_url = reverse('user_profile')
+            messages.success(
+                request,
+                mark_safe(
+                    (
+                        f'"{release.title}" added to your '
+                        f'<a href="{profile_url}" class="no-underline">'
+                        'wishlist</a>'
+                    )
+                )
+            )
+        else:
+            messages.error(
+                request,
+                "There was a problem adding the item to your wishlist"
+            )
+    return redirect('release_details', release_id=release_id)

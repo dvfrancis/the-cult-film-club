@@ -27,4 +27,9 @@ urlpatterns = [
         views.delete_image,
         name='delete_image'
     ),
+    path(
+        'wishlist/add/<int:release_id>/',
+        views.add_to_wishlist,
+        name='add_to_wishlist'
+    ),
 ]

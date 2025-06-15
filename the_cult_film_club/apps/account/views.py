@@ -107,7 +107,7 @@ def user_profile(request):
                 wishlist_item.delete()
                 messages.success(
                     request,
-                    f"{title} removed from wishlist"
+                    f"{title} has been removed from your wishlist"
                 )
             else:
                 messages.error(
@@ -125,7 +125,11 @@ def user_profile(request):
                 wishlist_item.wishlist = wishlist
                 wishlist_item.save()
                 messages.success(
-                    request, f"{wishlist_item.title} added to wishlist"
+                    request,
+                    (
+                        f"{wishlist_item.title} has been added to your "
+                        "wishlist"
+                    )
                 )
                 return redirect('user_profile')
 

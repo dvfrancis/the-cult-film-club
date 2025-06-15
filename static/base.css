@@ -256,6 +256,11 @@ button>a {
 
 /* O T H E R  S T Y L E S */
 
+/* Remove underline from links in Django message modals */
+a.no-underline {
+    text-decoration: none;
+}
+
 footer {
     background: #080808;
     color: #fff;

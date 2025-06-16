@@ -15,7 +15,7 @@ class ContactUs(models.Model):
         blank=False,
         null=False
     )
-    message = CKEditor5Field(max_length=1000, blank=True, null=False)
+    message = CKEditor5Field(max_length=1000, blank=False, null=False)
 
     def __str__(self):
         return (

@@ -49,7 +49,6 @@ INSTALLED_APPS = [
     "the_cult_film_club.apps.account",
     "the_cult_film_club.apps.cart",
     "the_cult_film_club.apps.contact",
-    "the_cult_film_club.apps.inventory",
     "the_cult_film_club.apps.newsletter",
     "the_cult_film_club.apps.releases",
     "allauth",

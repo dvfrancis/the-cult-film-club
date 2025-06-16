@@ -2,11 +2,6 @@
 {% block content %}
 <div class="container header-container mt-5">
     <h2>Contact Us</h2>
-    {% comment %} {% if messages %}
-      {% for message in messages %}
-        <div class="alert alert-success">{{ message }}</div>
-      {% endfor %}
-    {% endif %} {% endcomment %}
     <form method="post">
         {% csrf_token %}
         {{ form|crispy }}

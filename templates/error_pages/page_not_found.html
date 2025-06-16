@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+<title>The Cult Film Club | Page Not Found</title>
+
+<!-- Page-specific Meta Tags -->
+<meta name="description"
+    content="The page you're looking for does not exist. Rewind the past, and Collect the Future with The Cult Film Club.">
+
+<meta name="keywords" content="404 Error, Page Not Found, Page Not Loading, Website Error, The Cult Film Club Technical Support">
+
+{% endblock %}
+
+{% block content %}
+
+<main class="error-image">
+    <div class="header-container form-container">
+        <h1 class="error-title">That Page Seems To be Missing</h1><br>
+        <p class="error-message">It looks like the page you're searching for doesn't exist or has moved.<br><br> Return to The Cult Film Club homepage and explore our latest film releases instead.</p><br>
+        <div class="button-container">
+            <a href="{% url 'home' %}" class="base-button purple-btn" aria-label="Return to the home page">Home</a>
+            <a href="javascript:history.back()" class="base-button orange-btn">Go Back</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+
+<title>The Cult Film Club | Server Error</title>
+
+<!-- Page-specific Meta Tags -->
+<meta name="description"
+    content="Oops! Something went wrong on our end. Rewind the past, and Collect the Future with The Cult Film Club.">
+
+<meta name="keywords" content="500 Error, Server Issue, Page Not Loading, Website Error, The Cult Film Club Technical Support">
+
+{% endblock %}
+
+{% block content %}
+
+<main class="server-image">
+    <div class="header-container form-container">
+        <h1 class="error-title">Something Went Wrong On Our End</h1>
+        <p class="error-message">We're experiencing technical difficulties, but don't worry — we're working on
+            fixing
+            it!<br><br>
+            In the meantime, try refreshing the page or visiting The Cult Film Club homepage for more film inspiration.</p>
+        <div class="button-container">
+            <a href="{% url 'home' %}" class="base-button purple-btn" aria-label="Return to the home page">Home</a>
+            <a href="javascript:history.back()" class="base-button orange-btn">Go Back</a>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

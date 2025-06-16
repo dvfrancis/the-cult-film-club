@@ -1,6 +1,4 @@
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest
-from django.core.exceptions import PermissionDenied
 
 
 def page_not_found(request, exception=None):
@@ -57,7 +55,7 @@ def bad_request(request, exception=None):
     Render the custom 400 error page.
 
     This view handles bad request errors, and renders a custom 400 error page.
-    
+
     Args:
         request: The HTTP request object.
         exception: The exception that triggered the 400 error (optional).
@@ -65,13 +63,3 @@ def bad_request(request, exception=None):
         HttpResponse: The rendered 400 error page with a 400 status code.
     """
     return render(request, "error_pages/bad_request.html", status=400)
-
-
-
-
-
-
-
-
-
-

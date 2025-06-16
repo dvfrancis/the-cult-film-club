@@ -132,7 +132,7 @@
                         </form>
                         {% else %}
                         <p>
-                            <a href="{% url 'login' %}?next={{ request.path }}">Log in</a> to add your rating.
+                            <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your rating.
                         </p>
                         {% endif %}
                     </div>

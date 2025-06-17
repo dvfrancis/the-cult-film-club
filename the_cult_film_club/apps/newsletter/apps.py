@@ -4,4 +4,4 @@ from django.apps import AppConfig
 class NewsletterConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "the_cult_film_club.apps.newsletter"
-    verbose_name = "Newsletter Sign-Up"
+    verbose_name = "Newsletter"

@@ -49,6 +49,7 @@ urlpatterns = [
     path("checkout/", include("the_cult_film_club.apps.cart.urls")),
     path("account/", include("the_cult_film_club.apps.account.urls")),
     path('contact/', include('the_cult_film_club.apps.contact.urls')),
+    path("newsletter/", include("the_cult_film_club.apps.newsletter.urls")),
     path('test-400/', raise_bad_request, name='raise_bad_request'),
     path('test-403/', raise_permission_denied, name='raise_permission_denied'),
     path('test-500/', raise_server_error, name='raise_server_error'),

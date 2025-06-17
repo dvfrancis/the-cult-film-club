@@ -201,6 +201,18 @@
                             {% endif %}
                         </div>
                     </div>
+                    <div class="d-flex justify-content-between mt-4">
+                        {% if prev_release %}
+                        <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-outline-secondary">
+                            &larr; Previous Release
+                        </a>
+                        {% endif %}
+                        {% if next_release %}
+                        <a href="{% url 'release_details' next_release.pk %}" class="btn btn-outline-secondary">
+                            Next Release &rarr;
+                        </a>
+                        {% endif %}
+                    </div>
                 </div>
             </div>
         </div>

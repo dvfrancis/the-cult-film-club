@@ -176,6 +176,20 @@ def release_details(request, release_id):
     wishlist_form = WishlistItemForm()
     user_rating = None
 
+    # Find the next and previous releases by primary key
+    next_release = (
+        Releases.objects
+        .filter(pk__gt=release.pk)
+        .order_by('pk')
+        .first()
+    )
+    prev_release = (
+        Releases.objects
+        .filter(pk__lt=release.pk)
+        .order_by('-pk')
+        .first()
+    )
+
     if request.user.is_authenticated:
         user_rating = (
             Rating.objects
@@ -204,6 +218,8 @@ def release_details(request, release_id):
         "rating_form": rating_form,
         "wishlist_form": wishlist_form,
         "user_rating": user_rating,
+        "next_release": next_release,
+        "prev_release": prev_release,
     }
     return render(request, "releases/release_details.html", context)
 

@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     "whitenoise",
     "the_cult_film_club.apps.home",
     "the_cult_film_club.apps.about",
-    "the_cult_film_club.apps.faq",
     "the_cult_film_club.apps.account",
     "the_cult_film_club.apps.cart",
     "the_cult_film_club.apps.contact",

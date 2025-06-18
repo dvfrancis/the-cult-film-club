@@ -254,6 +254,11 @@ button>a {
     text-decoration: none;
 }
 
+a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
 /* O T H E R  S T Y L E S */
 
 /* Remove underline from links in Django message modals */

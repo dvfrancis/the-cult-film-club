@@ -67,6 +67,40 @@
                     <div class="text-right mb-4">
                         Originally released on {{ release.release_date|date:"l, j F Y" }}
                     </div>
+                    <div class="my-4">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="text-primary me-2" aria-label="Share on Facebook">
+                            <i class="fab fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank"
+                            rel="noopener" class="text-info me-2" aria-label="Share on Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="https://bsky.app/intent/compose?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="text-primary me-2" aria-label="Share on BlueSky">
+                            <i class="fa-solid fa-cloud fa-lg"></i>
+                        </a>
+                        <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}"
+                            target="_blank" rel="noopener" class="text-danger me-2" aria-label="Share on Reddit">
+                            <i class="fab fa-reddit fa-lg"></i>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="text-success me-2" aria-label="Share on WhatsApp">
+                            <i class="fab fa-whatsapp fa-lg"></i>
+                        </a>
+                        <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="text-dark me-2" aria-label="Share on Threads">
+                            <i class="fa-brands fa-threads fa-lg"></i>
+                        </a>
+                        <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger me-2"
+                            aria-label="Share on Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}"
+                            class="text-danger" aria-label="Share by Email">
+                            <i class="fas fa-envelope fa-lg"></i>
+                        </a>
+                    </div>
                     {% if user.is_authenticated %}
                     <!-- Button to open modal -->
                     <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#wishlistModal">

@@ -144,11 +144,71 @@
   {% block content %}
   {% endblock %}
 
-  <footer>
-    <div class="container-fluid bg-black">
-      <div class="row justify-content-center">
-        <div class="col-12 col-md-6 text-center py-3">
-          <p class="mb-0">© 2023 The Cult Film Club</p>
+  <footer class="bg-dark text-light">
+    <div class="container mt-4">
+      <div class="row">
+        <!-- Navigation Links -->
+        <div class="col-md-4 mb-3">
+          <h5 class="mb-3">Navigation</h5>
+          <ul class="list-unstyled">
+            <li><a href="{% url 'home' %}" class="text-light text-decoration-none">Home</a></li>
+            <li><a href="{% url 'releases' %}" class="text-light text-decoration-none">Releases</a></li>
+            <li><a href="{% url 'about' %}" class="text-light text-decoration-none">About</a></li>
+            <li><a href="{% url 'contact_us' %}" class="text-light text-decoration-none">Contact</a></li>
+            <li><a href="{% url 'newsletter_signup' %}" class="text-light text-decoration-none">Newsletter</a></li>
+          </ul>
+        </div>
+        <!-- Account Links -->
+        <div class="col-md-4 mb-3">
+          <h5 class="mb-3">Account</h5>
+          <ul class="list-unstyled">
+            {% if not request.user.is_authenticated %}
+            <li><a href="{% url 'account_signup' %}" class="text-light text-decoration-none">Register</a></li>
+            <li><a href="{% url 'account_login' %}" class="text-light text-decoration-none">Login</a></li>
+            {% else %}
+            <li><a href="{% url 'account_logout' %}" class="text-light text-decoration-none">Logout</a></li>
+            {% if request.user.is_superuser %}
+            <li><a href="{% url 'product_management' %}" class="text-light text-decoration-none">Product Management</a>
+            </li>
+            <li><a href="{% url 'discount_codes_management' %}" class="text-light text-decoration-none">Discount
+                Codes</a></li>
+            {% endif %}
+            {% endif %}
+          </ul>
+        </div>
+        <!-- Social Media -->
+        <div class="col-md-4 d-flex flex-column align-items-center">
+          <h5 class="mb-3 text-center w-100">Follow Us</h5>
+          <div class="row row-cols-2 g-2" style="width: 100px;">
+            <div class="col text-center">
+              <a href="https://instagram.com/" class="text-light" target="_blank" rel="noopener" aria-label="Instagram">
+                <i class="fab fa-instagram fa-2x"></i>
+              </a>
+            </div>
+            <div class="col text-center">
+              <a href="https://youtube.com/" class="text-light" target="_blank" rel="noopener" aria-label="YouTube">
+                <i class="fab fa-youtube fa-2x"></i>
+              </a>
+            </div>
+            <div class="col text-center">
+              <a href="https://bsky.app/" class="text-light" target="_blank" rel="noopener" aria-label="BlueSky">
+                <i class="fa-solid fa-cloud fa-2x"></i>
+              </a>
+            </div>
+            <div class="col text-center">
+              <a href="https://facebook.com/" class="text-light" target="_blank" rel="noopener" aria-label="Facebook">
+                <i class="fab fa-facebook fa-2x"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-end mb-3">
+          <small>&copy; 2025 The Cult Film Club. All Rights Reserved.</small>
+        </div>
+      </div>
+    </div>
   </footer>
 
   {% block corejs %}

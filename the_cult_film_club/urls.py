@@ -46,6 +46,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("accounts/", include("allauth.urls")),
     path("releases/", include("the_cult_film_club.apps.releases.urls")),
+    path("about/", include("the_cult_film_club.apps.about.urls")),
     path("checkout/", include("the_cult_film_club.apps.cart.urls")),
     path("account/", include("the_cult_film_club.apps.account.urls")),
     path('contact/', include('the_cult_film_club.apps.contact.urls')),

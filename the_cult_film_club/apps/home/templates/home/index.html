@@ -1,20 +1,63 @@
-{% extends 'base.html' %}
+{% extends "base.html" %}
 {% load static %}
-{% block page_header %}
-  <div class="container header-container">
-    <div class="row">
-      <div class="col"></div>
-    </div>
-  </div>
-{% endblock %}
 {% block content %}
-  <main>
-    <div class="container">
-      <div class="row">
-        <div class="col my-5">
-          <h1 class="logo-font text-black">Rewind the past. Collect the future.</h1>
-        </div>
-      </div>
+ {% block extra_title %}Home{% endblock %}
+<section class="surface-hero surface-bg" aria-label="Hero Section">
+    <div class="container header-container text-center">
+        <h1 class="surface-hero-title">The Cult Film Club</h1>
+        <p class="surface-hero-subtitle">Rewind the Past. Collect the Future.</p>
+        <p class="surface-hero-description">Your destination for rare, underground, and essential cult films on DVD, Blu-ray, and 4K.</p>
     </div>
-  </main>
+</section>
+
+<section class="surface-bg py-5" aria-label="Site Features">
+    <div class="container">
+        <h2 class="surface-section-title text-center mb-4">Why Shop With Us?</h2>
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#ffb700;">Curated Cult Classics</h3>
+                    <p>Handpicked selection of rare, underground, and essential cult films on DVD, Blu-ray, and 4K.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#ca0000;">Exclusive Editions</h3>
+                    <p>Special packaging, remastered versions, and bonus content you won’t find anywhere else.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#ff7900;">Loyalty Scheme</h3>
+                    <p>Earn points with every purchase and redeem them for exclusive discounts with the Cult Film Club Card.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#e1e1e3;">Free Delivery</h3>
+                    <p>Enjoy <span style="color:#ffb700;font-weight:700;">free UK delivery</span> on all orders over <strong>£100</strong>.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#ca0000;">Secure Shopping</h3>
+                    <p>Shop with confidence using our secure checkout and fast, reliable delivery.</p>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="p-4 h-100 text-center border-0 bg-transparent">
+                    <h3 class="surface-release-title" style="color:#ffb700;">Newsletter & Community</h3>
+                    <p>Sign up for our newsletter for the latest releases, news, and exclusive offers. Join a community of true film fans!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="surface-bg py-5" aria-label="Join the Club">
+    <div class="container text-center">
+        <h2 class="surface-section-title mb-3">Join The Cult Film Club</h2>
+        <p class="mb-4" style="color:#e1e1e3;">Take ownership of the films you love. Discover, collect, and preserve cult cinema with us.</p>
+    </div>
+</section>
 {% endblock %}

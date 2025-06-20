@@ -21,18 +21,16 @@
 
   {% block extra_css %}
   {% endblock %}
-
-  <title>
-    The Cult Film Club{% block extra_title %}{% endblock %}
-  </title>
+  <link rel="icon" type="image/png" href="{% static 'favicon.ico' %}">
+  <title>The Cult Film Club | {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
   <header class="container-fluid fixed-top">
-    <div id="topnav" class="row bg-white pt-lg-2 align-items-center justify-content-between">
+    <div id="topnav" class="row pt-lg-2 align-items-center justify-content-between">
       <div class="col-12 col-lg-6 d-flex align-items-center">
         <a href="{% url 'home' %}" class="nav-link">
-          <h2 class="logo-font text-black">The <strong>Cult Film</strong> Club</h2>
+          <h1 class="surface-hero-title">The Cult Film Club</h1>
         </a>
       </div>
       <div class="col-12 col-lg-6 d-flex align-items-center justify-content-lg-end">
@@ -47,7 +45,7 @@
         </form>
       </div>
     </div>
-    <div class="row bg-white">
+    <div class="row">
       <nav class="navbar navbar-expand-lg navbar-light w-100 d-flex justify-content-center">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
           aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,11 +54,11 @@
         <div class="collapse navbar-collapse" id="main-nav">
           <ul class="navbar-nav w-100 d-flex justify-content-end">
             <li class="nav-item text-center text-md-left">
-              <a class="logo-font nav-link text-black" href="{% url 'home' %}" id="home-page"
+              <a class="logo-font nav-link" href="{% url 'home' %}" id="home-page"
                 aria-label="Home Page">Home</a>
             </li>
             <li class="nav-item dropdown text-center text-md-left">
-              <a class="logo-font nav-link text-black" href="#" id="film-releases" data-bs-toggle="dropdown"
+              <a class="logo-font nav-link" href="#" id="film-releases" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false" aria-label="Releases">Releases</a>
               <div class="dropdown-menu border-0" aria-labelledby="film-releases">
                 <a href="{% url 'releases' %}" class="dropdown-item">All Releases</a>
@@ -83,7 +81,7 @@
               </div>
             </li>
             <li class="nav-item dropdown text-center text-md-left">
-              <a class="logo-font text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
+              <a class="logo-font nav-link" href="#" id="user-options" data-bs-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                 <div>
                   <p class="my-0">Account</p>
@@ -104,7 +102,7 @@
               </div>
             </li>
             <li class="nav-item text-center text-md-left">
-              <a class="{% if total %} fw-bold {% endif %} logo-font text-black nav-link" href="{% url 'cart' %}">
+              <a class="{% if total %} fw-bold {% endif %} logo-font nav-link" href="{% url 'cart' %}">
                 <div>
                   {% if total %}
                   <i class="fa-solid fa-cart-shopping"></i> £{{ total|floatformat:2 }}
@@ -144,7 +142,7 @@
   {% block content %}
   {% endblock %}
 
-  <footer class="bg-dark text-light">
+  <footer class="text-light">
     <div class="container mt-4">
       <div class="row">
         <!-- Navigation Links -->
@@ -175,6 +173,11 @@
             {% endif %}
             {% endif %}
           </ul>
+                <div class="row">
+        <div class="col text-center mt-5 mb-3">
+          <small>&copy; 2025 The Cult Film Club. All Rights Reserved.</small>
+        </div>
+      </div>
         </div>
         <!-- Social Media -->
         <div class="col-md-4 d-flex flex-column align-items-center">
@@ -203,11 +206,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
-        <div class="col text-end mb-3">
-          <small>&copy; 2025 The Cult Film Club. All Rights Reserved.</small>
-        </div>
-      </div>
+
     </div>
   </footer>
 

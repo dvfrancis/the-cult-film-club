@@ -282,7 +282,7 @@ body, .surface-bg {
     text-transform: uppercase;
     margin-bottom: 1rem;
     letter-spacing: 0.1em;
-    color: #fff !important;
+    color: #080808 !important;
 }
 
 .surface-hero-subtitle {
@@ -457,7 +457,7 @@ strong {
 }
 
 .header-container {
-    padding-top: 140px;
+    padding-top: 75px;
 }
 
 button:disabled,

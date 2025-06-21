@@ -390,3 +390,28 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+// Lightbox modal for release details
+document.addEventListener('DOMContentLoaded', function () {
+    var lightboxModal = document.getElementById('lightboxModal');
+    var lightboxImage = document.getElementById('lightboxImage');
+    var carouselImages = document.querySelectorAll('[data-bs-target="#lightboxModal"]');
+
+    carouselImages.forEach(function (imgLink) {
+        imgLink.addEventListener('click', function (e) {
+            e.preventDefault();
+            var imgUrl = this.getAttribute('data-img-url');
+            if (imgUrl && lightboxImage) {
+                lightboxImage.src = imgUrl;
+            }
+        });
+    });
+
+    if (lightboxModal) {
+        lightboxModal.addEventListener('hidden.bs.modal', function () {
+            if (lightboxImage) {
+                lightboxImage.src = '';
+            }
+        });
+    }
+});

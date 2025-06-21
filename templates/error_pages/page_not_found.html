@@ -3,28 +3,32 @@
 {% load static %}
 
 {% block head %}
+{% endblock %}
 
 {% block extra_title %}Page Not Found{% endblock %}
 
 {% block extra_meta %}
 <meta name="description"
     content="The page you're looking for does not exist. Rewind the past, and Collect the Future with The Cult Film Club.">
-
 <meta name="keywords" content="404 Error, Page Not Found, Page Not Loading, Website Error, The Cult Film Club Technical Support">
-
 {% endblock %}
 
 {% block content %}
-
-<main class="error-image">
-    <div class="header-container form-container">
-        <h1 class="error-title">That Page Seems To be Missing</h1><br>
-        <p class="error-message">It looks like the page you're searching for doesn't exist or has moved.<br><br> Return to The Cult Film Club homepage and explore our latest film releases instead.</p><br>
-        <div class="button-container">
-            <a href="{% url 'home' %}" class="base-button purple-btn" aria-label="Return to the home page">Home</a>
-            <a href="javascript:history.back()" class="base-button orange-btn">Go Back</a>
+<section class="surface-bg py-5" aria-label="404 Hero Section">
+    <div class="container header-container text-center" id="surface-hero-title">
+        <h1 class="surface-hero-title mb-3">That Page Seems To Be Missing</h1>
+        <p class="mb-4">
+            It looks like the page you're searching for doesn't exist or has moved.<br><br>
+            Return to The Cult Film Club homepage and explore our latest film releases instead.
+        </p>
+        <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+            <a href="{% url 'home' %}" class="btn black-btn px-4 py-2" aria-label="Return to the home page">
+                <i class="fa-solid fa-house me-2"></i>Home
+            </a>
+            <a href="javascript:history.back()" class="btn btn-outline-black px-4 py-2">
+                <i class="fa-solid fa-arrow-left me-2"></i>Go Back
+            </a>
         </div>
     </div>
-</main>
-
+</section>
 {% endblock %}

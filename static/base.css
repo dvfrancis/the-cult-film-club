@@ -212,14 +212,14 @@ h6 {
 .black-btn:focus {
     background: #222;
     color: white;
-}
+}*/
 
 .crimson-btn {
     background: #ca0000;
     color: #fff;
 
 }
-
+/*
 .orange-btn {
     background: #ff7900;
     color: #fff;
@@ -236,7 +236,7 @@ h6 {
     background: #e1e1e3;
     color: #fff;
 
-}
+}*/
 
 .base-button {
     color: white;
@@ -250,7 +250,7 @@ h6 {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
-} */
+}
 
 /* button>a {
     color: #fafafa;
@@ -270,22 +270,22 @@ h6 {
     font-family: 'Raleway', Arial, sans-serif !important;
 }
 
-.surface-hero {
+/* .surface-hero {
     background: #080808;
-    color: #e1e1e3;
+    color: #FFF;
     padding: 3rem 1rem 2rem 1rem;
     text-align: center;
     letter-spacing: 0.05em;
-}
+} */
 
-.surface-hero-title {
+#surface-hero-title {
+    color: #080808 !important;
     font-family: 'Raleway', Arial, sans-serif;
     font-size: 2.5rem;
     font-weight: 800;
     text-transform: uppercase;
     margin-bottom: 1rem;
     letter-spacing: 0.1em;
-    color: #080808 !important;
 }
 
 /* .surface-hero-subtitle {
@@ -451,7 +451,7 @@ a.no-underline {
 
 .btn-outline-black {
     background: white;
-    color: black !important;
+    color: black;
     border: 1px solid black;
 }
 

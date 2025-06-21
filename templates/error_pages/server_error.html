@@ -4,6 +4,8 @@
 
 {% block head %}
 
+{% endblock %}
+
 {% block extra_title %}Server Error{% endblock %}
 
 {% block extra_meta %}
@@ -24,7 +26,7 @@
             it!<br><br>
             In the meantime, try refreshing the page or visiting The Cult Film Club homepage for more film inspiration.</p>
         <div class="button-container">
-            <a href="{% url 'home' %}" class="base-button purple-btn" aria-label="Return to the home page">Home</a>
+            <a href="{% url 'home' %}" class="base-button crimson-btn" aria-label="Return to the home page">Home</a>
             <a href="javascript:history.back()" class="base-button orange-btn">Go Back</a>
         </div>
     </div>

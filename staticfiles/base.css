@@ -175,6 +175,24 @@ h6 {
 
 }
 
+.black-btn {
+    background: #080808;
+    color: white;
+    border: 1px solid black;
+}
+
+.black-btn:hover,
+.black-btn:focus {
+    color: #080808;
+    background-color: #ff7900;
+}
+
+.btn-outline-black {
+    background: white;
+    color: black;
+    border: 1px solid black;
+}
+
 .base-button {
     color: white;
     text-decoration: none;
@@ -187,6 +205,16 @@ h6 {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
+}
+
+/* Add to Cart button on release_details.html */
+.add-to-cart-btn {
+    font-size: 1.1rem;
+    padding: 0 1.2rem;
+    margin-left: 8px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
 }
 
 .card-heading {
@@ -224,7 +252,7 @@ footer a:not(.no-highlight):hover,
 header a:not(.no-highlight):focus,
 footer a:not(.no-highlight):focus {
     background: #ff7900 !important;
-    color: #FFF !important;
+    color: #080808 !important;
 }
 
 /* Used to center page content vertically on a page */
@@ -258,18 +286,6 @@ a.no-underline {
 
 .text-black {
     color: #000 !important;
-}
-
-.black-btn {
-    background: black;
-    color: white;
-    border: 1px solid black;
-}
-
-.btn-outline-black {
-    background: white;
-    color: black;
-    border: 1px solid black;
 }
 
 .header-container {
@@ -316,16 +332,6 @@ input[type="number"] {
     white-space: nowrap;
 }
 
-/* Add to Cart button on release_details.html */
-.add-to-cart-btn {
-    font-size: 1.1rem;
-    padding: 0 1.2rem;
-    margin-left: 8px;
-    height: 32px;
-    line-height: 32px;
-    vertical-align: middle;
-}
-
 /* Quantity selectors on checkout.html */
 .input-group-prepend,
 .input-group-append {
@@ -365,7 +371,7 @@ input::placeholder {
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
-    color: #FFF !important;
+    color: #080808 !important;
     background-color: #ff7900 !important;
 }
 

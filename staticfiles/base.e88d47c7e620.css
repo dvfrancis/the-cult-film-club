@@ -252,7 +252,7 @@ footer a:not(.no-highlight):hover,
 header a:not(.no-highlight):focus,
 footer a:not(.no-highlight):focus {
     background: #ff7900 !important;
-    color: #080808 !important;
+    color: #FFF !important;
 }
 
 /* Used to center page content vertically on a page */
@@ -371,7 +371,7 @@ input::placeholder {
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
-    color: #080808 !important;
+    color: #FFF !important;
     background-color: #ff7900 !important;
 }
 

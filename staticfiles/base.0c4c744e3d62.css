@@ -108,7 +108,7 @@ section {
 }
 
 body {
-    /* line-height: 1; */
+    line-height: 1;
 }
 
 ol,
@@ -135,6 +135,8 @@ table {
 }
 
 /* P R O J E C T  S T Y L E S */
+
+/* G E N E R A L */
 
 html {
     font-family: 'Raleway', sans-serif;
@@ -169,11 +171,74 @@ h6 {
     font-weight: 700;
 }
 
+/* U T I L I T Y */
+
+/* Colours */
+
+/* .black {
+    background-color: #080808;
+    color: #fff;
+}
+
+.crimson {
+    background-color: #ca0000;
+    color: #fff;
+}
+
+.orange {
+    background-color: #ff7900;
+    color: #fff;
+}
+
+.amber {
+    background-color: #ffb700;
+    color: #fff;
+}
+
+.platinum {
+    background-color: #e1e1e3;
+    color: #fff;
+} */
+
+/* Buttons */
+
+/* .black-btn {
+    background: #080808;
+    color: #fff;
+
+} */
+
+/* .black-btn:hover,
+.black-btn:active,
+.black-btn:focus {
+    background: #222;
+    color: white;
+}*/
+
 .crimson-btn {
     background: #ca0000;
     color: #fff;
 
 }
+
+/*
+.orange-btn {
+    background: #ff7900;
+    color: #fff;
+
+}
+
+.amber-btn {
+    background: #ffb700;
+    color: #fff;
+
+}
+
+.platinum-btn {
+    background: #e1e1e3;
+    color: #fff;
+
+}*/
 
 .base-button {
     color: white;
@@ -189,7 +254,67 @@ h6 {
     font-weight: bold;
 }
 
-.card-heading {
+/* button>a {
+    color: #fafafa;
+    text-decoration: none;
+} */
+
+/* a {
+  text-decoration: none !important;
+  border-bottom: none !important;
+} */
+
+
+/* S I T E  S T Y L E S */
+/* .surface-bg {
+    background: #FFF !important;
+    color: #080808 !important;
+    font-family: 'Raleway', Arial, sans-serif !important;
+} */
+
+/* .surface-hero {
+    background: #080808;
+    color: #FFF;
+    padding: 3rem 1rem 2rem 1rem;
+    text-align: center;
+    letter-spacing: 0.05em;
+} */
+
+/* .surface-hero-title {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    letter-spacing: 0.1em;
+} */
+
+/* .surface-hero-subtitle {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: #e1e1e3;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+} */
+
+/* .surface-release-card {
+    background: #080808;
+    border: 2px solid #e1e1e3;
+    border-radius: 0;
+    color: #e1e1e3;
+    font-family: 'Raleway', Arial, sans-serif;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    box-shadow: none;
+} */
+
+/* .surface-release-card:hover, .surface-release-card:focus-within {
+    box-shadow: 0 0 0 2px #ffb700;
+    border-color: #ffb700;
+    outline: none;
+} */
+
+/* .surface-release-title {
     font-family: 'Raleway', Arial, sans-serif;
     font-size: 1.2rem;
     font-weight: 700;
@@ -198,48 +323,98 @@ h6 {
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
     color: #ca0000;
-}
+} */
 
-header,
+/* .surface-release-meta {
+    font-size: 0.95rem;
+    color: #ff7900;
+    margin-bottom: 0.5rem;
+} */
+
+/* .surface-btn {
+    background: transparent;
+    border: 2px solid #ffb700;
+    color: #ffb700;
+    text-transform: uppercase;
+    font-family: 'Raleway', Arial, sans-serif;
+    font-weight: 700;
+    padding: 0.5rem 1.5rem;
+    border-radius: 0;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+} */
+
+/* .surface-btn:hover, .surface-btn:focus {
+    background: #ffb700;
+    color: #080808;
+    border-color: #ca0000;
+    outline: 2px solid #ca0000;
+} */
+
+/* .surface-section-title {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    margin: 2rem 0 1rem 0;
+    letter-spacing: 0.08em;
+    color: #ca0000;
+} */
+
+/* .surface-card-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    background: #080808;
+    border-bottom: 2px solid #e1e1e3;
+} */
+
+
+/* header,
 footer {
     background: #080808;
     color: #FFF;
-}
+} */
 
-header a,
+/* header a,
 footer a {
-    position: relative;
-    color: #FFF !important;
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.2s, background 0.2s;
-    padding: 0.5em 1.2em;
-    display: inline-block;
-    border-radius: 0.5em;
-    background: transparent;
-}
-
-header a:not(.no-highlight):hover,
-footer a:not(.no-highlight):hover,
-header a:not(.no-highlight):focus,
-footer a:not(.no-highlight):focus {
-    background: #ff7900 !important;
     color: #FFF !important;
 }
 
-/* Used to center page content vertically on a page */
-.center-wrapper {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
+header a:hover,
+footer a:hover {
+    color: #ffb700 !important;
+} */
+
+
+/* O T H E R  S T Y L E S */
 
 /* Remove underline from links in Django message modals */
 a.no-underline {
     text-decoration: none;
 }
+
+/* footer {
+    background: #080808;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+} */
+
+/* strong {
+    font-weight: 900;
+} */
+
+/* #topnav {
+    width: 100%;
+    text-align: center;
+}
+
+.card,
+.card-body,
+.card-footer {
+    border-radius: 15px;
+    border: none;
+} */
 
 /* Styling for stock availability buttons on release.html */
 .availability {
@@ -252,6 +427,14 @@ a.no-underline {
     font-weight: bold;
 }
 
+/* .icon {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    height: 1.5rem;
+    width: 1.5rem;
+} */
+
 .logo-font {
     text-transform: uppercase;
 }
@@ -260,11 +443,13 @@ a.no-underline {
     color: #000 !important;
 }
 
-.black-btn {
-    background: black;
-    color: white;
-    border: 1px solid black;
-}
+/* .border-black {
+    border: 1px solid black !important;
+} */
+
+/* .bg-black {
+    background: #000 !important;
+} */
 
 .btn-outline-black {
     background: white;
@@ -273,14 +458,14 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
+    padding-top: 75px;
 }
 
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
-}
+/* button:disabled,
+input[type="submit"]:disabled {
+    cursor: not-allowed !important;
+    opacity: 0.65;
+} */
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-inner-spin-button,
@@ -314,6 +499,30 @@ input[type="number"] {
     white-space: nowrap;
 }
 
+/* .quantity-group,
+.quantity-group .btn,
+.quantity-group .form-control,
+.add-to-cart-btn {
+    height: 32px;
+    line-height: 32px;
+    font-size: 1.1rem;
+    box-sizing: border-box;
+} */
+
+/* .quantity-group .form-control,
+.quantity-input {
+    max-width: 40px;
+    min-width: 40px;
+    height: 32px;
+    line-height: 32px;
+    font-size: 0.92rem;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box;
+    margin: 0;
+    border-width: 1px;
+} */
+
 /* Add to Cart button on release_details.html */
 .add-to-cart-btn {
     font-size: 1.1rem;
@@ -330,12 +539,51 @@ input[type="number"] {
     display: flex;
 }
 
+/* select,
+select option {
+    color: #000;
+} */
+
+/* select:invalid,
+select option[value=""] {
+    color: #aab7c4 !important;
+} */
+
 .profile-photo {
     width: 200px;
     height: 200px;
     object-fit: cover;
     border-radius: 50%;
 }
+
+
+
+/* F O O T E R  M E N U S */
+/* footer .dropdown-menu {
+    background-color: #080808 !important;
+    color: #fff !important;
+}
+
+footer .dropdown-menu .dropdown-item {
+    color: #fff !important;
+}
+
+footer .dropdown-menu .dropdown-item:hover,
+footer .dropdown-menu .dropdown-item:focus {
+    background-color: #222 !important;
+    color: #ffb700 !important;
+}
+
+footer .btn-outline-light {
+    border: none !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    color: #fff !important;
+    padding-left: 0;
+    padding-right: 0;
+    text-align: left;
+}
+*/
 
 /* Search box placeholder text colour */
 
@@ -345,26 +593,6 @@ input[name='q']::placeholder {
 
 input::placeholder {
     color: rgb(170, 183, 196, 0.75) !important;
-}
-
-/* Header menus */
-.dropdown-menu {
-    background-color: #080808 !important;
-    color: #fff !important;
-    border: 1px solid #e1e1e3 !important;
-}
-
-.dropdown-menu .dropdown-item {
-    background-color: #080808 !important;
-    color: #fff !important;
-    border: none !important;
-}
-
-.dropdown-menu .dropdown-item:hover,
-.dropdown-menu .dropdown-item:focus,
-.dropdown-menu .dropdown-item:active {
-    color: #FFF !important;
-    background-color: #ff7900 !important;
 }
 
 /* S T R I P E */
@@ -469,13 +697,14 @@ input::placeholder {
 .allauth-form-inner-content button:hover,
 .allauth-form-inner-content input[type='submit']:hover {
     color: #fff;
-    background-color: #080808;
-    border-color: #080808;
+    background-color: #222;
+    border-color: #222;
 }
 
 .allauth-form-inner-content a {
     color: #17a2b8;
 }
+
 
 /* B O O T S T R A P  T O A S T S */
 
@@ -555,4 +784,69 @@ input::placeholder {
     position: absolute;
     top: -10px;
     right: 36px;
+}
+
+/* M E D I A  Q U E R I E S */
+
+/* Enforce max width for the search bar
+@media (max-width: 576px) {
+    form {
+        max-width: 90%;
+    }
+} */
+
+/* Adjust gap between menu items on larger screens */
+/* @media (min-width: 992px) {
+
+    .navbar-nav {
+        gap: 75px;
+    }
+} */
+
+/* @media (max-width: 767px) {
+    .surface-hero-title {
+        font-size: 2rem;
+    }
+
+    .surface-section-title {
+        font-size: 1.3rem;
+    }
+
+    .surface-card-img {
+        height: 180px;
+    }
+} */
+
+/* H E A D E R  M E N U S */
+
+.dropdown-menu {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: 1px solid #e1e1e3 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+    background-color: #080808 !important;
+    color: #ffb700 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    /* Remove Bootstrap's variable-based coloring */
+    color: #fff !important;
+}
+
+.dropdown-menu,
+.dropdown-menu .dropdown-item {
+    --bs-dropdown-bg: initial !important;
+    --bs-dropdown-link-color: initial !important;
+    --bs-dropdown-link-hover-bg: initial !important;
+    --bs-dropdown-link-hover-color: initial !important;
 }

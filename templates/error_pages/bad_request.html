@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block head %}
-
 {% endblock %}
 
 {% block extra_title %}Bad Request{% endblock %}
@@ -11,24 +10,24 @@
 {% block extra_meta %}
 <meta name="description"
     content="The request could not be understood by the server due to malformed syntax. Rewind the past, and Collect the Future with The Cult Film Club.">
-
-<meta name="keywords" content="400 Error, Bad Request, Page Not Loading, Website Error, The Cult Film Club Technical Support">
-
+<meta name="keywords"
+    content="400 Error, Bad Request, Page Not Loading, Website Error, The Cult Film Club Technical Support">
 {% endblock %}
 
 {% block content %}
-
-<main class="error-image">
-    <div class="header-container form-container">
-        <h1 class="error-title">Bad Request</h1>
-        <p class="error-message">It looks like the request you made was invalid or cannot be processed.<br><br> No
-            worries - you can
-            head back to The Cult Film Club homepage and explore our latest releases instead.</p>
-        <div class="button-container">
-            <a href="{% url 'home' %}" class="base-button crimson-btn" aria-label="Return to the home page">Home</a>
-            <a href="javascript:history.back()" class="base-button orange-btn">Go Back</a>
-        </div>
+<div class="header-container form-container container center-wrapper text-center">
+    <h1 class="mb-3">Bad Request</h1>
+    <p class="mb-4">
+        It looks like the request you made was invalid or cannot be processed.<br><br>
+        No worries – you can head back to The Cult Film Club homepage and explore our latest releases instead.
+    </p>
+    <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+        <a href="{% url 'home' %}" class="btn black-btn px-4 py-2" aria-label="Return to the home page">
+            <i class="fa-solid fa-house me-2"></i>Home
+        </a>
+        <a href="javascript:history.back()" class="btn btn-outline-black px-4 py-2">
+            <i class="fa-solid fa-arrow-left me-2"></i>Go Back
+        </a>
     </div>
-</main>
-
+</div>
 {% endblock %}

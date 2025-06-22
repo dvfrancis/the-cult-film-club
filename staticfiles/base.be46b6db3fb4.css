@@ -273,13 +273,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
-}
-
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
+    padding-top: 100px;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */

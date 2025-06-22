@@ -227,7 +227,6 @@ footer a:not(.no-highlight):focus {
     color: #FFF !important;
 }
 
-/* Used to center page content vertically on a page */
 .center-wrapper {
     min-height: 80vh;
     display: flex;
@@ -273,13 +272,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
-}
-
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
+    padding-top: 100px;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */

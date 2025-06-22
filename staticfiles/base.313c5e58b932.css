@@ -207,33 +207,55 @@ footer {
 }
 
 header a,
+/* Header and footer link hover splatter effect */
+header a,
 footer a {
     position: relative;
     color: #FFF !important;
     overflow: hidden;
     z-index: 1;
-    transition: color 0.2s, background 0.2s;
-    padding: 0.5em 1.2em;
-    display: inline-block;
-    border-radius: 0.5em;
-    background: transparent;
+    transition: color 0.2s;
 }
 
-header a:not(.no-highlight):hover,
-footer a:not(.no-highlight):hover,
-header a:not(.no-highlight):focus,
-footer a:not(.no-highlight):focus {
-    background: #ff7900 !important;
+header a::after,
+footer a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 120%;
+    height: 120%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: -1;
+    /* Example splatter using a radial-gradient. Replace with a PNG/SVG if you want a real splatter shape: */
+    background: radial-gradient(circle at 40% 60%, #ca0000 60%, transparent 70%);
+    opacity: 0.8;
+    transition: transform 0.25s cubic-bezier(.4,2,.6,1), opacity 0.25s;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+header a:hover::after,
+footer a:hover::after,
+header a:focus::after,
+footer a:focus::after {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+header a:hover,
+footer a:hover,
+header a:focus,
+footer a:focus {
     color: #FFF !important;
 }
 
-/* Used to center page content vertically on a page */
-.center-wrapper {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+/* Make sure links have enough padding for the effect to show */
+header a,
+footer a {
+    padding: 0.5em 1.2em;
+    display: inline-block;
+    border-radius: 0.5em;
 }
 
 /* Remove underline from links in Django message modals */
@@ -273,13 +295,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
-}
-
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
+    padding-top: 100px;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
@@ -364,7 +380,7 @@ input::placeholder {
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
     color: #FFF !important;
-    background-color: #ff7900 !important;
+    background-color: #ca0000 !important;
 }
 
 /* S T R I P E */

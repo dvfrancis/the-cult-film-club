@@ -108,7 +108,7 @@ section {
 }
 
 body {
-    /* line-height: 1; */
+    line-height: 1;
 }
 
 ol,
@@ -208,32 +208,14 @@ footer {
 
 header a,
 footer a {
-    position: relative;
-    color: #FFF !important;
-    overflow: hidden;
-    z-index: 1;
-    transition: color 0.2s, background 0.2s;
-    padding: 0.5em 1.2em;
-    display: inline-block;
-    border-radius: 0.5em;
-    background: transparent;
-}
-
-header a:not(.no-highlight):hover,
-footer a:not(.no-highlight):hover,
-header a:not(.no-highlight):focus,
-footer a:not(.no-highlight):focus {
-    background: #ff7900 !important;
     color: #FFF !important;
 }
 
-/* Used to center page content vertically on a page */
-.center-wrapper {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+header a:hover,
+footer a:hover {
+    border-radius: 50%;
+    color: #FFF;
+    background-color: #ca0000;
 }
 
 /* Remove underline from links in Django message modals */
@@ -273,13 +255,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
-}
-
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
+    padding-top: 125px;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
@@ -347,26 +323,6 @@ input::placeholder {
     color: rgb(170, 183, 196, 0.75) !important;
 }
 
-/* Header menus */
-.dropdown-menu {
-    background-color: #080808 !important;
-    color: #fff !important;
-    border: 1px solid #e1e1e3 !important;
-}
-
-.dropdown-menu .dropdown-item {
-    background-color: #080808 !important;
-    color: #fff !important;
-    border: none !important;
-}
-
-.dropdown-menu .dropdown-item:hover,
-.dropdown-menu .dropdown-item:focus,
-.dropdown-menu .dropdown-item:active {
-    color: #FFF !important;
-    background-color: #ff7900 !important;
-}
-
 /* S T R I P E */
 
 .StripeElement,
@@ -424,6 +380,26 @@ input::placeholder {
     justify-content: center;
     margin: 0;
     height: 100%;
+}
+
+/* Header menus */
+.dropdown-menu {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: 1px solid #e1e1e3 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+    color: #FFF !important;
+    background-color: #ca0000 !important;
 }
 
 /* A L L A U T H */

@@ -219,21 +219,20 @@ footer a {
     background: transparent;
 }
 
-header a:not(.no-highlight):hover,
-footer a:not(.no-highlight):hover,
-header a:not(.no-highlight):focus,
-footer a:not(.no-highlight):focus {
+header a:hover,
+footer a:hover,
+header a:focus,
+footer a:focus {
     background: #ff7900 !important;
     color: #FFF !important;
 }
 
-/* Used to center page content vertically on a page */
-.center-wrapper {
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+header a:not(.no-highlight):hover,
+footer a:not(.no-highlight):hover,
+header a:not(.no-highlight):focus,
+footer a:not(.no-highlight):focus {
+    background: #ca0000 !important;
+    color: #FFF !important;
 }
 
 /* Remove underline from links in Django message modals */
@@ -273,13 +272,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
-}
-
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
-    .header-container {
-        padding-top: 100px;
-    }
+    padding-top: 100px;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */

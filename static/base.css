@@ -393,7 +393,9 @@ input::placeholder {
 }
 
 /* Space Crispy Form fields out more */
-.form-group, .form-row, .form-check {
+.form-group,
+.form-row,
+.form-check {
     margin-top: 1.2rem;
     margin-bottom: 1.2rem;
 }
@@ -414,7 +416,7 @@ input[type="password"]:first-of-type {
     height: 150px;
     object-fit: cover;
     border-radius: 50%;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 2px solid #eee;
 }
 
@@ -473,6 +475,100 @@ input[type="password"]:first-of-type {
     align-items: center;
     justify-content: center;
     pointer-events: none;
+}
+
+/* Cart table - make images and cells responsive on small screens */
+@media (max-width: 575.98px) {
+    .cart-table-img {
+        max-width: 50px !important;
+        height: auto;
+    }
+
+    .cart-table-title,
+    .cart-table-price,
+    .cart-table-subtotal {
+        text-align: center !important;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .cart-table-qty {
+        text-align: center !important;
+        min-width: 60px;
+        max-width: 100px;
+        margin: 0 auto;
+    }
+
+    /* Widen Title and Quantity columns */
+    .cart-table-title,
+    .cart-table-qty {
+        width: 48% !important;
+        display: table-cell;
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+    /* Center table headers */
+    .cart-table-title-header,
+    .cart-table-qty-header {
+        text-align: center !important;
+        width: 48% !important;
+    }
+
+    .cart-table-hide-xs {
+        display: none !important;
+    }
+
+    .cart-table-actions {
+        flex-direction: column !important;
+        gap: 0.25rem;
+    }
+
+    .table td,
+    .table th {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word;
+    }
+
+    .qty_input,
+    .input-group .btn {
+        font-size: 0.95rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .input-group {
+        flex-wrap: wrap !important;
+    }
+
+    .input-group .form-control,
+    .input-group .btn {
+        min-width: 0;
+        width: auto;
+        flex: 1 1 auto;
+    }
+    .update-link,
+    .remove-item {
+        white-space: nowrap;
+        display: inline-block;
+    }
+    .delivery-options-row,
+    .delivery-options-label,
+    .delivery-options-select {
+        display: block;
+        width: 100% !important;
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
 }
 
 /* S T R I P E */

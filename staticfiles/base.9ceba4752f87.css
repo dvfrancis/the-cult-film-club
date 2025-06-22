@@ -487,16 +487,14 @@ input[type="password"]:first-of-type {
     .cart-table-title,
     .cart-table-price,
     .cart-table-subtotal {
-        text-align: center !important;
+        /* font-size: 0.95rem; */
         word-break: break-word;
         white-space: normal;
     }
 
     .cart-table-qty {
-        text-align: center !important;
         min-width: 60px;
-        max-width: 100px;
-        margin: 0 auto;
+        max-width: 80px;
     }
 
     .cart-table-hide-xs {
@@ -514,9 +512,6 @@ input[type="password"]:first-of-type {
         padding-right: 0.3rem;
         padding-top: 0.5rem;
         padding-bottom: 0.5rem;
-        text-align: center !important;
-        white-space: normal !important;
-        word-break: break-word;
     }
 
     .qty_input,
@@ -524,26 +519,18 @@ input[type="password"]:first-of-type {
         font-size: 0.95rem;
         padding: 0.25rem 0.5rem;
     }
-
     .table {
         table-layout: fixed;
         width: 100%;
     }
-
     .input-group {
         flex-wrap: wrap !important;
     }
-
     .input-group .form-control,
     .input-group .btn {
         min-width: 0;
         width: auto;
         flex: 1 1 auto;
-    }
-    .update-link,
-    .remove-item {
-        white-space: nowrap;
-        display: inline-block;
     }
 }
 

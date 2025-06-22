@@ -1,21 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block page_header %}
-{% endblock %}
 {% block content %}
-    <div class="container header-container py-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-5 col-lg-4 d-flex align-items-center justify-content-center">
-                <div class="image-container header-container my-4 text-center w-100">
+<div class="container header-container p-5">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10 col-lg-8">
+            <div class="card shadow-lg rounded-3 border-0 p-0 bg-white">
+                <div class="text-center pt-4 px-4">
                     {% if release.image.exists %}
-                    <div id="releaseCarousel" class="carousel slide" data-bs-ride="carousel">
+                    <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
                         <div class="carousel-inner">
                             {% for img in release.image.all %}
                             <div class="carousel-item {% if forloop.first %}active{% endif %}">
                                 <a href="#" data-bs-toggle="modal" data-bs-target="#lightboxModal"
                                     data-img-url="{{ img.image.url }}">
                                     <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}"
-                                        alt="{{ release.title }}" style="cursor:pointer;">
+                                        alt="{{ release.title }}">
                                 </a>
                             </div>
                             {% endfor %}
@@ -32,15 +31,13 @@
                         {% endif %}
                     </div>
                     {% else %}
-                    <img class="card-img-top img-fluid rounded shadow"
+                    <img class="card-img-top img-fluid rounded shadow mb-3"
                         src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
                         alt="{{ release.title }}" />
                     {% endif %}
                 </div>
-            </div>
-            <div class="col-12 col-md-7 col-lg-6">
-                <div class="mb-5 mt-md-5 p-4 bg-white rounded shadow text-left text-md-left">
-                    <h2 class="mb-3 font-weight-bold">{{ release.title }}</h2>
+                <div class="card-body p-4">
+                    <h2 class="mb-3 font-weight-bold logo-font">{{ release.title }}</h2>
                     <hr>
                     <h4 class="mt-3 mb-2">Description</h4>
                     <p>{{ release.description|safe }}</p>
@@ -48,8 +45,8 @@
                     <div class="ml-3">
                         {{ release.special_features|safe }}
                     </div>
-                    <h4 class="mt-3 mb-2 text-right">Production Details</h4>
-                    <ul class="list-unstyled mb-2 text-right">
+                    <h4 class="mt-3 mb-2">Production Details</h4>
+                    <ul class="list-unstyled mb-2">
                         <li><strong>Director:</strong> {{ release.director }}</li>
                         <li><strong>Genre:</strong> {{ release.genre }}</li>
                         <li><strong>Subgenre:</strong> {{ release.subgenre }}</li>
@@ -58,145 +55,137 @@
                         <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
                         <li><strong>Packaging:</strong> {{ release.packaging }}</li>
                     </ul>
-                    <div class="text-right mb-4">
+                    <div class="text-start mt-4">
                         Originally released on {{ release.release_date|date:"l, j F Y" }}
                     </div>
-                    <div class="my-4">
+                    <!-- Social Share Buttons -->
+                    <div class="my-4 social-share d-flex justify-content-start gap-3">
                         <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}"
-                            target="_blank" rel="noopener" class="text-primary me-2" aria-label="Share on Facebook">
+                            target="_blank" rel="noopener" class="text-primary" aria-label="Share on Facebook">
                             <i class="fab fa-facebook fa-lg"></i>
                         </a>
-                        <a href="https://twitter.com/intent/tweet?url={{ request.build_absolute_uri }}" target="_blank"
-                            rel="noopener" class="text-info me-2" aria-label="Share on Twitter">
-                            <i class="fab fa-twitter fa-lg"></i>
-                        </a>
-                        <a href="https://bsky.app/intent/compose?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
-                            target="_blank" rel="noopener" class="text-primary me-2" aria-label="Share on BlueSky">
-                            <i class="fa-solid fa-cloud fa-lg"></i>
-                        </a>
-                        <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}"
-                            target="_blank" rel="noopener" class="text-danger me-2" aria-label="Share on Reddit">
-                            <i class="fab fa-reddit fa-lg"></i>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
-                            target="_blank" rel="noopener" class="text-success me-2" aria-label="Share on WhatsApp">
-                            <i class="fab fa-whatsapp fa-lg"></i>
-                        </a>
-                        <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
-                            target="_blank" rel="noopener" class="text-dark me-2" aria-label="Share on Threads">
-                            <i class="fa-brands fa-threads fa-lg"></i>
-                        </a>
-                        <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger me-2"
+                        <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger"
                             aria-label="Share on Instagram">
                             <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                            target="_blank" rel="noopener" class="text-dark" aria-label="Share on Threads">
+                            <i class="fa-brands fa-threads fa-lg"></i>
+                        </a>
+                        <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}"
+                            target="_blank" rel="noopener" class="text-danger" aria-label="Share on Reddit">
+                            <i class="fab fa-reddit fa-lg"></i>
                         </a>
                         <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}"
                             class="text-danger" aria-label="Share by Email">
                             <i class="fas fa-envelope fa-lg"></i>
                         </a>
+                    </div> <!-- Wishlist Button -->
+                    <div class="text-start mb-4">
+                        {% if user.is_authenticated %}
+                        <button class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#wishlistModal">
+                            <i class="fas fa-heart"></i> Add to Wishlist
+                        </button>
                     </div>
-                    {% if user.is_authenticated %}
-                    <!-- Button to open modal -->
-                    <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#wishlistModal">
-                        <i class="fas fa-heart"></i> Add to Wishlist
-                    </button>
-
-                    <!-- Modal for wishlist form -->
-                    <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <form method="POST" action="{% url 'add_to_wishlist' release.id %}">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="title" value="{{ release.id }}">
-                                    {% if wishlist_form.errors %}
-                                    <div class="alert alert-danger">
-                                        {{ wishlist_form.errors }}
-                                    </div>
-                                    {% endif %}
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="wishlistModalLabel">Add to Wishlist</h5>
-                                        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        {{ wishlist_form.priority.label_tag }} {{ wishlist_form.priority }}
-                                        {{ wishlist_form.notes.label_tag }} {{ wishlist_form.notes }}
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">Cancel</button>
-                                        <button type="submit" class="btn btn-primary">Add to Wishlist</button>
-                                    </div>
-                                </form>
+                    <div class="text-center">
+                        <!-- Modal for wishlist form -->
+                        <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <form method="POST" action="{% url 'add_to_wishlist' release.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="title" value="{{ release.id }}">
+                                        {% if wishlist_form.errors %}
+                                        <div class="alert alert-danger">
+                                            {{ wishlist_form.errors }}
+                                        </div>
+                                        {% endif %}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="wishlistModalLabel">Add to Wishlist</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            {{ wishlist_form.priority.label_tag }} {{ wishlist_form.priority }}
+                                            {{ wishlist_form.notes.label_tag }} {{ wishlist_form.notes }}
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-success">Add to Wishlist</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    {% endif %}
-                    <!-- Average Rating and User Rating Form -->
-                    <div class="mb-4">
-                        <h4>Average Rating:</h4>
-                        <p class="lead">
-                            {% if release.average_rating %}
-                            {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                            {{ release.average_rating|floatformat:0 }}
-                            {% else %}
-                            {{ release.average_rating|floatformat:2 }}
-                            {% endif %}
-                            out of 5
-                            {% else %}
-                            None
-                            {% endif %}
-                        </p>
-                        {% if user.is_authenticated %}
-                        <h5>{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ rating_form|crispy }}
-                            <button type="submit" name="rating_submit" class="btn btn-primary">
-                                {% if user_rating %}Update{% else %}Submit{% endif %}
-                            </button>
-                        </form>
-                        {% else %}
-                        <p>
-                            <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your rating.
-                        </p>
                         {% endif %}
+                        <!-- Average Rating and User Rating Form -->
+                        <div class="mb-5">
+                            <h4 class="mb-3">Average Rating:</h4>
+                            <p class="lead mb-3">
+                                {% if release.average_rating %}
+                                {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
+                                {{ release.average_rating|floatformat:0 }}
+                                {% else %}
+                                {{ release.average_rating|floatformat:2 }}
+                                {% endif %}
+                                out of 5
+                                {% else %}
+                                None
+                                {% endif %}
+                            </p>
+                            {% if user.is_authenticated %}
+                            <h5 class="mb-5">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
+                            <form method="post">
+                                {% csrf_token %}
+                                {{ rating_form|crispy }}
+                                <button type="submit" name="rating_submit" class="btn btn-success">
+                                    {% if user_rating %}Update{% else %}Submit{% endif %}
+                                </button>
+                            </form>
+                            {% else %}
+                            <p>
+                                <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your
+                                rating.
+                            </p>
+                            {% endif %}
+                        </div>
+                        <!-- User Reviews -->
+                        <h4 class="mt-4 mb-4">User Reviews</h4>
+                        {% for review in release.ratings.all %}
+                        <div class="border rounded p-3 mb-2 bg-light mb-5">
+                            <strong>{{ review.user.username }}</strong>
+                            <span class="star-rating">
+                                {% for i in "12345"|slice:":review.rating" %}
+                                <span class="star-filled">&#9733;</span>
+                                {% endfor %}
+                                {% for i in "12345"|slice:"review.rating:" %}
+                                <span class="star-empty">&#9733;</span>
+                                {% endfor %}
+                            </span>
+                            <small class="text-muted">{{ review.date_added|date:"j M Y" }}</small>
+                            <div>{{ review.review|linebreaksbr }}</div>
+                        </div>
+                        {% empty %}
+                        <p>No reviews yet.</p>
+                        {% endfor %}
                     </div>
-                    <h4 class="mt-4">User Reviews</h4>
-                    {% for review in release.ratings.all %}
-                    <div class="border rounded p-3 mb-2">
-                        <strong>{{ review.user.username }}</strong>
-                        <span>
-                            {% for i in "12345"|slice:":review.rating" %}
-                            <span style="color:#ffc700">&#9733;</span>
-                            {% endfor %}
-                            {% for i in "12345"|slice:"review.rating:" %}
-                            <span style="color:#ddd">&#9733;</span>
-                            {% endfor %}
-                        </span>
-                        <small class="text-muted">{{ review.date_added|date:"j M Y" }}</small>
-                        <div>{{ review.review|linebreaksbr }}</div>
-                    </div>
-                    {% empty %}
-                    <p>No reviews yet.</p>
-                    {% endfor %}
                     <hr>
-                    <div class="bg-white border-0 d-flex justify-content-between align-items-center mb-4 flex-wrap">
+                    <!-- Add to Cart and Price/Stock -->
+                    <div
+                        class="bg-white border-0 d-flex flex-column flex-md-row justify-content-between align-items-center mb-4 gap-3">
                         <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}"
                             method="POST">
                             {% csrf_token %}
                             <div class="input-group input-group-sm quantity-group">
-                                <div class="input-group-prepend">
-                                    <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
-                                        data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
-                                        {% if release.copies_available == 0 %}disabled{% endif %}>
-                                        <span class="icon">
-                                            <i class="fas fa-minus"></i>
-                                        </span>
-                                    </button>
-                                </div>
+                                <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
+                                    data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
+                                    {% if release.copies_available == 0 %}disabled{% endif %}>
+                                    <span class="icon">
+                                        <i class="fas fa-minus"></i>
+                                    </span>
+                                </button>
                                 <input class="form-control form-control-sm qty_input text-center quantity-input"
                                     type="number" name="quantity"
                                     value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
@@ -204,22 +193,21 @@
                                     max="{{ release.copies_available }}" data-item_id="{{ release.id }}"
                                     id="id_qty_{{ release.id }}"
                                     {% if release.copies_available == 0 %}disabled{% endif %}>
-                                <div class="input-group-append">
-                                    <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
-                                        data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
-                                        {% if release.copies_available == 0 %}disabled{% endif %}>
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                            </div> <input type="submit"
-                                class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn" value="Add"
+                                <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
+                                    data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
+                                    {% if release.copies_available == 0 %}disabled{% endif %}>
+                                    <span class="icon">
+                                        <i class="fas fa-plus"></i>
+                                    </span>
+                                </button>
+                            </div>
+                            <input type="submit"
+                                class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn ms-2" value="Add"
                                 {% if release.copies_available == 0 %}disabled{% endif %}>
                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                         </form>
                         <div>
-                            <span class="lead font-weight-bold mr-3">£{{ release.price }}</span>
+                            <span class="lead font-weight-bold me-3">£{{ release.price }}</span>
                             {% if release.copies_available == 0 %}
                             <span class="text-danger availability">Out of stock</span>
                             {% elif release.copies_available < 10 %}
@@ -229,14 +217,15 @@
                             {% endif %}
                         </div>
                     </div>
+                    <!-- Prev/Next Navigation -->
                     <div class="d-flex justify-content-between mt-4">
                         {% if prev_release %}
-                        <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-outline-secondary">
+                        <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-success mx-2">
                             &larr; Previous Release
                         </a>
                         {% endif %}
                         {% if next_release %}
-                        <a href="{% url 'release_details' next_release.pk %}" class="btn btn-outline-secondary">
+                        <a href="{% url 'release_details' next_release.pk %}" class="btn btn-success ms-auto">
                             Next Release &rarr;
                         </a>
                         {% endif %}
@@ -244,17 +233,16 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Lightbox modal -->
-    <div class="modal fade" id="lightboxModal" tabindex="-1" aria-labelledby="lightboxModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content bg-transparent border-0">
-                <div class="modal-body p-0 text-center">
-                    <img id="lightboxImage" src="" alt="Large image" class="img-fluid rounded shadow" />
+        <!-- Lightbox modal -->
+        <div class="modal fade" id="lightboxModal" tabindex="-1" aria-labelledby="lightboxModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content bg-transparent border-0">
+                    <div class="modal-body p-0 text-center">
+                        <img id="lightboxImage" src="" alt="Large image" class="img-fluid rounded shadow" />
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-{% endblock %}
+    {% endblock %}

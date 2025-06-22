@@ -295,7 +295,7 @@ a.no-underline {
 }
 
 .header-container {
-    padding-top: 200px;
+    padding-top: 200px!important;
 }
 
 @media (min-width: 1400px) {
@@ -590,6 +590,34 @@ input[type="password"]:first-of-type {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+}
+
+/* Social sharing buttons */
+.social-share a {
+    text-decoration: none !important;
+    transition: color 0.2s;
+}
+.social-share a:hover, .social-share a:focus {
+    opacity: 0.8;
+    text-decoration: none;
+    transform: scale(1.15);
+}
+.social-share i {
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+/* Star Ratings */
+.star-rating {
+    display: inline-block;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+.star-rating .star-filled {
+    color: #ffc700;
+}
+.star-rating .star-empty {
+    color: #ddd;
 }
 
 /* S T R I P E */

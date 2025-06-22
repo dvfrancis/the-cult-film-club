@@ -400,6 +400,10 @@ input::placeholder {
     margin-bottom: 1.2rem;
 }
 
+.mb-3 .form-group, .mb-3 .form-floating {
+    margin-bottom: 1.2rem;
+}
+
 a[href*="password/reset"] {
     display: inline-block;
     margin-top: 1.2rem;

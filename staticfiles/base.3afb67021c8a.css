@@ -590,6 +590,25 @@ input[type="password"]:first-of-type {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
     }
+
+    /* Discount codes table */
+
+    .table-responsive {
+        font-size: 0.95rem;
+    }
+    .table th, .table td {
+        white-space: nowrap;
+        vertical-align: middle;
+    }
+    .table th, .table td {
+        padding: 0.5rem 0.25rem;
+    }
+    .table thead th {
+        font-size: 0.95rem;
+    }
+    .table td .btn {
+        margin-bottom: 0.25rem;
+    }
 }
 
 /* S T R I P E */

@@ -276,7 +276,9 @@ a.no-underline {
     padding-top: 200px;
 }
 
-@media (min-width: 1400px) { /* Bootstrap XXL and up */
+@media (min-width: 1400px) {
+
+    /* Bootstrap XXL and up */
     .header-container {
         padding-top: 100px;
     }

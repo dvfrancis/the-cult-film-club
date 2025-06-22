@@ -84,8 +84,32 @@
                     </div>
                     <!-- Main Content -->
                     <div class="col-12 col-lg-8">
+                        <!-- Order History Section -->
+                        <div>
+                            <h4 class="text-center mb-3">Order History</h4>
+                            {% if orders %}
+                            <ul class="list-group gap-3 list-unstyled">
+                                {% for order in orders %}
+                                <li class="list-group-item">
+                                    <a href="{% url 'order_detail' order.order_number %}" class="fw-bold mt-4">
+                                        Order #{{ order.id }}</a> placed on {{ order.date }}
+                                    <ul class="mt-3">
+                                        {% for item in order.lineitems.all %}
+                                        <li>
+                                            {{ item.release.title }} ({{ item.quantity }})
+                                        </li>
+                                        {% endfor %}
+                                    </ul>
+                                    <div class="fw-bold text-end mb-3">Total: £{{ order.total }}</div>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            {% else %}
+                            <p class="text-muted">No orders found.</p>
+                            {% endif %}
+                        </div>
                         <!-- Wishlist Section -->
-                        <h4 class="text-center mb-3">Wishlist</h4>
+                        <h4 class="text-center mt-3 mb-3">Wishlist</h4>
                         <div class="mb-2">
                             {% if wishlist_items %}
                             <ul class="list-group wishlist-list gap-3">
@@ -138,30 +162,6 @@
                                         class="btn btn-success mt-2 d-block mx-end w-25">Add</button>
                                 </div>
                             </form>
-                        </div>
-                        <!-- Order History Section -->
-                        <div>
-                            <h4 class="text-center mb-3">Order History</h4>
-                            {% if orders %}
-                            <ul class="list-group gap-3 list-unstyled">
-                                {% for order in orders %}
-                                <li class="list-group-item">
-                                    <a href="{% url 'order_detail' order.order_number %}" class="fw-bold mt-4">
-                                        Order #{{ order.id }}</a> placed on {{ order.date }}
-                                    <ul class="mt-3">
-                                        {% for item in order.lineitems.all %}
-                                        <li>
-                                            {{ item.release.title }} ({{ item.quantity }})
-                                        </li>
-                                        {% endfor %}
-                                    </ul>
-                                    <div class="fw-bold text-end mb-3">Total: £{{ order.total }}</div>
-                                </li>
-                                {% endfor %}
-                            </ul>
-                            {% else %}
-                            <p class="text-muted">No orders found.</p>
-                            {% endif %}
                         </div>
                     </div>
                 </div>

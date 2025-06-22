@@ -1,45 +1,82 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="container">
-    <h2 class="mb-4">Order Confirmation</h2>
-    <div class="card mb-4">
-        <div class="card-header">
-            <strong>Order #{{ order.order_number }}</strong>
-        </div>
-        <div class="card-body">
-            <p><strong>Order Number:</strong> {{order.order_number}}</p>
-            <p><strong>Date:</strong> {{ order.date }}</p>
-            <p><strong>Name:</strong> {{ order.full_name }}</p>
-            <p><strong>Email:</strong> {{ order.email }}</p>
-            <p><strong>Phone:</strong> {{ order.phone_number }}</p>
-            <p><strong>Address:</strong><br>
-                {{ order.street_address1 }}<br>
-                {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
-                {{ order.town_or_city }}<br>
-                {% if order.county %}{{ order.county }}<br>{% endif %}
-                {{ order.postcode }}<br>
-                {{ order.country.name }}
-            </p>
-            <hr>
-            <h5>Items:</h5>
-            <ul class="list-group mb-3">
-                {% for item in order.lineitems.all %}
-                <li class="list-group-item">
-                    <strong>{{ item.release.title }}</strong><br>
-                    Quantity: {{ item.quantity }}<br>
-                    Price: £{{ item.lineitem_total|floatformat:2 }}
-                    {% if item.release.featured_image %}
-                        <div><img src="{{ item.release.featured_image.image.url }}" alt="{{ item.release.title }}" style="max-width:100px;"/></div>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            <hr>
-            <p><strong>Subtotal:</strong> £{{ order.subtotal|floatformat:2 }}</p>
-            <p><strong>Delivery:</strong> £{{ order.delivery_cost|floatformat:2 }}</p>
-            <p><strong>Total:</strong> £{{ order.total|floatformat:2 }}</p>
+<div class="container header-container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white text-center">
+                <h2 class="logo-font mb-4">Order Confirmation</h2>
+                <div class="order-confirmation-wrapper p-3 border rounded bg-light mx-auto text-start">
+                    <div class="mb-3">
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Order Number</div>
+                            <div class="col-9 text-end">{{ order.order_number }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Date</div>
+                            <div class="col-9 text-end">{{ order.date }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Name</div>
+                            <div class="col-9 text-end">{{ order.full_name }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Email</div>
+                            <div class="col-9 text-end">{{ order.email }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Phone</div>
+                            <div class="col-9 text-end">{{ order.phone_number }}</div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-3 fw-bold">Address</div>
+                            <div class="col-9 text-end">
+                                {{ order.street_address1 }}<br>
+                                {% if order.street_address2 %}{{ order.street_address2 }}<br>{% endif %}
+                                {{ order.town_or_city }}<br>
+                                {% if order.county %}{{ order.county }}<br>{% endif %}
+                                {{ order.postcode }}<br>
+                                {{ order.country.name }}
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="mt-0 mb-3">
+                        {% for item in order.lineitems.all %}
+                        <div class="row align-items-center mb-2">
+                            <div class="col-8">
+                                <strong>{{ item.release.title }}</strong><br>
+                                <span class="small">Price: £{{ item.release.price|floatformat:2 }}</span><br>
+                                <span class="small">Quantity: {{ item.quantity }}</span><br>
+                            </div>
+                            <div class="col-4 text-end">
+                                {% if item.release.featured_image %}
+                                <div><img src="{{ item.release.featured_image.image.url }}"
+                                        alt="{{ item.release.title }}" class="img-fluid rounded mt-2"
+                                        style="max-width:70px;" /></div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                    <hr>
+                    <div class="row mb-1">
+                        <div class="col-6 fw-bold">Subtotal</div>
+                        <div class="col-6 text-end">£{{ order.subtotal|floatformat:2 }}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-6 fw-bold">Delivery</div>
+                        <div class="col-6 text-end">£{{ order.delivery_cost|floatformat:2 }}</div>
+                    </div>
+                    <div class="row mb-1">
+                        <div class="col-6 fw-bold">Total</div>
+                        <div class="col-6 text-end">£{{ order.total|floatformat:2 }}</div>
+                    </div>
+                </div>
+                <a href="{% url 'user_profile' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">
+                    <i class="fas fa-chevron-left"></i> <span class="text-uppercase">Back to My Profile</span>
+                </a>
+            </div>
         </div>
     </div>
-    <a href="{% url 'user_profile' %}" class="btn btn-outline-black">Back to My Profile</a>
 </div>
 {% endblock %}

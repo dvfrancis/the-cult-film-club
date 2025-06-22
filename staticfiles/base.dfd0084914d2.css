@@ -410,8 +410,8 @@ input[type="password"]:first-of-type {
 
 /* Profile photo styling */
 .profile-photo {
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
@@ -436,43 +436,6 @@ input[type="password"]:first-of-type {
     .account-card {
         padding: 1.5rem !important;
     }
-}
-
-.wishlist-actions {
-    min-width: 150px;
-    max-width: 150px;
-    gap: 0.5rem;
-}
-
-.wishlist-actions .wishlist-qty-label {
-    text-align: left !important;
-    width: 100%;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-}
-
-.wishlist-actions .wishlist-qty-input,
-.wishlist-actions .wishlist-action-btn,
-.wishlist-actions .out-of-stock-btn {
-    width: 100%;
-    min-width: 120px;
-    max-width: 150px;
-    height: 38px;
-    font-size: 1rem;
-    text-align: center;
-    margin: 0;
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-}
-
-.wishlist-actions .out-of-stock-btn {
-    background: #aab0b6;
-    color: #fff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
 }
 
 /* S T R I P E */

@@ -438,41 +438,26 @@ input[type="password"]:first-of-type {
     }
 }
 
-.wishlist-actions {
-    min-width: 150px;
-    max-width: 150px;
-    gap: 0.5rem;
+/* Space out wishlist form fields and align them nicely */
+.wishlist-form .form-group,
+.wishlist-form .form-row,
+.wishlist-form .form-check {
+    margin-bottom: 1rem;
 }
 
-.wishlist-actions .wishlist-qty-label {
-    text-align: left !important;
-    width: 100%;
-    font-size: 1rem;
-    margin-bottom: 0.25rem;
-}
-
-.wishlist-actions .wishlist-qty-input,
-.wishlist-actions .wishlist-action-btn,
-.wishlist-actions .out-of-stock-btn {
-    width: 100%;
-    min-width: 120px;
-    max-width: 150px;
-    height: 38px;
-    font-size: 1rem;
-    text-align: center;
-    margin: 0;
+.wishlist-list .list-group-item {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 0.5rem;
     border-radius: 0.5rem;
-    box-sizing: border-box;
 }
 
-.wishlist-actions .out-of-stock-btn {
-    background: #aab0b6;
-    color: #fff;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
+.wishlist-list .form-control {
+    min-width: 100px;
+    max-width: 120px;
+    display: inline-block;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
 }
 
 /* S T R I P E */

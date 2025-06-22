@@ -392,19 +392,8 @@ input::placeholder {
     min-height: 3em;
 }
 
-/* Space Crispy Form fields out more */
+/* Space form fields out more */
 .form-group, .form-row, .form-check {
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
-}
-
-a[href*="password/reset"] {
-    display: inline-block;
-    margin-top: 1.2rem;
-}
-
-/* Add space below the first password field on signup forms */
-input[type="password"]:first-of-type {
     margin-bottom: 1.2rem;
 }
 

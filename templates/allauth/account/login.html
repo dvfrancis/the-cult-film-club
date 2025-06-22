@@ -7,8 +7,14 @@
 {% block extra_title %}Login{% endblock %}
 {% block inner_content %}
 <div class="d-flex align-items-center justify-content-center">
-    <div class="card p-3 auth-card">
-        <h1 class="logo-font text-center">{% trans "Sign In" %}</h1>
+    <div class="card p-4 auth-card shadow-lg border-0">
+        <div class="text-center mt-2">
+            <h1 class="logo-font mb-2">{% trans "Sign In" %}</h1>
+        </div>
+        {% if user.is_authenticated %}
+            {% include "account/snippets/already_logged_in.html" %}
+        {% endif %}
+        {% url 'account_signup' as signup_url %}
         {% if not SOCIALACCOUNT_ONLY %}
             <p class="text-center">
                 {% blocktranslate %}If you have not created an account yet, then please <a href="{{ signup_url }}">sign up</a> first.{% endblocktranslate %}
@@ -17,7 +23,7 @@
                 {% csrf_token %}
                 {{ form|crispy }}
                 {{ redirect_field }}
-                <button type="submit" class="btn btn-outline-black btn-block w-100 mt-3">{% trans "Sign In" %}</button>
+                <button type="submit" class="btn black-btn w-100 mb-3 mt-3">{% trans "Sign In" %}</button>
             </form>
         {% endif %}
         {% if SOCIALACCOUNT_ENABLED %}

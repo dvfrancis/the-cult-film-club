@@ -403,10 +403,13 @@ a[href*="password/reset"] {
     margin-top: 1.2rem;
 }
 
-/* Add space below the first password field on signup forms */
-input[type="password"]:first-of-type {
-    margin-bottom: 1.2rem;
+/* Add space above Django's help text (conditions) under password fields */
+.form-group .help-block,
+.form-group .invalid-feedback,
+.form-group .form-text {
+    margin-top: 1rem;
 }
+
 
 /* S T R I P E */
 

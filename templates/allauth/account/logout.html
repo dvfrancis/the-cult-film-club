@@ -6,9 +6,9 @@
 {% block extra_title %}Logout{% endblock %}
 {% block inner_content %}
 <div class="d-flex align-items-center justify-content-center">
-    <div class="card p-3 auth-card">
-        <h1 class="logo-font text-center">{% trans "Sign Out" %}</h1>
-        <p class="text-center">{% trans 'Are you sure you want to sign out?' %}</p>
+    <div class="card p-3 auth-card shadow-lg border-0">
+        <h1 class="logo-font text-center mb-2">{% trans "Sign Out" %}</h1>
+        <p class="lead text-center mb-4">{% trans 'Are you sure you want to sign out?' %}</p>
         <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {{ redirect_field }}

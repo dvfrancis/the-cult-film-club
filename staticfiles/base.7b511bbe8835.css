@@ -403,11 +403,6 @@ a[href*="password/reset"] {
     margin-top: 1.2rem;
 }
 
-/* Add space below the first password field on signup forms */
-input[type="password"]:first-of-type {
-    margin-bottom: 1.2rem;
-}
-
 /* S T R I P E */
 
 .StripeElement,

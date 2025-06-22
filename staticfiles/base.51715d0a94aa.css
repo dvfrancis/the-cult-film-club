@@ -189,7 +189,7 @@ h6 {
 
 .btn-outline-black {
     background: white;
-    color: black !important;
+    color: black;
     border: 1px solid black;
 }
 
@@ -384,28 +384,12 @@ input::placeholder {
 /* Ensure all card images in home and releases have a consistent height */
 .card-img-top {
     height: 350px;
-    object-fit: scale-down;
+    object-fit:scale-down;
 }
 
 /* Optional: Make card titles a consistent height for alignment */
 .card-title {
     min-height: 3em;
-}
-
-/* Space Crispy Form fields out more */
-.form-group, .form-row, .form-check {
-    margin-top: 1.2rem;
-    margin-bottom: 1.2rem;
-}
-
-a[href*="password/reset"] {
-    display: inline-block;
-    margin-top: 1.2rem;
-}
-
-/* Add space below the first password field on signup forms */
-input[type="password"]:first-of-type {
-    margin-bottom: 1.2rem;
 }
 
 /* S T R I P E */
@@ -468,10 +452,6 @@ input[type="password"]:first-of-type {
 }
 
 /* A L L A U T H */
-
-.allauth-form-inner-content a {
-    color: #080808 !important;
-}
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;

@@ -4,7 +4,7 @@ import dj_database_url
 from decimal import Decimal
 if os.path.isfile("env.py"):
     import env  # noqa
-DEBUG = False
+DEBUG = True
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.fastmail.com"
 EMAIL_PORT = 587

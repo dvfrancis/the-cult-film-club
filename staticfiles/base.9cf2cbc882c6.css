@@ -571,11 +571,12 @@ input[type="password"]:first-of-type {
     }
 
     /* Order confirmation page on XS */
-    .order-confirmation-wrapper {
+    .order-confirmation-wrapper .row {
+        flex-direction: column !important;
+        text-align: left;
         max-width: 100% !important;
         width: 100% !important;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+        box-sizing: border-box;
         margin-left: 0 !important;
         margin-right: 0 !important;
     }

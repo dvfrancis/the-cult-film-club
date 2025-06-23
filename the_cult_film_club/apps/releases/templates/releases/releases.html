@@ -32,7 +32,7 @@
         </option>
         {% endfor %}
       </select>
-      <a href="{% url "releases" %}" class="btn btn-outline-secondary w-100 w-lg-auto">Reset</a>
+      <a href="{% url "releases" %}" id="reset-filters-btn" class="btn btn-outline-secondary w-100 w-lg-auto">Reset</a>
     </div>
   </form>
 
@@ -46,7 +46,7 @@
       <div class="card h-100 border-0 shadow-sm pt-4 pb-3 px-2 position-relative">
         {% if release.featured_image %}
         <img class="card-img-top img-fluid w-75 mx-auto d-block rounded" src="{{ release.featured_image.image.url }}"
-          alt="{{ release.title }}"/>
+          alt="{{ release.title }}" />
         {% else %}
         <img class="card-img-top img-fluid w-75 mx-auto d-block rounded"
           src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"

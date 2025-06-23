@@ -1,5 +1,14 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_meta %}
+<meta name="description"
+    content="Thank you for your order! Your order number is {{ order.order_number }}. A confirmation email will be sent to {{ order.email }}.">
+<meta name="keywords"
+    content="checkout success, order confirmation, thank you, The Cult Film Club, film order, cult cinema, physical media">
+{% endblock %}
+{% block extra_head %}
+{% endblock %}
+{% block extra_title %}Checkout Success{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

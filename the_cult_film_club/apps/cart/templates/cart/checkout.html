@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% load static %}
 {% load cart_tools %}
+{% block extra_meta %}
+<meta name="description"
+    content="Complete your order with The Cult Film Club. Fill out your details and payment information to finalize your purchase.">
+<meta name="keywords"
+    content="checkout, payment, order summary, The Cult Film Club, cult cinema, physical media, film order">
+{% endblock %}
+{% block extra_head %}
+{% endblock %}
+{% block extra_title %}Checkout{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

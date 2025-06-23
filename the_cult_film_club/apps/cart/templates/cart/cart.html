@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load cart_tools %}
+{% block extra_meta %}
+<meta name="description"
+    content=" View and manage your shopping cart at The Cult Film Club. Update quantities, apply discounts, and proceed to checkout.">
+<meta name="keywords"
+    content="shopping cart, manage cart, update quantities, apply discounts, checkout, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}Shopping Cart{% endblock %}
 {% block content %}
 <div class="container header-container">
     <div class="row justify-content-center">

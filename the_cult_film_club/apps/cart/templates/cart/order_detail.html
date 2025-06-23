@@ -1,4 +1,12 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description"
+    content="Order confirmation for your recent purchase at The Cult Film Club. Your order number is {{ order.order_number }}.">
+<meta name="keywords" content="order confirmation, The Cult Film Club, cult cinema, physical media, film order">
+{% endblock %}
+{% block extra_head %}
+{% endblock %}
+{% block extra_title %}Order {{ order.order_number }}{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">
@@ -51,8 +59,7 @@
                             <div class="col-4 text-end">
                                 {% if item.release.featured_image %}
                                 <div><img src="{{ item.release.featured_image.image.url }}"
-                                        alt="{{ item.release.title }}" class="img-fluid rounded mt-2"
-                                        /></div>
+                                        alt="{{ item.release.title }}" class="img-fluid rounded mt-2" /></div>
                                 {% endif %}
                             </div>
                         </div>

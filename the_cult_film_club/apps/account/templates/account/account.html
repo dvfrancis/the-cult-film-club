@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_meta %}
+<meta name="description"
+    content="Manage your profile, addresses, order history, and wishlist on The Cult Film Club. Update your photo, add or edit addresses, view past orders, and manage your wishlist items.">
+<meta name="keywords"
+    content="user profile, account management, addresses, order history, wishlist, update photo, edit address, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}User Profile{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
+{% block extra_meta %}
+<meta name="description" content="Manage your film releases, add new titles, and edit existing ones.">
+<meta name="keywords" content="film management, release management, add film, edit film, delete film, manage images">
+{% endblock %}
+{% block extra_title %}Product Management{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

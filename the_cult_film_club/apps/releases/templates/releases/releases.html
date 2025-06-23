@@ -2,6 +2,13 @@
 {% load static %}
 {% block page_header %}
 {% endblock %}
+{% block extra_meta %}
+<meta name="description"
+  content="Explore our latest film releases, including genres, directors, and decades. Rewind the past, and Collect the Future with The Cult Film Club.">
+<meta name="keywords"
+  content="Film Releases, Latest Films, Movie Genres, Film Directors, Film Decades, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}Film Releases{% endblock %}
 {% block content %}
 <div class="container header-container my-4">
   <form method="get" class="mb-4" id="filter-form" autocomplete="off">

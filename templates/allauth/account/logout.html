@@ -1,8 +1,13 @@
 {% extends "layouts/base.html" %}
 {% load allauth i18n %}
 {% block head_title %}
-    {% trans "Sign Out" %}
+{% trans "Sign Out" %}
 {% endblock head_title %}
+{% block extra_meta %}
+<meta name="description"
+    content="Confirm your decision to sign out of your account. This will log you out and return you to the homepage.">
+<meta name="keywords" content="logout, sign out, account management, The Cult Film Club, cult cinema, film club">
+{% endblock %}
 {% block extra_title %}Logout{% endblock %}
 {% block inner_content %}
 <div class="d-flex align-items-center justify-content-center">

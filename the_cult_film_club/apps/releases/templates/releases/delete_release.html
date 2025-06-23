@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description"
+    content="Confirm deletion of the film release '{{ release.title }}'. This action cannot be undone.">
+<meta name="keywords" content="delete release, confirm deletion, film management, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}Delete "{{ release.title }}"{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

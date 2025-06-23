@@ -1,4 +1,10 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description"
+    content="Get in touch with The Cult Film Club for enquiries, feedback, or support. We value your input and are here to assist you.">
+<meta name="keywords" content="contact us, customer support, feedback, inquiries, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}Contact Us{% endblock %}
 {% block content %}
 <div class="container header-container center-wrapper my-5">
     <div class="row justify-content-center">
@@ -6,7 +12,8 @@
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
                 <div class="text-center mb-4">
                     <h2 class="logo-font mb-4">Contact Us</h2>
-                    <p class="text-muted mb-0">We'd love to hear from you! Please fill out the form below and we'll get back to you as soon as possible.</p>
+                    <p class="text-muted mb-0">We'd love to hear from you! Please fill out the form below and we'll get
+                        back to you as soon as possible.</p>
                 </div>
                 <hr class="mb-4">
                 <form method="post">

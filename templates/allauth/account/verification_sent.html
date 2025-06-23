@@ -2,13 +2,21 @@
 {% load i18n %}
 {% load allauth %}
 {% block head_title %}
-    {% trans "Verify Your Email Address" %}
+{% trans "Verify Your Email Address" %}
 {% endblock head_title %}
+{% block extra_meta %}
+<meta name="description"
+    content="Verify your email address to complete the signup process at The Cult Film Club. Check your inbox for a verification link to activate your account.">
+<meta name="keywords"
+    content="email verification, account activation, The Cult Film Club, cult cinema, film club, signup process">
+{% endblock %}
 {% block inner_content %}
-    {% element h1 %}
-        {% trans "Verify Your Email Address" %}
-    {% endelement %}
-    {% element p %}
-        {% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process. If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not receive the verification email within a few minutes.{% endblocktrans %}
-    {% endelement %}
+{% element h1 %}
+{% trans "Verify Your Email Address" %}
+{% endelement %}
+{% element p %}
+{% blocktrans %}We have sent an email to you for verification. Follow the link provided to finalize the signup process.
+If you do not see the verification email in your main inbox, check your spam folder. Please contact us if you do not
+receive the verification email within a few minutes.{% endblocktrans %}
+{% endelement %}
 {% endblock inner_content %}

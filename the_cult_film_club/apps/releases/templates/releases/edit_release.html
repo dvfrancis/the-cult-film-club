@@ -1,4 +1,11 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description" content="Edit the details of '{{ release.title }}', including title, price, stock, and images.">
+<meta name="keywords" content="edit release, film release, update product, manage film, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}
+Edit "{{ release.title }}"
+{% endblock %}
 {% block content %}
 <div class="container header-container p-5">
     <div class="row justify-content-center">

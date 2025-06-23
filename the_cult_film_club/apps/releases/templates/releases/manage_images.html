@@ -1,4 +1,13 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description"
+    content="Manage images for {{ release.title }}. Add, delete, and feature images for your product releases.">
+<meta name="keywords"
+    content="manage images, product images, release images, add image, delete image, feature image, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}
+Manage Images for "{{ release.title }}"
+{% endblock %}
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">

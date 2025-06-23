@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+{% block extra_meta %}
+<meta name="description" content="Subscribe to our newsletter for the latest cult film news, offers, and updates.">
+<meta name="keywords" content="newsletter, subscribe, cult films, film news, updates, The Cult Film Club">
+{% endblock %}
+{% block extra_title %}Newsletter Sign-Up{% endblock %}
 {% block content %}
 <div class="container header-container mt-5 mb-5">
     <div class="row justify-content-center">
@@ -9,20 +14,21 @@
                     <p class="text-muted mb-0">Get the latest cult film news, offers, and updates delivered directly to
                         your inbox</p>
                 </div>
-<div class="d-flex flex-column align-items-center">
-    <form method="post" class="mb-3">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="text-center mt-3">
-            <button type="submit" class="btn btn-success px-4 py-2 mb-3">Subscribe</button>
-            <a href="{% url 'home' %}" class="btn btn-outline-secondary ms-2 px-4 py-2 mb-3">Cancel</a>
-        </div>
-    </form>
-</div>
+                <div class="d-flex flex-column align-items-center">
+                    <form method="post" class="mb-3">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="text-center mt-3">
+                            <button type="submit" class="btn btn-success px-4 py-2 mb-3">Subscribe</button>
+                            <a href="{% url 'home' %}" class="btn btn-outline-secondary ms-2 px-4 py-2 mb-3">Cancel</a>
+                        </div>
+                    </form>
+                </div>
                 <hr>
                 <div class="text-center">
                     <h5 class="mb-3">Unsubscribe</h5>
-                    <form method="post" action="{% url 'newsletter_unsubscribe_request' %}" class="d-flex flex-column align-items-center">
+                    <form method="post" action="{% url 'newsletter_unsubscribe_request' %}"
+                        class="d-flex flex-column align-items-center">
                         {% csrf_token %}
                         <div>
                             <input type="email" name="email" class="form-control mb-3"

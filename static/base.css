@@ -294,13 +294,13 @@ a.no-underline {
     color: #000 !important;
 }
 
+@media (max-width: 1399px) {
 .header-container {
-    padding-top: 200px!important;
+    padding-top: 175px;
+}
 }
 
 @media (min-width: 1400px) {
-
-    /* Bootstrap XXL and up */
     .header-container {
         padding-top: 100px;
     }

@@ -51,7 +51,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # CSRF trusted origins for security
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000/", "https://*.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "https://*.herokuapp.com"]
 
 # Allowed hosts for this Django site
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
@@ -80,11 +80,11 @@ INSTALLED_APPS = [
     "allauth.account",
     "django_ckeditor_5",  # Rich text editor
     "crispy_forms",  # For improved form rendering
-    "crispy_bootstrap4",  # Bootstrap 4 theme for crispy forms
+    "crispy_bootstrap5",  # Bootstrap 4 theme for crispy forms
 ]
 
-# Use Bootstrap 4 for crispy forms
-CRISPY_TEMPLATE_PACK = "bootstrap4"
+# Use Bootstrap 5 for crispy forms
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Middleware stack for request/response processing
 MIDDLEWARE = [

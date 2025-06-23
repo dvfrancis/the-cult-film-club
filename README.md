@@ -97,6 +97,14 @@ The GitHub repository is [here].
 
 ## User Experience Design
 
+### Project Structure
+
+With this project, I've chosen a non-standard folder structure that I believe is more effective and easier to navigate than the typical Django layout.
+
+All Django apps are organised within a dedicated subfolder named `apps`, inside the main project directory.
+
+This approach keeps the project structure tidy and makes it easier to locate and manage individual apps, resulting in a clearer and more maintainable codebase.
+
 ### Project Board
 
 - The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4). Amongst other things, it was used to track tasks, feature additions, bugs, and user stories.

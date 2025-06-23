@@ -27,10 +27,6 @@ class Profile(models.Model):
     address = models.ManyToManyField(
         'Address',
         related_name="profile")
-    loyalty_points = models.IntegerField(
-        default=0,
-        null=False
-    )
 
     def __str__(self):
         return (

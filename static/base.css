@@ -324,6 +324,21 @@ input[type="number"] {
     cursor: pointer;
 }
 
+/* Make image carousel controls more prominent */
+.carousel-control-next-icon {
+    background-color: #080808;
+    border-radius: 50%;
+    border: 1px solid #080808;
+    padding: 0.5em;
+}
+
+.carousel-control-prev-icon {
+    background-color: #080808;
+    border-radius: 50%;
+    border: 1px solid #080808;
+    padding: 0.5em;
+}
+
 /* Tooltip for release_details.html quantity button validation */
 .qty-tooltip {
     position: absolute;

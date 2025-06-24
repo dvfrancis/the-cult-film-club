@@ -174,7 +174,7 @@
                                 {% endfor %}
                             </span>
                             <small class="text-muted">{{ review.date_added|date:"j M Y" }}</small>
-                            <div>{{ review.review|linebreaksbr }}</div>
+                            <div>{{ review.review|safe }}</div>
                         </div>
                         {% empty %}
                         <p>No reviews yet.</p>

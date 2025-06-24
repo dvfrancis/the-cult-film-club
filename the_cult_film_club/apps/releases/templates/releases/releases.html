@@ -50,7 +50,7 @@
   <div class="row">
     {% for release in releases %}
     <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-5">
-      <div class="card h-100 border-0 shadow-sm pt-4 pb-3 px-2 position-relative">
+      <div class="card h-100 border-0 shadow-lg pt-4 pb-4 px-2 position-relative">
         {% if release.featured_image %}
         <img class="card-img-top img-fluid w-75 mx-auto d-block rounded" src="{{ release.featured_image.image.url }}"
           alt="{{ release.title }}" />
@@ -59,7 +59,7 @@
           src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
           alt="{{ release.title }}" />
         {% endif %}
-        <div class="card-body mx-1 px-0">
+        <div class="card-body mx-4 px-0">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <strong class="w-50 text-wrap">{{ release.title }}</strong>
             <span class="w-50 text-end">
@@ -76,8 +76,9 @@
               {% endif %}
             </span>
           </div>
-          <p class="mb-2 text-muted small">Dir(s): {{ release.director }}</p>
-          <p class="text-muted small mb-2">Year: {{ release.release_date|date:"Y" }}</p>
+          <br>
+          <p class="mb-2 text-muted text-end small">Dir(s): {{ release.director }}</p>
+          <p class="text-muted small text-end mb-2">Year: {{ release.release_date|date:"Y" }}</p>
           <a href="{% url 'release_details' release.id %}" class="stretched-link"></a>
         </div>
         <div class="card-footer bg-white mx-1 border-0 d-flex justify-content-between align-items-center pt-2">

@@ -296,13 +296,13 @@ a.no-underline {
 
 @media (max-width: 1399px) {
 .header-container {
-    padding-top: 175px;
+    padding-top: 200px !important;
 }
 }
 
 @media (min-width: 1400px) {
     .header-container {
-        padding-top: 100px;
+        padding-top: 125px !important;
     }
 }
 

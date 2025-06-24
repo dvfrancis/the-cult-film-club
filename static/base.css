@@ -183,8 +183,8 @@ h6 {
 
 .black-btn:hover,
 .black-btn:focus {
-    color: #080808;
-    background-color: #ff7900;
+    color: #FFF;
+    background-color: #ca0000;
 }
 
 .btn-outline-black {
@@ -195,8 +195,8 @@ h6 {
 
 .btn-outline-black:hover,
 .btn-outline-black:focus {
-    color: #080808;
-    background-color: #ff7900;
+    color: #FFF !important;
+    background-color: #ca0000;
 }
 
 .base-button {
@@ -257,8 +257,8 @@ header a:not(.no-highlight):hover,
 footer a:not(.no-highlight):hover,
 header a:not(.no-highlight):focus,
 footer a:not(.no-highlight):focus {
-    background: #ff7900 !important;
-    color: #080808 !important;
+    background: #ca0000 !important;
+    color: #FFF !important;
 }
 
 /* Used to center page content vertically on a page */
@@ -392,8 +392,8 @@ input::placeholder {
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus,
 .dropdown-menu .dropdown-item:active {
-    color: #080808 !important;
-    background-color: #ff7900 !important;
+    color: #FFF !important;
+    background-color: #ca0000 !important;
 }
 
 /* Ensure all card images in home and releases have a consistent height */
@@ -629,10 +629,70 @@ input[type="password"]:first-of-type {
     line-height: 1;
 }
 .star-rating .star-filled {
-    color: #ffc700;
+    color: #ca0000 !important;
 }
 .star-rating .star-empty {
     color: #ddd;
+}
+
+/* Section backgrounds */
+.section-bg-red {
+    background-color: #fff5f5;
+}
+.section-bg-grey {
+    background-color: #f8f9fa;
+}
+
+/* Section padding and rounded corners */
+.section-rounded {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Star ratings */
+.star-rating .text-warning {
+    color: #ca0000 !important;
+}
+.star-rating .text-secondary {
+    color: #dee2e6 !important;
+}
+
+/* Title accent */
+.logo-font.text-danger {
+    letter-spacing: 1px;
+}
+
+/* Responsive gap for social icons */
+.social-share.gap-3 > * {
+    margin-right: 1rem;
+}
+.social-share.gap-3 > *:last-child {
+    margin-right: 0;
+}
+
+/* Pagination styles */
+.pagination .page-link {
+    color: #ca0000; /* Your site red */
+    border-radius: 0.5rem;
+    margin: 3px 5px;
+    border: 1px solid #ca000022;
+    transition: background 0.2s, color 0.2s;
+}
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+    background-color: #fff5f5;
+    color: #ca0000;
+}
+.pagination .page-item.active .page-link {
+    background-color: #ca0000;
+    color: #fff;
+    border-color: #ca0000;
+}
+.pagination .page-item.disabled .page-link {
+    color: rgb(8, 8, 8, 0.5);
+    background-color: #f8f9fa;
+    border-color: rgb(8, 8, 8, 0.5);
 }
 
 /* S T R I P E */

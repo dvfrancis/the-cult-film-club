@@ -116,8 +116,8 @@
                     <div class="col-12 col-md-4">
                         <div class="card h-100 shadow-sm">
                             {% if release.featured_image %}
-                            <img src="{{ release.featured_image.image.url }}"
-                                class="card-img-top img-fluid w-75 mx-auto d-block mt-5" alt="{{ release.title }}" />
+                            <a href="{% url 'release_details' release.id %}"><img src="{{ release.featured_image.image.url }}"
+                                class="card-img-top img-fluid w-75 mx-auto d-block mt-5" alt="{{ release.title }}" /></a>
                             {% else %}
                             <img src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
                                 class="card-img-top img-fluid w-75 mx-auto d-block" alt="{{ release.title }}" />

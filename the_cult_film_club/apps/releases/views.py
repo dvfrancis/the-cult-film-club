@@ -176,6 +176,12 @@ def release_details(request, release_id):
     wishlist_form = WishlistItemForm()
     user_rating = None
 
+    # Star ratings
+    average_rating = release.average_rating or 0
+    full_stars = int(float(average_rating))
+    has_half_star = (float(average_rating) - full_stars) >= 0.5
+    empty_stars = 5 - full_stars - (1 if has_half_star else 0)
+
     # Find the next and previous releases by primary key
     next_release = (
         Releases.objects
@@ -220,6 +226,9 @@ def release_details(request, release_id):
         "user_rating": user_rating,
         "next_release": next_release,
         "prev_release": prev_release,
+        "full_stars_range": range(full_stars),
+        "empty_stars_range": range(empty_stars),
+        "has_half_star": has_half_star,
     }
     return render(request, "releases/release_details.html", context)
 

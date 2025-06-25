@@ -57,6 +57,25 @@
                             <span class="badge bg-secondary">{{ release.subgenre }}</span>
                             {% endif %}
                         </div>
+                        <!-- PRODUCTION DETAILS (summary) -->
+                        <div class="mb-3 text-center small text-muted">
+                            <span><strong>Director:</strong> {{ release.director }}</span> |
+                            <span><strong>Year:</strong> {{ release.release_date|date:"Y" }}</span> |
+                            <span><strong>Edition:</strong> {{ release.edition }}</span>
+                        </div>
+                        <p class="lead mb-3 text-center">
+                            <span class="star-rating align-middle">
+                                {% for _ in full_stars_range %}
+                                <span class="star-filled">&#9733;</span>
+                                {% endfor %}
+                                {% if has_half_star %}
+                                <span class="star-filled"><i class="fas fa-star-half-alt"></i></span>
+                                {% endif %}
+                                {% for _ in empty_stars_range %}
+                                <span class="star-empty">&#9733;</span>
+                                {% endfor %}
+                            </span>
+                        </p>
                         <!-- PRICE & STOCK -->
                         <div class="mb-3 text-center">
                             <span class="lead font-weight-bold me-3">£{{ release.price }}</span>
@@ -69,12 +88,40 @@
                             {% endif %}
                         </div>
 
-
-                        <!-- PRODUCTION DETAILS (summary) -->
-                        <div class="mb-3 text-center small text-muted">
-                            <span><strong>Director:</strong> {{ release.director }}</span> |
-                            <span><strong>Year:</strong> {{ release.release_date|date:"Y" }}</span> |
-                            <span><strong>Edition:</strong> {{ release.edition }}</span>
+                        <!-- Add to Cart and Price/Stock -->
+                        <div
+                            class="bg-white border-0 d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+                            <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}"
+                                method="POST">
+                                {% csrf_token %}
+                                <div class="input-group input-group-sm quantity-group">
+                                    <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
+                                        data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
+                                        {% if release.copies_available == 0 %}disabled{% endif %}>
+                                        <span class="icon">
+                                            <i class="fas fa-minus"></i>
+                                        </span>
+                                    </button>
+                                    <input class="form-control form-control-sm qty_input text-center quantity-input"
+                                        type="number" name="quantity"
+                                        value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                        min="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                        max="{{ release.copies_available }}" data-item_id="{{ release.id }}"
+                                        id="id_qty_{{ release.id }}"
+                                        {% if release.copies_available == 0 %}disabled{% endif %}>
+                                    <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
+                                        data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
+                                        {% if release.copies_available == 0 %}disabled{% endif %}>
+                                        <span class="icon">
+                                            <i class="fas fa-plus"></i>
+                                        </span>
+                                    </button>
+                                </div>
+                                <input type="submit"
+                                    class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn ms-2"
+                                    value="Add" {% if release.copies_available == 0 %}disabled{% endif %}>
+                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                            </form>
                         </div>
                         <!-- Wishlist Button & Modal -->
                         <div class="text-center">
@@ -115,41 +162,7 @@
                             </div>
                             {% endif %}
                         </div>
-                        <!-- Add to Cart and Price/Stock -->
-                        <div
-                            class="bg-white border-0 d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-                            <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}"
-                                method="POST">
-                                {% csrf_token %}
-                                <div class="input-group input-group-sm quantity-group">
-                                    <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
-                                        data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
-                                        {% if release.copies_available == 0 %}disabled{% endif %}>
-                                        <span class="icon">
-                                            <i class="fas fa-minus"></i>
-                                        </span>
-                                    </button>
-                                    <input class="form-control form-control-sm qty_input text-center quantity-input"
-                                        type="number" name="quantity"
-                                        value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
-                                        min="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
-                                        max="{{ release.copies_available }}" data-item_id="{{ release.id }}"
-                                        id="id_qty_{{ release.id }}"
-                                        {% if release.copies_available == 0 %}disabled{% endif %}>
-                                    <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
-                                        data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
-                                        {% if release.copies_available == 0 %}disabled{% endif %}>
-                                        <span class="icon">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </button>
-                                </div>
-                                <input type="submit"
-                                    class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn ms-2"
-                                    value="Add" {% if release.copies_available == 0 %}disabled{% endif %}>
-                                <input type="hidden" name="redirect_url" value="{{ request.path }}">
-                            </form>
-                        </div>
+
                         <hr class="mt-4 mb-4">
                         <!-- DESCRIPTION -->
                         <div class="section-bg-red section-rounded">
@@ -174,10 +187,8 @@
                                 <li><strong>Edition:</strong> {{ release.edition }}</li>
                                 <li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
                                 <li><strong>Packaging:</strong> {{ release.packaging }}</li>
+                                <li><strong>Released:</strong> {{ release.release_date|date:"l, j F Y" }}</li>
                             </ul>
-                            <div class="text-start mt-4 small text-muted">
-                                Originally released on {{ release.release_date|date:"l, j F Y" }}
-                            </div>
                         </div>
                         <!-- USER REVIEWS -->
                         <div class="section-bg-grey section-rounded">
@@ -186,15 +197,15 @@
                             <div class="border rounded p-3 mb-2 bg-white">
                                 <strong>{{ review.user.username }}</strong>
                                 <span class="star-rating ms-2">
-                                    {% for i in "12345"|slice:":review.rating" %}
-                                    <span class="text-warning">&#9733;</span>
+                                    {% for i in "xxxxx" %}
+                                    {% if forloop.counter <= review.rating %}
+                                    <span class="star-filled">&#9733;</span>
+                                    {% else %}
+                                    <span class="star-empty">&#9733;</span>
+                                    {% endif %}
                                     {% endfor %}
-                                    {% for i in "12345"|slice:"review.rating:" %}
-                                    <span class="text-secondary">&#9733;</span>
-                                    {% endfor %}
-                                </span>
-                                <small class="text-muted ms-2">{{ review.date_added|date:"j M Y" }}</small>
-                                <div class="mt-2">{{ review.review|linebreaksbr }}</div>
+                                </span> <small class="text-muted ms-2">{{ review.date_added|date:"j M Y" }}</small>
+                                <div class="mt-2">{{ review.review|safe }}</div>
                             </div>
                             {% empty %}
                             <p>No reviews yet.</p>
@@ -202,31 +213,10 @@
                         </div>
                         <!-- AVERAGE RATING AND USER RATING FORM -->
                         <div class="section-bg-red section-rounded">
-                            <h4 class="mb-3 text-danger">Average Rating:</h4>
-                            <p class="lead mb-3">
-                                {% if release.average_rating %}
-                                <span class="star-rating align-middle">
-                                    {% for i in "12345"|slice:":release.average_rating|floatformat:0" %}
-                                    <span class="text-warning">&#9733;</span>
-                                    {% endfor %}
-                                    {% for i in "12345"|slice:"release.average_rating|floatformat:0:" %}
-                                    <span class="text-secondary">&#9733;</span>
-                                    {% endfor %}
-                                </span>
-                                <span class="ms-2">
-                                    {% if release.average_rating|floatformat:2|slice:'-3:' == '.00' %}
-                                    {{ release.average_rating|floatformat:0 }}
-                                    {% else %}
-                                    {{ release.average_rating|floatformat:2 }}
-                                    {% endif %}
-                                    out of 5
-                                </span>
-                                {% else %}
-                                None
-                                {% endif %}
-                            </p>
+
                             {% if user.is_authenticated %}
-                            <h5 class="mb-4 text-danger">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
+                            <h5 class="mb-4 text-danger">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating
+                            </h5>
                             <form method="post">
                                 {% csrf_token %}
                                 {{ rating_form|crispy }}

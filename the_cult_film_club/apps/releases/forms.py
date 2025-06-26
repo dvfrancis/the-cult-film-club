@@ -127,4 +127,5 @@ class RatingForm(forms.ModelForm):
         fields = ['rating', 'review']
         widgets = {
             'rating': forms.NumberInput(attrs={'min': 1, 'max': 5}),
+            'review': CKEditor5Widget(config_name="extends"),
         }

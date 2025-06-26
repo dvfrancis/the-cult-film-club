@@ -127,30 +127,6 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="5" class="text-end">
-                                    <form method="post" action="{% url 'set_delivery_option' %}">
-                                        {% csrf_token %}
-                                        {% if can_next_day %}
-                                        <div class="form-group text-end mx-2">
-                                            <div class="delivery-options-row">
-                                                <label for="delivery_option" class="delivery-options-label">Delivery
-                                                    Options</label>
-                                                <select name="delivery_option" id="delivery_option"
-                                                    class="form-control delivery-options-select">
-                                                    <option value="standard"
-                                                        {% if delivery_option == "standard" %}selected{% endif %}>
-                                                        Standard ({{ delivery_rate }}%):
-                                                        £{{ standard_delivery|floatformat:2 }}
-                                                    </option>
-                                                    <option value="next_day"
-                                                        {% if delivery_option == "next_day" %}selected{% endif %}>
-                                                        Next Day (Flat Rate): £{{ next_day_flat_rate|floatformat:2 }}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            {% endif %}
-                                    </form>
-                                </td>
                             </tr>
                             <tr>
                                 <td colspan="5" class="text-end">

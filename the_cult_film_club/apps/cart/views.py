@@ -79,8 +79,6 @@ def amend_cart(request, item_id):
     quantity = int(request.POST.get('quantity'))
     cart = request.session.get('cart', {})
     release = get_object_or_404(Releases, pk=item_id)
-    delivery_option = request.POST.get('delivery_option', 'standard')
-    request.session['delivery_option'] = delivery_option
     if quantity > 0:
         cart[item_id] = quantity
         messages.success(
@@ -139,13 +137,6 @@ def apply_discount(request):
             request.session["discount_percent"] = 0
             messages.error(request, "Invalid or expired discount code.")
     return redirect("cart")
-
-
-@require_POST
-def set_delivery_option(request):
-    option = request.POST.get('delivery_option', 'standard')
-    request.session['delivery_option'] = option
-    return redirect('cart')
 
 
 @require_POST
@@ -305,11 +296,24 @@ def checkout_success(request, order_number):
         order_number=order_number,
         user_profile__user=request.user
     )
-    messages.success(request, f'Order successfully processed! \
-        Your order number is {order_number}. A confirmation \
-        email will be sent to {order.email}.')
+    messages.success(
+        request,
+        (
+            (
+                (
+                    f'Order successfully processed! Your order number is '
+                    f'{order_number}. A confirmation email will be sent to '
+                    f'{order.email}.'
+                )
+            )
+        )
+    )
     if 'cart' in request.session:
         del request.session['cart']
+    if 'discount_code' in request.session:
+        del request.session['discount_code']
+    if 'discount_percent' in request.session:
+        del request.session['discount_percent']
     return render(request, 'cart/checkout_success.html', {'order': order})
 
 

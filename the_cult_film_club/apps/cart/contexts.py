@@ -10,8 +10,6 @@ def purchases(request):
     item_count = 0
     total_quantity = 0
     cart = request.session.get('cart', {})
-    next_day_flat_rate = Decimal('7.99')
-    can_next_day = request.user.is_authenticated
     discount_code = request.session.get("discount_code", "")
     discount_percent = request.session.get("discount_percent", 0)
     discount_amount = Decimal('0.00')
@@ -28,10 +26,6 @@ def purchases(request):
             'free_delivery_diff': settings.FREE_DELIVERY,
             'free_delivery_threshold': settings.FREE_DELIVERY,
             'total': Decimal('0.00'),
-            'can_next_day': can_next_day,
-            'standard_delivery': Decimal('0.00'),
-            'next_day_flat_rate': next_day_flat_rate,
-            'delivery_option': 'standard',
             'discount_code': '',
             'discount_percent': 0,
             'discount_amount': Decimal('0.00'),
@@ -51,22 +45,14 @@ def purchases(request):
             'release': release,
         })
 
-    # Calculate delivery based on subtotal (not discounted)
-    standard_delivery = (
-        subtotal * (Decimal(str(settings.DELIVERY_RATE)) / Decimal('100'))
-        if subtotal < settings.FREE_DELIVERY else Decimal('0.00')
-    )
-
-    delivery_option = request.session.get('delivery_option', 'standard')
-    if delivery_option == 'next_day' and can_next_day:
-        delivery = next_day_flat_rate
-        free_delivery_diff = 0
-    elif subtotal < settings.FREE_DELIVERY:
-        delivery = standard_delivery
+    # Calculate delivery fee based on subtotal and free delivery threshold
+    if subtotal < settings.FREE_DELIVERY:
+        delivery_rate = Decimal(str(settings.DELIVERY_RATE)) / Decimal('100')
+        delivery = subtotal * delivery_rate
         free_delivery_diff = settings.FREE_DELIVERY - subtotal
     else:
         delivery = Decimal('0.00')
-        free_delivery_diff = 0
+        free_delivery_diff = Decimal('0.00')
 
     # Calculate discount (on subtotal only)
     if discount_percent:
@@ -87,10 +73,6 @@ def purchases(request):
         'free_delivery_diff': free_delivery_diff,
         'free_delivery_threshold': settings.FREE_DELIVERY,
         'total': total,
-        'can_next_day': can_next_day,
-        'standard_delivery': standard_delivery,
-        'next_day_flat_rate': next_day_flat_rate,
-        'delivery_option': delivery_option,
         'discount_code': discount_code,
         'discount_percent': discount_percent,
         'discount_amount': discount_amount,

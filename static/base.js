@@ -24,6 +24,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const decadeSelect = document.getElementById('decade-select');
         const resetBtn = document.getElementById('reset-filters-btn');
 
+        genreSelect.addEventListener('focus', updateDropdowns);
+        subgenreSelect.addEventListener('focus', updateDropdowns);
+        directorSelect.addEventListener('focus', updateDropdowns);
+        decadeSelect.addEventListener('focus', updateDropdowns);
+
+
         function updateDropdowns() {
             const genre = genreSelect.value;
             const subgenre = subgenreSelect.value;
@@ -307,11 +313,13 @@ document.addEventListener('DOMContentLoaded', function () {
                         window.location.href = '/checkout/';
                     }
                 });
-        }        
+        }
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function (ev) {
             ev.preventDefault();
-            card.update({ 'disabled': true });
+            card.update({
+                'disabled': true
+            });
             document.getElementById('submit-button').disabled = true;
             document.getElementById('payment-form').style.display = 'none';
             document.getElementById('loading-overlay').style.display = 'block';
@@ -372,7 +380,9 @@ document.addEventListener('DOMContentLoaded', function () {
                             errorDiv.innerHTML = html;
                             document.getElementById('payment-form').style.display = 'block';
                             document.getElementById('loading-overlay').style.display = 'none';
-                            card.update({ 'disabled': false });
+                            card.update({
+                                'disabled': false
+                            });
                             document.getElementById('submit-button').disabled = false;
                         } else {
                             if (result.paymentIntent.status === 'succeeded') {

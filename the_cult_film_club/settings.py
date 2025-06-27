@@ -266,7 +266,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Custom business logic settings
 FREE_DELIVERY = 100
-DELIVERY_RATE = Decimal('15')
+DELIVERY_RATE = Decimal('5')
 
 # Stripe payment settings
 FREE_DELIVERY_THRESHOLD = 50

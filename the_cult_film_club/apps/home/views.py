@@ -6,7 +6,7 @@ def index(request):
     """
     Display the home page for The Cult Film Club.
 
-    This view fetches and displays 3 random cult film releases to 
+    This view fetches and displays 3 random cult film releases to
     highlight on the homepage.
 
     Args:

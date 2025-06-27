@@ -29,14 +29,14 @@ class RatingAdminForm(forms.ModelForm):
 class ImageInline(admin.TabularInline):
     """Inline admin to manage Images related to a Release."""
     model = Images
-    extra = 1
+    extra = 0
 
 
 class RatingInline(admin.TabularInline):
     """Inline admin to manage Ratings related to a Release."""
     model = Rating
     form = RatingAdminForm
-    extra = 1
+    extra = 0
 
 
 @admin.register(Releases)

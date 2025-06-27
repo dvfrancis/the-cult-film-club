@@ -1,19 +1,28 @@
 {% extends "base.html" %}
+
 {% block extra_meta %}
 <meta name="description"
     content="Order confirmation for your recent purchase at The Cult Film Club. Your order number is {{ order.order_number }}.">
 <meta name="keywords" content="order confirmation, The Cult Film Club, cult cinema, physical media, film order">
 {% endblock %}
+
 {% block extra_head %}
+{# Additional head elements could go here #}
 {% endblock %}
+
 {% block extra_title %}Order {{ order.order_number }}{% endblock %}
+
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white text-center">
+
                 <h2 class="logo-font mb-4">Order Confirmation</h2>
+
                 <div class="order-confirmation-wrapper p-3 border rounded bg-light mx-auto text-start">
+
+                    {# Order Summary #}
                     <div class="mb-3">
                         <div class="row mb-2">
                             <div class="col-3 fw-bold">Order Number</div>
@@ -21,7 +30,7 @@
                         </div>
                         <div class="row mb-2">
                             <div class="col-3 fw-bold">Date</div>
-                            <div class="col-9 text-end">{{ order.date }}</div>
+                            <div class="col-9 text-end">{{ order.date|date:"j M Y, H:i" }}</div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-3 fw-bold">Name</div>
@@ -47,25 +56,31 @@
                             </div>
                         </div>
                     </div>
+
                     <hr>
+
+                    {# Items in order #}
                     <div class="mt-0 mb-3">
                         {% for item in order.lineitems.all %}
                         <div class="row align-items-center mb-2">
                             <div class="col-8">
                                 <strong>{{ item.release.title }}</strong><br>
                                 <span class="small">Price: £{{ item.release.price|floatformat:2 }}</span><br>
-                                <span class="small">Quantity: {{ item.quantity }}</span><br>
+                                <span class="small">Quantity: {{ item.quantity }}</span>
                             </div>
                             <div class="col-4 text-end">
                                 {% if item.release.featured_image %}
-                                <div><img src="{{ item.release.featured_image.image.url }}"
-                                        alt="{{ item.release.title }}" class="img-fluid rounded mt-2" /></div>
+                                <img src="{{ item.release.featured_image.image.url }}"
+                                    alt="Cover image of {{ item.release.title }}" class="img-fluid rounded mt-2" />
                                 {% endif %}
                             </div>
                         </div>
                         {% endfor %}
                     </div>
+
                     <hr>
+
+                    {# Totals #}
                     <div class="row mb-1">
                         <div class="col-6 fw-bold">Subtotal</div>
                         <div class="col-6 text-end">£{{ order.subtotal|floatformat:2 }}</div>
@@ -78,10 +93,14 @@
                         <div class="col-6 fw-bold">Total</div>
                         <div class="col-6 text-end">£{{ order.total|floatformat:2 }}</div>
                     </div>
+
                 </div>
-                <a href="{% url 'user_profile' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4">
-                    <i class="fas fa-chevron-left"></i> <span class="text-uppercase">Back to My Profile</span>
+
+                <a href="{% url 'user_profile' %}" class="btn btn-outline-black rounded-0 btn-lg mt-4" aria-label="Back to My Profile">
+                    <i class="fas fa-chevron-left"></i>
+                    <span class="text-uppercase">Back to My Profile</span>
                 </a>
+
             </div>
         </div>
     </div>

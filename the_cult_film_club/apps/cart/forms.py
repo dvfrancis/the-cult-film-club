@@ -3,17 +3,24 @@ from .models import Order, DiscountCode
 
 
 class OrderForm(forms.ModelForm):
+    """
+    Form for capturing order information.
+    Customizes field placeholders, CSS classes,
+    removes labels, and sets autofocus on full_name.
+    """
     class Meta:
         model = Order
-        fields = ('full_name', 'email', 'phone_number',
-                  'street_address1', 'street_address2',
-                  'town_or_city', 'postcode', 'country',
-                  'county',)
+        fields = (
+            'full_name', 'email', 'phone_number',
+            'street_address1', 'street_address2',
+            'town_or_city', 'postcode', 'country',
+            'county',
+        )
 
     def __init__(self, *args, **kwargs):
         """
-        Add placeholders and classes, remove auto-generated
-        labels and set autofocus on first field
+        Initialize form fields with placeholders, CSS classes,
+        remove labels, and set autofocus on full_name field.
         """
         super().__init__(*args, **kwargs)
         placeholders = {
@@ -28,18 +35,24 @@ class OrderForm(forms.ModelForm):
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
-        for field in self.fields:
-            if field != 'country':
-                if self.fields[field].required:
-                    placeholder = f'{placeholders[field]} *'
-                else:
-                    placeholder = placeholders[field]
-            self.fields[field].widget.attrs['placeholder'] = placeholder
-            self.fields[field].widget.attrs['class'] = 'stripe-style-input'
-            self.fields[field].label = False
+        for field_name, field in self.fields.items():
+            if field_name == 'country':
+                continue  # Skip country field placeholder to use default
+            placeholder_text = placeholders.get(field_name, '')
+            if field.required:
+                placeholder_text += ' *'
+            field.widget.attrs.update({
+                'placeholder': placeholder_text,
+                'class': 'stripe-style-input',
+            })
+            field.label = False
 
 
 class DiscountCodeForm(forms.ModelForm):
+    """
+    Form for managing DiscountCode instances with
+    date pickers for valid_from and valid_to.
+    """
     class Meta:
         model = DiscountCode
         fields = ['code', 'percent', 'valid_from', 'valid_to', 'is_active']
@@ -55,6 +68,20 @@ class DiscountCodeForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        """
+        Ensure date input formats are consistent.
+        """
         super().__init__(*args, **kwargs)
-        for field in ['valid_from', 'valid_to']:
-            self.fields[field].input_formats = ['%Y-%m-%d']
+        for field_name in ['valid_from', 'valid_to']:
+            self.fields[field_name].input_formats = ['%Y-%m-%d']
+
+    def clean(self):
+        """
+        Validate that valid_to date is not before valid_from date.
+        """
+        cleaned_data = super().clean()
+        valid_from = cleaned_data.get('valid_from')
+        valid_to = cleaned_data.get('valid_to')
+
+        if valid_from and valid_to and valid_to < valid_from:
+            self.add_error('valid_to', "End date cannot be before start date.")

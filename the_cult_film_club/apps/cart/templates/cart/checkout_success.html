@@ -36,8 +36,7 @@
                         {% for item in order.lineitems.all %}
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">{{ item.release.title }}</div>
-                            <div class="col-12 col-md-6 text-center">{{ item.quantity }} @ £{{ item.release.price }}
-                                each</div>
+                            <div class="col-12 col-md-6 text-center">{{ item.quantity }} @ £{{ item.release.price|floatformat:2 }} each</div>
                         </div>
                         {% endfor %}
                     </div>
@@ -75,7 +74,7 @@
                         {% endif %}
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Country</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.country }}</div>
+                            <div class="col-12 col-md-6 text-center">{{ order.country.name }}</div>
                         </div>
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Phone Number</div>
@@ -86,7 +85,7 @@
                         <small class="text-center text-muted d-block logo-font mb-3">Billing Info</small>
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Order Total</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.subtotal }}</div>
+                            <div class="col-12 col-md-6 text-center">£{{ order.subtotal|floatformat:2 }}</div>
                         </div>
                         {% if order.discount_code %}
                         <div class="row mb-1">
@@ -95,16 +94,16 @@
                         </div>
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Discount Code</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.discount_code }}</div>
+                            <div class="col-12 col-md-6 text-center">{{ order.discount_code.code }}</div>
                         </div>
                         {% endif %}
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Delivery</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.delivery_cost }}</div>
+                            <div class="col-12 col-md-6 text-center">£{{ order.delivery_cost|floatformat:2 }}</div>
                         </div>
                         <div class="row mb-1">
                             <div class="col-12 col-md-6 fw-bold text-center">Grand Total</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.total }}</div>
+                            <div class="col-12 col-md-6 text-center">£{{ order.total|floatformat:2 }}</div>
                         </div>
                     </div>
                 </div>

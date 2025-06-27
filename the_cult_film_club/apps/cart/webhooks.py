@@ -7,31 +7,47 @@ import stripe
 
 @csrf_exempt
 def webhook(request):
-    """Listen for webhooks from Stripe"""
+    """
+    Endpoint for handling Stripe webhooks securely
+
+    Verifies the event signature and delegates to the appropriate handler
+    based on the event type
+    """
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
+    # Retrieve the raw body and Stripe's signature header
     payload = request.body
     sig_header = request.META.get('HTTP_STRIPE_SIGNATURE')
     event = None
 
     try:
+        # Verify and construct the event from payload and signature
         event = stripe.Webhook.construct_event(
-            payload, sig_header, settings.STRIPE_WH_SECRET
+            payload=payload,
+            sig_header=sig_header,
+            secret=settings.STRIPE_WH_SECRET
         )
     except ValueError as e:
-        return HttpResponse(content=f"Invalid payload: {e}", status=400)
+        # Invalid payload
+        return HttpResponse(f"Invalid payload: {e}", status=400)
     except stripe.error.SignatureVerificationError as e:
-        return HttpResponse(content=f"Invalid signature: {e}", status=400)
+        # Invalid signature
+        return HttpResponse(f"Invalid signature: {e}", status=400)
     except Exception as e:
-        return HttpResponse(content=f"Webhook error: {e}", status=400)
+        # Other unexpected errors
+        return HttpResponse(f"Webhook error: {e}", status=400)
 
+    # Initialize handler and define event-to-method mapping
     handler = StripeWH_Handler(request)
     event_map = {
         'payment_intent.succeeded': handler.handle_payment_intent_succeeded,
         'payment_intent.payment_failed':
             handler.handle_payment_intent_payment_failed,
     }
-    event_type = event['type']
+
+    # Get the event type and corresponding handler method
+    event_type = event.get('type')
     event_handler = event_map.get(event_type, handler.handle_event)
-    response = event_handler(event)
-    return response
+
+    # Process the event
+    return event_handler(event)

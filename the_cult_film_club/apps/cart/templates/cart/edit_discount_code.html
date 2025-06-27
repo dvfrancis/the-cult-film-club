@@ -1,36 +1,50 @@
 {% extends "base.html" %}
+
 {% block extra_meta %}
 <meta name="description"
     content="Edit the discount code '{{ code.code }}' to update its details, including the code itself, discount amount, and expiration date.">
 <meta name="keywords" content="edit discount code, update discount, The Cult Film Club, cult films, film discounts">
 {% endblock %}
+
 {% block extra_head %}
+{# Add any additional CSS or JS here if needed #}
 {% endblock %}
-{% block extra_title %}Edit "{{ code.code }}"{% endblock %}
+
+{% block extra_title %}
+Edit "{{ code.code }}"
+{% endblock %}
+
 {% block content %}
 <div class="container header-container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
+
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
-                <h2 class="logo-font text-center mb-4">Edit Discount Code: <span
-                        class="text-primary">{{ code.code }}</span></h2>
+
+                <h2 class="logo-font text-center mb-4">
+                    Edit Discount Code: <span class="text-primary">{{ code.code }}</span>
+                </h2>
+
                 <hr>
-                <form method="post">
+
+                <form method="post" novalidate>
                     {% csrf_token %}
                     <div class="mb-3">
                         {{ form|crispy }}
                     </div>
+
                     <div class="d-flex justify-content-between mt-4">
-                        <button type="submit" class="btn btn-success rounded-0 btn-lg text-uppercase">
+                        <button type="submit" class="btn btn-success rounded-0 btn-lg text-uppercase" aria-label="Save changes to discount code">
                             <i class="fas fa-save"></i> Save Changes
                         </button>
-                        <a href="{% url 'discount_codes_management' %}"
-                            class="btn btn-outline-black rounded-0 btn-lg text-uppercase">
+                        <a href="{% url 'discount_codes_management' %}" class="btn btn-outline-black rounded-0 btn-lg text-uppercase" aria-label="Cancel and return to discount codes list">
                             <i class="fas fa-times"></i> Cancel
                         </a>
                     </div>
                 </form>
+
             </div>
+
         </div>
     </div>
 </div>

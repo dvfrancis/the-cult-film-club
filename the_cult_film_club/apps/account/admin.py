@@ -1,11 +1,15 @@
 from django.contrib import admin
-from .models import Profile, Address, Wishlist, WishlistItem
 from django import forms
-from django_ckeditor_5.widgets import CKEditor5Widget
 from django.utils.html import format_html
+from django_ckeditor_5.widgets import CKEditor5Widget
+
+from .models import Profile, Address, Wishlist, WishlistItem
 
 
 class WishlistItemAdminForm(forms.ModelForm):
+    """
+    Custom form for WishlistItem with CKEditor widget for rich-text notes
+    """
     class Meta:
         model = WishlistItem
         fields = "__all__"
@@ -16,6 +20,9 @@ class WishlistItemAdminForm(forms.ModelForm):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
+    """
+    Admin interface for user profiles
+    """
     list_display = ['user']
     list_filter = ['user']
     search_fields = ['user__username']
@@ -24,12 +31,16 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Address)
 class AddressAdmin(admin.ModelAdmin):
+    """
+    Admin interface for addresses
+    """
     list_display = (
         'user', 'first_line', 'second_line',
-        'city', 'county', 'postcode', 'country')
+        'city', 'county', 'postcode', 'country'
+    )
     list_filter = (
-        'user', 'first_line', 'second_line',
-        'city', 'county', 'postcode', 'country')
+        'user', 'city', 'county', 'postcode', 'country'
+    )
     search_fields = (
         'user__username', 'first_line', 'second_line',
         'city', 'county', 'postcode', 'country'
@@ -38,8 +49,11 @@ class AddressAdmin(admin.ModelAdmin):
 
 
 class WishlistItemInline(admin.TabularInline):
+    """
+    Inline admin for WishlistItems within a Wishlist
+    """
     model = WishlistItem
-    extra = 1  # Number of empty forms to display
+    extra = 1
     autocomplete_fields = ['title']
     fields = ('title', 'date_added', 'priority', 'is_purchased', 'notes')
     readonly_fields = ('date_added',)
@@ -47,6 +61,9 @@ class WishlistItemInline(admin.TabularInline):
 
 @admin.register(WishlistItem)
 class WishlistItemAdmin(admin.ModelAdmin):
+    """
+    Admin interface for individual wishlist items
+    """
     form = WishlistItemAdminForm
     list_display = (
         'wishlist', 'title', 'priority', 'is_purchased', 'notes_html'
@@ -55,12 +72,18 @@ class WishlistItemAdmin(admin.ModelAdmin):
     ordering = ['wishlist__user__username', 'title__title']
 
     def notes_html(self, obj):
-        return format_html(obj.notes)
+        """
+        Render the rich-text notes as HTML in the list display.
+        """
+        return format_html(obj.notes) if obj.notes else "-"
     notes_html.short_description = 'Notes'
 
 
 @admin.register(Wishlist)
 class WishlistAdmin(admin.ModelAdmin):
+    """
+    Admin interface for wishlists
+    """
     list_display = ['user']
     inlines = [WishlistItemInline]
     search_fields = ['user__username']

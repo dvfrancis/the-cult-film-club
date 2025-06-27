@@ -1,3 +1,5 @@
+"""URL configuration for the Account app"""
+
 from django.urls import path
 from . import views
 from the_cult_film_club.apps.cart import views as cart_views

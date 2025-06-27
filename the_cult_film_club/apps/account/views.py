@@ -1,15 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
-from .models import Profile, Address
+from .models import Profile, Address, Wishlist, WishlistItem
 from the_cult_film_club.apps.cart.models import Order
 from .forms import ProfilePhotoForm, AddressForm, WishlistItemForm
-from .models import Wishlist, WishlistItem
 from the_cult_film_club.apps.releases.models import Releases
 from django.contrib.auth.decorators import login_required
+from django.http import HttpRequest, HttpResponse
 
 
 @login_required
-def user_profile(request):
+def user_profile(request: HttpRequest) -> HttpResponse:
+    """
+    Display and manage the user's profile, addresses, wishlist, and orders
+    """
     user_profile = get_object_or_404(Profile, user=request.user)
     orders = (
         Order.objects
@@ -17,21 +20,22 @@ def user_profile(request):
         .order_by('-date')
     )
     addresses = Address.objects.filter(user=request.user)
-
-    # --- Wishlist logic ---
     wishlist, _ = Wishlist.objects.get_or_create(user=request.user)
     wishlist_items = (
         WishlistItem.objects
         .filter(wishlist=wishlist)
         .select_related('title')
     )
+
+    # Default form for GET or fallback
     form = WishlistItemForm()
     form.fields['title'].queryset = Releases.objects.exclude(
         id__in=wishlist.title.values_list('id', flat=True)
     )
 
-    # --- Profile photo logic ---
+    # Handle POST actions
     if request.method == 'POST':
+        # Profile photo update
         if 'update_photo' in request.POST:
             photo_form = ProfilePhotoForm(
                 request.POST, request.FILES, instance=user_profile
@@ -39,8 +43,10 @@ def user_profile(request):
             if photo_form.is_valid():
                 photo_form.save()
                 messages.success(request, "Profile photo updated successfully")
-                return redirect('user_profile')
-        elif 'add_address' in request.POST:
+            return redirect('user_profile')
+
+        # Add address
+        if 'add_address' in request.POST:
             address_form = AddressForm(request.POST)
             if address_form.is_valid():
                 address = address_form.save(commit=False)
@@ -49,30 +55,35 @@ def user_profile(request):
                     address.default_address = True
                 address.save()
                 messages.success(request, "Address added successfully")
-                return redirect('user_profile')
-        elif 'update_address' in request.POST:
+            return redirect('user_profile')
+
+        # Update address
+        if 'update_address' in request.POST:
             selected_address_id = request.POST.get('address')
             selected_address = addresses.filter(id=selected_address_id).first()
             address_form = AddressForm(request.POST, instance=selected_address)
             if address_form.is_valid():
                 if not address_form.cleaned_data.get('default_address'):
-                    other_defaults = Address.objects.filter(
-                        user=request.user, default_address=True
-                    ).exclude(id=selected_address.id)
+                    other_defaults = (
+                        addresses.filter(default_address=True)
+                        .exclude(id=selected_address.id)
+                    )
                     if not other_defaults.exists():
                         messages.error(
                             request,
-                            "At least one address must be set as default"
+                            (
+                                "At least one address must be set as default"
+                            )
                         )
                         return redirect(
                             f"{request.path}?address={selected_address.id}"
                         )
                 address_form.save()
                 messages.success(request, "Address updated successfully")
-                return redirect(
-                    f"{request.path}?address={selected_address.id}"
-                )
-        elif 'delete_address' in request.POST:
+            return redirect(f"{request.path}?address={selected_address.id}")
+
+        # Delete address
+        if 'delete_address' in request.POST:
             selected_address_id = request.POST.get('address')
             selected_address = addresses.filter(id=selected_address_id).first()
             if addresses.count() <= 1:
@@ -80,8 +91,14 @@ def user_profile(request):
                     request,
                     (
                         (
-                            "You must have at least one address - add another "
-                            "before deleting this one"
+                            (
+                                (
+                                    (
+                                        "You must have at least one address - "
+                                        "add another before deleting this one"
+                                    )
+                                )
+                            )
                         )
                     )
                 )
@@ -95,7 +112,9 @@ def user_profile(request):
                 first_address.save()
             messages.success(request, "Address deleted successfully")
             return redirect('user_profile')
-        elif 'remove_item' in request.POST:
+
+        # Remove wishlist item
+        if 'remove_item' in request.POST:
             item_id = request.POST.get('remove_item')
             wishlist_item = (
                 WishlistItem.objects
@@ -110,12 +129,11 @@ def user_profile(request):
                     f"{title} has been removed from your wishlist"
                 )
             else:
-                messages.error(
-                    request,
-                    "Wishlist item not found"
-                )
+                messages.error(request, "Wishlist item not found")
             return redirect('user_profile')
-        elif 'add_item' in request.POST:
+
+        # Add wishlist item
+        if 'add_item' in request.POST:
             form = WishlistItemForm(request.POST)
             form.fields['title'].queryset = Releases.objects.exclude(
                 id__in=wishlist.title.values_list('id', flat=True)
@@ -126,16 +144,14 @@ def user_profile(request):
                 wishlist_item.save()
                 messages.success(
                     request,
-                    (
-                        f"{wishlist_item.title} has been added to your "
-                        "wishlist"
-                    )
+                    f"{wishlist_item.title} has been added to your wishlist"
                 )
-                return redirect('user_profile')
+            return redirect('user_profile')
 
-    # --- Address selection logic ---
-    selected_address_id = request.GET.get('address') or \
-        request.POST.get('address')
+    # Address selection logic for GET or after POST
+    selected_address_id = (
+        request.GET.get('address') or request.POST.get('address')
+    )
     if selected_address_id == "new":
         selected_address = None
     elif selected_address_id:

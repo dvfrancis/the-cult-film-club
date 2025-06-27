@@ -1,11 +1,17 @@
 from allauth.account.forms import SignupForm
 from django import forms
-from .models import Profile, Address, WishlistItem, PriorityLevel
 from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
+from .models import Profile, Address, WishlistItem, PriorityLevel
+
 
 class AccountSignupForm(SignupForm):
+    """
+    Extends the default allauth SignupForm to collect additional user profile
+    and address information during signup
+    """
+
     photograph = forms.ImageField(
         required=False,
         widget=forms.ClearableFileInput(attrs={'placeholder': 'Profile photo'})
@@ -40,13 +46,20 @@ class AccountSignupForm(SignupForm):
     )
 
     def save(self, request):
+        """
+        Saves the user, their profile image, and creates an associated
+        default address
+        """
         user = super().save(request)
         profile = Profile.objects.get(user=user)
-        # Save the uploaded photograph to CloudinaryField
+
+        # Save the uploaded photograph to the profile
         photograph = self.cleaned_data.get('photograph')
         if photograph:
             profile.photograph = photograph
         profile.save()
+
+        # Create and link a new address as the default
         address = Address.objects.create(
             user=user,
             phone_number=self.cleaned_data.get('phone_number'),
@@ -59,14 +72,22 @@ class AccountSignupForm(SignupForm):
             default_address=True
         )
         profile.address.add(address)
+
         return user
 
 
 class NoClearableFileInput(forms.ClearableFileInput):
+    """
+    A custom ClearableFileInput widget that removes the 'clear' checkbox
+    """
     template_name = 'widgets/no_clearable_file_input.html'
 
 
 class ProfilePhotoForm(forms.ModelForm):
+    """
+    A form for updating a user's profile photograph.
+    """
+
     class Meta:
         model = Profile
         fields = ['photograph']
@@ -76,6 +97,11 @@ class ProfilePhotoForm(forms.ModelForm):
 
 
 class AddressForm(forms.ModelForm):
+    """
+    A form for creating or editing a user address
+    The user field is excluded and should be set in the view
+    """
+
     class Meta:
         model = Address
         fields = [
@@ -83,9 +109,7 @@ class AddressForm(forms.ModelForm):
             'postcode', 'phone_number', 'default_address'
         ]
         widgets = {
-            'label': forms.TextInput(
-                attrs={'placeholder': 'Address Label'}
-            ),
+            'label': forms.TextInput(attrs={'placeholder': 'Address Label'}),
             'first_line': forms.TextInput(
                 attrs={'placeholder': 'Address Line 1'}
             ),
@@ -99,10 +123,14 @@ class AddressForm(forms.ModelForm):
                 attrs={'placeholder': 'Phone number'}
             ),
         }
-        exclude = ['user']  # user will be set in the view
+        exclude = ['user']
 
 
 class WishlistItemForm(forms.ModelForm):
+    """
+    A form for adding or editing items in the user's wishlist
+    """
+
     class Meta:
         model = WishlistItem
         fields = ['title', 'notes', 'priority']

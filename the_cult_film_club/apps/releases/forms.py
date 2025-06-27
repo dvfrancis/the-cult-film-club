@@ -4,6 +4,10 @@ from django_ckeditor_5.widgets import CKEditor5Widget
 
 
 class ReleaseForm(forms.ModelForm):
+    """
+    Form for creating or adding new Releases with selected fields.
+    Uses CKEditor5Widget for rich text fields.
+    """
     class Meta:
         model = Releases
         fields = [
@@ -12,8 +16,14 @@ class ReleaseForm(forms.ModelForm):
             'censor_status', 'packaging', 'copies_available', 'price'
         ]
         widgets = {
-            'description': forms.Textarea(attrs={'rows': 3}),
-            'special_features': forms.Textarea(attrs={'rows': 3}),
+            'description': CKEditor5Widget(config_name="extends"),
+            'special_features': CKEditor5Widget(config_name="extends"),
+            'release_date': forms.DateInput(
+                attrs={'type': 'date'},
+                format='%Y-%m-%d'
+            ),
+            'price': forms.NumberInput(attrs={'step': '0.01', 'min': 0}),
+            'copies_available': forms.NumberInput(attrs={'min': 0}),
         }
         labels = {
             'title': 'Title',
@@ -28,24 +38,13 @@ class ReleaseForm(forms.ModelForm):
             'censor_status': 'Censor Status',
             'packaging': 'Packaging',
             'copies_available': 'Copies Available',
-            'price': 'Price'
+            'price': 'Price',
         }
         help_texts = {
             'title': 'Enter the title of the release.',
             'release_date': 'Select the release date.',
-            'director': 'Enter the director\'s name.',
-            'description': 'Provide a brief description of the release.',
-            'genre': 'Specify the genre of the release.',
-            'subgenre': 'Specify the subgenre of the release.',
-            'resolution': 'Enter the resolution (for example, 1080p, 4K).',
-            'special_features': 'List any special features included.',
-            'edition': (
-                'Specify the edition (for example, Collector\'s Edition).'
-            ),
-            'censor_status': 'Enter the censor status if applicable.',
-            'packaging': 'Describe the packaging type.',
             'copies_available': 'Enter the number of copies available.',
-            'price': 'Set the price for this release.'
+            'price': 'Set the price for this release.',
         }
         error_messages = {
             'title': {
@@ -53,33 +52,6 @@ class ReleaseForm(forms.ModelForm):
                 'max_length': 'Title cannot exceed 100 characters.'
             },
             'release_date': {
-                'required': 'This field is required.'
-            },
-            'director': {
-                'required': 'This field is required.'
-            },
-            'description': {
-                'required': 'This field is required.'
-            },
-            'genre': {
-                'required': 'This field is required.'
-            },
-            'subgenre': {
-                'required': 'This field is required.'
-            },
-            'resolution': {
-                'required': 'This field is required.'
-            },
-            'special_features': {
-                'required': 'This field is required.'
-            },
-            'edition': {
-                'required': 'This field is required.'
-            },
-            'censor_status': {
-                'required': 'This field is required.'
-            },
-            'packaging': {
                 'required': 'This field is required.'
             },
             'copies_available': {
@@ -91,14 +63,6 @@ class ReleaseForm(forms.ModelForm):
                 'invalid': 'Enter a valid price.'
             }
         }
-        widgets.update({
-            'release_date': forms.DateInput(
-                attrs={'type': 'date'},
-                format='%Y-%m-%d'
-            ),
-            'price': forms.NumberInput(attrs={'step': '0.01'}),
-            'copies_available': forms.NumberInput(attrs={'min': 0}),
-        })
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -106,26 +70,50 @@ class ReleaseForm(forms.ModelForm):
 
 
 class ImageForm(forms.ModelForm):
+    """
+    Form for adding or editing images related to a release.
+    """
     class Meta:
         model = Images
         fields = ['image', 'caption', 'is_featured']
 
 
 class ReleaseEditForm(forms.ModelForm):
+    """
+    Full edit form for Releases, including all fields.
+    Uses CKEditor5Widget for rich text fields.
+    Intended for admin or advanced editing.
+    """
     class Meta:
         model = Releases
         fields = "__all__"
         widgets = {
             "description": CKEditor5Widget(config_name="extends"),
             "special_features": CKEditor5Widget(config_name="extends"),
+            'release_date': forms.DateInput(
+                attrs={'type': 'date'},
+                format='%Y-%m-%d'
+            ),
+            'price': forms.NumberInput(attrs={'step': '0.01', 'min': 0}),
+            'copies_available': forms.NumberInput(attrs={'min': 0}),
         }
 
 
 class RatingForm(forms.ModelForm):
+    """
+    Form for users to submit or update ratings and reviews.
+    """
     class Meta:
         model = Rating
         fields = ['rating', 'review']
         widgets = {
             'rating': forms.NumberInput(attrs={'min': 1, 'max': 5}),
             'review': CKEditor5Widget(config_name="extends"),
+        }
+        labels = {
+            'rating': 'Rating (1 to 5)',
+            'review': 'Review',
+        }
+        help_texts = {
+            'rating': 'Provide a rating between 1 and 5.',
         }

@@ -10,11 +10,6 @@ class Releases(models.Model):
     class Meta:
         verbose_name = "Release"
         verbose_name_plural = "Releases"
-    image = models.ManyToManyField(
-        'Images',
-        related_name="releases",
-        blank=True
-    )
     title = models.CharField(max_length=100, blank=False, null=False)
     release_date = models.DateField(blank=False, null=False)
     director = models.CharField(max_length=100, blank=True, null=True)
@@ -47,7 +42,7 @@ class Releases(models.Model):
 
     @property
     def featured_image(self):
-        return self.image.filter(is_featured=True).first()
+        return self.images.filter(is_featured=True).first()
 
 
 class Rating(models.Model):

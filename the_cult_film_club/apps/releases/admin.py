@@ -6,6 +6,7 @@ from .models import Releases, Images, Rating
 
 
 class ReleasesAdminForm(forms.ModelForm):
+    """Custom form for Releases admin with CKEditor widgets for text fields."""
     class Meta:
         model = Releases
         fields = "__all__"
@@ -16,6 +17,7 @@ class ReleasesAdminForm(forms.ModelForm):
 
 
 class RatingAdminForm(forms.ModelForm):
+    """Custom form for Rating admin with CKEditor widget for review."""
     class Meta:
         model = Rating
         fields = "__all__"
@@ -25,11 +27,13 @@ class RatingAdminForm(forms.ModelForm):
 
 
 class ImageInline(admin.TabularInline):
+    """Inline admin to manage Images related to a Release."""
     model = Images
     extra = 1
 
 
 class RatingInline(admin.TabularInline):
+    """Inline admin to manage Ratings related to a Release."""
     model = Rating
     form = RatingAdminForm
     extra = 1
@@ -37,25 +41,37 @@ class RatingInline(admin.TabularInline):
 
 @admin.register(Releases)
 class ReleaseAdmin(admin.ModelAdmin):
+    """
+    Admin configuration for Releases model including inlines for Images and
+    Ratings. Displays key fields and renders description and special features
+    as HTML.
+    """
     form = ReleasesAdminForm
     inlines = [ImageInline, RatingInline]
+
     list_display = (
-        'title', 'release_date', 'director', 'genre', 'description_html'
+        'title',
+        'release_date',
+        'director',
+        'genre',
+        'description_html',
+        'special_features_html',
     )
-    list_filter = (
-        'genre', 'resolution'
-    )
+    list_filter = ('genre', 'resolution')
     search_fields = (
         'title', 'release_date', 'director', 'description', 'genre',
         'subgenre', 'resolution', 'special_features', 'edition',
         'censor_status', 'packaging'
     )
     ordering = ['title', 'release_date', 'director', 'genre']
+    readonly_fields = ('description_html', 'special_features_html')
 
     def description_html(self, obj):
+        """Render description field as safe HTML in admin detail view."""
         return format_html(obj.description)
     description_html.short_description = 'Description'
 
     def special_features_html(self, obj):
+        """Render special features field as safe HTML in admin detail view."""
         return format_html(obj.special_features)
     special_features_html.short_description = 'Special Features'

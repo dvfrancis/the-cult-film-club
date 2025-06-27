@@ -1,25 +1,31 @@
+import math
 from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.contrib import messages
 from django.db.models import Q, Avg, F, Value
-from the_cult_film_club.apps.releases.models import Releases, Rating, Images
-from the_cult_film_club.apps.account.models import Wishlist, WishlistItem
-from the_cult_film_club.apps.account.forms import WishlistItemForm
 from django.core.paginator import Paginator
 from django.db.models.functions import (
     Length, Substr, Reverse, StrIndex, ExtractYear
 )
-from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
 from django.contrib.auth.decorators import login_required
 from django.utils.safestring import mark_safe
 
+from the_cult_film_club.apps.releases.models import Releases, Rating, Images
+from the_cult_film_club.apps.account.models import Wishlist, WishlistItem
+from the_cult_film_club.apps.account.forms import WishlistItemForm
+from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
+
 
 def releases(request):
+    """
+    Display a paginated list of releases with filtering, searching, and
+    sorting options.
+    """
     releases_list = Releases.objects.all()
     query = None
     sort = None
     direction = None
 
-    # Filtering logic
+    # Filtering parameters
     genre = request.GET.get('genre')
     subgenre = request.GET.get('subgenre')
     director = request.GET.get('director')
@@ -32,16 +38,21 @@ def releases(request):
     if director:
         releases_list = releases_list.filter(director=director)
     if decade:
-        releases_list = releases_list.annotate(
-            year=ExtractYear('release_date')
-        ).filter(
-            year__gte=int(decade),
-            year__lt=int(decade) + 10
-        )
+        try:
+            decade_int = int(decade)
+            releases_list = releases_list.annotate(
+                year=ExtractYear('release_date')
+            ).filter(
+                year__gte=decade_int,
+                year__lt=decade_int + 10
+            )
+        except ValueError:
+            messages.error(request, "Invalid decade filter.")
+            return redirect(reverse("releases"))
 
-    # For filter dropdowns, get unique genres and directors
+    # Filter dropdown data from filtered queryset for consistency
     genres = (
-        Releases.objects.values_list('genre', flat=True)
+        releases_list.values_list('genre', flat=True)
         .distinct()
         .order_by('genre')
     )
@@ -56,7 +67,7 @@ def releases(request):
         .order_by('director')
     )
 
-    # Get all years from releases for the decade filter dropdown
+    # Get decades for filter dropdown (from all releases)
     years = (
         Releases.objects
         .annotate(year=ExtractYear('release_date'))
@@ -64,16 +75,16 @@ def releases(request):
     )
     decades = sorted(set((y // 10) * 10 for y in years if y))
 
-    # Search logic
+    # Search
     if 'q' in request.GET:
-        query = request.GET['q']
+        query = request.GET['q'].strip()
         if not query:
             messages.error(
                 request,
                 "You didn't enter a search term. Please try again."
             )
             return redirect(reverse("home"))
-        queries = (
+        search_filter = (
             Q(image__caption__icontains=query) |
             Q(title__icontains=query) |
             Q(release_date__icontains=query) |
@@ -89,17 +100,13 @@ def releases(request):
             Q(copies_available__icontains=query) |
             Q(price__icontains=query)
         )
-        releases_list = releases_list.filter(queries)
+        releases_list = releases_list.filter(search_filter)
 
-    # Sorting logic (always runs)
+    # Sorting
     if 'sort' in request.GET:
         sort = request.GET['sort']
         sortkey = sort
-        if sort == 'price':
-            sortkey = 'price'
-        elif sort == 'copies_available':
-            sortkey = 'copies_available'
-        elif sort == 'director_last':
+        if sort == 'director_last':
             releases_list = releases_list.annotate(
                 rev_dir=Reverse('director'),
                 last_space_pos=StrIndex(Reverse('director'), Value(' ')),
@@ -116,37 +123,38 @@ def releases(request):
                 avg_rating=Avg('ratings__rating')
             )
             sortkey = 'avg_rating'
-        # Direction
-        if 'direction' in request.GET:
-            direction = request.GET['direction']
-            if direction == 'desc':
-                releases_list = releases_list.order_by(
-                    F(sortkey).desc(nulls_last=True)
-                )
-            else:
-                releases_list = releases_list.order_by(
-                    F(sortkey).asc(nulls_first=True)
-                )
+        elif sort not in ['price', 'copies_available']:
+            # Fallback to title if unknown sort field
+            sortkey = 'title'
+
+        direction = request.GET.get('direction', 'asc')
+        if direction == 'desc':
+            releases_list = releases_list.order_by(
+                F(sortkey).desc(nulls_last=True)
+            )
         else:
-            releases_list = releases_list.order_by(sortkey)
+            releases_list = releases_list.order_by(
+                F(sortkey).asc(nulls_first=True)
+            )
     else:
-        # Default to alphabetical sorting, by title, when no sort is specified
+        # Default alphabetical
         releases_list = releases_list.order_by('title')
 
     paginator = Paginator(releases_list, 8)
     page_number = request.GET.get('page')
-    releases = paginator.get_page(page_number)
+    releases_page = paginator.get_page(page_number)
 
     querydict = request.GET.copy()
-    if 'page' in querydict:
-        querydict.pop('page')
+    querydict.pop('page', None)
     querystring = querydict.urlencode()
 
-    # For JavaScript filtering: get all unique combinations including decade
+    # Gather all filters combinations for JS if needed
     all_filters = []
-    for r in Releases.objects.values(
-        "genre", "subgenre", "director", "release_date"
-    ).distinct():
+    for r in (
+        Releases.objects
+        .values("genre", "subgenre", "director", "release_date")
+        .distinct()
+    ):
         year = r["release_date"].year if r["release_date"] else None
         decade_val = (year // 10) * 10 if year else None
         all_filters.append({
@@ -157,7 +165,7 @@ def releases(request):
         })
 
     context = {
-        "releases": releases,
+        "releases": releases_page,
         "search_term": query,
         "current_sort": sort,
         "current_direction": direction,
@@ -171,18 +179,22 @@ def releases(request):
     return render(request, "releases/releases.html", context)
 
 
-def release_details(request, release_id):
+def release_details(request, release_id: int):
+    """
+    Display detailed information about a release, handle user ratings and
+    wishlist addition.
+    """
     release = get_object_or_404(Releases, pk=release_id)
     wishlist_form = WishlistItemForm()
     user_rating = None
 
-    # Star ratings
+    # Calculate star ratings
     average_rating = release.average_rating or 0
-    full_stars = int(float(average_rating))
-    has_half_star = (float(average_rating) - full_stars) >= 0.5
+    full_stars = math.floor(average_rating)
+    has_half_star = (average_rating - full_stars) >= 0.5
     empty_stars = 5 - full_stars - (1 if has_half_star else 0)
 
-    # Find the next and previous releases by primary key
+    # Navigation to next and previous releases
     next_release = (
         Releases.objects
         .filter(pk__gt=release.pk)
@@ -202,6 +214,7 @@ def release_details(request, release_id):
             .filter(user=request.user, title=release)
             .first()
         )
+
         if request.method == 'POST' and 'rating_submit' in request.POST:
             rating_form = RatingForm(request.POST, instance=user_rating)
             if rating_form.is_valid():
@@ -233,82 +246,15 @@ def release_details(request, release_id):
     return render(request, "releases/release_details.html", context)
 
 
-def product_management(request):
-    releases = Releases.objects.all().order_by('id')
-    if request.method == 'POST':
-        form = ReleaseForm(request.POST, request.FILES)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Release added successfully")
-            return redirect('product_management')
-    else:
-        form = ReleaseForm()
-    return render(request, 'releases/product_management.html', {
-        'releases': releases,
-        'form': form,
-    })
-
-
-def edit_release(request, release_id):
-    release = get_object_or_404(Releases, id=release_id)
-    if request.method == 'POST':
-        form = ReleaseForm(request.POST, request.FILES, instance=release)
-        if form.is_valid():
-            form.save()
-            messages.success(request, "Release updated successfully")
-            return redirect('product_management')
-    else:
-        form = ReleaseEditForm(instance=release)
-    return render(request, 'releases/edit_release.html', {
-        'form': form,
-        'release': release,
-    })
-
-
-def delete_release(request, release_id):
-    release = get_object_or_404(Releases, id=release_id)
-    if request.method == 'POST':
-        release.delete()
-        messages.success(request, "Release deleted successfully")
-        return redirect('product_management')
-    return render(request, 'releases/delete_release.html', {
-        'release': release,
-    })
-
-
-def manage_images(request, release_id):
-    release = get_object_or_404(Releases, id=release_id)
-    images = release.images.all()
-    if request.method == 'POST':
-        form = ImageForm(request.POST, request.FILES)
-        if form.is_valid():
-            image = form.save(commit=False)
-            image.title = release
-            image.save()
-            messages.success(request, "Image added successfully.")
-            return redirect('manage_images', release_id=release.id)
-    else:
-        form = ImageForm()
-    return render(request, 'releases/manage_images.html', {
-        'release': release,
-        'images': images,
-        'form': form,
-    })
-
-
-def delete_image(request, image_id):
-    image = get_object_or_404(Images, id=image_id)
-    release_id = image.title.id
-    if request.method == 'POST':
-        image.delete()
-        messages.success(request, "Image deleted successfully")
-    return redirect('manage_images', release_id=release_id)
-
-
 @login_required
-def add_to_wishlist(request, release_id):
+def add_to_wishlist(request, release_id: int):
+    """
+    Add a release to the authenticated user's wishlist or update it if
+    already present.
+    """
     release = get_object_or_404(Releases, pk=release_id)
-    wishlist, created = Wishlist.objects.get_or_create(user=request.user)
+    wishlist, _created = Wishlist.objects.get_or_create(user=request.user)
+
     if request.method == "POST":
         form = WishlistItemForm(request.POST)
         if form.is_valid():
@@ -320,7 +266,6 @@ def add_to_wishlist(request, release_id):
                     'notes': form.cleaned_data['notes'],
                 }
             )
-
             profile_url = reverse('user_profile')
             messages.success(
                 request,
@@ -338,3 +283,102 @@ def add_to_wishlist(request, release_id):
                 "There was a problem adding the item to your wishlist"
             )
     return redirect('release_details', release_id=release_id)
+
+
+def product_management(request):
+    """
+    List all releases and handle adding a new release.
+    """
+    releases = Releases.objects.all().order_by('id')
+    if request.method == 'POST':
+        form = ReleaseForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Release added successfully")
+            return redirect('product_management')
+    else:
+        form = ReleaseForm()
+    return render(
+        request,
+        'releases/product_management.html',
+        {
+            'releases': releases,
+            'form': form,
+        }
+    )
+
+
+def edit_release(request, release_id: int):
+    """
+    Edit an existing release.
+    """
+    release = get_object_or_404(Releases, pk=release_id)
+    if request.method == 'POST':
+        form = ReleaseForm(request.POST, request.FILES, instance=release)
+        if form.is_valid():
+            form.save()
+            messages.success(request, "Release updated successfully")
+            return redirect('product_management')
+    else:
+        form = ReleaseEditForm(instance=release)
+    return render(
+        request,
+        'releases/edit_release.html',
+        {
+            'form': form,
+            'release': release,
+        }
+    )
+
+
+def delete_release(request, release_id: int):
+    """
+    Delete a release after confirmation.
+    """
+    release = get_object_or_404(Releases, pk=release_id)
+    if request.method == 'POST':
+        release.delete()
+        messages.success(request, "Release deleted successfully")
+        return redirect('product_management')
+    return render(
+        request,
+        'releases/delete_release.html',
+        {'release': release}
+    )
+
+
+def manage_images(request, release_id: int):
+    """
+    Manage images associated with a release.
+    """
+    release = get_object_or_404(Releases, pk=release_id)
+    images = release.images.all()
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            image = form.save(commit=False)
+            image.title = release
+            image.save()
+            messages.success(request, "Image added successfully.")
+            return redirect('manage_images', release_id=release.id)
+    else:
+        form = ImageForm()
+
+    return render(request, 'releases/manage_images.html', {
+        'release': release,
+        'images': images,
+        'form': form,
+    })
+
+
+def delete_image(request, image_id: int):
+    """
+    Delete an image associated with a release.
+    """
+    image = get_object_or_404(Images, pk=image_id)
+    release_id = image.title.id
+    if request.method == 'POST':
+        image.delete()
+        messages.success(request, "Image deleted successfully")
+    return redirect('manage_images', release_id=release_id)

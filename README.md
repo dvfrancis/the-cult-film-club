@@ -709,6 +709,10 @@ Click to view the [desktop wireframes](documentation/wireframes/wireframes-deskt
 
 ### Surface
 
+For this final project, I chose a minimal design approach, using a limited colour palette, a single font, and a clean, crisp layout. This aesthetic reflects the cult ethos of the website, allowing the content and unique character of each film to stand out without distraction.
+
+The restrained use of colour and simple visual elements create a focused, user-friendly experience that feels both modern and timeless. By prioritising clarity and simplicity, the site remains accessible and visually appealing, ensuring that users can easily browse, discover, and appreciate the curated collection of cult films that form 'The Cult Film Club'.
+
 #### Colours
 
 <details>

@@ -54,12 +54,12 @@ def add_to_cart(request, item_id):
     if item_id in list(cart.keys()):
         cart[item_id] += quantity
         messages.success(
-            request, f'Amended {release.title} quantity to {cart[item_id]}'
+            request, f'Amended "{release.title}" quantity to {cart[item_id]}'
         )
     else:
         cart[item_id] = quantity
         messages.success(
-            request, f'Added {release.title} to your shopping cart'
+            request, f'Added "{release.title}" to your shopping cart'
         )
     request.session['cart'] = cart
     # --- Remove from wishlist if present ---
@@ -82,12 +82,12 @@ def amend_cart(request, item_id):
     if quantity > 0:
         cart[item_id] = quantity
         messages.success(
-            request, f'Amended {release.title} quantity to {cart[item_id]}'
+            request, f'Amended "{release.title}" quantity to {cart[item_id]}'
         )
     else:
         cart.pop(item_id)
         messages.success(
-            request, f'Removed {release.title} from your shopping cart'
+            request, f'Removed "{release.title}" from your shopping cart'
         )
     request.session['cart'] = cart
     return redirect(reverse('cart'))
@@ -101,7 +101,7 @@ def remove_from_cart(request, item_id):
     removed = cart.pop(item_id, None)
     if removed is not None:
         messages.success(
-            request, f'Removed {release.title} from your shopping cart'
+            request, f'Removed "{release.title}" from your shopping cart'
         )
         request.session['cart'] = cart
         response = {'success': True}

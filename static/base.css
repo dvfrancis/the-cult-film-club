@@ -359,13 +359,6 @@ input[type="number"] {
     display: flex;
 }
 
-.profile-photo {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
 /* Search box placeholder text colour */
 
 input[name='q']::placeholder {
@@ -407,7 +400,7 @@ input::placeholder {
     min-height: 3em;
 }
 
-/* Space Crispy Form fields out more */
+/* Crispy Form fields spacing */
 .form-group,
 .form-row,
 .form-check {
@@ -455,6 +448,7 @@ input[type="password"]:first-of-type {
     }
 }
 
+/* Wishlist */
 .wishlist-actions {
     min-width: 150px;
     max-width: 150px;
@@ -630,6 +624,15 @@ input[type="password"]:first-of-type {
     vertical-align: middle;
 }
 
+/* Responsive gap for social icons */
+.social-share.gap-3>* {
+    margin-right: 1rem;
+}
+
+.social-share.gap-3>*:last-child {
+    margin-right: 0;
+}
+
 /* Star Ratings */
 .star-rating {
     display: inline-block;
@@ -645,7 +648,7 @@ input[type="password"]:first-of-type {
     color: #ddd;
 }
 
-/* Section backgrounds */
+/* Release details section backgrounds */
 .section-bg-red {
     background-color: #fff5f5;
 }
@@ -654,7 +657,6 @@ input[type="password"]:first-of-type {
     background-color: #f8f9fa;
 }
 
-/* Section padding and rounded corners */
 .section-rounded {
     border-radius: 1rem;
     padding: 1.5rem;
@@ -666,19 +668,9 @@ input[type="password"]:first-of-type {
     letter-spacing: 1px;
 }
 
-/* Responsive gap for social icons */
-.social-share.gap-3>* {
-    margin-right: 1rem;
-}
-
-.social-share.gap-3>*:last-child {
-    margin-right: 0;
-}
-
 /* Pagination styles */
 .pagination .page-link {
     color: #ca0000;
-    /* Your site red */
     border-radius: 0.5rem;
     margin: 3px 5px;
     border: 1px solid #ca000022;
@@ -703,7 +695,7 @@ input[type="password"]:first-of-type {
     border-color: rgb(8, 8, 8, 0.5);
 }
 
-/* S T R I P E */
+/* Stripe */
 
 .StripeElement,
 .stripe-style-input {
@@ -762,7 +754,7 @@ input[type="password"]:first-of-type {
     height: 100%;
 }
 
-/* A L L A U T H */
+/* Allauth */
 
 .allauth-form-inner-content a {
     color: #080808 !important;
@@ -817,7 +809,7 @@ input[type="password"]:first-of-type {
     color: #17a2b8;
 }
 
-/* B O O T S T R A P  T O A S T S */
+/* Bootstrap toasts */
 
 .message-container {
     position: fixed;
@@ -851,7 +843,7 @@ input[type="password"]:first-of-type {
     border: 1px solid #000;
 }
 
-/* U T I L I T Y  C L A S S E S  C O P I E D  F R O M  B O O T S T R A P */
+/* Utility classes copied from Bootstrap */
 
 .arrow-primary {
     border-bottom-color: #007bff !important;

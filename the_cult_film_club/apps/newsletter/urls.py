@@ -1,14 +1,22 @@
 from django.urls import path
-from .views import newsletter_signup
 from . import views
 
 urlpatterns = [
-    path('', newsletter_signup, name='newsletter_signup'),
+    # Newsletter Signup Page
+    path(
+        '',
+        views.newsletter_signup,
+        name='newsletter_signup'
+    ),
+
+    # Unsubscribe via secure token
     path(
         'newsletter/unsubscribe/<uuid:token>/',
         views.unsubscribe,
         name='newsletter_unsubscribe'
     ),
+
+    # Request unsubscribe link via email
     path(
         'newsletter/unsubscribe-request/',
         views.newsletter_unsubscribe_request,

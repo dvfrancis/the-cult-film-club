@@ -26,82 +26,88 @@
 </head>
 
 <body>
-<header class="container-fluid fixed-top py-2">
-  <div class="container">
-    <div class="d-flex flex-column flex-xxl-row align-items-center justify-content-between text-center text-xxl-start w-100">
-      <div class="order-1 flex-shrink-0 mb-2 mb-xxl-0">
-        <a href="{% url 'home' %}" class="nav-link p-0 no-highlight">
-          <h1 class="logo-font text-white mb-0">The Cult Film Club</h1>
-        </a>
-      </div>
-      <div class="order-2 order-xxl-3 mt-2 mt-xxl-0 ms-0 ms-xxl-3 flex-shrink-0">
-        <form method="GET" action="{% url 'releases' %}">
-          <div class="input-group">
-            <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search the site">
-            <button class="btn black-btn border border-black rounded-0" type="submit">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </form>
-      </div>
-      <nav class="navbar navbar-expand-lg navbar-dark order-3 order-xxl-2 px-0 flex-grow-1 ms-0 ms-xxl-4">
-        <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
-          aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse justify-content-center" id="main-nav">
-          <ul class="navbar-nav flex-wrap align-items-center flex-xl-nowrap gap-0 px-0 mx-0">
-            <li class="nav-item px-1"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+  <header class="container-fluid fixed-top py-2">
+    <div class="container">
+      <div
+        class="d-flex flex-column flex-xxl-row align-items-center justify-content-between text-center text-xxl-start w-100">
+        <div class="order-1 flex-shrink-0 mb-2 mb-xxl-0">
+          <a href="{% url 'home' %}" class="nav-link p-0 no-highlight">
+            <h1 class="logo-font text-white mb-0">The Cult Film Club</h1>
+          </a>
+        </div>
+        <div class="order-2 order-xxl-3 mt-2 mt-xxl-0 ms-0 ms-xxl-3 flex-shrink-0">
+          <form method="GET" action="{% url 'releases' %}">
+            <div class="input-group">
+              <input class="form-control border border-black rounded-0" type="text" name="q"
+                placeholder="Search the site">
+              <button class="btn black-btn border border-black rounded-0" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+          </form>
+        </div>
+        <nav class="navbar navbar-expand-lg navbar-dark order-3 order-xxl-2 px-0 flex-grow-1 ms-0 ms-xxl-4">
+          <button class="navbar-toggler mx-auto" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+            aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-center" id="main-nav">
+            <ul class="navbar-nav flex-wrap align-items-center flex-xl-nowrap gap-0 px-0 mx-0">
+              <li class="nav-item px-1"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
               <li class="nav-item px-1 d-none d-lg-inline">
-    <i class="fa-solid fa-film"></i>
-  </li>
-            <li class="nav-item px-1"><a class="nav-link" href="{% url 'releases' %}">Films</a></li>
+                <i class="fa-solid fa-film"></i>
+              </li>
+              <li class="nav-item px-1"><a class="nav-link" href="{% url 'releases' %}">Films</a></li>
               <li class="nav-item px-1 d-none d-lg-inline">
-    <i class="fa-solid fa-film"></i>
-  </li>
-            <li class="nav-item dropdown px-1">
-              <a class="nav-link dropdown-toggle" href="#" id="sort-menu" data-bs-toggle="dropdown">Explore</a>
-              <div class="dropdown-menu text-center" aria-labelledby="sort-menu">
-                <a href="{% url 'releases' %}?sort=rating&direction=asc" class="dropdown-item">Rating (Low-High)</a>
-                <a href="{% url 'releases' %}?sort=rating&direction=desc" class="dropdown-item">Rating (High-Low)</a>
-                <a href="{% url 'releases' %}?sort=price&direction=asc" class="dropdown-item">Price (Low-High)</a>
-                <a href="{% url 'releases' %}?sort=price&direction=desc" class="dropdown-item">Price (High-Low)</a>
-                <a href="{% url 'releases' %}?sort=copies_available&direction=asc" class="dropdown-item">Copies (Low-High)</a>
-                <a href="{% url 'releases' %}?sort=copies_available&direction=desc" class="dropdown-item">Copies (High-Low)</a>
-                <a href="{% url 'releases' %}?sort=director_last&direction=asc" class="dropdown-item">Director (A–Z)</a>
-                <a href="{% url 'releases' %}?sort=director_last&direction=desc" class="dropdown-item">Director (Z–A)</a>
-              </div>
-            </li>
+                <i class="fa-solid fa-film"></i>
+              </li>
+              <li class="nav-item dropdown px-1">
+                <a class="nav-link dropdown-toggle" href="#" id="sort-menu" data-bs-toggle="dropdown">Explore</a>
+                <div class="dropdown-menu text-center" aria-labelledby="sort-menu">
+                  <a href="{% url 'releases' %}?sort=rating&direction=asc" class="dropdown-item">Rating (Low-High)</a>
+                  <a href="{% url 'releases' %}?sort=rating&direction=desc" class="dropdown-item">Rating (High-Low)</a>
+                  <a href="{% url 'releases' %}?sort=price&direction=asc" class="dropdown-item">Price (Low-High)</a>
+                  <a href="{% url 'releases' %}?sort=price&direction=desc" class="dropdown-item">Price (High-Low)</a>
+                  <a href="{% url 'releases' %}?sort=copies_available&direction=asc" class="dropdown-item">Copies
+                    (Low-High)</a>
+                  <a href="{% url 'releases' %}?sort=copies_available&direction=desc" class="dropdown-item">Copies
+                    (High-Low)</a>
+                  <a href="{% url 'releases' %}?sort=director_last&direction=asc" class="dropdown-item">Director
+                    (A–Z)</a>
+                  <a href="{% url 'releases' %}?sort=director_last&direction=desc" class="dropdown-item">Director
+                    (Z–A)</a>
+                </div>
+              </li>
               <li class="nav-item px-1 d-none d-lg-inline">
-    <i class="fa-solid fa-film"></i>
-  </li>
-            <li class="nav-item dropdown px-1">
-              <a class="nav-link dropdown-toggle" href="#" id="user-options" data-bs-toggle="dropdown">Account</a>
-              <div class="dropdown-menu border-0 text-center" aria-labelledby="user-options">
-                {% if request.user.is_authenticated %}
+                <i class="fa-solid fa-film"></i>
+              </li>
+              <li class="nav-item dropdown px-1">
+                <a class="nav-link dropdown-toggle" href="#" id="user-options" data-bs-toggle="dropdown">Account</a>
+                <div class="dropdown-menu border-0 text-center" aria-labelledby="user-options">
+                  {% if request.user.is_authenticated %}
                   {% if request.user.is_superuser %}
-                    <a href="{% url 'product_management' %}" class="dropdown-item">Product Management</a>
-                    <a href="{% url 'discount_codes_management' %}" class="dropdown-item">Discount Codes</a>
+                  <a href="{% url 'product_management' %}" class="dropdown-item">Product Management</a>
+                  <a href="{% url 'discount_codes_management' %}" class="dropdown-item">Discount Codes</a>
                   {% endif %}
                   <a href="{% url 'user_profile' %}" class="dropdown-item">My Profile</a>
                   <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-                {% else %}
+                  {% else %}
                   <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
                   <a href="{% url 'account_login' %}?next={% url 'user_profile' %}" class="dropdown-item">Login</a>
-                {% endif %}
-              </div>
-            </li>
-            <li class="nav-item px-1">
-              <a class="nav-link {% if total %}fw-bold{% endif %}" href="{% url 'cart' %}">
-                <i class="fa-solid fa-cart-shopping"></i>{% if total %} £{{ total|floatformat:2 }}{% endif %}
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+                  {% endif %}
+                </div>
+              </li>
+              <li class="nav-item px-1">
+                <a class="nav-link {% if total %}fw-bold{% endif %}" href="{% url 'cart' %}">
+                  <i class="fa-solid fa-cart-shopping"></i>{% if total %} £{{ total|floatformat:2 }}{% endif %}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
   {% if messages %}
   <div class="message-container">
@@ -127,37 +133,37 @@
     {% block content %}
     {% endblock %}
   </main>
-<footer class="text-light w-100 mt-5 py-3">
-  <div class="container px-3">
-    <div class="d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start gap-3 gap-lg-0">
-      <div class="d-flex flex-wrap justify-content-center justify-content-lg-start align-items-center gap-3">
-        <a href="{% url 'about' %}" class="text-light text-decoration-none">About</a>
-<i class="fa-solid fa-film"></i>
-        <a href="{% url 'contact_us' %}" class="text-light text-decoration-none">Contact</a>
-<i class="fa-solid fa-film"></i>
-        <a href="{% url 'newsletter_signup' %}" class="text-light text-decoration-none">Newsletter</a>
+  <footer class="text-light w-100 mt-5 py-3">
+    <div class="container px-3">
+      <div
+        class="d-flex flex-column flex-lg-row justify-content-between align-items-center text-center text-lg-start gap-3 gap-lg-0">
+        <div class="d-flex flex-wrap justify-content-center justify-content-lg-start align-items-center gap-3">
+          <a href="{% url 'about' %}" class="text-light text-decoration-none">About</a>
+          <i class="fa-solid fa-film"></i>
+          <a href="{% url 'contact_us' %}" class="text-light text-decoration-none">Contact</a>
+          <i class="fa-solid fa-film"></i>
+          <a href="{% url 'newsletter_signup' %}" class="text-light text-decoration-none">Newsletter</a>
+        </div>
+        <div class="d-flex justify-content-center justify-content-lg-start align-items-center gap-3">
+          <a href="https://instagram.com/" class="text-light" target="_blank" rel="noopener" aria-label="Instagram">
+            <i class="fab fa-instagram fa-2x"></i>
+          </a>
+          <a href="https://youtube.com/" class="text-light" target="_blank" rel="noopener" aria-label="YouTube">
+            <i class="fab fa-youtube fa-2x"></i>
+          </a>
+          <a href="https://bsky.app/" class="text-light" target="_blank" rel="noopener" aria-label="BlueSky">
+            <i class="fa-solid fa-cloud fa-2x"></i>
+          </a>
+          <a href="https://facebook.com/" class="text-light" target="_blank" rel="noopener" aria-label="Facebook">
+            <i class="fab fa-facebook fa-2x"></i>
+          </a>
+        </div>
+        <div class="text-center text-lg-end small">
+          <span class="d-block d-lg-inline me-lg-2">&copy; 2025 The Cult Film Club | All rights reserved.</span>
+        </div>
       </div>
-      <div class="d-flex justify-content-center justify-content-lg-start align-items-center gap-3">
-        <a href="https://instagram.com/" class="text-light" target="_blank" rel="noopener" aria-label="Instagram">
-          <i class="fab fa-instagram fa-2x"></i>
-        </a>
-        <a href="https://youtube.com/" class="text-light" target="_blank" rel="noopener" aria-label="YouTube">
-          <i class="fab fa-youtube fa-2x"></i>
-        </a>
-        <a href="https://bsky.app/" class="text-light" target="_blank" rel="noopener" aria-label="BlueSky">
-          <i class="fa-solid fa-cloud fa-2x"></i>
-        </a>
-        <a href="https://facebook.com/" class="text-light" target="_blank" rel="noopener" aria-label="Facebook">
-          <i class="fab fa-facebook fa-2x"></i>
-        </a>
-      </div>
-      <div class="text-center text-lg-end small">
-        <span class="d-block d-lg-inline me-lg-2">&copy; 2025 The Cult Film Club | All rights reserved.</span>
-      </div>
-
     </div>
-  </div>
-</footer>
+  </footer>
 
   {% block corejs %}
   <script src="https://kit.fontawesome.com/9a47a7f2a8.js" crossorigin="anonymous"></script>
@@ -165,7 +171,8 @@
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'base.js' %}"></script>
   {% endblock %}
-{{ rating_form.media }}
+  {{ rating_form.media }}
+  {% block extra_js %}{% endblock %}
 </body>
 
 </html>

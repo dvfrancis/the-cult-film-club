@@ -1,3 +1,4 @@
+// Utility function to get a cookie value by name (used for CSRF tokens)
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -13,8 +14,9 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Main DOMContentLoaded event for all interactive features
 document.addEventListener('DOMContentLoaded', function () {
-    // --- Filter dropdowns ---
+    // Filter dropdowns for releases page
     const allFiltersElem = document.getElementById('all-filters-data');
     if (allFiltersElem) {
         const allFilters = JSON.parse(allFiltersElem.textContent);
@@ -24,18 +26,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const decadeSelect = document.getElementById('decade-select');
         const resetBtn = document.getElementById('reset-filters-btn');
 
-        genreSelect.addEventListener('focus', updateDropdowns);
-        subgenreSelect.addEventListener('focus', updateDropdowns);
-        directorSelect.addEventListener('focus', updateDropdowns);
-        decadeSelect.addEventListener('focus', updateDropdowns);
-
-
+        // Dynamically update dropdown options based on current selections
         function updateDropdowns() {
             const genre = genreSelect.value;
             const subgenre = subgenreSelect.value;
             const director = directorSelect.value;
             const decade = decadeSelect.value;
-            // GENRES
+            // Populate genres
             const genres = [...new Set(
                 allFilters.filter(f =>
                     (!subgenre || f.subgenre === subgenre) &&
@@ -48,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (genres.length === 1) {
                 genreSelect.value = genres[0];
             }
-            // SUBGENRES
+            // Populate subgenres
             const subgenres = [...new Set(
                 allFilters.filter(f =>
                     (!genre || f.genre === genre) &&
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (subgenres.length === 1) {
                 subgenreSelect.value = subgenres[0];
             }
-            // DIRECTORS
+            // Populate directors
             const directors = [...new Set(
                 allFilters.filter(f =>
                     (!genre || f.genre === genre) &&
@@ -74,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (directors.length === 1) {
                 directorSelect.value = directors[0];
             }
-            // DECADES
+            // Populate decades
             const decades = [...new Set(
                 allFilters.filter(f =>
                     (!genre || f.genre === genre) &&
@@ -88,6 +85,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 decadeSelect.value = decades[0];
             }
         }
+
+        // Attach event listeners for dropdowns to update and submit filters
+        genreSelect.addEventListener('focus', updateDropdowns);
+        subgenreSelect.addEventListener('focus', updateDropdowns);
+        directorSelect.addEventListener('focus', updateDropdowns);
+        decadeSelect.addEventListener('focus', updateDropdowns);
 
         genreSelect.addEventListener('change', function () {
             document.getElementById('filter-form').submit();
@@ -110,11 +113,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('filter-form').submit();
         });
 
-        // Initial call to populate dropdowns
+        // Initial call to populate dropdowns on page load
         updateDropdowns();
     }
 
-    // --- Quantity controls ---
+    // Quantity controls for cart items
     function EnableDisableQuantityChange(itemId) {
         var input = document.getElementById(`id_qty_${itemId}`);
         if (!input) return;
@@ -128,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (decBtn) decBtn.disabled = minusDisabled;
         if (incBtn) incBtn.disabled = plusDisabled;
     }
+    // Attach listeners to quantity input fields
     document.querySelectorAll('.qty_input').forEach(function (input) {
         var itemId = input.getAttribute('data-item_id');
         EnableDisableQuantityChange(itemId);
@@ -135,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
             EnableDisableQuantityChange(itemId);
         });
     });
+    // Increment quantity button
     document.querySelectorAll('.increment-qty').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -147,6 +152,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     });
+    // Decrement quantity button
     document.querySelectorAll('.decrement-qty').forEach(function (btn) {
         btn.addEventListener('click', function (e) {
             e.preventDefault();
@@ -160,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Update quantity on click ---
+    // Update cart item quantity on click of update link
     document.querySelectorAll('.update-link').forEach(function (link) {
         link.addEventListener('click', function (e) {
             var form = this.previousElementSibling;
@@ -170,7 +176,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Remove item from cart and redirect to homepage if cart empty ---
+    // Remove item from cart and redirect to homepage if cart is empty
     document.querySelectorAll('.remove-item').forEach(function (link) {
         link.addEventListener('click', function (e) {
             var csrfToken = getCookie('csrftoken');
@@ -199,7 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Tooltip for quantity input ---
+    // Tooltip for quantity input validation
     function showTooltip(input, message) {
         let oldTip = input.parentElement.querySelector('.qty-tooltip');
         if (oldTip) oldTip.remove();
@@ -214,6 +220,7 @@ document.addEventListener('DOMContentLoaded', function () {
             tooltip.remove();
         }, 2000);
     }
+    // Listen for manual input and show tooltip if out of bounds
     document.querySelectorAll('.qty_input').forEach(function (input) {
         input.addEventListener('input', function () {
             var min = parseInt(this.getAttribute('min')) || 1;
@@ -229,7 +236,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // --- Show all Bootstrap toasts ---
+    // Show all Bootstrap toasts (notifications)
     document.querySelectorAll('.toast').forEach(function (toastEl) {
         var toast = new bootstrap.Toast(toastEl, {
             delay: 3000
@@ -237,7 +244,7 @@ document.addEventListener('DOMContentLoaded', function () {
         toast.show();
     });
 
-    // --- Update delivery option on change ---
+    // Update delivery option on change
     var deliverySelect = document.getElementById('delivery_option');
     if (deliverySelect) {
         deliverySelect.addEventListener('change', function () {
@@ -245,7 +252,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // --- Stripe Payment Logic ---
+    // Stripe Payment Logic for checkout
     var stripe_public_key_elem = document.getElementById('id_stripe_public_key');
     var client_secret_elem = document.getElementById('id_client_secret');
     if (stripe_public_key_elem && client_secret_elem) {
@@ -287,7 +294,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Helper for polling order and redirecting
+        // Helper function to poll for order and redirect to success page
         function pollForOrderAndRedirectByPid(pid, attempts = 0, maxAttempts = 30) {
             fetch(`/checkout/get-order-number-by-pid/${pid}/`)
                 .then(response => response.json())
@@ -314,6 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 });
         }
+        // Stripe payment form submission handler
         var form = document.getElementById('payment-form');
         form.addEventListener('submit', function (ev) {
             ev.preventDefault();
@@ -399,14 +407,13 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-});
 
-// Lightbox modal for release details
-document.addEventListener('DOMContentLoaded', function () {
+    // Lightbox modal for release details
     var lightboxModal = document.getElementById('lightboxModal');
     var lightboxImage = document.getElementById('lightboxImage');
     var carouselImages = document.querySelectorAll('[data-bs-target="#lightboxModal"]');
 
+    // Attach click event to carousel images to show in lightbox
     carouselImages.forEach(function (imgLink) {
         imgLink.addEventListener('click', function (e) {
             e.preventDefault();
@@ -417,6 +424,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    // Clear lightbox image when modal is closed
     if (lightboxModal) {
         lightboxModal.addEventListener('hidden.bs.modal', function () {
             if (lightboxImage) {

@@ -13,15 +13,32 @@ from the_cult_film_club.apps.releases.models import Releases, Rating, Images
 from the_cult_film_club.apps.account.models import Wishlist, WishlistItem
 from the_cult_film_club.apps.account.forms import WishlistItemForm
 from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
-from django.core.exceptions import PermissionDenied
 from functools import wraps
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.views import redirect_to_login
 
 
 def superuser_required(view_func):
+    """
+    Decorator for views that ensures the user is both authenticated and a
+    superuser.
+
+    - If the user is not authenticated, redirects them to the login page.
+    - If the user is authenticated but not a superuser, raises a
+      PermissionDenied (403) error.
+    - If the user is a superuser, proceeds to the view as normal.
+
+    Example usage:
+        @superuser_required
+        def my_view(request):
+            ...
+
+    Returns:
+        function: Wrapped view with access control applied.
+    """
     @wraps(view_func)
     def _wrapped_view(request, *args, **kwargs):
         if not request.user.is_authenticated:
-            from django.contrib.auth.views import redirect_to_login
             return redirect_to_login(request.get_full_path())
         if not request.user.is_superuser:
             raise PermissionDenied

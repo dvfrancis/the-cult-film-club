@@ -9,7 +9,6 @@ from django.http import JsonResponse
 from decimal import Decimal
 import json
 import stripe
-
 from the_cult_film_club.apps.releases.models import Releases
 from the_cult_film_club.apps.cart.models import DiscountCode, Order
 from the_cult_film_club.apps.cart.forms import DiscountCodeForm, OrderForm
@@ -17,6 +16,20 @@ from the_cult_film_club.apps.account.models import (
     Profile, Address, Wishlist, WishlistItem
 )
 from .contexts import purchases
+from django.core.exceptions import PermissionDenied
+from functools import wraps
+
+
+def superuser_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            from django.contrib.auth.views import redirect_to_login
+            return redirect_to_login(request.get_full_path())
+        if not request.user.is_superuser:
+            raise PermissionDenied
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
 
 
 def shopping_cart(request):
@@ -473,6 +486,7 @@ def get_order_number_by_pid(request, pid):
         return JsonResponse({'order_number': None})
 
 
+@superuser_required
 def discount_codes_management(request):
     """
     View and add discount codes (admin-style management).
@@ -499,6 +513,7 @@ def discount_codes_management(request):
     })
 
 
+@superuser_required
 def edit_discount_code(request, code_id):
     """
     Edit an existing discount code.
@@ -525,6 +540,7 @@ def edit_discount_code(request, code_id):
     })
 
 
+@superuser_required
 def delete_discount_code(request, code_id):
     """
     Confirm and delete a discount code.

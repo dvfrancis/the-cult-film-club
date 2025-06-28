@@ -13,6 +13,20 @@ from the_cult_film_club.apps.releases.models import Releases, Rating, Images
 from the_cult_film_club.apps.account.models import Wishlist, WishlistItem
 from the_cult_film_club.apps.account.forms import WishlistItemForm
 from .forms import ReleaseForm, ReleaseEditForm, ImageForm, RatingForm
+from django.core.exceptions import PermissionDenied
+from functools import wraps
+
+
+def superuser_required(view_func):
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            from django.contrib.auth.views import redirect_to_login
+            return redirect_to_login(request.get_full_path())
+        if not request.user.is_superuser:
+            raise PermissionDenied
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
 
 
 def releases(request):
@@ -285,6 +299,7 @@ def add_to_wishlist(request, release_id: int):
     return redirect('release_details', release_id=release_id)
 
 
+@superuser_required
 def product_management(request):
     """
     List all releases and handle adding a new release.
@@ -308,6 +323,7 @@ def product_management(request):
     )
 
 
+@superuser_required
 def edit_release(request, release_id: int):
     """
     Edit an existing release.
@@ -331,6 +347,7 @@ def edit_release(request, release_id: int):
     )
 
 
+@superuser_required
 def delete_release(request, release_id: int):
     """
     Delete a release after confirmation.
@@ -347,6 +364,7 @@ def delete_release(request, release_id: int):
     )
 
 
+@superuser_required
 def manage_images(request, release_id: int):
     """
     Manage images associated with a release.
@@ -372,6 +390,7 @@ def manage_images(request, release_id: int):
     })
 
 
+@superuser_required
 def delete_image(request, image_id: int):
     """
     Delete an image associated with a release.

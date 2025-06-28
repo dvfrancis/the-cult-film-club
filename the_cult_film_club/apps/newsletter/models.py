@@ -4,8 +4,8 @@ import uuid
 
 class NewsletterSignup(models.Model):
     """
-    Stores a single newsletter subscriber.
-    Includes email, optional genre preferences, and an unsubscribe token.
+    Stores newsletter subscriber details such as
+    email, optional genre preferences, and an unsubscribe token.
     """
     email = models.EmailField(
         unique=True,

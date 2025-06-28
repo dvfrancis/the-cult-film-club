@@ -554,12 +554,10 @@ This is a custom model that extends Django's User model by adding additional fie
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='profile'`
+|User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='profile'`
 |Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank=True, null=True`
-|Address|Foreign|`address`|CharField|*Linked to the `Address` model, in a Many-to-One relationship* `on_delete=models.CASCADE, related_name='profile', default=0, null=True`.
-|Loyalty Points|Key|`loyalty_points`|IntegerField|`default=0, blank=False, null=False`
 
-Meta classes used `verbose_name = "Profile", verbose_name_plural = "profiles"`
+Meta classes used `verbose_name = "Profile", verbose_name_plural = "Profiles"`
 
 3. **Address**
 
@@ -567,16 +565,18 @@ This is a custom model that stores the user's addresses.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='address'`
-|First Line|Key|`first_line`|CharField|`max_length=100, blank=False, null=False`
+|User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='address'`
+|First Line|Key|`first_line`|CharField|`max_length=100`
 |Second Line|Key|`second_line`|CharField|`max_length=100, blank=True, null=True`
-|City|Key|`city`|CharField|`max_length=50, blank=False, null=False`
-|County|Key|`county`|CharField|`max_length=50, blank=False, null=False`
-|Postcode|Key|`postcode`|CharField|`max_length=10, blank=False, null=False`
-|Country|Key|`country`|CharField|`max_length=50, blank=False, null=False`
-|Default Address|Key|`default_address`|BooleanField|`default=False, blank=False, null=False`
+|City|Key|`city`|CharField|`max_length=50`
+|County|Key|`county`|CharField|`max_length=50, blank=True, null=True`
+|Postcode|Key|`postcode`|CharField|`max_length=10`
+|Country|Key|`country`|CountryField|
+|Phone Number|Key|`phone_number`|CharField|`max_length=20, blank=True, null=True`
+|Default Address|Key|`default_address`|BooleanField|`default=False, blank=True, null=False`
+|Label|Key|`label`|CharField|`max_length=15, blank=False, help_text="For example, 'Home' or 'Work'"`
 
-Custom class method sets all other addresses for this user to `default_address=False` whenever any address's `default_address` is set to True.
+`save` is a custom method that sets all other addresses for this user to `default_address=False` whenever any address's `default_address` is set to True.
 
 Meta classes used `verbose_name = "Address", verbose_name_plural = "Addresses"`
 
@@ -586,10 +586,10 @@ This is a custom model that stores the user's wishlist items.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='wishlist'`
+|User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='wishlists'`
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, `through='WishlistItem'`, in a many-to-many relationship* `related_name='wishlists'`
 
-Meta classes used `verbose_name = "Wishlist", verbose_name_plural = "Wishlists"`
+Meta classes used `verbose_name = "Wishlist", verbose_name_plural = "Wishlists", constraints = [UniqueConstraint(fields=['user'], name='unique_user_wishlist')]`
 
 5. **WishlistItem**
 
@@ -600,14 +600,16 @@ This is a custom model that acts as an intermediate between the `Wishlist` and `
 |Wishlist|Foreign|`wishlist`|CharField|*Linked to the `Wishlist` model, in a many-to-many relationship* `on_delete=models.CASCADE`
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete=models.CASCADE`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
-|Notes|Key|`notes`|TextField|`max_length=1000, blank=True, null=True`
-|Priority|Key|`priority`|CharField|`max_length=10, choices='High', 'Medium', or 'Low'`
+|Notes|Key|`notes`|CKEditor5Field|`max_length=1000, blank=True, null=True`
+|Priority|Key|`priority`|CharField|`max_length=10, choices=PriorityLevel.choices, default=PriorityLevel.MEDIUM`
 |Purchased?|Key|`is_purchased`|BooleanField|`default=False, verbose_name='Purchased'`
 
-`class PriorityLevel(Enum):
-    HIGH = "High"
-    MEDIUM = "Medium"
-    LOW = "Low"`
+`class PriorityLevel(models.TextChoices):
+    HIGH = "High", "High"
+    MEDIUM = "Medium", "Medium"
+    LOW = "Low", "Low"`
+
+Meta classes used `verbose_name = "Wishlist Item", verbose_name_plural = "Wishlist Items"`
 
 6. **Releases**
 
@@ -615,19 +617,18 @@ This is a custom model that stores details of all films being sold on the site.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Image|Foreign|`image`|CloudinaryField|*Linked to the `Images` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases', blank=True, null=True`
 |Release Title|Key|`title`|CharField|`max_length=100, blank=False, null=False`
 |Release Date|Key|`release_date`|DateField|`blank=False, null=False`
 |Director|Key|`director`|CharField|`max_length=100, blank=True, null=True`
-|Description|Key|`description`|TextField|`max_length=1000, blank=True, null=True`
+|Description|Key|`description`|CKEditor5Field|`max_length=1000, blank=True, null=True`
 |Genre|Key|`genre`|CharField|`max_length=50, blank=True, null=True`
 |Subgenre|Key|`subgenre`|CharField|`max_length=50, blank=True, null=True`
-|Resolution|Key|`resolution`|CharField|`max_length=5, blank=True, null=True`
-|Special Features|Key|`special_features`|TextField|`max_length=2000, blank=True, null=True`
+|Resolution|Key|`resolution`|CharField|`max_length=10, blank=True, null=True`
+|Special Features|Key|`special_features`|CKEditor5Field|`max_length=2000, blank=True, null=True`
 |Edition|Key|`edition`|CharField|`max_length=50, blank=True, null=True`
-|Censor Status|Key|`censor_status`|CharField|`max_length=10, blank=True, null=True`
-|Packaging|Key|`packaging`|CharField|`max_length=50, blank=True, null=True`
-|Copies Available|Key|`copies_available`|IntegerField|`blank=True, null=True`
+|Censor Status|Key|`censor_status`|CharField|`max_length=500, blank=True, null=True`
+|Packaging|Key|`packaging`|CharField|`max_length=500, blank=True, null=True`
+|Copies Available|Key|`copies_available`|IntegerField|`blank=False, null=False, default=0`
 |Price|Key|`price`|DecimalField|`max_digits=10, decimal_place=2, blank=False, null=False`
 
 `average_rating` is an additional property calculated from entries of the Rating model, and added to `Releases` using the `@property` syntax.
@@ -642,11 +643,11 @@ This is a custom model that stores film ratings.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Username|Foreign|`username`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='rating'`
+|User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='ratings'`
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='ratings'`
-|Rating|Key|`rating`|IntegerField|`blank=False, null=False`
-|Review|Key|`review`|TextField|`max_length=1500, blank=True, null=True`
-|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
+|Rating|Key|`rating`|IntegerField|`validators=[MinValueValidator(1), MaxValueValidator(5)], blank=False, null=False`
+|Review|Key|`review`|CKEditorField|`max_length=1500, blank=True, null=True`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True, blank=False, null=False`
 
 Meta classes used `verbose_name = "Rating", verbose_name_plural = "Ratings", unique_together = (('user', 'title'),)`
 
@@ -658,27 +659,99 @@ This is a custom model that stores images related to films.
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases'`
 |Image|Key|`image`|CloudinaryField|`default='placeholder', blank=True, null=False`
-|Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=False`
-|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
+|Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=True`
+|Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True, blank=False, null=False`
 |Featured Image?|Key|`is_featured`|BooleanField|`verbose_name='Featured Image', default=False, blank=False, null=False`
 
 `save` is a custom method to ensure each release only has one featured image, and that it is set as the default displayed when viewing releases via `releases.html` and `release_details`
 
 Meta classes used `verbose_name = "Image", verbose_name_plural = "Images"`
 
-9. **Contact**
+9. **Order**
+
+This is a custom model representing a customer's order.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Order Number|Key|`order_number`|CharField|`max_length=32, null=False, editable=False, unique=True, help_text="Unique order identifier`
+|User Profile|Foreign|`user_profile`|CharField|*Linked to the `Profile` model, in a many-to-one relationship* `on_delete=models.SET_NULL, null=True, blank=True, related_name='orders', help_text="Profile of user who placed the order (optional)"`
+|Full Name|Key|`full_name`|CharField|`max_length=50, null=False, blank=False`
+|Email|Key|`email`|EmailField|`max_length=254, null=False, blank=False`
+|Phone Number|Key|`phone_number`|CharField|`max_length=20, null=False, blank=False`
+|Country|Key|`country`|CountryField|`blank_label="Country *", null=False, blank=False
+|Postcode|Key|`postcode`|CharField|`max_length=20, null=True, blank=True`
+|Town / City|Key|`town_or_city`|CharField|`max_length=40, null=False, blank=False`
+|Street Address 1|Key|`street_address1`|CharField|`max_length=80, null=False, blank=False`
+|Street Address 2|Key|`street_address2`|CharField|`max_length=80, null=False, blank=False`
+|County|Key|`county`|CharField|`max_length=80, null=True, blank=True`
+|Date|Key|`date`|DateTimeField|`auto_now_add=True`
+|Delivery Cost|Key|`delivery_cost`|DecimalField|`max_digits=6, decimal_places=2, null=False, default=Decimal('0.00')`
+|Subtotal|Key|`subtotal`|DecimalField|`max_digits=10, decimal_places=2, null=False, default=Decimal('0.00')`
+|Total|Key|`total`|DecimalField|`max_digits=10, decimal_places=2, null=False, default=Decimal('0.00')`
+|Original Bag|Key|`original_bag`|TextField|`null=False, blank=False, default=''`
+|Stripe PID|Key|`stripe_pid`|CharField|`max_length=254, null=False, blank=False, default='', unique=True, help_text="Stripe Payment Intent ID"`
+|Discount|Key|`discount`|DecimalField|`max_digits=6, decimal_places=2, default=Decimal('0.00'), help_text="Discount amount subtracted form total"`
+|Discount Code|Key|`discount_code`|CharField|`max_length=50, blank=False, null=True, help_text="Code for applied discount (if any)"`
+
+`_generate_order_number` is a private custom method for automatically generating a random order number.
+
+`update_total` is a custom method for updating subtotal / delivery costs / total when items added to the order.
+
+`save` is a custom method for overriding save to generate an order number, if not set.
+
+10. **OrderLineItem**
+
+This is a custom model that acts as an intermediate between the `Order` and `Release` models, and stores additional information about each item added to an order.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Order|Foreign|`order`|CharField|*Linked to the `Order` model, in a many-to-one relationship* `null=False, blank=False, on_delete=models.CASCADE, related_name='lineitems'`
+|Release|Foreign|`release`|CharField|*Linked to the `Release` model, in a many-to-one relationship* `null=False, blank=False, on_delete=models.CASCADE`
+|Quantity|Key|`quantity`|PositiveIntegerField|`null=False, blank=False, default=1, help_text="Quantity of this release in the order"
+|LineItem Total|Key|`lineitem_total`|DecimalField|`max_digits=6, decimal_places=2, null=False, blank=False, editable-=False, help_text="Total price for this line item (price * quantity)"`
+
+`save` is a custom method for calculating the lineitem total and updating the related order total on save.
+
+11. **DiscountCode**
+
+This is a custom model that stores discount codes.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Code|Key|`code`|CharField|`max_length=50, unique=True`
+|Discount Percentage|Foreign|`percent`|PositiveIntegerField|`help_text="Discount percent (For example, 10 fo 10%)"`
+|Valid From|Key|`valid_from`|DateField|`help_text="Start date (DD-MM-YYYY)"`
+|Valid To|Key|`valid_to`|DateField|`help_text="End date (DD-MM-YYYY)"`
+|Is It Active?|Key|`is_active`|BooleanField|`default=True`
+
+`is_valid` is a custom method for calculating if the discount code is currently valid.
+
+12. **Contact**
 
 This is a custom model that stores messages sent via the site contact form.
 
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
-|Created|Key|`created`|DateTimeField|`auto_now_add=True`
-|First Name|Key|`first_name`|CharField|`max_length=50, blank=False, null=False`
-|Last Name|Key|`last_name`|CharField|`max_length=50, blank=False, null=False`
-|Email|Key|`email`|EmailField|`validators=[validate_email], blank=False, null=False`
-|Message|Key|`message`|TextField|`max_length=1000, blank=True, null=False`
+|Created|Key|`created`|DateTimeField|`auto_now_add=True, help_text="Timestamp when the message was created"`
+|First Name|Key|`first_name`|CharField|`max_length=50, blank=False, null=False, help_text="First name of the sender"`
+|Last Name|Key|`last_name`|CharField|`max_length=50, blank=False, null=False, help_text="Last name of the sender"`
+|Email|Key|`email`|EmailField|`validators=[validate_email], blank=False, null=False, help_text="Email address of the sender"`
+|Message|Key|`message`|CKEditor5Field|`max_length=1000, blank=True, null=False, help_text="Message content"`
 
-Meta classes used `verbose_name = "Message", verbose_name_plural = "Messages"`
+Meta classes used `verbose_name = "Message", verbose_name_plural = "Messages", ordering = ['-created']`
+
+13. **Newsletter**
+
+This is a custom model that stores email subscriber details.
+
+|Description|Key|Name|Field Type|Validation|
+| ------------- | ------------- | ------------- | ------------- | ------------- |
+|Email|Key|`email`|EmailField|`unique=True, help_text="Subscriber's email address"`
+|Genres|Key|`genres`|CharField|`max_length=500, blank=True, help_text="Comma-separated list of preferred genres"`
+|Joining Date|Key|`date_joined`|DateTimeField|`auto_now_add=True, help_text="Timestamp when the subscription was created"`
+|Unsubscribe Token|Key|`unsubscribe_token`|UUIDField|`default=uuid.uuid4, editable=False, unique=True, help_text="Token used to securely unsubscribe via email link"`
+
+Meta classes used `verbose_name = "Subscriber", verbose_name_plural = "Subscribers", ordering = ['-date_joined']`
 
 #### C R U D Fulfilment
 

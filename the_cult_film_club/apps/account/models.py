@@ -23,11 +23,6 @@ class Profile(models.Model):
         blank=True,
         null=False
     )
-    # Note: This ManyToMany is likely redundant since Address has a FK to User.
-    address = models.ManyToManyField(
-        'Address',
-        related_name="profile"
-    )
 
     def __str__(self):
         return (

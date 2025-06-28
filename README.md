@@ -536,7 +536,7 @@ Routes through the site can be compulsory or optional, as shown on the user flow
 
 #### Data Models
 
-1. **User**
+1. **Django User Model**
 
 Django's User model was used for the creation of user accounts (and this is further extended by Profile).
 
@@ -719,7 +719,7 @@ This is a custom model that stores discount codes.
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Code|Key|`code`|CharField|`max_length=50, unique=True`
-|Discount Percentage|Foreign|`percent`|PositiveIntegerField|`help_text="Discount percent (For example, 10 fo 10%)"`
+|Discount Percentage|Key|`percent`|PositiveIntegerField|`help_text="Discount percent (For example, 10 fo 10%)"`
 |Valid From|Key|`valid_from`|DateField|`help_text="Start date (DD-MM-YYYY)"`
 |Valid To|Key|`valid_to`|DateField|`help_text="End date (DD-MM-YYYY)"`
 |Is It Active?|Key|`is_active`|BooleanField|`default=True`

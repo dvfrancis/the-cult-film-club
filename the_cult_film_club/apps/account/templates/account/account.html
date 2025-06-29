@@ -50,8 +50,8 @@
                                 <label for="address-select" class="form-label small">Select an address to edit:</label>
                                 <select name="address" id="address-select" class="form-select form-select-sm mb-2"
                                     onchange="this.form.submit()">
-                                    <option value="new" {% if not selected_address %}selected{% endif %}>-- Add an
-                                        address --</option>
+                                    <option value="new" {% if not selected_address %}selected{% endif %}>Add an
+                                        address</option>
                                     {% for address in addresses %}
                                     <option value="{{ address.id }}"
                                         {% if selected_address and address.id == selected_address.id %}selected{% endif %}>
@@ -68,16 +68,19 @@
                                 {% else %}
                                 <input type="hidden" name="address" value="">
                                 {% endif %}
-                                <div class="btn-group w-100" role="group">
-                                    <button type="submit" name="add_address" class="btn btn-outline-black btn-sm"
-                                        {% if selected_address %}disabled{% endif %}>
-                                        Add
-                                    </button>
-                                    <button type="submit" name="update_address" class="btn black-btn btn-sm"
+                                <div class="d-flex w-100" role="group">
+                                    <span data-bs-toggle="tooltip" title="Select 'Add an address' to enable this button"
+                                        class="flex-fill">
+                                        <button type="submit" name="add_address" class="btn black-btn btn-sm w-100"
+                                            {% if selected_address %}disabled{% endif %}>Add
+                                        </button>
+                                    </span>
+                                    <button type="submit" name="update_address" class="btn black-btn btn-sm flex-fill"
                                         {% if not selected_address %}disabled{% endif %}>
                                         Update
                                     </button>
-                                    <button type="submit" name="delete_address" class="btn btn-outline-black btn-sm"
+                                    <button type="submit" name="delete_address"
+                                        class="btn btn-outline-black btn-sm flex-fill"
                                         {% if not selected_address %}disabled{% endif %}
                                         onclick="return confirm('Are you sure you want to delete this address?');">
                                         Delete

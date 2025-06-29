@@ -116,7 +116,6 @@ def releases(request):
             )
             return redirect(reverse("home"))
         search_filter = (
-            Q(image__caption__icontains=query) |
             Q(title__icontains=query) |
             Q(release_date__icontains=query) |
             Q(director__icontains=query) |

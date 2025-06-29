@@ -8,7 +8,7 @@ if os.path.isfile("env.py"):
     import env  # noqa
 
 # Debug mode (should be False in production)
-DEBUG = False
+DEBUG = True
 
 # Email backend configuration for sending emails via Fastmail SMTP
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

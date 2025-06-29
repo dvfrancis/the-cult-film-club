@@ -40,9 +40,20 @@ class AccountSignupForm(SignupForm):
         required=True,
         widget=CountrySelectWidget(attrs={'placeholder': 'Country'})
     )
-    phone_number = forms.CharField(
-        max_length=20, required=False,
-        widget=forms.TextInput(attrs={'placeholder': 'Phone number'})
+    phone_number = forms.RegexField(
+        regex=r'^\d+$',
+        max_length=20,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Phone number',
+            'inputmode': 'numeric',
+            'pattern': '[0-9]*',
+            'type': 'tel',
+            'title': 'Numbers only (no spaces or symbols)'
+        }),
+        error_messages={
+            'invalid': 'Enter a valid phone number (numbers only).'
+        }
     )
 
     def save(self, request):
@@ -71,7 +82,6 @@ class AccountSignupForm(SignupForm):
             country=self.cleaned_data.get('country'),
             default_address=True
         )
-        profile.address.add(address)
 
         return user
 

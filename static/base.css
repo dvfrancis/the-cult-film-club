@@ -362,11 +362,11 @@ input[type="number"] {
 /* Search box placeholder text colour */
 
 input[name='q']::placeholder {
-    color: #aab7c4;
+    color: #080808!important;
 }
 
 input::placeholder {
-    color: rgb(170, 183, 196, 0.75) !important;
+    color: #080808 !important;
 }
 
 /* Header menus */
@@ -721,7 +721,7 @@ input[type="password"]:first-of-type {
 }
 
 .stripe-style-input::placeholder {
-    color: #aab7c4;
+    color: #080808;
 }
 
 .fieldset-label {
@@ -756,13 +756,15 @@ input[type="password"]:first-of-type {
 
 /* Allauth */
 
+
 .allauth-form-inner-content a {
-    color: #080808 !important;
+    color: #17a2b8;
 }
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
-    color: #6c757d;
+    margin-bottom: 1.5rem;
+    color: #080808;
 }
 
 .allauth-form-inner-content input {
@@ -775,7 +777,7 @@ input[type="password"]:first-of-type {
 }
 
 .allauth-form-inner-content input::placeholder {
-    color: #aab7c4;
+    color: #080808;
 }
 
 .allauth-form-inner-content button,
@@ -803,10 +805,6 @@ input[type="password"]:first-of-type {
     color: #fff;
     background-color: #080808;
     border-color: #080808;
-}
-
-.allauth-form-inner-content a {
-    color: #17a2b8;
 }
 
 /* Bootstrap toasts */

@@ -1,4 +1,5 @@
 from django import forms
+from django.utils import timezone
 from .models import Order, DiscountCode
 
 
@@ -69,19 +70,30 @@ class DiscountCodeForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         """
-        Ensure date input formats are consistent.
+        Ensure date input formats are consistent and set min date for
+        frontend validation.
         """
         super().__init__(*args, **kwargs)
+        today = timezone.now().date().isoformat()
         for field_name in ['valid_from', 'valid_to']:
             self.fields[field_name].input_formats = ['%Y-%m-%d']
+            self.fields[field_name].widget.attrs['min'] = today
 
     def clean(self):
-        """
-        Validate that valid_to date is not before valid_from date.
-        """
         cleaned_data = super().clean()
         valid_from = cleaned_data.get('valid_from')
         valid_to = cleaned_data.get('valid_to')
+        today = timezone.now().date()
 
+        if valid_from and valid_from < today:
+            self.add_error(
+                'valid_from',
+                "The start date cannot be in the past"
+            )
+        if valid_to and valid_to < today:
+            self.add_error('valid_to', "The end date cannot be in the past")
         if valid_from and valid_to and valid_to < valid_from:
-            self.add_error('valid_to', "End date cannot be before start date.")
+            self.add_error(
+                'valid_to',
+                "The end date cannot be before the start date"
+            )

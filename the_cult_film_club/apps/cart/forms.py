@@ -17,6 +17,14 @@ class OrderForm(forms.ModelForm):
             'town_or_city', 'postcode', 'country',
             'county',
         )
+        widgets = {
+            'full_name': forms.TextInput(attrs={'required': True}),
+            'email': forms.EmailInput(attrs={'required': True}),
+            'street_address1': forms.TextInput(attrs={'required': True}),
+            'town_or_city': forms.TextInput(attrs={'required': True}),
+            'postcode': forms.TextInput(attrs={'required': True}),
+            'country': forms.Select(attrs={'required': True}),
+        }
 
     def __init__(self, *args, **kwargs):
         """

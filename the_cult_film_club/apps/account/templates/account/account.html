@@ -29,8 +29,7 @@
                             {% endif %}
                             <form method="post" enctype="multipart/form-data" class="mb-4">
                                 {% csrf_token %}
-                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">Upload Profile
-                                    Photo</label>
+                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">Upload your profile photo</label>
                                 {{ photo_form.photograph }}
                                 <div class="form-text text-muted mb-2">
                                     Accepts BMP, JPG, GIF, PNG, WebP | Max size: 5MB

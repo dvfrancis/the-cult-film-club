@@ -116,7 +116,7 @@ class AddressForm(forms.ModelForm):
         model = Address
         fields = [
             'label', 'first_line', 'second_line', 'city', 'county',
-            'postcode', 'phone_number', 'default_address'
+            'postcode', 'country', 'phone_number', 'default_address'
         ]
         widgets = {
             'label': forms.TextInput(attrs={'placeholder': 'Address Label'}),
@@ -129,6 +129,9 @@ class AddressForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'county': forms.TextInput(attrs={'placeholder': 'County'}),
             'postcode': forms.TextInput(attrs={'placeholder': 'Postcode'}),
+            'country': CountrySelectWidget(
+                attrs={'placeholder': 'Country'}
+            ),
             'phone_number': forms.TextInput(
                 attrs={'placeholder': 'Phone number'}
             ),

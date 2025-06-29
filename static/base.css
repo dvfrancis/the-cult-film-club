@@ -362,7 +362,7 @@ input[type="number"] {
 /* Search box placeholder text colour */
 
 input[name='q']::placeholder {
-    color: #080808!important;
+    color: #080808 !important;
 }
 
 input::placeholder {
@@ -666,6 +666,18 @@ input[type="password"]:first-of-type {
 /* Title accent */
 .logo-font.text-danger {
     letter-spacing: 1px;
+}
+
+.smallprint {
+    font-size: 1rem;
+    color: #fafafa;
+    text-decoration: none;
+}
+
+.smallprint:hover {
+    text-decoration: none;
+    color: #753da2;
+
 }
 
 /* Pagination styles */

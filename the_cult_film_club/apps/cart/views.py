@@ -358,15 +358,86 @@ def checkout(request):
     stripe.api_key = stripe_secret_key
 
     # Create Stripe PaymentIntent with metadata
-    intent = stripe.PaymentIntent.create(
-        amount=stripe_total,
-        currency=settings.STRIPE_CURRENCY,
-        metadata={
-            'bag': json.dumps(cart),
-            'discount': str(discount_amount),
-            'discount_code': discount_code,
-        }
-    )
+    try:
+        intent = stripe.PaymentIntent.create(
+            amount=stripe_total,
+            currency=settings.STRIPE_CURRENCY,
+            metadata={
+                'bag': json.dumps(cart),
+                'discount': str(discount_amount),
+                'discount_code': discount_code,
+            }
+        )
+    except stripe.error.CardError as e:
+        messages.error(
+            request,
+            e.user_message or (
+                "Your card was declined. Please try another payment method."
+            )
+        )
+        return redirect(reverse('cart'))
+
+    except stripe.error.RateLimitError:
+        messages.error(
+            request,
+            (
+                "Too many payment attempts in a short time. "
+                "Please wait and try again."
+            )
+        )
+        return redirect(reverse('cart'))
+
+    except stripe.error.InvalidRequestError as e:
+        error_message = str(e)
+        if (
+            "payment_method_data[billing_details][address][country]"
+            in error_message
+        ):
+            user_msg = (
+                "Please ensure you've selected a valid country "
+                "in your billing address."
+            )
+        else:
+            user_msg = (
+                "There was a problem with your payment request. "
+                "Please double-check your details and try again."
+            )
+        messages.error(request, user_msg)
+        return redirect(reverse('cart'))
+
+    except stripe.error.AuthenticationError:
+        messages.error(
+            request,
+            "Payment authentication failed. Please try again later."
+        )
+        return redirect(reverse('cart'))
+
+    except stripe.error.APIConnectionError:
+        messages.error(
+            request,
+            (
+                "Network error. Please check your internet connection "
+                "and try again."
+            )
+        )
+        return redirect(reverse('cart'))
+
+    except stripe.error.StripeError:
+        messages.error(
+            request,
+            (
+                "Payment failed due to a technical error. "
+                "Please try again or contact support."
+            )
+        )
+        return redirect(reverse('cart'))
+
+    except Exception:
+        messages.error(
+            request,
+            "An unexpected error occurred. Please try again."
+        )
+        return redirect(reverse('cart'))
 
     # Prepare initial form data for authenticated users
     if not order_form:

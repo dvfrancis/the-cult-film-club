@@ -1,6 +1,8 @@
 from django import forms
 from django.utils import timezone
 from .models import Order, DiscountCode
+from django_countries.fields import CountryField
+from django_countries.widgets import CountrySelectWidget
 
 
 class OrderForm(forms.ModelForm):
@@ -9,6 +11,14 @@ class OrderForm(forms.ModelForm):
     Customizes field placeholders, CSS classes,
     removes labels, and sets autofocus on full_name.
     """
+
+    country = CountryField().formfield(
+        required=True,
+        widget=CountrySelectWidget(
+            attrs={'class': 'form-control', 'required': True}
+        )
+    )
+
     class Meta:
         model = Order
         fields = (

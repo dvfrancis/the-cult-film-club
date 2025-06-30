@@ -120,14 +120,12 @@ This approach keeps the project structure tidy and makes it easier to locate and
 
 | Type | Total | % Total |
 | --- | --- | --- |
-| Must Have | TBC | TBC% |
-| Should Have | TBC | TBC% |
-| Could Have | TBC | TBC% |
-| Won't Have | TBC | TBC% |
-| Uncategorised | TBC | TBC% |
-| TOTALS | TBC | 100% |
-
-The project comfortably aligns with all requirements, adhering to the widely recognised distribution of 60% Must-Haves, 20% Should-Haves, and 20% Could-Haves.
+| Must Have | 55 | 60% |
+| Should Have | 18 | 20% |
+| Could Have | 3 | 3% |
+| Won't Have | 5 | 5% |
+| Uncategorised | 11 | 12% |
+| TOTALS | 92 | 100% |
 
 <details>
   <summary>Click to view a screenshot of a project task</summary>
@@ -279,238 +277,538 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - Develop a rating system so users can leave feedback. 
 - Add filtering / sorting by film rating.
 
-# SCOPE NOT YET UPDATED
-
 ### Scope
 
 #### Existing Features
 
-- Please note that all screenshots (unless otherwise stated) are taken from the desktop version of the website.
+- All screenshots (unless stated) are from the website's desktop version.
 
 - General
-    - The site should adjust to different screen sizes responsively.
-    - It should be identifiable via the favicon shown in the browser tab. When bookmarking the site, this favicon appears next to the bookmarked link making it easily recognisable among other bookmarks:
+
+    - The site should be responsive and adapt seamlessly to various screen sizes.
+    - The site should include a recognisable favicon displayed in the browser tab. This favicon will also appear alongside the bookmarked link, helping users easily identify the site among other bookmarks.
 
         <details>
-        <summary>Click to view the site favicon, in the browser tab</summary>
+        <summary>Click to view a preview of the site favicon</summary>
             
-        ![Website favicon](assets/images/website-favicon.webp)
+        ![Website favicon](assets/images/favicon.png)
         </details>
+
+#### Base Template
+
+##### base.html
+
+- The `base.html` file contains the site header and footer, and is shared amongst all pages on the site.
 
 - Header
     
     <details>
-    <summary>Click to view the site header as it appears on a desktop device</summary>
+    <summary>Click to view how the site header appears on a desktop device</summary>
             
     ![Desktop website header](assets/images/desktop-website-header.webp)
     </details>
 
     <details>
-    <summary>Click to view the site header as it appears on a mobile device</summary>
+    <summary>Click to see how the site header appears on a mobile device</summary>
             
     ![Mobile website header](assets/images/mobile-website-header.webp)
     </details>
 
-    - The header stays fixed to the top of the window, allowing visitors to see the navigation bar at all times. This lets the visitor know where they are (links remain highlighted when that page is currently displayed). The high contrast between the text and the header means it is both stylish and easy to read.
-    - The website logo is also shown in the header, reinforcing the site branding in the mind of the visitor.
-    - Visible navigation links:
-        - *Home* - brings the user to the home page, which has links to register for an account, or see a list of all classes across the event. It also has a 'Featured Classes' section to whet the visitor's appetite.
-        - *Classes* - takes the use to a list of classes that are running across the event.
-        - *FAQ* - a page of frequently asked questions about the event.
-        - *Contact* - allows messages to be sent to the organisers.
-        - *Register / Login* (changes to *Account* when a user is logged in) - users can create an account on the site from this page, and then use that account to enrol for particular classes.
+    - The header stays fixed at the top of the page, giving users continuous access to the navigation bar. This ensures easy site navigation at all times. The high contrast between the header and text improves readability while maintaining a sleek, modern look.
+    - The website name is placed in the header, reinforcing the brand's presence and helping users instantly recognize the site.
+    - Navigation links are clearly visible, making it simple for visitors to find and explore key sections of the site:
+        - *Home* - return to the homepage and access main site features.
+        - *Films* - browse and view available films.
+        - *Explore* - filter films based on various criteria for better discovery:
+            - Rating (Low-High) - sorts films from lowest to highest rating.
+            - Rating (High-Low) - sorts films from highest to lowest rating.
+            - Price (Low-High) - sorts films from lowest to highest price.
+            - Price (High-Low) - sorts films from highest to lowest price.
+            - Copies (Low-High) - sorts films by the number of available copies (low-high).
+            - Copies (High-Low) - sorts films by the number of available copies (high-low).
+            - Director (A-Z) - sorts films alphabetically by director's name.
+            - Director (Z-A) - sorts films in reverse alphabetical order by director.
+        - *Account* - access account settings and manage user profile:
+            - **When logged out**:
+                - Register - create a new account to use all aspects of the site.
+                - Login - sign in to access user account.
+            - **When logged in**:
+                - My profile - view and edit user profile details, orders, and wishlist.
+                - Logout - sign out of user account for privacy and security.
+            - **When a superuser is logged in**:
+                - Product management - add, edit, and delete products available on the site.
+                - Discount codes - add, edit, and delete user discount codes.
+                - My profile - view and edit user profile details, orders, and wishlist.
+                - Logout - sign out of user account for privacy and security.
 
     <details>
-    <summary>Click to view navigation bar when a user is logged in</summary>
+    <summary>Click to view the navigation bar when a user is logged in</summary>
             
     ![Navigation bar when a user logged in](assets/images/nav-bar-when-user-logged-in.webp)
     </details>
 
-    - Hidden navigation links:
-        - *Base Template* - contains the code for the header and the footer and is used by all pages, which helps reduce duplication of code. It is not directly accessible to a website user.
-        - *Details* - shown when a user is on the classes page and clicks the 'Details' button. It contains information specific to a chosen class, which is generated automatically from information stored in the database.
-        - *Account* - shown when a user has created an account, or logs in successfully. It allows them to view all of their class enrolments, edit their profile, or delete their account.
-        - *Update Profile* - shown when a user clicks 'Edit' on their account page. They can update any of the information held about them on the site.
-        - *404 Error* - shown when a visitor attempts to access a non-existent page. It is not directly accessible to a website user.
-        - *500 Error* - shown when a the web server encounters an problem. It is not directly accessible to a website user.
-    
 - Footer
 
     <details>
-    <summary>Click to view the site footer as it appears on a desktop device</summary>
+    <summary>Click to view how the site footer appears on a desktop device.</summary>
             
     ![Desktop website footer](assets/images/desktop-website-footer.webp)
     </details>
 
     <details>
-    <summary>Click to view the site footer as it appears on a mobile device</summary>
+    <summary>Click to see how the site footer appears on a mobile device</summary>
             
     ![Mobile website footer](assets/images/mobile-website-footer.webp)
     </details>
 
-    - The footer remains at the bottom of all screens, underneath any website content.
-    - It contains copyright information, and also the social media buttons.
+    - The footer stays fixed at the bottom of every screen, always appearing below the site’s content.
+    - It includes links to the about, contact, and newsletter signup pages, alongside links to the site's social media properties, and copyright information.
 
-- Home (index.html)
+#### Custom Error Pages
 
-    <details>
-    <summary>Click to view the home page</summary>
-            
-    ![Website home page](assets/images/website-home.webp)
-    </details>
+##### bad_request.html (400 error page)
 
-    - The home page gives background on the Craftr event, and acts as an introduction to those who know nothing about it.
-    - The hero section at the top of the page includes buttons that take visitors to register for an account or to view the classes that are scheduled during the event.
-    - It teases the visitor with a selection of 'Featured Classes' to entice them into registering and enrolling in some of them. 
-
-- Diary of Classes (diary.html)
+- This page handles bad request errors, and renders a custom 400 error page.
 
     <details>
-    <summary>Click to view the diary of classes</summary>
+    <summary>Click to view the 400 error page</summary>
             
-    ![Website classes page](assets/images/website-classes-diary.webp)
+    ![400 error page](assets/images/custom-400-error-page.webp)
     </details>
 
-    - The diary page lists every class happening during the event, organised by date and time.
-    - It encourages visitors to click on a specific class and view it in further detail.
+##### permission_denied.html (403 error page)
 
-- Class Details (details.html)
+- This view handles permission denied errors and renders a custom 403 error page.
 
     <details>
-    <summary>Click to view the class details page</summary>
+    <summary>Click to view the 403 error page</summary>
             
-    ![Website class details page](assets/images/website-class-details.webp)
+    ![403 error page](assets/images/custom-403-error-page.webp)
     </details>
 
-    - When someone clicks on the 'Details' button on the diary of classes, it brings them to a specific page that gives in-depth information about that particular class. Information includes when the class will run, an indication of difficulty level, and an overview of what will be covered. It also includes information about the instructor of the class, and their biography.
-    - When not logged in, the buttons on the page are 'Login' and 'Register' to encourage sign-up. If a user clicks 'Login' it takes them to the login page to enter their username and password and, upon successful login, returns them to the class page to allow them to enrol for the class.
-    - If a user clicks 'Register', it takes them to a page to create a new account, before returning them to the class page (to be able to enrol).
-    - When logged in, the buttons change to 'Enrol' and 'Back to Diary'.
+##### page_not_found.html (404 error page)
 
-    <details>
-    <summary>Click to view buttons when user is logged in</summary>
-            
-    ![Buttons when user logged in](assets/images/user-logged-in-buttons.webp)
-    </details>
-
-    - If a user clicks 'Enrol' their account is updated accordingly (see 'User Account' further down) and the button changes to 'Withdraw', allowing them to change their mind if so desired.
-
-    <details>
-    <summary>Click to view buttons when user logged in and enrolled</summary>
-            
-    ![Buttons when user logged in and enrolled](assets/images/user-logged-in-and-enrolled-buttons.webp)
-    </details>
-
-- FAQ (faq.html)
-
-    <details>
-    <summary>Click to view the faq page</summary>
-            
-    ![Website faq page](assets/images/website-faq.webp)
-    </details>
-
-    - The FAQ page contains commonly asked questions for the event presented in a responsive accordion.
-    - If the visitor cannot find an answer, it encourages them to get in touch via the contact page.
-
-- Contact Form (contact.html)
-
-    <details>
-    <summary>Click to view the contact page</summary>
-            
-    ![Website contact page](assets/images/website-contact-form.webp)
-    </details>
-
-    - Incorporates a standard contact form for visitors to send messages to the organisers of the event.
-    - When they send a message an email is sent to the organisers automatically with all the details.
-    - This information is also stored in the database for later reference, if required.
-
-- User Registration (register.html)
-
-    <details>
-    <summary>Click to view the registration page</summary>
-            
-    ![Website registration page](assets/images/website-register.webp)
-    </details>
-
-    - The user registration page allows a visitor to create an account that they can then use to enrol on specific classes.
-    - It asks for name, email, location, and experience level, with the option to add a photograph if they want to. 
-    - The website does not allow them to pick a username that conflicts with an existing user.
-    - The site also has standard email and password validation, so that only valid information can be entered
-    - Once an account has been created, the user is logged in automatically.
-    - If another user is already logged in, they are logged out beforehand.
-    - If a mistake is made on the form, the user can click 'Clear' to remove any information entered.
-
-- User Login (login.html)
-
-    <details>
-    <summary>Click to view the login page</summary>
-            
-    ![Website login page](assets/images/website-login.webp)
-    </details>
-
-    - The user login page allows visitors with user accounts to login and view their account and class enrolments.
-    - It also has a link for a new user to register an account.
-
-- User Account (account.html)
-
-    <details>
-    <summary>Click to view the account page</summary>
-            
-    ![Website account page](assets/images/website-account.webp)
-    </details>
-
-    - The user account page displays all of the user's information entered when the account was created.
-    - The 'Edit' button takes the user to a screen where they can update any of the personal information stored about them.
-    - The 'Delete Account' button allows the user to remove their account entirely. They are asked if they are sure they want to delete their account. If they do, then their account is deleted along with any class enrolments. This button does not appear for accounts with 'superuser' permissions, so that the organisers (who would be superusers) are not accidentally locked out at any time. After the account is deleted they are automatically redirected to the home page.
-    - A user can also see a list of all the classes that they're enrolled on.
-    - Users can 'Withdraw' from a class, or see 'Details' about any class they have enrolled on, by clicking the corresponding button beneath the enrolment. The list of enrolments updates dynamically if a user withdraws from a class (this can be seen at the bottom of the screenshot above).
-
-- Update User Profile (update_profile.html)
-
-    <details>
-    <summary>Click to view the update profile page</summary>
-            
-    ![Website update profile page](assets/images/website-update-profile.webp)
-    </details>
-
-    - The update user profile page allows the user to amend any of the information held about them.
-    - If they change their mind, they can click 'Cancel' and be returned to their account page.
-    - If they make a mistake on the form, they can click 'Clear' to revert to the information currently stored in the database.
-
-- Error 404 (404.html)
+- This page handles 'page not found' errors and renders a custom 404 error page.
 
     <details>
     <summary>Click to view the 404 error page</summary>
             
-    ![Website 404 error page](assets/images/website-error-404.webp)
+    ![404 error page](assets/images/custom-404-error-page.webp)
     </details>
 
-    - This page is displayed if a visitor attempts to navigate to a non-existent page.
-    - It contains buttons to go to the home page, or return to whatever page they were previously viewing.
-    - The visitor is also still able to click on any of the other navigation buttons to take them somewhere else.
+##### server_error.html (500 error page)
 
-- Error 500 (500.html)
+- This page handles server errors and renders a custom 500 error page.
 
     <details>
     <summary>Click to view the 500 error page</summary>
             
-    ![Website 500 error page](assets/images/website-error-500.webp)
+    ![500 error page](assets/images/custom-500-error-page.webp)
     </details>
 
-    - This page is displayed if there is an internal server error.
-    - It contains buttons to go to the home page, or return to whatever page they were previously viewing.
-    - The visitor is also still able to click on any of the other navigation buttons to take them somewhere else.
+#### Home Page
+
+##### index.html
+
+- The homepage provides an overview of The Cult Film Club store, offering an introduction for new visitors and background information for those unfamiliar with the brand.
+- The hero section at the top of the page showcases the latest releases and pre-orders, giving visitors immediate access to new and upcoming films for purchase.
+- Further down the page, a curated selection of other available film releases is presented randomly, encouraging exploration of more titles for purchase.
+
+<details>
+<summary>Click to view the home page</summary>
+            
+![Website home page](assets/images/website-home.webp)
+</details>
+
+#### Film Releases Page
+
+##### releases.html
+
+- The film releases page shows a card grid of all film releases available in the store, which can also be filtered by genre, subgenre, director, and decade of release.
+- Each release card shows:
+    - Featured image.
+    - Title.
+    - Site user rating.
+    - Director.
+    - Year of release.
+    - In Stock / Low Stock / Out of Stock (colour coded)
+    - Price
+- There is also breadcrumb navigation to allow quick navigation between pages of film releases.
+
+<details>
+<summary>Click to view the film releases page</summary>
+            
+![Film releases page](assets/images/film-releases-page.webp)
+</details>
+
+#### Film Release Details Page
+
+##### release_details.html
+
+- Provides details of a specific film release, when that release has been selected.
+- It shows:
+    - All images, with featured image shown first.
+    - Film title.
+    - Genre(s) and Subgenre(s)
+    - Overall user rating, calculated from all ratings submitted by website users.
+    - Price.
+    - Total number of copies available (which is colour coded). Stock levels are automatically adjusted upon successful checkout.
+    - Quantity to add does not allow a zero to be entered (defaults to one copy) or more copies than are available (defaults to the maximum number of copies available).
+    - Description.
+    - Special features.
+    - Production details.
+    - User reviews.
+    - Add or adjust user rating (when logged in).
+    - Add to wishlist button (when logged in).
+
+<details>
+<summary>Click to view the film release details page</summary>
+            
+![Film release details page](assets/images/film-release-details-page.webp)
+</details>
+
+<details>
+<summary>Click to view the example of automatic stock level adjustment</summary>
+            
+![Automatic stock level adjustment](assets/images/stock-level-adjustment.webp)
+</details>
+
+#### Product Management Page
+
+##### product_management.html
+
+- New film releases can be added via the 'Add New Release' button on this page.
+- All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and manage_images.html pages.
+
+<details>
+<summary>Click to view the product management page</summary>
+            
+![Product management page](assets/images/product-management-page.webp)
+</details>
+
+#### Edit Film Release Page
+
+##### edit_release.html
+
+- Film releases can be edited via this page.
+- Images associated with film releases are managed separately via the `manage_images.html` page
+
+<details>
+<summary>Click to view the film release edit page</summary>
+            
+![Film release edit page](assets/images/edit-film-release.webp)
+</details>
+
+#### Delete Film Release Page
+
+##### delete_release.html
+
+- This confirmation page is shown when selecting a film release to delete. 
+
+<details>
+<summary>Click to view the film release deletion page</summary>
+            
+![Film release deletion page](assets/images/delete-film-release.webp)
+</details>
+
+#### Manage Film Release Images Page
+
+##### manage_images.html
+
+- Allows film release images to added, edited, and deleted/
+- Featured images display a 'Featured' badge to make them easier to identify.
+- A 'Delete' button on all images allows them to be removed.
+
+<details>
+<summary>Click to view the manage images page</summary>
+            
+![Manage images page](assets/images/manage-images.webp)
+</details>
+
+#### Discount Codes Management Page
+
+##### discount_codes.html
+
+- Only users with superuser privileges are able to access this, and associated, pages.
+- It displays information on all discount codes created.
+- Each discount code consists of:
+    - Discount codeword.
+    - Discount percentage.
+    - Valid from date.
+    - Valid to date.
+    - Whether it’s active or not (which is indicated via a colour coded badge).
+- You can also add new discount codes via the form on this page.
+
+<details>
+<summary>Click to view the discount codes page</summary>
+            
+![](assets/images/.webp)
+</details>
+
+#### Edit Discount Code Page
+
+##### edit_discount_code.html
+
+- Discount codes can be edited via this page.
+
+<details>
+<summary>Click to view the discount code edit page</summary>
+            
+![Discount code edit page](assets/images/edit-discount-code.webp)
+</details>
+
+#### Delete Discount Code Page
+
+##### delete_discount_code.html
+
+- This confirmation page is shown when selecting a discount code to delete. 
+
+<details>
+<summary>Click to view the discount code deletion page</summary>
+            
+![Discount code deletion page](assets/images/delete-discount-code.webp)
+</details>
+
+#### Shopping Cart Page
+
+##### cart.html
+
+- The cart shows items selected for purchase, with the ability to increase / decrease the number of items or remove it entirely from the cart.
+- Validation on the quantity field prevents users entering a zero (defaults to one copy) or trying to buy more copies than are available (defaults to the maximum number of copies available).
+- When removing an item, if it’s the last item in the cart, the user is automatically redirected to the home page.
+- The shopping cart shows order item(s):
+    - Image.
+    - Title.
+    - Price.
+    - Quantity.
+    - Subtotal.
+    - Delivery cost.
+    - Total.
+    - How much more needs to be sent to qualify for free delivery
+- Users can also add a valid, active discount code to the order, to receive the associated discount on their order.
+- The shopping cart is cleared if the user logs out before checkout, or if the order is successful.
+
+<details>
+<summary>Click to view the shopping cart page</summary>
+            
+![Shopping cart page](assets/images/shopping-cart-page.webp)
+</details>
+
+#### Checkout Page
+
+##### checkout.html
+
+- The checkout page is only displayed for logged in users (and a user is prompted to login, if not already, when moving to checkout on an order).
+- It shows an order summary, including:
+    - Image.
+    - Title.
+    - Price.
+    - Subtotal.
+    - Delivery cost.
+    - Total.
+- User details are automatically completed based on the logged in user’s profile and default address:
+    - Name.
+    - Email.
+    - Telephone number.
+    - Address:
+        - Street Address 1
+        - Street Address 2
+        - City.
+        - County.
+        - Postcode.
+        - Country.
+- Payment card details are entered via the payment card field.
+- The amount to be charged to the user's card is displayed beneath the payment card field.
+- Payment is not be processed unless all required fields have been completed, and error messages are shown to highlight any errors.
+
+<details>
+<summary>Click to view the checkout page</summary>
+            
+![Checkout page](assets/images/checkout-page.webp)
+</details>
+
+#### Checkout Success Page
+
+##### checkout_success.html
+
+- This is displayed when an order has been placed, and payment has been taken.
+- It shows:
+    - Order number.
+    - Order date.
+    - Item ordered.
+    - Full name.
+    - Full address.
+    - Order total.
+    - Delivery charge (with any discount / discount code).
+    - Grand total.
+
+<details>
+<summary>Click to view the checkout success page</summary>
+            
+![Checkout success page](assets/images/checkout-success.webp)
+</details>
+
+#### Order Confirmation Page
+
+##### order_details.html
+
+- When clicking on the link to an order in the user profile account page, a summary of the order is presented showing the following information:
+    - Order number.
+    - Date of order.
+    - Name.
+    - Email address.
+    - Phone number.
+    - Address.
+    - Item(s).
+    - Subtotal.
+    - Delivery cost.
+    - Total cost.
+
+<details>
+<summary>Click to view the order confirmation page</summary>
+            
+![Order confirmation page](assets/images/order-confirmation.webp)
+</details>
+
+#### User Account Page
+
+##### account.html
+
+- This page encompasses several different aspects of the user website experience, and contains the following information:
+    - Username as part of the “`<username>`’s Profile” title.
+    - Email address.
+    - Profile picture.
+    - The ability to upload / replace a user profile picture.
+- Addresses:
+    - Allows users to add multiple addresses, choose between them, and set one as the default (which will appear as the address when ordering an item).
+    - Users can also update or delete any chosen address.
+- Order history:
+    - Displays a list of previous orders with a link to order_details.html to show specific details.
+- Wishlist:
+    - Shows a list of releases the user has added to their wishlist.
+    - Each entry shows the title, any notes added, a priority badge, and the total number in stock.
+    - A user can directly add an item (or multiples thereof) by clicking the 'Buy' button (which then removes it from the wishlist).
+    - Users can remove an item by clicking the 'Remove' button.
+    - There is also a form to be able to add a release directly to the wishlist with any notes and priority.
+
+<details>
+<summary>Click to view the user profile page</summary>
+            
+![User profile page](assets/images/user-profile-page.webp)
+</details>
+
+#### About Page
+
+##### about.html
+
+- Informational page explaining the advantages of owning physical media and the website’s ethos.
+
+<details>
+<summary>Click to view the about page</summary>
+            
+![About page](assets/images/about-page.webp)
+</details>
+
+#### Contact Page
+
+##### contact_us.html
+
+- Users can contact the website via this contact page.
+
+<details>
+<summary>Click to view the contact page</summary>
+            
+![Contact page](assets/images/contact-page.webp)
+</details>
+
+#### Newsletter Page
+
+##### newsletter.html
+
+- Allows a user to signup to the website newsletter, and specify specific genres of interest, to receive a regular email with content tailored to their tastes.
+
+<details>
+<summary>Click to view the newsletter signup page</summary>
+            
+![Newsletter signup page](assets/images/newsletter-signup.webp)
+</details>
+
+#### Newsletter Unsubscribe Page
+
+##### unsubscribe.html
+
+- When a user enters their account email address they will receive an unsubscribe link via email.
+
+<details>
+<summary>Click to view the newsletter unsubscribe page</summary>
+            
+![Newsletter unsubscribe page](assets/images/newsletter-unsubscribe.webp)
+</details>
+
+#### Allauth Pages
+
+- Allauth pages were provided as part o the plugin, but have been styled to fit with the rest of the site.
+
+##### Signup Page
+
+###### signup.html
+
+- Enables a user to create their own account that allows them to access all features of the website.
+
+<details>
+<summary>Click to view the signup page</summary>
+            
+![Signup page](assets/images/sign-up-page.webp)
+</details>
+
+##### Login Page
+
+###### login.html
+
+- Allows a user to login to the website and access their account, as well as allow them to use all the features of the site. 
+
+<details>
+<summary>Click to view the login page</summary>
+            
+![Login page](assets/images/login-page.webp)
+</details>
+
+##### Password Reset Page
+
+###### password_reset.html
+
+- When a user enters their account email address they will receive a password reset link via email.
+
+<details>
+<summary>Click to view the password reset page</summary>
+            
+![Password reset page](assets/images/password-reset-page.webp)
+</details>
+
+##### Logout Page
+
+###### logout.html
+
+- This page logs a user out of their user account.
+
+<details>
+<summary>Click to view the logout page</summary>
+            
+![Logout page](assets/images/logout-page.webp)
+</details>
+
 
 #### Future Features
 
-- This is a list of features that would have been nice to include in this project, but were not due to time constraints.
+- These features were identified as desirable for the site, but were not implemented due to project time constraints.
 
 |Issue|Item|Description|
 | ------------- | ------------- | ------------- |
-| [#85](https://github.com/dvfrancis/craftr/issues/85) | Instructor portal | Add the ability for instructors to create and edit classes |
-| [#86](https://github.com/dvfrancis/craftr/issues/86) | Premium classes | Add the ability to create premium paid classes that people could opt in to through a monetary purchase (which would require the ability to take payments) |
-| [#66](https://github.com/dvfrancis/craftr/issues/66) | Customise the Django administration portal| Update the admin portal to match the style of the site |
-| [#19](https://github.com/dvfrancis/craftr/issues/19) | JavaScript logic flowcharts| If the site were to expand with further features then it would probably require more JavaScript and, therefore, process breakdowns |
+| [#24](https://github.com/dvfrancis/the-cult-film-club/issues/24) | Django admin portal customisation | Adjust the style and content of the portal to fit better with the site |
+| [#64](https://github.com/dvfrancis/the-cult-film-club/issues/64) | Newsletter subscriptions | Although the site takes user's details for a newsletter, the newsletter itself is not actually produced so this functionality would be nice to implement |
+| [#65](https://github.com/dvfrancis/the-cult-film-club/issues/65) | User forum | Implementing a user forum would help build a sense of community on the site |
+| [#86](https://github.com/dvfrancis/the-cult-film-club/issues/86) | Loyalty points | Allow users to collect points when buying items, and then redeem them against future purchases |
+| [#89](https://github.com/dvfrancis/the-cult-film-club/issues/89) | Alternative shipping types and providers | Give users the option to choose what type of shipping they'd like and also the shipping provider |
 
 ### Structure
 

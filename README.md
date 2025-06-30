@@ -1051,6 +1051,7 @@ This is a custom model that stores email subscriber details.
 
 Meta classes used `verbose_name = "Subscriber", verbose_name_plural = "Subscribers", ordering = ['-date_joined']`
 
+# CRUD NOT YET UPDATED
 #### C R U D Fulfilment
 
 Shown below is a breakdown of how the website satisfies these requirements:
@@ -1100,128 +1101,309 @@ The restrained use of colour and simple visual elements create a focused, user-f
     - Amber (#ffb700) 
     - Platinum (#e1e1e3)
 
-- Colours were also divided depending on intended button action:
-
-    - Black for `TBC` / `TBC` / `TBC` actions
-    - Crimson for `TBC` / `TBC` / `TBC` actions
-    - Orange for `TBC` / `TBC` / `TBC` actions
-    - Amber for `TBC` / `TBC` / `TBC` actions
-    - Platinum for `TBC` / `TBC` / `TBC` actions
-
 #### Typography
 
 The following font (from [Google Fonts](https://fonts.google.com)) was used for the entire site:
   
 - [Raleway](https://fonts.google.com/specimen/Raleway)
 
-# MEDIA / CONTENT NOT YET UPDATED
-
 #### Media
 
-- Images used on the website are stored in, and served from, [Cloudinary](https://cloudinary.com/).
+- Images used on the website are served by [Cloudinary](https://cloudinary.com/).
 
-- Images used in the README.md and TESTING.md are stored in the [GitHub repository](https://github.com/dvfrancis/craftr) for this project.
+- The images used by the README.md and TESTING.md documents are stored in the project's [GitHub repository](https://github.com/dvfrancis/the-cult-film-club).
 
-- The site logo was generated using [Artistly](https://artistly.ai/go/) with the following prompt:
-    - ```"I need a visually appealing and modern rectangular logo for a digital crafting event called Craftr, with a transparent background. The logo should convey a sense of creativity, innovation, and community, and effectively communicate the event's theme and tone. Please design a logo that incorporates elements of crafting, technology, and fun, and that will appeal to a diverse range of attendees, from hobbyists to professionals. The logo should be scalable, legible, and easy to recognize, even in small sizes. Additionally, the logo should be designed with a color scheme that is limited to the palette #7db657, #0091ac, #753da2, #b40001, #ff8500, #ffc500, and that reflects the playful and creative atmosphere of the event. I don't want a registered or trademark symbol on it. I only want the word Craftr on it and no other text."```
+- User profile images were generated using AI from [This Person Does Not Exist](https://thispersondoesnotexist.com/), a website that creates random, anonymous facial images.
 
-- Instructor images were generated at [This Person Does Not Exist](https://thispersondoesnotexist.com/), a website that uses AI to randomly generate anonymous facial images.
+- The following images are only used when no film release or user profile image is available:
 
-- All other images were sourced from [Deposit Photos](https://depositphotos.com/) for the following parts of the website:
+    - Film release holding image - [Film release holding image](https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp)
+    - User profile placeholder image - [Avatars...](https://depositphotos.com/vector/avatars-characters-or-profile-pictures-72611267.html)
 
-- Background Images:
-    - index.html used [Background for handmade and craft ideas](https://depositphotos.com/photo/background-handmade-craft-ideas-212311048.html)
-    - diary.html and details.html used [Preparation for the holiday. Gifts wrapped in kraft paper...](https://depositphotos.com/photo/preparation-for-the-holiday-gifts-wrapped-in-kraft-paper-confe-115696836.html)
-    - faq.html used [Set of materials for packing holiday gifts. Kraft paper, jute twine, scissors, boxes on white background. Holiday zero waste and eco-friendly concept...](https://depositphotos.com/photo/set-materials-packing-holiday-gifts-kraft-paper-jute-twine-scissors-356425758.html)
-    - contact.html used [Rocket craft space toy. Made from felt. Material for children's creativity](https://depositphotos.com/photo/rocket-craft-space-toy-made-felt-material-children-creativity-350095596.html)
-    - register.html, login.html, account.html, and update.html used [Woman Making Greeting Cards Elements](https://depositphotos.com/photo/woman-making-greeting-cards-elements-501993588.html)
-    - 404.html used [Pile of torn paper pieces isolated](https://depositphotos.com/photo/pile-of-torn-paper-pieces-isolated-119329320.html)
-    - 500.html used [Seamstress has made a mistake](https://depositphotos.com/photo/seamstress-has-made-a-mistake-171778606.html)
+- Film release images were obtained from the following sources:
 
-- Class Images:
-    - details.html/4 used [DIY made of colored paper, homemade postcard and scrapbooking tools on green mat for cutting, top view, no hands](https://depositphotos.com/photo/diy-made-colored-paper-homemade-postcard-scrapbooking-tools-green-mat-204041696.html)
-    - details.html/5 used [Heap of cloth fabric](https://depositphotos.com/photo/heap-of-cloth-fabric-37163707.html)
-    - details.html/6 used [The man is working with laser cutter machine and takes out the...](https://depositphotos.com/photo/the-man-is-working-with-laser-cutter-machine-and-takes-out-the-f-316435016.html)
-    - details.html/7 used [Clothes with shopping bags](https://depositphotos.com/illustration/clothes-with-shopping-bags-173885524.html)
-    - details.html/8 used [Party animal face stickers](https://depositphotos.com/vector/party-animal-face-stickers-10780069.html)
-    - details.html/9 used [Woman embroidering white shirt with colorful threads at wooden table, close-up. Ukrainian national clothes](https://depositphotos.com/photo/woman-embroidering-white-shirt-colorful-threads-wooden-table-closeup-ukrainian-602283612.html)
-    - details.html/10 used [Luxury dining table in a restaurant, Arcos de San Miguel, San Miguel de Allende, Guanajuato, Mexico](https://depositphotos.com/editorial/luxury-dining-table-restaurant-arcos-san-miguel-san-miguel-allende-189720010.html)
-    - details.html/11 used [Beautiful girl with three-dimensional printer](https://depositphotos.com/photo/beautiful-girl-with-three-dimensional-printer-73995545.html)
-    - details.html/12 used [Cropped image of woman adding wooden balloon to scrapbooking postcard cover](https://depositphotos.com/photo/cropped-image-woman-adding-wooden-balloon-scrapbooking-postcard-cover-174748548.html)
-    - details.html/13 used [Custom t-shirt. Using heat press to print image of giraffe blowing bubble gum](https://depositphotos.com/photo/custom-shirt-using-heat-press-print-image-giraffe-blowing-bubble-684334190.html)
-    - details.html/14 used [A laser engraving machine cuts out a picture on a gold glossy plastic plate. close-up](https://depositphotos.com/photo/laser-engraving-machine-cuts-out-picture-gold-glossy-plastic-plate-362491484.html)
-    - details.html/15 used [3D model review](https://depositphotos.com/photo/3d-model-review-5424533.html)
-    - details.html/16 used [Business card template](https://depositphotos.com/vector/business-card-template-152005556.html)
-    - details.html/18 used [Punch needle. Asian Woman making handmade Hobby knitting in studio workshop. designer workplace Handmade craft project DIY embroidery concept](https://depositphotos.com/photo/punch-needle-asian-woman-making-handmade-hobby-knitting-studio-workshop-665145098.html)
-    - details.html/17 used [Man working with leather](https://depositphotos.com/photo/man-working-with-leather-99783124.html)
-    - details.html/19 used [Beautiful woman with elegant jewellery on blurred background, close-up](https://depositphotos.com/photo/beautiful-woman-elegant-jewelry-blurred-background-closeup-372701716.html)
-    - details.html/20 used [Golden floral decoration with marbles and colorful background](https://depositphotos.com/photo/golden-floral-decoration-marbles-colorful-background-339786702.html)
-    - details.html/21 used [Scrapbook craft product handmade](https://depositphotos.com/photo/scrapbook-craft-product-handmade-104769942.html)
-    - details.html/22 used [Valentine's day background with wooden heart. Red background](https://depositphotos.com/photo/valentine-day-background-wooden-heart-red-background-437749632.html)
-
-The following images are only used when no class, instructor, or user image has been uploaded:
-
-- Class Placeholder Image - [Craft Room](https://depositphotos.com/photo/craft-room-12770268.html)
-- Instructor Placeholder Image - [Collection of characters...](https://depositphotos.com/vector/collection-of-characters-avatars-in-flat-design-style-56330559.html) 
-- User Placeholder Image - [Avatars...](https://depositphotos.com/vector/avatars-characters-or-profile-pictures-72611267.html)
+| Film Release | Image Source |
+|--------------|--------------|
+| A Bay of Blood | [TMDB](https://image.tmdb.org/t/p/original/cTqmAcZwaEY609QDCLpgBlwijn9.jpg) |
+| Altered States | [TMDB](https://image.tmdb.org/t/p/original/8BATrghiOSFOtcpg2j2hZSHm6pm.jpg) |
+| Alucarda | [MoviePosterDB](https://www.movieposterdb.com/alucarda-la-hija-de-las-tinieblas-i75666/7fdc228e) |
+| Angst | [TMDB](https://image.tmdb.org/t/p/original/7a4EHUOmvfY0jZTHA7qlOCGO9gv.jpg) |
+| Audition | [TMDB](https://image.tmdb.org/t/p/original/381efRw5TlwSD598QdiKUTQYr5p.jpg) |
+| Basket Case | [TMDB](https://image.tmdb.org/t/p/original/ciyzEBzJ1TnafkgGXr6DqEVh1wk.jpg) |
+| Battle Royale | [TMDB](https://image.tmdb.org/t/p/original/gFX7NuBUeKysOB9nEzRqVpHNT32.jpg) |
+| Begotten | [TMDB](https://image.tmdb.org/t/p/original/rvgYcVToOHe0gKWtF3mz6SvM4Aw.jpg) |
+| Beyond the Black Rainbow | [Posteritati](https://posteritati.com/poster/3113/beyond-the-black-rainbow-2012-us-one-sheet-poster) |
+| Black Moon | [TMDB](https://image.tmdb.org/t/p/original/9jjA9yK30Hm0sNcmuXJH5ZjQYkW.jpg) |
+| Black Sunday | [TMDB](https://image.tmdb.org/t/p/original/kVsJ1boOC8xlT4zdTAgWy5aX3tA.jpg) |
+| Blood Feast | [Pinterest](https://uk.pinterest.com/pin/425308758556456996/) |
+| Bloodsucking Freaks | [Posterazzi](https://www.posterazzi.com/bloodsucking-freaks-movie-poster-print-11-x-17-item-movgj8306/) |
+| Blue Velvet | [Posterazzi](https://www.posterazzi.com/blue-velvet-movie-poster-print-27-x-40-item-movcb84083/) |
+| Brazil | [TMDB](https://image.tmdb.org/t/p/original/2w09J0KUnVtJvqPYu8N63XjAyCR.jpg) |
+| Café Flesh | [Kinorium](https://en.kinorium.com/77118/) |
+| Cannibal Holocaust | [Google Play](https://play.google.com/store/movies/details/Cannibal_Holocaust?id=ALb32E7CetU.P&hl=en_ZA) |
+| Cemetery Man | [TMDB](https://image.tmdb.org/t/p/original/cI5AV3jCuxmoQp0N7Z16SI2b7Xk.jpg) |
+| Combat Shock | [TMDB](https://image.tmdb.org/t/p/original/oCGUSrJVVjFPwkxcdVnOa7880S.jpg) |
+| Dagon | [TMDB](https://image.tmdb.org/t/p/original/8S648eMKObi8ERFS7cSYDocxSaZ.jpg) |
+| Daisies | [TMDB](https://image.tmdb.org/t/p/original/8sxMhdn3i1Pn8OlGCBBjr9rjP1y.jpg) |
+| Dark Star | [IMDB](https://www.imdb.com/title/tt0069945/mediaviewer/rm50669825/?ref_=tt_ov_i) |
+| Daughters of Darkness | [TMDB](https://image.tmdb.org/t/p/original/w6669wTC2x3WtBveKEBv04y70fh.jpg) |
+| Dead Alive (Braindead) | [Posteritati](https://posteritati.com/poster/56358/braindead-1992-us-one-sheet-poster) |
+| Dead Heat | [TMDB](https://image.tmdb.org/t/p/original/xHWJRIyo24AkqR54Y7ajSnvubFo.jpg) |
+| Dead Ringers | [TMDB](https://image.tmdb.org/t/p/original/ofXwDfM8uYAaftD7cBPcIWdCpMn.jpg) |
+| Deadbeat at Dawn | [TMDB](https://image.tmdb.org/t/p/original/kluZtCctdRCshmndqOEa9JToz77.jpg) |
+| Death Laid an Egg | [TMDB](https://image.tmdb.org/t/p/original/mTNQrflCUiyQSCFQegeVGeRPVi2.jpg) |
+| Deathdream | [Screen Anarchy](https://screenanarchy.com/2020/10/70s-rewind-deathdream-nightmares-are-made-of-this.html) |
+| Deep End | [Posterazzi](https://www.posterazzi.com/deep-end-movie-poster-print-11-x-17-item-movib84204/) |
+| Deep Red | [TMDB](https://image.tmdb.org/t/p/original/wq7RxV5gMvgO0EKeWpNhegnpJBh.jpg) |
+| Donnie Darko | [TMDB](https://image.tmdb.org/t/p/original/1YjDHBC4v2O7IQDKYAiM8fOxzf3.jpg) |
+| Dust Devil | [Black Horror Movies](https://www.blackhorrormovies.com/dustdevil/) |
+| Eating Raoul | [Original Film Art](https://www.originalfilmart.co.uk/products/eating-raoul-1982?shpxid=6cfcec60-c549-4553-8afc-8f6c859079db) |
+| El Topo | [Etsy](https://www.etsy.com/listing/804492064/el-topo-original-vintage-film-poster) |
+| Enter the Void | [Posteritati](https://posteritati.com/poster/9334/enter-the-void-2010-us-one-sheet-poster) |
+| Eraserhead | [Criterion](https://www.criterion.com/films/28382-eraserhead) |
+| Evil Dead Trap | [TMDB](https://image.tmdb.org/t/p/original/nI2k8yNXy6S1Dc7Evx4C2TJj847.jpg) |
+| Faces of Death | [TMDB](https://image.tmdb.org/t/p/original/fhHzqDrdHLqjawXLXoV3w4FDOUd.jpg) |
+| Fantastic Planet | [TMDB](https://image.tmdb.org/t/p/original/prq0j1S0K07UjwLZLF6oMGflRUI.jpg) |
+| Fear and Loathing in Las Vegas | [TMDB](https://image.tmdb.org/t/p/original/tisNLcMkxryU2zxhi0PiyDFqhm0.jpg) |
+| Female Prisoner #701: Scorpion | [Wikipedia](https://en.wikipedia.org/wiki/Female_Prisoner_701:_Scorpion#/media/File:Female_Prisoner_701-Scorpion.jpg) |
+| Female Trouble | [TMDB](https://image.tmdb.org/t/p/original/cqhIufhoORDMuFKEinV1IIYUBxD.jpg) |
+| Forbidden Zone | [TMDB](https://image.tmdb.org/t/p/original/9mS7Q9VBkH8yGrIvajxzRUNEAEE.jpg) |
+| Ganja & Hess | [Fonts in Use](https://fontsinuse.com/uses/35912/ganja-and-hess-1973-movie-logo-and-poster#zoom-2) |
+| Girly | [IMDB](https://www.imdb.com/title/tt0064704/mediaviewer/rm1744182784/?ref_=tt_ov_i) |
+| Goke, Body Snatcher from Hell | [Wikipedia](https://en.wikipedia.org/wiki/Goke,_Body_Snatcher_from_Hell#/media/File:Goke-japanese-poster.jpg) |
+| Gozu | [eBay](https://www.ebay.com/itm/321422219138) |
+| Gummo | [Posteritati](https://posteritati.com/poster/12548/gummo-1997-us-one-sheet-poster) |
+| Hardware | [Google Images](https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSLbT4DsdOxCiYOhJNASW9vhNxn9_CyH1skrttLVZblZHdw1w7E) |
+| Henry: Portrait of a Serial Killer | [TMDB](https://image.tmdb.org/t/p/original/diVMzTarVLgjc3jyODyhZMadfwD.jpg) |
+| House | [Posteritati](https://posteritati.com/poster/55015/house-r2010-us-one-sheet-poster) |
+| House of 1000 Corpses | [TMDB](https://image.tmdb.org/t/p/original/29c2qgXmSREosLBevOILEuMWzQC.jpg) |
+| I Spit on Your Grave | [Amazon UK](https://www.amazon.co.uk/Spit-Your-Grave-Gunter-Kleeman/dp/B09LZ2D2FN) |
+| I Stand Alone | [TMDB](https://image.tmdb.org/t/p/original/4kMB2AAcDQ5diRuh7NTxuS90bx7.jpg) |
+| Ichi the Killer | [Etsy](https://www.etsy.com/listing/1595354017/ichi-the-killer-movie-poster-takashi) |
+| In a Glass Cage | [Amazon UK](https://www.amazon.co.uk/Glass-Cage-DVD-Region-NTSC/dp/B005DKS220) |
+| Kuroneko | [TMDB](https://image.tmdb.org/t/p/original/wrubQdcygoi1gDCtKNL9ERQLN3u.jpg) |
+| Let the Right One In | [IMDB](https://www.imdb.com/title/tt1139797/) |
+| Let's Scare Jessica to Death | [TMDB](https://image.tmdb.org/t/p/original/vR8H0KSUYptRjheMjysyidpbPSP.jpg) |
+| Liquid Sky | [IMDB](https://www.imdb.com/title/tt0085852/) |
+| Man Bites Dog | [Amazon UK](https://www.amazon.co.uk/Cest-Arrive-Pres-Chez-Bites/dp/B008GHJ578) |
+| Mandy | [IMDB](https://www.imdb.com/title/tt6998518/) |
+| Maniac | [TMDB](https://image.tmdb.org/t/p/original/aKIBqbUZAEwOML4oMMjZS7m4Gvj.jpg) |
+| Manos: The Hands of Fate | [TMDB](https://image.tmdb.org/t/p/original/aJZsXdJWgtVCSE3SOcOkMPNpbkV.jpg) |
+| Martin | [IMDB](https://www.imdb.com/title/tt0077914/) |
+| Mondo Cane | [Wikipedia](https://en.wikipedia.org/wiki/Mondo_Cane#/media/File:Mondo_cane_poster.jpg) |
+| Ms. 45 | [Wikipedia](https://en.wikipedia.org/wiki/Ms_.45#/media/File:Ms._45_Poster.jpg) |
+| Naked Lunch | [IMDB](https://www.imdb.com/title/tt0102511/) |
+| Nekromantik | [Shudder](https://www.shudder.com/movies/watch/nekromantik/f692cf11058f012f) |
+| Nightbreed | [Rotten Tomatoes](https://www.rottentomatoes.com/m/nightbreed) |
+| Onibaba | [Criterion](https://www.criterion.com/films/665-onibaba) |
+| Paris, Texas | [IMDB](https://www.imdb.com/title/tt0087884/) |
+| Peeping Tom | [IMDB](https://www.imdb.com/title/tt0054167/) |
+| Phantom of the Paradise | [IMDB](https://www.imdb.com/title/tt0071994/) |
+| Phase IV | [IMDB](https://www.imdb.com/title/tt0070531/) |
+| Pink Flamingos | [IMDB](https://www.imdb.com/title/tt0069089/) |
+| Pinocchio’s Revenge | [IMDB](https://www.imdb.com/title/tt0117342/) |
+| Possession | [Reddit](https://www.reddit.com/r/iwatchedanoldmovie/comments/1dx63oc/possession_1981/) |
+| Q: The Winged Serpent | [IMDB](https://www.imdb.com/title/tt0084556/) |
+| Re-Animator | [IMDB](https://www.imdb.com/title/tt0089885/) |
+| Repo Man | [IMDB](https://www.imdb.com/title/tt0087995/) |
+| Riki-Oh: The Story of Ricky | [IMDB](https://www.imdb.com/title/tt0102293/) |
+| Rubber | [IMDB](https://www.imdb.com/title/tt1612774/) |
+| Rubin & Ed | [Plex](https://watch.plex.tv/en-GB/movie/rubin-and-ed) |
+| Salò, or the 120 Days of Sodom | [X (Twitter)](https://x.com/rvnrizky/status/1768477655861784998) |
+| Santa Sangre | [IMDB](https://www.imdb.com/title/tt0098253/) |
+| Scanners | [IMDB](https://www.imdb.com/title/tt0081455/) |
+| Seconds | [IMDB](https://www.imdb.com/title/tt0060955/) |
+| Shogun Assassin | [IMDB](https://www.imdb.com/title/tt0081506/) |
+| Singapore Sling | [IMDB](https://www.imdb.com/title/tt0100623/) |
+| Society | [IMDB](https://www.imdb.com/title/tt0098354/) |
+| Spider Baby | [IMDB](https://www.imdb.com/title/tt0058606/) |
+| Street Trash | [IMDB](https://www.imdb.com/title/tt0094057/) |
+| Suspiria | [IMDB](https://www.imdb.com/title/tt0076786/) |
+| Sweet Movie | [IMDB](https://www.imdb.com/title/tt0072235/) |
+| Tetsuo: The Iron Man | [IMDB](https://www.imdb.com/title/tt0096251/) |
+| The Baby | [IMDB](https://www.imdb.com/title/tt0069754/) |
+| The Beyond | [IMDB](https://www.imdb.com/title/tt0082307/) |
+| The Brood | [IMDB](https://www.imdb.com/title/tt0078908/) |
+| The Burning | [IMDB](https://www.imdb.com/title/tt0082118/) |
+| The Cell | [IMDB](https://www.imdb.com/title/tt0209958/) |
+| The Cook, the Thief, His Wife & Her Lover | [IMDB](https://www.imdb.com/title/tt0097108/) |
+| The Devils | [IMDB](https://www.imdb.com/title/tt0066993/) |
+| The Driller Killer | [IMDB](https://www.imdb.com/title/tt0079082/) |
+| The Forbidden Room | [IMDB](https://www.imdb.com/title/tt3066630/) |
+| The Funhouse | [IMDB](https://www.imdb.com/title/tt0082427/) |
+| The Greasy Strangler | [IMDB](https://www.imdb.com/title/tt4381236/) |
+| The Happiness of the Katakuris | [IMDB](https://www.imdb.com/title/tt0304262/) |
+| The Holy Mountain | [IMDB](https://www.imdb.com/title/tt0071615/) |
+| The Hourglass Sanatorium | [IMDB](https://www.imdb.com/title/tt0070628/) |
+| The House by the Cemetery | [IMDB](https://www.imdb.com/title/tt0082966/) |
+| The House That Jack Built | [IMDB](https://www.imdb.com/title/tt4003440/) |
+| The Howling | [IMDB](https://www.imdb.com/title/tt0082533/) |
+| The Keep | [Via Vision](https://viavision.com.au/shop/the-keep-1983-cross-replica-limited-edition-4k-uhd-2-disc-blu-ray-cd-imprint-collection-438/) |
+| The Last House on the Left | [Wikipedia](https://en.wikipedia.org/wiki/The_Last_House_on_the_Left) |
+| The Last Wave | [IMDB](https://www.imdb.com/title/tt0076299/) |
+| The Legend of the Holy Drinker | [IMDB](https://www.imdb.com/title/tt0095513/) |
+| The Love Witch | [IMDB](https://www.imdb.com/title/tt3908142/) |
+| The Man Who Fell to Earth | [IMDB](https://www.imdb.com/title/tt0074851/) |
+| The Naked Lunch | [IMDB](https://www.imdb.com/title/tt0102511/) |
+| The Night of the Hunter | [IMDB](https://www.imdb.com/title/tt0048424/) |
+| The Ninth Configuration | [IMDB](https://www.imdb.com/title/tt0081237/) |
+| The Paperhouse | [IMDB](https://www.imdb.com/title/tt0098061/) |
+| The Quatermass Experiment | [Hammer Films](https://hammerfilms.com/products/the-quatermass-xperiment-limited-collectors-edition) |
+| The Reflecting Skin | [IMDB](https://www.imdb.com/title/tt0100469/) |
+| The Shout | [IMDB](https://www.imdb.com/title/tt0078259/) |
+| The Strange Color of Your Body's Tears | [IMDB](https://www.imdb.com/title/tt2733258/) |
+| The Strange Vice of Mrs. Wardh | [IMDB](https://www.imdb.com/title/tt0066412/) |
+| The Stuff | [IMDB](https://www.imdb.com/title/tt0090094/) |
+| The Texas Chainsaw Massacre | [IMDB](https://www.imdb.com/title/tt0072271/) |
+| The Texas Chainsaw Massacre 2 | [IMDB](https://www.imdb.com/title/tt0092076/) |
+| The Thing | [IMDB](https://www.imdb.com/title/tt0084787/) |
+| The Toxic Avenger | [IMDB](https://www.imdb.com/title/tt0090190/) |
+| The Visitor | [IMDB](https://www.imdb.com/title/tt0080100/) |
+| The Warriors | [IMDB](https://www.imdb.com/title/tt0080120/) |
+| The Wicker Man | [IMDB](https://www.imdb.com/title/tt0070917/) |
+| The Wicker Tree | [IMDB](https://www.imdb.com/title/tt0323808/) |
+| The Witch Who Came from the Sea | [IMDB](https://www.imdb.com/title/tt0075433/) |
+| They Live | [IMDB](https://www.imdb.com/title/tt0096256/) |
+| Thundercrack! | [Grand Illusion Cinema](https://grandillusioncinema.org/film/thundercrack/) |
+| Time Bandits | [IMDB](https://www.imdb.com/title/tt0081633/) |
+| Tokyo Drifter | [Criterion](https://www.criterion.com/films/577-tokyo-drifter) |
+| Tokyo Gore Police | [IMDB](https://www.imdb.com/title/tt1183732/) |
+| Tourist Trap | [101 Films](https://101-films-store.com/collections/black-label/products/tourist-trap) |
+| Valerie and Her Week of Wonders | [IMDB](https://www.imdb.com/title/tt0066516/) |
+| Vampyros Lesbos | [IMDB](https://www.imdb.com/title/tt0066380/) |
+| Videodrome | [IMDB](https://www.imdb.com/title/tt0086541/) |
+| Wake in Fright | [Rotten Tomatoes](https://www.rottentomatoes.com/m/wake_in_fright) |
+| Who Can Kill a Child? | [IMDB](https://www.imdb.com/title/tt0075462/) |
+| Wild at Heart | [IMDB](https://www.imdb.com/title/tt0100935/) |
+| Xtro | [IMDB](https://www.imdb.com/title/tt0086610/) |
+| Zardoz | [IMDB](https://www.imdb.com/title/tt0070948/) |
 
 #### Content
 
-[Microsoft CoPilot](https://copilot.microsoft.com/) was used to generate initial content, which I then reviewed and refined - making adjustments to ensure it was well-suited to the site’s specific needs and tone.
+The initial content for this site was created using [Microsoft CoPilot](https://copilot.microsoft.com/), which served as a helpful starting point. I thoroughly reviewed and refined the generated material to ensure it perfectly matched the site’s tone, style, and specific needs.
 
-# TESTING NOT YET UPDATED
+Additionally, CoPilot was also used to compile a comprehensive list of films, which I carefully curated and edited it to maintain accuracy and relevance.
+
+All other material on the site was created independently by myself to provide a fully tailored and authentic experience.
 
 ## Testing
 
 - Please refer to [TESTING.md](TESTING.md) for details.
 
-# TECH USED NOT YET UPDATED
-
 ## Technologies Used
 
-- [HTML](https://en.wikipedia.org/wiki/HTML), [CSS](https://en.wikipedia.org/wiki/CSS), and [JavaScript.](https://en.wikipedia.org/wiki/JavaScript) for page presentation / interaction.
-- [Bootstrap](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)) for website styling.
-- [Python](https://www.python.org/) for website coding.
-- [Django](https://www.djangoproject.com/) website framework.
-- [PostgreSQL](https://www.postgresql.org/) website database.
-- [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) troubleshooting and testing (plus [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) feedback on performance).
-- [GitHub](https://github.com/) versioning control.
-- [Heroku](https://www.heroku.com/) website deployment.
-- [Visual Studio Code](https://code.visualstudio.com/) local code editing.
-- [Figma](https://www.figma.com/) entity relationship diagram, user flow diagram, and wireframes.
-- [Microsoft CoPilot](https://copilot.microsoft.com/) for content ideas and coding advice.
-- [Google Fonts](https://fonts.google.com/) fonts.
-- [FontAwesome](https://fontawesome.com/) website icons.
-- [Markdown](https://en.wikipedia.org/wiki/Markdown) document formatting.
-- [Font Joy](https://fontjoy.com/) complementary fonts.
-- [Google Chrome](https://www.google.co.uk/chrome/) browser previews and testing.
-- [Microsoft Edge](https://www.microsoft.com/en-gb/edge/) browser previews and testing.
-- [Firefox](https://www.mozilla.org/en-GB/firefox/new/) browser previews and testing.
-- [Opera](https://www.opera.com/) browser previews and testing.
-- [Safari](https://www.apple.com/uk/safari/) browser previews and testing.
-- [W3C HTML Checker](https://validator.w3.org/) HTML code checker.
-- [W3C CSS Checker](https://jigsaw.w3.org/css-validator/) CSS code checker.
-- [JSHint](https://jshint.com/) JavaScript code checker.
-- [Code Institute Python Linter](https://pep8ci.herokuapp.com/) Python code checker.
-- [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) website accessibility checker.
-- [Responsive Web Design Checker](https://responsivedesignchecker.com/) website responsiveness checker.
-- [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/) CSS reset code.
-- [Website mock-up Generator](https://websitemockupgenerator.com/) previewing website oon different devices.
-- [Deposit Photos](https://depositphotos.com/) images.
-- [Sarah Renae Clarke's Colour Catalogue V2](https://sarahrenaeclark.com/color-palettes/) colours.
-- [Free Convert WebP Converter](https://www.freeconvert.com/webp-converter) any image to webp converter.
-- [Pixillion Image Converter Software](https://www.nchsoftware.com/imageconverter/index.html?theme=webp&kw=webp%20converter&m=e&d=c&c=76691136445782&ag=1227055160311186&msclkid=024126ffbd141fc2bb514100770aa72b&utm_source=bing&utm_medium=cpc&utm_campaign=EN-C1&utm_term=webp%20converter&utm_content=Pixillion%20-%20WebP%20Converter) any image to webp converter.
-- [Image Resizer Image Converter](https://imageresizer.com/image-converter) any image to webp converter.
-- [Favicon Generator](https://favicon.io/favicon-converter/) favicon generator.
-- [Cloudinary](https://cloudinary.com/) image hosting.
-- [Artistly AI Image Generator](https://artistly.ai/go/) AI logo and image generator.
-- [This Person Does Not Exist](https://thispersondoesnotexist.com/) AI face generator.
-- [Beautify](https://marketplace.visualstudio.com/items/?itemName=HookyQR.beautify) Visual Studio Code plugin - code formatting.
-- [Code Spell Checker](https://marketplace.visualstudio.com/items/?itemName=streetsidesoftware.code-spell-checker) Visual Studio Code plugin - spelling checker.
-- [GitHub Copilot](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot) Visual Studio Code plugin - AI coding help.
-- [Flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8) Visual Studio Code plugin - Python linting.
-- [GoFullPage](https://gofullpage.com/) browser plugin - website previews (not supported by Firefox).
-- [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) browser plugin - responsive design tester.
+### Frontend Technologies
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [HTML](https://en.wikipedia.org/wiki/HTML) | The standard markup language used to structure content on the web. |
+| [CSS](https://en.wikipedia.org/wiki/CSS) | Stylesheet language responsible for the visual presentation and layout of web pages. |
+| [JavaScript](https://en.wikipedia.org/wiki/JavaScript) | Programming language that enables interactive and dynamic features on websites. |
+| [Bootstrap](https://en.wikipedia.org/wiki/Bootstrap_(front-end_framework)) | Popular front-end framework for building responsive and mobile-first web designs. |
+| [Google Fonts](https://fonts.google.com/) | Extensive library of free, open-source web fonts for enhanced typography. |
+| [FontAwesome](https://fontawesome.com/) | Icon toolkit that provides scalable vector icons for web projects. |
+| [Font Joy](https://fontjoy.com/) | Tool that generates harmonious font pairings for improved typography. |
+| [Markdown](https://en.wikipedia.org/wiki/Markdown) | Lightweight markup language for creating formatted text using a plain-text editor. |
+| [Markdown Cheatsheet](https://github.com/im-luka/markdown-cheatsheet?tab=readme-ov-file#user-content-fnref-see-9a8706b544a1a3c855dd33d5106ad53f) | The only Markdown cheatsheet you need |
+| [CKEditor](https://ckeditor.com) | WYSIWYG editor for Python and Django |
+
+---
+
+### Backend Technologies
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Python](https://www.python.org/) | Versatile programming language used primarily for backend web development. |
+| [Django](https://www.djangoproject.com/) | High-level Python web framework that encourages rapid development and clean design. |
+| [PostgreSQL](https://www.postgresql.org/) | Powerful, open-source relational database system used for storing website data. |
+
+---
+
+### Development Tools & IDEs
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Visual Studio Code](https://code.visualstudio.com/) | Lightweight, extensible code editor with powerful features and integrations. |
+| [Beautify](https://marketplace.visualstudio.com/items/?itemName=HookyQR.beautify) | VS Code extension that formats and beautifies source code automatically. |
+| [Code Spell Checker](https://marketplace.visualstudio.com/items/?itemName=streetsidesoftware.code-spell-checker) | Spell checking plugin for VS Code to catch common typos and errors. |
+| [GitHub Copilot](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot) | AI pair programmer plugin for VS Code offering code suggestions and completions. |
+| [Flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8) | Python linter extension for VS Code ensuring code quality and style adherence. |
+
+---
+
+### Version Control & Deployment
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [GitHub](https://github.com/) | Cloud-based platform for version control and collaborative code management using Git. |
+| [Heroku](https://www.heroku.com/) | Cloud platform that enables easy deployment, scaling, and management of web applications. |
+
+---
+
+### Design & Prototyping Tools
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Figma](https://www.figma.com/) | Collaborative interface design tool used for creating wireframes, prototypes, and diagrams. |
+| [Sarah Renae Clarke's Colour Catalogue V2](https://sarahrenaeclark.com/color-palettes/) | Curated collection of harmonious color palettes for design inspiration. |
+| [This Person Does Not Exist](https://thispersondoesnotexist.com/) | AI-generated realistic human faces for use in design and testing. |
+
+---
+
+### Browsers & Testing Tools
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Google Chrome](https://www.google.co.uk/chrome/) | Widely used web browser for development testing and previews. |
+| [Microsoft Edge](https://www.microsoft.com/en-gb/edge/) | Chromium-based browser for cross-platform testing and compatibility checks. |
+| [Firefox](https://www.mozilla.org/en-GB/firefox/new/) | Open-source browser used for development testing and debugging. |
+| [Opera](https://www.opera.com/) | Alternative web browser supporting advanced features and responsive testing. |
+| [Safari](https://www.apple.com/uk/safari/) | Apple’s default browser used for macOS and iOS compatibility testing. |
+| [Google Chrome Developer Tools](https://developer.chrome.com/docs/devtools/) | Built-in browser tools for debugging, profiling, and optimizing websites; includes [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview/) for performance audits. |
+| [GoFullPage](https://gofullpage.com/) | Browser extension for capturing full-page screenshots (not supported on Firefox). |
+| [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) | Chrome extension for testing website layouts on multiple screen sizes simultaneously. |
+
+---
+
+### Code Validation & Quality Assurance
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [W3C HTML Checker](https://validator.w3.org/) | Official tool for validating HTML code against web standards. |
+| [W3C CSS Checker](https://jigsaw.w3.org/css-validator/) | Validator for checking CSS code compliance and correctness. |
+| [JSHint](https://jshint.com/) | Static code analysis tool for identifying errors and potential problems in JavaScript. |
+| [Code Institute Python Linter](https://pep8ci.herokuapp.com/) | Online tool for checking Python code style and adherence to PEP 8 guidelines. |
+| [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) | Tool for evaluating website accessibility compliance and identifying issues. |
+| [Django Testing Tutorial](https://www.youtube.com/playlist?list=PLbpAWbHbi5rMF2j5n6imm0enrSD9eQUaM) | How to test Django code |
+
+---
+
+### Responsive Design & Layout
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Responsive Web Design Checker](https://responsivedesignchecker.com/) | Online service to test website responsiveness across multiple device sizes. |
+| [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/) | CSS snippet to remove default browser styling and ensure consistent layout. |
+| [Website Mock-up Generator](https://websitemockupgenerator.com/) | Tool for creating realistic previews of websites on various devices. |
+| [Materialize CSS Sticky Footer](https://materializecss.com/footer.html) | How to create a sticky footer |
+
+---
+
+### Image Resources & Management
+
+| Tool / Technology | Description |
+|-------------------|-------------|
+| [Deposit Photos](https://depositphotos.com/) | Stock photography website providing royalty-free images. |
+| [Free Convert WebP Converter](https://www.freeconvert.com/webp-converter) | Online converter to transform images into the optimized WebP format. |
+| [Pixillion Image Converter Software](https://www.nchsoftware.com/imageconverter/index.html?theme=webp&kw=webp%20converter&m=e&d=c&c=76691136445782&ag=1227055160311186&msclkid=024126ffbd141fc2bb514100770aa72b&utm_source=bing&utm_medium=cpc&utm_campaign=EN-C1&utm_term=webp%20converter&utm_content=Pixillion%20-%20WebP%20Converter) | Desktop software for converting images between formats including WebP. |
+| [Image Resizer Image Converter](https://imageresizer.com/image-converter) | Online tool for resizing and converting images to WebP format. |
+| [Favicon Generator](https://favicon.io/favicon-converter/) | Tool for creating custom favicons and converting images into favicon files. |
+| [Cloudinary](https://cloudinary.com/) | Cloud service for image hosting, optimization, and delivery. |
+| [ToWebP](https://towebp.io) | Free bulk images to WebP online converter |
+
+---
+
+
 
 # DEPLOYMENT NOT YET UPDATED
 
@@ -1339,17 +1521,14 @@ Copy the GitHub repository locally in one of two ways:
 - When you are ready to finalise your project, set `DEBUG=False` in your local `settings.py` file, and delete `DISABLE_COLLECTSTATIC` from the Heroku app's config variables.
 - Commit any changes to GitHub, and deploy from Heroku as before.
 
-# CREDITS / REFS NOT YET UPDATED
-
 ## Credits and References
 
 - [Duckett, J. (2011) HTML & CSS Design and Build Websites](https://htmlandcssbook.com/) - Indianapolis: John Wiley & Sons, Inc.
-- [Bootstrap Navbar](https://getbootstrap.com/docs/4.0/components/navbar/) for the navigation menus.
-- [Bootstrap Grid System](https://getbootstrap.com/docs/5.3/layout/grid/) for layout of pages.
-- [Bootstrap Spacing](https://getbootstrap.com/docs/5.3/utilities/spacing/) for element spacing.
+- [Duckett, J. (2014) JavaScript and jQuery Interactive Front-End Web Development](https://javascriptbook.com/) - Indianapolis: John Wiley & Sons, Inc.
 - [Codecademy Build Python Web Apps with Django](https://www.codecademy.com/enrolled/paths/build-python-web-apps-with-django).
+- [Project - Boutique Ado](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+BA101N+5/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/).
 
 ## Acknowledgements
 
-- Andrew Parton, for helping to convince me to finish this course.
+- Andrew Parton, for convincing me to finish this course.
 - Juliia Konovalova, for her mentorship on every single one of these projects.

@@ -125,5 +125,3 @@ class Images(models.Model):
                 is_featured=True
             ).exclude(pk=self.pk).update(is_featured=False)
         super().save(*args, **kwargs)
-        if self.title:
-            self.title.image.add(self)

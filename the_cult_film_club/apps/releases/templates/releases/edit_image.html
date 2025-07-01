@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block extra_title %}Edit "{{ release.title }}" Image{% endblock %}
+{% block content %}
+<div class="container header-container my-5">
+    <h2 class="text-center">Edit "{{ release.title }}" Image</h2>
+
+    {% if image.image %}
+    <div class="text-center mt-5 mb-3">
+        <img src="{{ image.image.url }}" alt="{{ image.caption }}">
+    </div>
+    {% endif %}
+
+    <form method="post" enctype="multipart/form-data" novalidate class="w-75 mx-auto">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <div class="w-75 mx-auto">
+            <button type="submit" class="btn btn-success mt-3">Save</button>
+            <a href="{% url 'manage_images' release.id %}" class="btn btn-outline-black mt-3">Cancel</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

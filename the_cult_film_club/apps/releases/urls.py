@@ -22,6 +22,7 @@ urlpatterns = [
         views.manage_images,
         name='manage_images'
     ),
+    path('images/<int:image_id>/edit/', views.edit_image, name='edit_image'),
     path(
         'images/delete/<int:image_id>/',
         views.delete_image,

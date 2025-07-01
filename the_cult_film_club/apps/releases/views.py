@@ -407,6 +407,28 @@ def manage_images(request, release_id: int):
 
 
 @superuser_required
+def edit_image(request, image_id):
+    """ Edit an existing image associated with a release.
+    """
+    image = get_object_or_404(Images, id=image_id)
+    release = image.title  # This is your Releases instance
+
+    if request.method == 'POST':
+        form = ImageForm(request.POST, request.FILES, instance=image)
+        if form.is_valid():
+            form.save()
+            return redirect('manage_images', release_id=release.id)
+    else:
+        form = ImageForm(instance=image)
+
+    return render(request, 'releases/edit_image.html', {
+        'form': form,
+        'image': image,
+        'release': release,
+    })
+
+
+@superuser_required
 def delete_image(request, image_id: int):
     """
     Delete an image associated with a release.

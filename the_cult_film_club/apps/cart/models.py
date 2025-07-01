@@ -22,7 +22,7 @@ class Order(models.Model):
     )
     user_profile = models.ForeignKey(
         "the_cult_film_club_account.Profile",
-        on_delete=models.SET_NULL,
+        on_delete=models.CASCADE,
         null=True,
         blank=True,
         related_name='orders',

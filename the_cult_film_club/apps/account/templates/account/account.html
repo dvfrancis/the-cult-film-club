@@ -29,13 +29,21 @@
                             {% endif %}
                             <form method="post" enctype="multipart/form-data" class="mb-4">
                                 {% csrf_token %}
-                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">Upload your profile photo</label>
+                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">Upload your
+                                    profile photo</label>
                                 {{ photo_form.photograph }}
                                 <div class="form-text text-muted mb-2">
                                     Accepts BMP, JPG, GIF, PNG, WebP | Max size: 5MB
                                 </div>
                                 <button type="submit" name="update_photo"
                                     class="btn btn-outline-black btn-sm w-25">Update Photo</button>
+                            </form>
+                            <form method="post"
+                                onsubmit="return confirm('Are you sure you want to delete your account and all associated data? This action is irreversible.');">
+                                {% csrf_token %}
+                                <button type="submit" name="delete_account" class="btn btn-danger w-25">
+                                    Delete Account
+                                </button>
                             </form>
                         </div>
                     </div>

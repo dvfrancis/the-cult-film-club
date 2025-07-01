@@ -6,6 +6,7 @@ from .forms import ProfilePhotoForm, AddressForm, WishlistItemForm
 from the_cult_film_club.apps.releases.models import Releases
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
+from django.contrib.auth import logout
 
 
 @login_required
@@ -26,6 +27,20 @@ def user_profile(request: HttpRequest) -> HttpResponse:
         .filter(wishlist=wishlist)
         .select_related('title')
     )
+
+    if 'delete_account' in request.POST:
+        user = request.user
+        logout(request)  # Logs out user immediately
+        # Cascades delete to Profile, Orders, Addresses, Wishlist, etc.
+        user.delete()
+        messages.success(
+            request,
+            (
+                "Your account and all associated data have been "
+                "permanently deleted."
+            )
+        )
+        return redirect('home')
 
     # Default form for GET or fallback
     form = WishlistItemForm()

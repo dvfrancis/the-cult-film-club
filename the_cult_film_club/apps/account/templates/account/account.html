@@ -39,7 +39,7 @@
                                     class="btn btn-outline-black btn-sm w-25">Update Photo</button>
                             </form>
                             <form method="post"
-                                onsubmit="return confirm('Are you sure you want to delete your account and all associated data? This action is irreversible.');">
+                                onsubmit="return confirm('Are you sure you want to delete your account and all associated addresses, wishlists, and orders? This action is irreversible!');">
                                 {% csrf_token %}
                                 <button type="submit" name="delete_account" class="btn btn-danger w-25">
                                     Delete Account

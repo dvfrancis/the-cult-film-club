@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% block extra_meta %}
-<meta name="description" content="Edit the details of '{{ release.title }}', including title, price, stock, and images.">
+<meta name="description"
+    content="Edit the details of '{{ release.title }}', including title, price, stock, and images.">
 <meta name="keywords" content="edit release, film release, update product, manage film, The Cult Film Club">
 {% endblock %}
 {% block extra_title %}
@@ -11,8 +12,7 @@ Edit "{{ release.title }}"
     <div class="row justify-content-center">
         <div class="col-12 col-lg-10">
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
-                <h2 class="logo-font text-center mb-4">Edit Release - <span
-                        class="text-primary">{{ release.title }}</span></h2>
+                <h2 class="logo-font text-center mb-4">Edit "{{ release.title }}"</h2>
                 <hr>
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}

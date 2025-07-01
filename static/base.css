@@ -306,6 +306,11 @@ a.no-underline {
     }
 }
 
+/* Add padding to CKEditor editable inline area */
+.ck-editor__editable_inline {
+  padding: 10px 35px !important;
+}
+
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
@@ -426,12 +431,6 @@ input[type="password"]:first-of-type {
     border-radius: 50%;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     border: 2px solid #eee;
-}
-
-/* Loyalty badge styling */
-.badge.bg-warning.text-dark {
-    font-size: 1rem;
-    padding: 0.5em 0.75em;
 }
 
 /* Sidebar border for account page */

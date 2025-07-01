@@ -342,17 +342,19 @@ def product_management(request):
 @superuser_required
 def edit_release(request, release_id: int):
     """
-    Edit an existing release.
+    Edit an existing release with CKEditor5-enabled fields.
     """
     release = get_object_or_404(Releases, pk=release_id)
+
     if request.method == 'POST':
-        form = ReleaseForm(request.POST, request.FILES, instance=release)
+        form = ReleaseEditForm(request.POST, request.FILES, instance=release)
         if form.is_valid():
             form.save()
             messages.success(request, "Release updated successfully")
             return redirect('product_management')
     else:
         form = ReleaseEditForm(instance=release)
+
     return render(
         request,
         'releases/edit_release.html',

@@ -181,7 +181,12 @@
   <script src="https://js.stripe.com/v3/"></script>
   <script src="{% static 'base.js' %}"></script>
   {% endblock %}
+  {% if rating_form %}
   {{ rating_form.media }}
+  {% endif %}
+  {% if form %}
+  {{ form.media }}
+  {% endif %}
   {% block extra_js %}{% endblock %}
 </body>
 

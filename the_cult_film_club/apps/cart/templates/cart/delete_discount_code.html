@@ -31,12 +31,12 @@
 
                 <form method="post" class="d-flex flex-column flex-md-row justify-content-center gap-3" aria-label="Confirm delete discount code form">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger btn-lg rounded-0 text-uppercase" aria-label="Confirm deletion of discount code {{ code.code }}">
-                        <i class="fas fa-trash-alt"></i> Yes, Delete
+                    <button type="submit" class="btn btn-outline-black btn-lg rounded-0 text-uppercase" aria-label="Confirm deletion of discount code {{ code.code }}">
+                        Delete
                     </button>
                     <a href="{% url 'discount_codes_management' %}"
-                        class="btn btn-outline-black btn-lg rounded-0 text-uppercase" aria-label="Cancel and return to discount codes management">
-                        <i class="fas fa-times"></i> Cancel
+                        class="btn btn-lg btn-success rounded-0 text-uppercase" aria-label="Cancel and return to discount codes management">
+                        Cancel
                     </a>
                 </form>
 

@@ -54,9 +54,9 @@
                                 </td>
                                 <td>
                                     <a href="{% url 'edit_discount_code' code.id %}"
-                                        class="btn btn-sm btn-outline-primary mb-2 me-1" aria-label="Edit discount code {{ code.code }}">Edit</a>
+                                        class="btn btn-sm btn-success mb-2 me-1" aria-label="Edit discount code {{ code.code }}">Edit</a>
                                     <a href="{% url 'delete_discount_code' code.id %}"
-                                        class="btn btn-sm btn-outline-danger mb-2" aria-label="Delete discount code {{ code.code }}">Delete</a>
+                                        class="btn btn-sm btn-outline-black mb-2" aria-label="Delete discount code {{ code.code }}">Delete</a>
                                 </td>
                             </tr>
                             {% empty %}
@@ -86,9 +86,9 @@
                         </div>
                         <div>
                             <a href="{% url 'edit_discount_code' code.id %}"
-                                class="btn btn-sm btn-outline-primary me-1 mb-1" aria-label="Edit discount code {{ code.code }}">Edit</a>
+                                class="btn btn-sm btn-success me-1 mb-1" aria-label="Edit discount code {{ code.code }}">Edit</a>
                             <a href="{% url 'delete_discount_code' code.id %}"
-                                class="btn btn-sm btn-outline-danger mb-1" aria-label="Delete discount code {{ code.code }}">Delete</a>
+                                class="btn btn-sm btn-outline-black mb-1" aria-label="Delete discount code {{ code.code }}">Delete</a>
                         </div>
                     </div>
                     {% empty %}
@@ -108,8 +108,8 @@
                         </div>
                     </div>
                     <div class="text-center mt-3">
-                        <button type="submit" class="btn btn-outline-black rounded-0 btn-lg text-uppercase" aria-label="Add new discount code">
-                            <i class="fas fa-plus"></i> Add Discount Code
+                        <button type="submit" class="btn btn-success rounded-0 btn-lg text-uppercase" aria-label="Add new discount code">
+                            Add Discount Code
                         </button>
                     </div>
                 </form>

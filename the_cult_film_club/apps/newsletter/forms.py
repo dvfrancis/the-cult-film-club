@@ -37,6 +37,10 @@ class NewsletterSignupForm(forms.ModelForm):
         super().__init__(*args, **kwargs)
         self.fields['genres'].choices = get_genre_choices()
 
+        # When editing, convert comma string to list for the field initial data
+        if self.instance and self.instance.genres:
+            self.initial['genres'] = self.instance.genres.split(',')
+
     def clean_genres(self):
         """
         Join selected genres into a comma-separated string before saving.

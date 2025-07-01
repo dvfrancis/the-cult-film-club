@@ -22,4 +22,9 @@ urlpatterns = [
         views.newsletter_unsubscribe_request,
         name='newsletter_unsubscribe_request'
     ),
+    path(
+        'newsletter/edit/<uuid:token>/',
+        views.edit_newsletter_preferences,
+        name='edit_newsletter_preferences'
+    ),
 ]

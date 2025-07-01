@@ -20,7 +20,7 @@ def newsletter_signup(request):
         )
 
     if request.method == 'POST':
-        form = NewsletterSignupForm(request.POST)
+        form = NewsletterSignupForm(request.POST, instance=subscriber)
         if form.is_valid():
             form.save()
             messages.success(
@@ -32,7 +32,8 @@ def newsletter_signup(request):
             )
             return redirect('newsletter_signup')
     else:
-        form = NewsletterSignupForm()
+        # Pass subscriber instance so the form shows current data
+        form = NewsletterSignupForm(instance=subscriber)
 
     context = {
         'form': form,
@@ -40,6 +41,28 @@ def newsletter_signup(request):
     }
 
     return render(request, 'newsletter/newsletter.html', context)
+
+
+def edit_newsletter_preferences(request, token):
+    subscriber = get_object_or_404(NewsletterSignup, unsubscribe_token=token)
+
+    if request.method == 'POST':
+        form = NewsletterSignupForm(request.POST, instance=subscriber)
+        if form.is_valid():
+            form.save()
+            messages.success(
+                request,
+                "Your newsletter preferences have been updated."
+            )
+            return redirect('newsletter_signup')
+    else:
+        form = NewsletterSignupForm(instance=subscriber)
+
+    return render(
+        request,
+        'newsletter/edit_newsletter_preferences.html',
+        {'form': form}
+    )
 
 
 def unsubscribe(request, token):

@@ -11,7 +11,8 @@
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
                 <div class="text-center mb-4">
                     <h2 class="logo-font mb-4">Subscribe to our Newsletter</h2>
-                    <p class="text-muted mb-0">Get the latest cult film news, offers, and updates delivered directly to your inbox.</p>
+                    <p class="text-muted mb-0">Get the latest cult film news, offers, and updates delivered directly to
+                        your inbox.</p>
                 </div>
 
                 <!-- Newsletter subscription form -->
@@ -21,10 +22,20 @@
                         {{ form|crispy }}
                         <div class="text-center mt-3">
                             <button type="submit" class="btn logo-font btn-success px-4 py-2 mb-3">Subscribe</button>
-                            <a href="{% url 'home' %}" class="btn logo-font btn-outline-black ms-2 px-4 py-2 mb-3">Cancel</a>
+                            <a href="{% url 'home' %}"
+                                class="btn logo-font btn-outline-black ms-2 px-4 py-2 mb-3">Cancel</a>
                         </div>
                     </form>
                 </div>
+
+                {% if request.user.is_authenticated and subscriber %}
+                <div class="text-center mb-3">
+                    <a href="{% url 'edit_newsletter_preferences' subscriber.unsubscribe_token %}" class="btn btn-link">
+                        Edit your newsletter preferences
+                    </a>
+                </div>
+                {% endif %}
+
 
                 <hr>
 
@@ -32,10 +43,12 @@
                 <div class="text-center">
                     <h5 class="mb-3">Unsubscribe</h5>
                     <form method="post" action="{% url 'newsletter_unsubscribe_request' %}"
-                          class="d-flex flex-column align-items-center" novalidate>
+                        class="d-flex flex-column align-items-center" novalidate>
                         {% csrf_token %}
                         <label for="unsubscribe-email" class="visually-hidden">Email to unsubscribe</label>
-                        <input id="unsubscribe-email" type="email" name="email" class="form-control mb-3" placeholder="Enter your email to unsubscribe" required aria-required="true" aria-describedby="unsubscribeHelp">
+                        <input id="unsubscribe-email" type="email" name="email" class="form-control mb-3"
+                            placeholder="Enter your email to unsubscribe" required aria-required="true"
+                            aria-describedby="unsubscribeHelp">
                         <small id="unsubscribeHelp" class="form-text text-muted mb-3">
                             We will send you a link to unsubscribe.
                         </small>

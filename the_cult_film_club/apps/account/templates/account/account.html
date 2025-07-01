@@ -135,7 +135,7 @@
                         </div>
 
                         <!-- Wishlist Section -->
-                        <h4 class="text-center mt-3 mb-3">Wishlists</h4>
+                        <h4 class="text-center mt-3 mb-2">Wishlists</h4>
                         <div class="mb-2">
 
                             <!-- Wishlist Selector -->
@@ -155,34 +155,6 @@
                                     {% endif %}
                                 </select>
                             </form>
-
-                            <!-- Create/Delete Wishlist -->
-                            <div class="d-flex flex-column flex-md-row gap-2 mb-4 align-items-stretch">
-                                <div class="flex-grow-1">
-                                    <form method="post" class="d-flex gap-2">
-                                        {% csrf_token %}
-                                        <input type="text" name="wishlist_name" class="form-control"
-                                            placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
-                                        <button type="submit" name="create_wishlist" class="btn btn-success">
-                                            Create
-                                        </button>
-                                    </form>
-                                </div>
-
-                                {% if selected_wishlist %}
-                                <div>
-                                    <form method="post"
-                                        onsubmit="return confirm('Delete this wishlist and all its items?');">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
-                                        <button type="submit" name="delete_wishlist" class="btn btn-outline-black">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
-                                {% endif %}
-                            </div>
-
                             <!-- Wishlist Items -->
                             {% if wishlist_items %}
                             <ul class="list-group wishlist-list gap-3">
@@ -191,9 +163,6 @@
                                     <div>
                                         <strong>{{ item.title.title }}</strong>
                                         <span class="badge bg-secondary ms-1">{{ item.priority }} priority</span>
-                                        {% if item.is_purchased %}
-                                        <span class="badge bg-success ms-1">Purchased</span>
-                                        {% endif %}
                                         <div class="small text-muted">{{ item.notes|default_if_none:"No notes"|safe }}
                                         </div>
                                     </div>
@@ -227,10 +196,39 @@
                                         </form>
                                     </div>
                                 </li>
-                                {% endfor %} </ul>
+                                {% endfor %}
+                            </ul>
                             {% else %}
                             <p class="text-muted">You have no items in this wishlist</p>
                             {% endif %}
+                            <!-- Create/Delete Wishlist -->
+                            <h5 class="text-center mt-3 mb-3">Create / Delete Wishlists</h5>
+                            <div class="d-flex flex-column flex-md-row gap-2 mb-4 align-items-stretch">
+                                <div class="flex-grow-1">
+                                    <form method="post" class="d-flex gap-2">
+                                        {% csrf_token %}
+                                        <input type="text" name="wishlist_name" class="form-control"
+                                            placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
+                                        <button type="submit" name="create_wishlist" class="btn btn-success">
+                                            Create
+                                        </button>
+                                    </form>
+                                </div>
+
+                                {% if selected_wishlist %}
+                                <div>
+                                    <form method="post"
+                                        onsubmit="return confirm('Delete this wishlist and all its items?');">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
+                                        <button type="submit" name="delete_wishlist" class="btn btn-outline-black">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                {% endif %}
+                            </div>
+
                         </div>
                         <!-- Edit Wishlist Item Form -->
                         {% if edit_mode %}

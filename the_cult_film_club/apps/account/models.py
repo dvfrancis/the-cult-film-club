@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from django.db.models import UniqueConstraint
 from django_ckeditor_5.fields import CKEditor5Field
 from django_countries.fields import CountryField
 
@@ -106,6 +105,8 @@ class Wishlist(models.Model):
         through='WishlistItem',
         related_name="wishlists"
     )
+    name = models.CharField(max_length=100, default="My Wishlist")
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"This is {self.user.username}'s wishlist"
@@ -113,9 +114,6 @@ class Wishlist(models.Model):
     class Meta:
         verbose_name = "Wishlist"
         verbose_name_plural = "Wishlists"
-        constraints = [
-            UniqueConstraint(fields=['user'], name='unique_user_wishlist')
-        ]
 
 
 class WishlistItem(models.Model):
@@ -131,7 +129,6 @@ class WishlistItem(models.Model):
         choices=PriorityLevel.choices,
         default=PriorityLevel.MEDIUM
     )
-    is_purchased = models.BooleanField(default=False, verbose_name="Purchased")
 
     def __str__(self):
         return f"{self.title} in {self.wishlist} (Priority: {self.priority})"

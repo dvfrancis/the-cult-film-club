@@ -456,7 +456,7 @@ input[type="password"]:first-of-type {
 }
 
 .wishlist-actions .wishlist-qty-label {
-    text-align: left !important;
+    text-align: left;
     width: 100%;
     font-size: 1rem;
     margin-bottom: 0.25rem;

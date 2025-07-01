@@ -12,12 +12,16 @@
     <div class="row justify-content-center">
         <div class="col-lg-10">
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
+
                 <!-- Profile Header -->
                 <div class="row mb-4">
                     <div class="col-12 text-center">
                         <h2 class="logo-font mb-1">
-                            {% if user_profile.user.get_full_name %}{{ user_profile.user.get_full_name }}{% else %}{{ user_profile.user.username }}{% endif %}'s
-                            Profile
+                            {% if user_profile.user.get_full_name %}
+                            {{ user_profile.user.get_full_name }}
+                            {% else %}
+                            {{ user_profile.user.username }}
+                            {% endif %}'s Profile
                         </h2>
                         <p class="mb-2 text-muted small">{{ user.email }}</p>
                         <div class="text-center mt-4">
@@ -27,17 +31,24 @@
                             {% else %}
                             <div class="mb-3"><em>No photo uploaded.</em></div>
                             {% endif %}
+
                             <form method="post" enctype="multipart/form-data" class="mb-4">
                                 {% csrf_token %}
-                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">Upload your
-                                    profile photo</label>
+                                <label for="{{ photo_form.photograph.id_for_label }}" class="form-label">
+                                    Upload your profile photo
+                                </label>
                                 {{ photo_form.photograph }}
                                 <div class="form-text text-muted mb-2">
                                     Accepts BMP, JPG, GIF, PNG, WebP | Max size: 5MB
                                 </div>
-                                <button type="submit" name="update_photo"
-                                    class="btn btn-outline-black btn-sm w-25">Update Photo</button>
+                                <button type="submit" name="update_photo" class="btn btn-outline-black btn-sm">
+                                    Update Photo
+                                </button>
+                                <button type="submit" name="delete_photo" class="btn btn-danger btn-sm">
+                                    Delete Photo
+                                </button>
                             </form>
+
                             {% if not user.is_superuser %}
                             <form method="post"
                                 onsubmit="return confirm('Are you sure you want to delete your account, and all associated addresses, orders, and wishlists? This action is irreversible.');">
@@ -50,7 +61,9 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
+
                     <!-- Profile Sidebar -->
                     <div class="col-12 col-lg-4 mb-4 mb-lg-0 border-end">
                         <div>
@@ -59,8 +72,9 @@
                                 <label for="address-select" class="form-label small">Select an address to edit:</label>
                                 <select name="address" id="address-select" class="form-select form-select-sm mb-2"
                                     onchange="this.form.submit()">
-                                    <option value="new" {% if not selected_address %}selected{% endif %}>Add an
-                                        address</option>
+                                    <option value="new" {% if not selected_address %}selected{% endif %}>
+                                        Add an address
+                                    </option>
                                     {% for address in addresses %}
                                     <option value="{{ address.id }}"
                                         {% if selected_address and address.id == selected_address.id %}selected{% endif %}>
@@ -72,11 +86,7 @@
                             <form method="post" class="mb-2">
                                 {% csrf_token %}
                                 {{ address_form|crispy }}
-                                {% if selected_address %}
-                                <input type="hidden" name="address" value="{{ selected_address.id }}">
-                                {% else %}
-                                <input type="hidden" name="address" value="">
-                                {% endif %}
+                                <input type="hidden" name="address" value="{{ selected_address.id|default:'' }}">
                                 <div class="d-flex w-100" role="group">
                                     <span data-bs-toggle="tooltip" title="Select 'Add an address' to enable this button"
                                         class="flex-fill">
@@ -98,6 +108,7 @@
                             </form>
                         </div>
                     </div>
+
                     <!-- Main Content -->
                     <div class="col-12 col-lg-8">
                         <!-- Order History Section -->
@@ -111,9 +122,7 @@
                                         Order #{{ order.id }}</a> placed on {{ order.date }}
                                     <ul class="mt-3">
                                         {% for item in order.lineitems.all %}
-                                        <li>
-                                            {{ item.release.title }} ({{ item.quantity }})
-                                        </li>
+                                        <li>{{ item.release.title }} ({{ item.quantity }})</li>
                                         {% endfor %}
                                     </ul>
                                     <div class="fw-bold text-end mb-3">Total: £{{ order.total }}</div>
@@ -124,9 +133,57 @@
                             <p class="text-muted">No orders found.</p>
                             {% endif %}
                         </div>
+
                         <!-- Wishlist Section -->
-                        <h4 class="text-center mt-3 mb-3">Wishlist</h4>
+                        <h4 class="text-center mt-3 mb-3">Wishlists</h4>
                         <div class="mb-2">
+
+                            <!-- Wishlist Selector -->
+                            <form method="get" class="mb-3">
+                                <label for="wishlist-select" class="form-label">Select wishlist:</label>
+                                <select name="wishlist" id="wishlist-select" class="form-select"
+                                    onchange="this.form.submit()">
+                                    {% if wishlists %}
+                                    {% for wl in wishlists %}
+                                    <option value="{{ wl.id }}"
+                                        {% if selected_wishlist and wl.id == selected_wishlist.id %}selected{% endif %}>
+                                        {{ wl.name }}
+                                    </option>
+                                    {% endfor %}
+                                    {% else %}
+                                    <option disabled selected>You have no wishlists</option>
+                                    {% endif %}
+                                </select>
+                            </form>
+
+                            <!-- Create/Delete Wishlist -->
+                            <div class="d-flex flex-column flex-md-row gap-2 mb-4 align-items-stretch">
+                                <div class="flex-grow-1">
+                                    <form method="post" class="d-flex gap-2">
+                                        {% csrf_token %}
+                                        <input type="text" name="wishlist_name" class="form-control"
+                                            placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
+                                        <button type="submit" name="create_wishlist" class="btn btn-success">
+                                            Create
+                                        </button>
+                                    </form>
+                                </div>
+
+                                {% if selected_wishlist %}
+                                <div>
+                                    <form method="post"
+                                        onsubmit="return confirm('Delete this wishlist and all its items?');">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
+                                        <button type="submit" name="delete_wishlist" class="btn btn-outline-black">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Wishlist Items -->
                             {% if wishlist_items %}
                             <ul class="list-group wishlist-list gap-3">
                                 {% for item in wishlist_items %}
@@ -137,48 +194,74 @@
                                         {% if item.is_purchased %}
                                         <span class="badge bg-success ms-1">Purchased</span>
                                         {% endif %}
-                                        <div class="small text-muted">{{ item.notes|default:"No notes"|safe }}</div>
+                                        <div class="small text-muted">{{ item.notes|default_if_none:"No notes"|safe }}
+                                        </div>
                                     </div>
                                     <div class="wishlist-actions d-flex flex-column align-items-end ms-3">
+                                        <a href="{% url 'user_profile' %}?wishlist={{ selected_wishlist.id }}&edit_item={{ item.id }}"
+                                            class="btn btn-outline-primary btn-sm mt-2 mb-2">Edit</a>
+
                                         {% if item.title.copies_available > 0 %}
                                         <form method="post" action="{% url 'add_to_cart' item.title.id %}"
-                                            class="w-100">
+                                            class="w-100 mb-2">
                                             {% csrf_token %}
-                                            <span
-                                                class="text-muted small d-block text-start mb-1 wishlist-qty-label">{{ item.title.copies_available }}
-                                                avail</span>
                                             <input type="number" name="quantity" value="1" min="1"
                                                 max="{{ item.title.copies_available }}"
-                                                class="form-control form-control-sm wishlist-qty-input mb-2">
+                                                class="form-control form-control-sm wishlist-qty-input">
                                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                            <span
+                                                class="text-muted small d-block text-end mt-2 mb-1 wishlist-qty-label">
+                                                {{ item.title.copies_available }} avail
+                                            </span>
                                             <button type="submit"
-                                                class="btn btn-success wishlist-action-btn mb-2">Buy</button>
+                                                class="btn btn-success wishlist-action-btn mt-3 w-100">Buy</button>
                                         </form>
                                         {% else %}
                                         <span class="out-of-stock-btn mb-2">Out of Stock</span>
                                         {% endif %}
                                         <form method="post" class="w-100">
                                             {% csrf_token %}
+                                            <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
                                             <button type="submit" name="remove_item" value="{{ item.id }}"
-                                                class="btn btn-danger wishlist-action-btn">Remove</button>
+                                                class="btn btn-outline-black wishlist-action-btn mb-2 w-100">Remove</button>
                                         </form>
                                     </div>
-                                </li> {% endfor %}
-                            </ul>
+                                </li>
+                                {% endfor %} </ul>
                             {% else %}
-                            <p class="text-muted">You have no items in your wishlist.</p>
+                            <p class="text-muted">You have no items in this wishlist</p>
                             {% endif %}
                         </div>
+                        <!-- Edit Wishlist Item Form -->
+                        {% if edit_mode %}
+                        <div class="card p-3 mb-4">
+                            <h5 class="text-center mt-2 mb-2">Edit {{ edit_item.title.title }}</h5>
+                            <form method="post" novalidate>
+                                {% csrf_token %}
+                                <input type="hidden" name="edit_item" value="{{ edit_item.id }}">
+                                {{ edit_form|crispy }}
+                                <div class="d-flex gap-2">
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                    <a href="{% url 'user_profile' %}?wishlist={{ selected_wishlist.id }}"
+                                        class="btn btn-outline-black">Cancel</a>
+                                </div>
+                            </form>
+                        </div>
+                        {% else %}
+                        <!-- Add Wishlist Item Form -->
                         <div class="mb-3">
+                            <h5 class="text-center mt-3 mb-2">Add Wishlist Item</h5>
                             <form method="post" class="wishlist-form">
                                 {% csrf_token %}
                                 {{ form|crispy }}
+                                <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
                                 <div class="d-flex justify-content-end">
                                     <button type="submit" name="add_item"
                                         class="btn btn-success mt-2 d-block mx-end w-25">Add</button>
                                 </div>
                             </form>
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>

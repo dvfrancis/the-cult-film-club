@@ -53,7 +53,7 @@ class WishlistItemInline(admin.TabularInline):
     Inline admin for WishlistItems within a Wishlist
     """
     model = WishlistItem
-    extra = 1
+    extra = 0
     autocomplete_fields = ['title']
     fields = ('title', 'date_added', 'priority', 'is_purchased', 'notes')
     readonly_fields = ('date_added',)
@@ -66,10 +66,11 @@ class WishlistItemAdmin(admin.ModelAdmin):
     """
     form = WishlistItemAdminForm
     list_display = (
-        'wishlist', 'title', 'priority', 'is_purchased', 'notes_html'
+        'wishlist', 'title', 'priority', 'notes_html'
     )
     search_fields = ('wishlist__user__username', 'title__title')
     ordering = ['wishlist__user__username', 'title__title']
+    list_filter = ['priority']
 
     def notes_html(self, obj):
         """
@@ -84,7 +85,7 @@ class WishlistAdmin(admin.ModelAdmin):
     """
     Admin interface for wishlists
     """
-    list_display = ['user']
+    list_display = ['user', 'name']
     inlines = [WishlistItemInline]
     search_fields = ['user__username']
     ordering = ['user__username']

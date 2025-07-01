@@ -32,4 +32,9 @@ urlpatterns = [
         views.add_to_wishlist,
         name='add_to_wishlist'
     ),
+    path(
+        'release/<int:release_id>/delete_rating/',
+        views.delete_rating,
+        name='delete_rating'
+    ),
 ]

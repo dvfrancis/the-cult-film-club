@@ -4,9 +4,9 @@
 {# Meta tags for SEO and social #}
 {% block extra_meta %}
 <meta name="description"
-    content="Explore the details of {{ release.title }}. Discover its description, special features, and production details. Add to your wishlist or cart.">
+  content="Explore the details of {{ release.title }}. Discover its description, special features, and production details. Add to your wishlist or cart.">
 <meta name="keywords"
-    content="Release Details, {{ release.title }}, Film Club, Wishlist, Cart, Special Features, Production Details, Film Genre, Film Director">
+  content="Release Details, {{ release.title }}, Film Club, Wishlist, Cart, Special Features, Production Details, Film Genre, Film Director">
 {% endblock %}
 
 {% block extra_title %}Details for "{{ release.title }}"{% endblock %}
@@ -21,31 +21,36 @@
           {# IMAGES CAROUSEL or fallback image #}
           <div class="text-center pt-5 px-4">
             {% if release.images.exists %}
-              <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel" aria-label="Image carousel for {{ release.title }}">
-                <div class="carousel-inner">
-                  {% for img in release.images.all %}
-                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
-                      <a href="#" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-img-url="{{ img.image.url }}" aria-label="View larger image">
-                        <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}" alt="{{ release.title }} image {{ forloop.counter }}">
-                      </a>
-                    </div>
-                  {% endfor %}
+            <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel"
+              aria-label="Image carousel for {{ release.title }}">
+              <div class="carousel-inner">
+                {% for img in release.images.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <a href="#" data-bs-toggle="modal" data-bs-target="#lightboxModal" data-img-url="{{ img.image.url }}"
+                    aria-label="View larger image">
+                    <img class="d-block mx-auto rounded shadow" src="{{ img.image.url }}"
+                      alt="{{ release.title }} image {{ forloop.counter }}">
+                  </a>
                 </div>
-                {% if release.image.count > 1 %}
-                  <button class="carousel-control-prev" type="button" data-bs-target="#releaseCarousel" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                  </button>
-                  <button class="carousel-control-next" type="button" data-bs-target="#releaseCarousel" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                  </button>
-                {% endif %}
+                {% endfor %}
               </div>
+              {% if release.image.count > 1 %}
+              <button class="carousel-control-prev" type="button" data-bs-target="#releaseCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#releaseCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+              {% endif %}
+            </div>
             {% else %}
-              <img class="card-img-top img-fluid rounded shadow mb-3"
-                   src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-                   alt="Placeholder image for {{ release.title }}">
+            <img class="card-img-top img-fluid rounded shadow mb-3"
+              src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
+              alt="Placeholder image for {{ release.title }}">
             {% endif %}
           </div>
 
@@ -56,31 +61,33 @@
             </h2>
             <div class="mb-3 text-center">
               {% if release.genre %}
-                <span class="badge bg-dark me-2">{{ release.genre }}</span>
+              <span class="badge bg-dark me-2">{{ release.genre }}</span>
               {% endif %}
               {% if release.subgenre %}
-                <span class="badge bg-secondary">{{ release.subgenre }}</span>
+              <span class="badge bg-secondary">{{ release.subgenre }}</span>
               {% endif %}
             </div>
 
             {# PRODUCTION DETAILS SUMMARY #}
             <div class="mb-3 text-center small text-muted">
               {% if release.director %}<span><strong>Director:</strong> {{ release.director }}</span>{% endif %}
-              {% if release.release_date %} | <span><strong>Year:</strong> {{ release.release_date|date:"Y" }}</span>{% endif %}
+              {% if release.release_date %} | <span><strong>Year:</strong>
+                {{ release.release_date|date:"Y" }}</span>{% endif %}
               {% if release.edition %} | <span><strong>Edition:</strong> {{ release.edition }}</span>{% endif %}
             </div>
 
             {# STAR RATING DISPLAY #}
             <p class="lead mb-3 text-center">
-              <span class="star-rating align-middle" aria-label="Average rating: {{ release.average_rating|default:0|floatformat:1 }} out of 5 stars">
+              <span class="star-rating align-middle"
+                aria-label="Average rating: {{ release.average_rating|default:0|floatformat:1 }} out of 5 stars">
                 {% for _ in full_stars_range %}
-                  <span class="star-filled" aria-hidden="true">&#9733;</span>
+                <span class="star-filled" aria-hidden="true">&#9733;</span>
                 {% endfor %}
                 {% if has_half_star %}
-                  <span class="star-filled"><i class="fas fa-star-half-alt"></i></span>
+                <span class="star-filled"><i class="fas fa-star-half-alt"></i></span>
                 {% endif %}
                 {% for _ in empty_stars_range %}
-                  <span class="star-empty" aria-hidden="true">&#9733;</span>
+                <span class="star-empty" aria-hidden="true">&#9733;</span>
                 {% endfor %}
               </span>
             </p>
@@ -89,36 +96,40 @@
             <div class="mb-3 text-center">
               <span class="lead font-weight-bold me-3">£{{ release.price }}</span>
               {% if release.copies_available == 0 %}
-                <span class="text-danger availability" role="alert">Out of stock</span>
+              <span class="text-danger availability" role="alert">Out of stock</span>
               {% elif release.copies_available < 10 %}
-                <span class="text-warning availability">{{ release.copies_available }} left</span>
+              <span class="text-warning availability">{{ release.copies_available }} left</span>
               {% else %}
-                <span class="text-success availability">{{ release.copies_available }} available</span>
+              <span class="text-success availability">{{ release.copies_available }} available</span>
               {% endif %}
             </div>
 
             {# ADD TO CART FORM WITH QUANTITY CONTROLS #}
-            <div class="bg-white border-0 d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
-              <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}" method="POST" aria-label="Add {{ release.title }} to cart">
+            <div
+              class="bg-white border-0 d-flex flex-column flex-md-row justify-content-center align-items-center gap-3">
+              <form class="form d-flex align-items-center" action="{% url 'add_to_cart' release.id %}" method="POST"
+                aria-label="Add {{ release.title }} to cart">
                 {% csrf_token %}
-                <div class="input-group input-group-sm quantity-group" role="spinbutton" aria-valuemin="0" aria-valuemax="{{ release.copies_available }}" aria-valuenow="1" aria-label="Quantity selector">
+                <div class="input-group input-group-sm quantity-group" role="spinbutton" aria-valuemin="0"
+                  aria-valuemax="{{ release.copies_available }}" aria-valuenow="1" aria-label="Quantity selector">
                   <button type="button" class="decrement-qty btn btn-outline-black btn-sm rounded-0"
-                          data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
-                          {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Decrease quantity">
+                    data-item_id="{{ release.id }}" id="decrement-qty_{{ release.id }}"
+                    {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Decrease quantity">
                     <span class="icon"><i class="fas fa-minus"></i></span>
                   </button>
-                  <input class="form-control form-control-sm qty_input text-center quantity-input" type="number" name="quantity"
-                         value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
-                         min="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
-                         max="{{ release.copies_available }}" data-item_id="{{ release.id }}" id="id_qty_{{ release.id }}"
-                         {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Quantity input">
+                  <input class="form-control form-control-sm qty_input text-center quantity-input" type="number"
+                    name="quantity" value="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                    min="{% if release.copies_available == 0 %}0{% else %}1{% endif %}"
+                    max="{{ release.copies_available }}" data-item_id="{{ release.id }}" id="id_qty_{{ release.id }}"
+                    {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Quantity input">
                   <button type="button" class="increment-qty btn btn-outline-black btn-sm rounded-0"
-                          data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
-                          {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Increase quantity">
+                    data-item_id="{{ release.id }}" id="increment-qty_{{ release.id }}"
+                    {% if release.copies_available == 0 %}disabled{% endif %} aria-label="Increase quantity">
                     <span class="icon"><i class="fas fa-plus"></i></span>
                   </button>
                 </div>
-                <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn ms-2" value="Add" {% if release.copies_available == 0 %}disabled{% endif %}>
+                <input type="submit" class="btn btn-outline-black rounded-0 text-uppercase add-to-cart-btn ms-2"
+                  value="Add" {% if release.copies_available == 0 %}disabled{% endif %}>
                 <input type="hidden" name="redirect_url" value="{{ request.path }}">
               </form>
             </div>
@@ -126,37 +137,39 @@
             {# WISHLIST BUTTON AND MODAL (AUTHENTICATED USERS ONLY) #}
             <div class="text-center">
               {% if user.is_authenticated %}
-                <button class="btn btn-success mt-3 mb-4" data-bs-toggle="modal" data-bs-target="#wishlistModal" aria-haspopup="dialog" aria-controls="wishlistModal" aria-expanded="false">
-                  <i class="fas fa-heart"></i> Add to Wishlist
-                </button>
+              <button class="btn btn-success mt-3 mb-4" data-bs-toggle="modal" data-bs-target="#wishlistModal"
+                aria-haspopup="dialog" aria-controls="wishlistModal" aria-expanded="false">
+                <i class="fas fa-heart"></i> Add to Wishlist
+              </button>
 
-                <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel" aria-hidden="true">
-                  <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                      <form method="POST" action="{% url 'add_to_wishlist' release.id %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="title" value="{{ release.id }}">
-                        {% if wishlist_form.errors %}
-                          <div class="alert alert-danger">
-                            {{ wishlist_form.errors }}
-                          </div>
-                        {% endif %}
-                        <div class="modal-header">
-                          <h5 class="modal-title" id="wishlistModalLabel">Add to Wishlist</h5>
-                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                          {{ wishlist_form.priority.label_tag }} {{ wishlist_form.priority }}
-                          {{ wishlist_form.notes.label_tag }} {{ wishlist_form.notes }}
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                          <button type="submit" class="btn btn-success">Add to Wishlist</button>
-                        </div>
-                      </form>
-                    </div>
+              <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <form method="POST" action="{% url 'add_to_wishlist' release.id %}">
+                      {% csrf_token %}
+                      <input type="hidden" name="title" value="{{ release.id }}">
+                      {% if wishlist_form.errors %}
+                      <div class="alert alert-danger">
+                        {{ wishlist_form.errors }}
+                      </div>
+                      {% endif %}
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="wishlistModalLabel">Add to Wishlist</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                      </div>
+                      <div class="modal-body">
+                        {{ wishlist_form.priority.label_tag }} {{ wishlist_form.priority }}
+                        {{ wishlist_form.notes.label_tag }} {{ wishlist_form.notes }}
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Add to Wishlist</button>
+                      </div>
+                    </form>
                   </div>
                 </div>
+              </div>
               {% endif %}
             </div>
 
@@ -185,9 +198,11 @@
                 {% if release.subgenre %}<li><strong>Subgenre:</strong> {{ release.subgenre }}</li>{% endif %}
                 {% if release.resolution %}<li><strong>Resolution:</strong> {{ release.resolution }}</li>{% endif %}
                 {% if release.edition %}<li><strong>Edition:</strong> {{ release.edition }}</li>{% endif %}
-                {% if release.censor_status %}<li><strong>Censor Status:</strong> {{ release.censor_status }}</li>{% endif %}
+                {% if release.censor_status %}<li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
+                {% endif %}
                 {% if release.packaging %}<li><strong>Packaging:</strong> {{ release.packaging }}</li>{% endif %}
-                {% if release.release_date %}<li><strong>Released:</strong> {{ release.release_date|date:"l, j F Y" }}</li>{% endif %}
+                {% if release.release_date %}<li><strong>Released:</strong> {{ release.release_date|date:"l, j F Y" }}
+                </li>{% endif %}
               </ul>
             </div>
 
@@ -195,58 +210,73 @@
             <div class="section-bg-grey section-rounded">
               <h4 class="mb-4 text-danger">User Reviews</h4>
               {% for review in release.ratings.all %}
-                <div class="border rounded p-3 mb-2 bg-white">
-                  <strong>{{ review.user.username }}</strong>
-                  <span class="star-rating ms-2" aria-label="Rating: {{ review.rating }} stars">
-                    {% for i in "xxxxx" %}
-                      {% if forloop.counter <= review.rating %}
-                        <span class="star-filled" aria-hidden="true">&#9733;</span>
-                      {% else %}
-                        <span class="star-empty" aria-hidden="true">&#9733;</span>
-                      {% endif %}
-                    {% endfor %}
-                  </span>
-                  <small class="text-muted ms-2">{{ review.date_added|date:"j M Y" }}</small>
-                  <div class="mt-2">{{ review.review|safe }}</div>
-                </div>
+              <div class="border rounded p-3 mb-2 bg-white">
+                <strong>{{ review.user.username }}</strong>
+                <span class="star-rating ms-2" aria-label="Rating: {{ review.rating }} stars">
+                  {% for i in "xxxxx" %}
+                  {% if forloop.counter <= review.rating %}
+                  <span class="star-filled" aria-hidden="true">&#9733;</span>
+                  {% else %}
+                  <span class="star-empty" aria-hidden="true">&#9733;</span>
+                  {% endif %}
+                  {% endfor %}
+                </span>
+                <small class="text-muted ms-2">{{ review.date_added|date:"j M Y" }}</small>
+                <div class="mt-2">{{ review.review|safe }}</div>
+              </div>
               {% empty %}
-                <p>No reviews yet.</p>
+              <p>No reviews yet.</p>
               {% endfor %}
+              {# Only show delete option if user has rated #}
+              {% if user.is_authenticated and user_rating %}
+              <form method="post" action="{% url 'delete_rating' release.id %}" class="d-inline-block mt-2"
+                onsubmit="return confirm('Are you sure you want to delete your rating?');"
+                aria-label="Delete your rating">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger btn-sm">Delete Your Rating</button>
+              </form>
+              {% endif %}
             </div>
 
             {# AVERAGE RATING AND USER RATING FORM #}
             <div class="section-bg-red section-rounded">
               {% if user.is_authenticated %}
-                <h5 class="mb-4 text-danger">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
-                <form method="post" aria-label="Submit your rating">
-                  {% csrf_token %}
-                  {{ rating_form|crispy }}
-                  <button type="submit" name="rating_submit" class="btn btn-success">
-                    {% if user_rating %}Update{% else %}Submit{% endif %}
-                  </button>
-                </form>
+              <h5 class="mb-4 text-danger">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
+              <form method="post" aria-label="Submit your rating">
+                {% csrf_token %}
+                {{ rating_form|crispy }}
+                <button type="submit" name="rating_submit" class="btn btn-success">
+                  {% if user_rating %}Update{% else %}Submit{% endif %}
+                </button>
+              </form>
               {% else %}
-                <p>
-                  <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your rating.
-                </p>
+              <p>
+                <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your rating.
+              </p>
               {% endif %}
             </div>
 
             {# SOCIAL SHARE BUTTONS #}
-            <div class="my-4 social-share d-flex justify-content-center gap-3" role="region" aria-label="Social share buttons">
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank" rel="noopener" class="text-primary" aria-label="Share on Facebook">
+            <div class="my-4 social-share d-flex justify-content-center gap-3" role="region"
+              aria-label="Social share buttons">
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"
+                rel="noopener" class="text-primary" aria-label="Share on Facebook">
                 <i class="fab fa-facebook fa-lg"></i>
               </a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger" aria-label="Share on Instagram">
+              <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger"
+                aria-label="Share on Instagram">
                 <i class="fab fa-instagram fa-lg"></i>
               </a>
-              <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}" target="_blank" rel="noopener" class="text-dark" aria-label="Share on Threads">
+              <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
+                target="_blank" rel="noopener" class="text-dark" aria-label="Share on Threads">
                 <i class="fa-brands fa-threads fa-lg"></i>
               </a>
-              <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}" target="_blank" rel="noopener" class="text-danger" aria-label="Share on Reddit">
+              <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}"
+                target="_blank" rel="noopener" class="text-danger" aria-label="Share on Reddit">
                 <i class="fab fa-reddit fa-lg"></i>
               </a>
-              <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}" class="text-danger" aria-label="Share by Email">
+              <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}"
+                class="text-danger" aria-label="Share by Email">
                 <i class="fas fa-envelope fa-lg"></i>
               </a>
             </div>
@@ -256,14 +286,16 @@
             {# PREVIOUS / NEXT NAVIGATION #}
             <div class="d-flex justify-content-between mt-4">
               {% if prev_release %}
-                <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-secondary mx-2" aria-label="Previous Release: {{ prev_release.title }}">
-                  &larr; Previous Release
-                </a>
+              <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-secondary mx-2"
+                aria-label="Previous Release: {{ prev_release.title }}">
+                &larr; Previous Release
+              </a>
               {% endif %}
               {% if next_release %}
-                <a href="{% url 'release_details' next_release.pk %}" class="btn btn-secondary ms-auto" aria-label="Next Release: {{ next_release.title }}">
-                  Next Release &rarr;
-                </a>
+              <a href="{% url 'release_details' next_release.pk %}" class="btn btn-secondary ms-auto"
+                aria-label="Next Release: {{ next_release.title }}">
+                Next Release &rarr;
+              </a>
               {% endif %}
             </div>
 

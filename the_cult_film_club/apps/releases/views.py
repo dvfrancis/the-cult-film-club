@@ -417,3 +417,18 @@ def delete_image(request, image_id: int):
         image.delete()
         messages.success(request, "Image deleted successfully")
     return redirect('manage_images', release_id=release_id)
+
+
+@login_required
+def delete_rating(request, release_id):
+    """ Delete a user's rating for a release. """
+    release = get_object_or_404(Releases, pk=release_id)
+    rating = get_object_or_404(Rating, user=request.user, title=release)
+
+    if request.method == "POST":
+        rating.delete()
+        messages.success(request, "Your rating has been deleted")
+        return redirect('release_details', release_id=release.id)
+
+    messages.error(request, "Invalid request")
+    return redirect('release_details', release_id=release.id)

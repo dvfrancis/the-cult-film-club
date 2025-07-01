@@ -38,13 +38,15 @@
                                 <button type="submit" name="update_photo"
                                     class="btn btn-outline-black btn-sm w-25">Update Photo</button>
                             </form>
+                            {% if not user.is_superuser %}
                             <form method="post"
-                                onsubmit="return confirm('Are you sure you want to delete your account and all associated addresses, wishlists, and orders? This action is irreversible!');">
+                                onsubmit="return confirm('Are you sure you want to delete your account, and all associated addresses, orders, and wishlists? This action is irreversible.');">
                                 {% csrf_token %}
                                 <button type="submit" name="delete_account" class="btn btn-danger w-25">
                                     Delete Account
                                 </button>
                             </form>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

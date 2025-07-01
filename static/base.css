@@ -440,6 +440,18 @@ input[type="password"]:first-of-type {
     }
 }
 
+/* Discount code input */
+.discount-input {
+    max-width: 200px;
+    min-width: 70px;
+}
+@media (max-width: 575.98px) {
+    .discount-input {
+        max-width: 80px;
+        min-width: 50px;
+    }
+}
+
 /* Responsive card padding for account page */
 @media (max-width: 991.98px) {
     .account-card {

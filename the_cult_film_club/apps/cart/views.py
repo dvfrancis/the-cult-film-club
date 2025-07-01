@@ -126,13 +126,11 @@ def add_to_cart(request, item_id):
 
     # Remove from wishlist if user is authenticated
     if request.user.is_authenticated:
-        try:
-            wishlist = Wishlist.objects.get(user=request.user)
+        wishlists = Wishlist.objects.filter(user=request.user)
+        for wishlist in wishlists:
             WishlistItem.objects.filter(
                 wishlist=wishlist, title=release
             ).delete()
-        except Wishlist.DoesNotExist:
-            pass
 
     return redirect(redirect_url)
 

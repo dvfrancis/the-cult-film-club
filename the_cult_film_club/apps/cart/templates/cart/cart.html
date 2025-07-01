@@ -100,26 +100,24 @@
                                 </td>
                             </tr>
                             <tr>
+                            <tr>
                                 <td colspan="5" class="text-end align-middle">
-                                    <form method="post" action="{% url 'apply_discount' %}"
-                                        class="row g-2 align-items-center justify-content-end">
+                                    <form method="post" action="{% url 'apply_discount' %}">
                                         {% csrf_token %}
-                                        <div class="col-12 col-sm-auto text-sm-end">
-                                            <label for="discount_code" class="mb-0">Discount Code</label>
-                                        </div>
-                                        <div class="col-12 col-sm">
-                                            <input type="text" name="discount_code" id="discount_code"
-                                                class="form-control w-100" value="{{ discount_code|default:'' }}">
-                                        </div>
-                                        <div class="col-12 col-sm-auto">
-                                            <button type="submit" class="btn btn-outline-black w-100">Apply</button>
-                                        </div>
+<div class="d-flex justify-content-end align-items-center gap-2 flex-nowrap">
+    <label for="discount_code" class="mb-0">Discount Code</label>
+    <input type="text" name="discount_code" id="discount_code"
+        class="form-control form-control-sm discount-input w-auto text-end"
+        value="{{ discount_code|default:'' }}">
+    <button type="submit" class="btn btn-outline-black btn-sm">Apply</button>
+</div>
                                         {% if discount_error %}
-                                        <div class="col-12">
+                                        <div class="text-end mt-2">
                                             <span class="text-danger">{{ discount_error }}</span>
                                         </div>
                                         {% endif %}
-                                    </form> {% if discount_amount and discount_percent %}
+                                    </form>
+                                    {% if discount_amount and discount_percent %}
                                     <h6 class="text-success mt-3 mb-0">
                                         You save £{{ discount_amount|floatformat:2 }} ({{ discount_percent }}% discount)
                                     </h6>

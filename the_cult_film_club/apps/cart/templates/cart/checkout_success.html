@@ -19,91 +19,91 @@
                     Your order information is below.<br><br>
                     A confirmation email will be sent to <strong>{{ order.email }}</strong>.
                 </p>
-                <div class="order-confirmation-wrapper p-3 border rounded bg-light text-center mx-auto">
+                <div class="order-confirmation-wrapper p-3 border rounded bg-light text-end mx-auto">
                     <div class="mb-3">
                         <small class="text-center text-muted d-block logo-font mb-3">Order Info</small>
                         <div class="row mb-2">
-                            <div class="col-12 col-md-6 fw-bold text-center">Order Number</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.order_number }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Order Number</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.order_number }}</div>
                         </div>
                         <div class="row mb-2">
-                            <div class="col-12 col-md-6 fw-bold text-center">Order Date</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.date }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Date</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.date }}</div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <small class="text-center text-muted d-block logo-font mb-3">Order Details</small>
                         {% for item in order.lineitems.all %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">{{ item.release.title }}</div>
-                            <div class="col-12 col-md-6 text-center">{{ item.quantity }} @ £{{ item.release.price|floatformat:2 }} each</div>
+                            <div class="col-12 col-md-6 fw-bold text-end">{{ item.release.title }}</div>
+                            <div class="col-12 col-md-6 text-start">{{ item.quantity }} @ £{{ item.release.price|floatformat:2 }} each</div>
                         </div>
                         {% endfor %}
                     </div>
                     <div class="mb-3">
-                        <small class="text-center text-muted d-block logo-font mb-3">Delivering To</small>
+                        <small class="text-center text-muted d-block logo-font mb-3">Delivery</small>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Full Name</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.full_name }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Name</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.full_name }}</div>
                         </div>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Address 1</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.street_address1 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Address</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.street_address1 }}</div>
                         </div>
                         {% if order.street_address2 %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Address 2</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.street_address2 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start"></div>
+                            <div class="col-12 col-md-6 text-start">{{ order.street_address2 }}</div>
                         </div>
                         {% endif %}
                         {% if order.county %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">County</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.county }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">County</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.county }}</div>
                         </div>
                         {% endif %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Town or City</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.town_or_city }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">City</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.town_or_city }}</div>
                         </div>
                         {% if order.postcode %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Postal Code</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.postcode }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Postal Code</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.postcode }}</div>
                         </div>
                         {% endif %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Country</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.country.name }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Country</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.country.name }}</div>
                         </div>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Phone Number</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.phone_number }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Phone</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.phone_number }}</div>
                         </div>
                     </div>
                     <div class="mb-3">
                         <small class="text-center text-muted d-block logo-font mb-3">Billing Info</small>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Order Total</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.subtotal|floatformat:2 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Subtotal</div>
+                            <div class="col-12 col-md-6 text-start">£{{ order.subtotal|floatformat:2 }}</div>
                         </div>
                         {% if order.discount_code %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Discount</div>
-                            <div class="col-12 col-md-6 text-center">-£{{ order.discount|floatformat:2 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Discount</div>
+                            <div class="col-12 col-md-6 text-start">-£{{ order.discount|floatformat:2 }}</div>
                         </div>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Discount Code</div>
-                            <div class="col-12 col-md-6 text-center">{{ order.discount_code.code }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Discount Code</div>
+                            <div class="col-12 col-md-6 text-start">{{ order.discount_code.code }}</div>
                         </div>
                         {% endif %}
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Delivery</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.delivery_cost|floatformat:2 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Delivery</div>
+                            <div class="col-12 col-md-6 text-start">£{{ order.delivery_cost|floatformat:2 }}</div>
                         </div>
                         <div class="row mb-1">
-                            <div class="col-12 col-md-6 fw-bold text-center">Grand Total</div>
-                            <div class="col-12 col-md-6 text-center">£{{ order.total|floatformat:2 }}</div>
+                            <div class="col-12 col-md-6 fw-bold text-start">Total</div>
+                            <div class="col-12 col-md-6 text-start">£{{ order.total|floatformat:2 }}</div>
                         </div>
                     </div>
                 </div>

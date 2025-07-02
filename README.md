@@ -89,9 +89,9 @@ The GitHub repository is [here].
 3. [Testing](#testing)
 4. [Technologies Used](#technologies-used)
 5. [Deployment](#deployment)
-    1. [Database Creation](#postgresql-database-creation-and-management)
-    2. [Local](#local-deployment)
-    3. [Heroku](#heroku-deployment)
+    1. [Database Creation and Management](#database-creation-and-management)
+    2. [Deploy Locally](#deploy-locally)
+    3. [Deploy Remotely](#deploy-remotely)
 6. [Credits and References](#credits-and-references)
 7. [Acknowledgements](#acknowledgements)
 
@@ -1051,15 +1051,26 @@ This is a custom model that stores email subscriber details.
 
 Meta classes used `verbose_name = "Subscriber", verbose_name_plural = "Subscribers", ordering = ['-date_joined']`
 
-# CRUD NOT YET UPDATED
 #### C R U D Fulfilment
 
-Shown below is a breakdown of how the website satisfies these requirements:
+Create, Read, Update, and Delete (CRUD) capabilities for each database model are shown in the following table. I believe this demonstrates that full CRUD has been achieved across the project:
 
-- Create (C) - add stock item / add an order / user's address
-- Read (R) - user account & profile / existing orders / about page / FAQ page / stock items / user's address
-- Update (U) - user account & profile / user's wishlist / stock item / user's address
-- Delete (D) - user account & profile / wishlist item / stock item / user's address
+| **MODEL** | **CREATE** | **READ** | **UPDATE** | **DELETE**  |
+|-----------|-------------|-------|------------|----------|
+| *User*| Create a user account | View user account | Update user account | Delete user account (and all associated data) |
+| *Profile* | Create a user profile (automatically created when creating a user) | View profile details | Update profile picture | Delete profile picture |
+| *Address* | Add an address | View an address | Update an address | Delete an address |
+| *Wishlist* | Create a wishlist | View a wishlist | Edit a wishlist | Delete a wishlist |
+| *WishlistItem* | Add an item to a wishlist | View a wishlist item | Edit a wishlist item | Delete an item from a wishlist |
+| *Rating* | Add rating / review | View rating / review | Update rating / review | Delete rating / review |
+| *Releases* | Add a release | View a release | Edit a release | Delete a release |
+| *Images* | Add an image | View an image | Edit an image | Delete an image|
+| *DiscountCode* | Create discount code | View discount code | Edit a discount code | Delete a discount code |
+| *Order* | Create an order | View an order | Not applicable - completed orders are not editable | Not applicable - completed orders are not deletable (unless the account itself is deleted) |
+| *OrderlineItem* | Add an item(s) to the cart | View item(s) in the cart | Update item(s) quantity in the cart | Delete item(s) from the cart |
+| *Contact* | Create a message | Not applicable - messages are one way | Not applicable - messages are final | Not applicable - messages are final |
+| *Newsletter* | User subscribes | User views their subscription preferences | User edits their subscription preferences | User unsubscribes from the newsletter |
+
 
 ### Skeleton
 
@@ -1403,132 +1414,213 @@ All other material on the site was created independently by myself to provide a 
 
 ---
 
-
-
-# DEPLOYMENT NOT YET UPDATED
-
 ## Deployment
 
-### PostgreSQL Database Creation and Management
+### Database Creation and Management
 
-Create a database at [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/); you will be emailed the database URL once this is completed:
+To create a PostgreSQL database, follow the steps provided by **Code Institute**:
 
-<details>
-<summary>Click to view step one of database creation</summary>
+1. Visit [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/).
+2. Complete the form to create a new database.
+3. Once completed, you will receive the database URL via email.
 
-![PostgreSQL from Code Institute - Step 1](documentation/deployment/postgresql-from-ci-step-1.webp)
-</details>
+#### Database Creation Steps
 
-<details>
-<summary>Click to view step two of database creation</summary>
+[Click to view step one of database creation](#)  
+[Click to view step two of database creation](#)  
+[Click to view step three of database creation](#)  
 
-![PostgreSQL from Code Institute - Step 2](documentation/deployment/postgresql-from-ci-step-2.webp)
-</details>
+#### Managing Your Database
 
-<details>
-<summary>Click to view step three of database creation</summary>
+You can manage the database you created with the [CI Database Maker](https://dbs.ci-dbs.net). This allows you to:
 
-![PostgreSQL from Code Institute - Step 3](documentation/deployment/postgresql-from-ci-step-3.webp)
-</details>
+- View database connection details.
+- Delete databases that are no longer required.  
 
-This database can be managed at [CI Database Maker](https://dbs.ci-dbs.net/manage/), which gives the option to view further information the databases you've created (it also gives you the option to delete them).
+[Click to view the initial login page](#)  
+[Click to view the management informational page](#)
 
-<details>
-<summary>Click to view initial login page</summary>
+### Deploy Locally
 
-![CI Database Maker - Login](documentation/deployment/postgresql-from-ci-database-maker-login.webp)
-</details>
+To deploy the project locally, follow these steps:
 
-<details>
-<summary>Click to view management informational page</summary>
+#### 1. Clone / download the repository
 
-![CI Database Maker - Management Page](documentation/deployment/postgresql-from-ci-database-maker-management.webp)
-</details>
+You can copy the GitHub repository locally in one of two ways:
 
-### Local deployment
+- **Option 1**: Download the ZIP file from the repository page and extract it to a folder on your computer.
+- **Option 2**: Clone the repository using the following command:
 
-Copy the GitHub repository locally in one of two ways:
+```bash
+git clone https://github.com/dvfrancis/the-cult-film-club.git
+```
+#### 2. Install dependencies
 
-1. Download a ZIP file from the GitHub repository page, and extract to a folder on your local computer, or
-2. Clone the repository using the `git clone` command followed by the repository clone link; for example:
-    - `git clone https://github.com/dvfrancis/craftr.git`
+Open a terminal window, in the root project folder, and install all required packages:
 
-- Once this has been done, open a terminal window and install all requirements using the command:
-    - `pip3 install -r requirements.txt`
-- In the root of the project folder, create a `.gitignore` file, and add `env.py` and `__pycache__` to protect sensitive data.
-- Add the following information to `env.py`:
-    
-   ```python
-    import os
+```bash
+pip3 install -r requirements.txt
+```
+#### 3. Setup environment variables
 
-      os.environ['SECRET_KEY'] = 'Add your database secret key'
-      os.environ['DATABASE_URL'] = 'Add your database URL'
-      os.environ['DEBUG'] = 'Set this to True'
-    ```
-*While developing leave `DEBUG=True`, but remember to change it to `DEBUG=False` when you deploy your final project*
-- Run the following commands to push everything to the database:
-    
-    ```Python
-        python3 manage.py makemigrations
-        python3 manage.py migrate
-    ```
+Create a file named `.gitignore` in the project root (if it doesn't already exist), and add the following entries. This ensures sensitive data (passwords, etc) are not tracked by Git:
 
-- Now create the superuser account (completing the necessary information when prompted):
-    - `python3 manage.py createsuperuser`
-- Run the webserver:
-    - `python3 manage.py runserver`
-- Ctrl + click (Cmd + Click on a Mac) the link to open the website.
-- Add `/admin` to the end of the URL to enter the administration panel. You will need to enter the details for the superuser you created earlier.
-- You will now be able to see the admin portal, and add, amend, or delete users.
+```bash
+env.py
+__pycache__/
+```
+Then create a file named `env.py` in the root directory and add your environment variables (while developing, leave `DEBUG=True`, but before deployment make sure to set `DEBUG=False`:
 
-### Heroku Deployment
+```python
+import os
 
-- Ensure that you have pushed any changes to your GitHub repository.
-- Visit the Heroku [website](https://www.heroku.com/), and create an account (if you don't already have one).
-- Login, and create a new app.
-- In your local environment create a `Procfile` in the root of your project folder, and add the following to it (remember to push changes to GitHub afterwards):
+os.environ['SECRET_KEY'] = 'Add your secret key'
+os.environ['DATABASE_URL'] = 'Add your database URL'
+os.environ['DEBUG'] = 'True'
+...other environment variables
+```
+#### 4. Migrate the database
 
-   ```python
-        web: gunicorn <your app name>.wsgi:application
-    ```
+Run the following commands to apply changes to the relevant database tables:
 
-- Inside your Heroku app, click `Settings`, then click `Reveal Config Vars`, and add the following:
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
 
-| Key      | Value          |
-|-------------|-------------|
-| `DISABLE_COLLECTSTATIC` | `1` |
-| `DATABASE_URL` | *Your database URL* | 
-| `SECRET_KEY` | *Your database secret key* |
-| `EMAIL_USER` | *Email address from your email provider* |
-| `EMAIL_PASSWORD` | *Email password from your email provider* |
+#### 5. Create the superuser account
 
-- Ensure that `DATABASE_URL`, `SECRET_KEY`, `EMAIL_USER`, and `EMAIL_PASSWORD` are added to your local `env.py` file in the following format (substituting `KEY` and `VALUE` for the relevant information):
-    
-    ```Python
-        os.environ.setdefault("KEY",("VALUE"))
-    ```
+Set up an admin account by running the command shown below, and following the prompts to complete superuser creation:
 
-- You may also need to add additional key / value pairs if you are using additional services, such as Cloudinary to serve images for your website.
-- Migrate changes to your database:
+```bash
+python3 manage.py createsuperuser
+```
 
-    ```Python
-        python3 manage.py makemigrations
-        python3 manage.py migrate
-    ```
-- In `settings.py`, set `DEBUG=False`, and push changes to GitHub.
-- In your Heroku app's `Deploy` settings, connect your repository, and click `Deploy Branch` to deploy the app (you can also set it to automatically deploy when changes are made to the repository, if desired).
-- You will see the deployment building at the bottom of your Heroku app's `Deploy` settings page.
-- When you are ready to finalise your project, set `DEBUG=False` in your local `settings.py` file, and delete `DISABLE_COLLECTSTATIC` from the Heroku app's config variables.
-- Commit any changes to GitHub, and deploy from Heroku as before.
+#### 6. Run the development server
+
+Start the Django development server and then `Ctrl` + `Click` on Windows (or `Cmd` + `Click` on macOS) the URL displayed in the terminal, to open the site in your browser:
+
+```bash
+python3 manage.py runserver
+```
+
+#### 7. Access the admin panel
+
+To access the Django Admin interface:
+
+- Append `/admin` to the local URL in your browser.
+- Log in using the superuser credentials you previously created.
+
+You will now have full access to manage users, products, content, and more via the admin portal.
+
+### Deploy Remotely
+
+Follow these steps to deploy your Django project to [Heroku](https://www.heroku.com/):
+
+#### 1. Push Changes to GitHub
+
+Make sure all changes are committed and pushed to your GitHub repository:
+
+```bash
+git add .
+git commit -m "Prepare for Heroku deployment"
+git push
+```
+#### 2. Create a Heroku account and app
+
+- Go to [Heroku](https://www.heroku.com) and sign up (or log in).
+- In the Heroku Dashboard, click 'New' > 'Create new app'.
+- Give your app a unique name, and choose your region.
+
+#### 3. Create a `Procfile`
+
+In your local project root directory, create a file named Procfile (no extension) and add the following line:
+
+```bash
+web: gunicorn <your_app_name>.wsgi:application
+```
+Replace `<your_app_name>` with the name of your Django project (the folder containing `settings.py`). Don’t forget to commit and push this file to GitHub after creating it.
+
+#### 4. Configure environment variables on Heroku
+
+In your Heroku app dashboard:
+
+- Navigate to 'Settings' > 'Reveal Config Vars'.
+- Add the following key-value pairs:
+
+| Key | Value |
+| --- | ----- |
+| `DISABLE_COLLECTSTATIC` | `1` (disables the collectstatic build step during development - delete before deployment)
+| `DATABASE_URL` | Your database URL
+| `SECRET_KEY` | Your Django secret key
+| `EMAIL_USER` | Email address (from your email provider)
+| `EMAIL_PASSWORD` | Email password (from your email provider)
+| `STRIPE_PUBLIC_KEY` | Used to identify your account with Stripe
+| `STRIPE_SECRET_KEY` | Allows your app to interact securely with Stripe services
+| `STRIPE_WH_SECRET` | A secret string used to verify webhook events sent from Stripe
+
+If you're using services like Cloudinary or Amazon Web Services, add the corresponding variables here too (for example, `CLOUDINARY_URL`).
+
+
+#### 5. Set local environment variables
+
+In your local `env.py` file, add your environment variables using:
+
+```python
+import os
+
+os.environ.setdefault("KEY", "VALUE")
+...other environment variables
+```
+
+Replace `KEY` and `VALUE` with your actual config keys and values.
+
+#### 6. Apply migrations
+
+Run the following commands locally to set up your database schema:
+
+```bash
+python3 manage.py makemigrations
+python3 manage.py migrate
+```
+
+#### 7. Update Django settings
+
+In `settings.py`, set:
+
+```python
+DEBUG = False
+```
+Commit and push this change to GitHub.
+
+#### 8. Connect Heroku to GitHub
+
+- In the Heroku app dashboard, go to the 'Deploy' tab.
+- Under Deployment method, select 'GitHub'.
+- Search for, and then connect, your repository.
+- Click 'Deploy Branch' to begin deployment.
+
+Optionally, enable automatic deploys so Heroku redeploys on every push to the `main` or `master` branch.
+
+#### 9. Final deployment steps
+
+When you're ready to finalise your project:
+- Double-check in `settings.py` that `DEBUG = False`.
+- Remove `DISABLE_COLLECTSTATIC` from your Heroku Config Vars.
+- Commit any final changes to GitHub.
+- Re-deploy from the Heroku dashboard
+
+Once deployed, your app should be live on Heroku. Visit your app URL and add `/admin` to access the Django admin panel using your superuser credentials.
 
 ## Credits and References
 
 - [Duckett, J. (2011) HTML & CSS Design and Build Websites](https://htmlandcssbook.com/) - Indianapolis: John Wiley & Sons, Inc.
 - [Duckett, J. (2014) JavaScript and jQuery Interactive Front-End Web Development](https://javascriptbook.com/) - Indianapolis: John Wiley & Sons, Inc.
+- [Django Tutorials by Corey Schafer](https://www.youtube.com/playlist?list=PL-osiE80TeTtoQCKZ03TU5fNfx2UY6U4p)
 - [Codecademy Build Python Web Apps with Django](https://www.codecademy.com/enrolled/paths/build-python-web-apps-with-django).
-- [Project - Boutique Ado](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+BA101N+5/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/).
+- [Code Institute Boutique Ado project](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+BA101N+5/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/).
 
 ## Acknowledgements
 
-- Andrew Parton, for convincing me to finish this course.
-- Juliia Konovalova, for her mentorship on every single one of these projects.
+- [Andrew Parton](https://www.andrewparton.co.uk), for convincing me to finish this course.
+- [Juliia Konovalova](https://github.com/IuliiaKonovalova), for her mentorship on every single one of these projects.

@@ -805,7 +805,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 #### Allauth Pages
 
-- Allauth pages were provided as part o the plugin, but have been styled to fit with the rest of the site.
+- Allauth pages were provided as part of the plugin, but have been styled to fit with the rest of the site.
 
 ##### Signup Page
 

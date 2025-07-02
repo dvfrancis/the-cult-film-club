@@ -1426,9 +1426,9 @@ To create a PostgreSQL database, follow the steps provided by **Code Institute**
 
 #### Database Creation Steps
 
-[Click to view step one of database creation](#)  
-[Click to view step two of database creation](#)  
-[Click to view step three of database creation](#)  
+[Click to view step one of database creation](assets/images/database-step-one.png)  
+[Click to view step two of database creation](assets/images/database-step-two.png)  
+[Click to view step three of database creation](assets/images/database-step-three.png)  
 
 #### Managing Your Database
 
@@ -1437,8 +1437,8 @@ You can manage the database you created with the [CI Database Maker](https://dbs
 - View database connection details.
 - Delete databases that are no longer required.  
 
-[Click to view the initial login page](#)  
-[Click to view the management informational page](#)
+[Click to view the initial login page](assets/images/db-management-login-page.png)  
+[Click to view the management informational page](assets/images/db-management-info-page.png)
 
 ### Deploy Locally
 

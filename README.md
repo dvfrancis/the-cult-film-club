@@ -342,9 +342,21 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
                 - Logout - sign out of user account for privacy and security.
 
     <details>
+    <summary>Click to view the navigation bar when a user is logged out</summary>
+            
+    ![Navigation bar when a user is logged out](assets/images/nav-bar-when-user-logged-out.webp)
+    </details>
+
+    <details>
     <summary>Click to view the navigation bar when a user is logged in</summary>
             
-    ![Navigation bar when a user logged in](assets/images/nav-bar-when-user-logged-in.webp)
+    ![Navigation bar when a user is logged in](assets/images/nav-bar-when-user-logged-in.webp)
+    </details>
+    
+    <details>
+    <summary>Click to view the navigation bar when a superuser is logged in</summary>
+            
+    ![Navigation bar when a superuser is logged in](assets/images/nav-bar-when-superuser-logged-in.webp)
     </details>
 
 - Footer
@@ -515,7 +527,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### manage_images.html
 
-- Allows film release images to added, edited, and deleted/
+- Allows film release images to added, edited, and deleted.
 - Featured images display a 'Featured' badge to make them easier to identify.
 - A 'Delete' button on all images allows them to be removed.
 
@@ -523,6 +535,18 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <summary>Click to view the manage images page</summary>
             
 ![Manage images page](assets/images/manage-images.webp)
+</details>
+
+#### Edit Film Release Images Page
+
+##### edit_image.html
+
+- Accessible via a button on any image shown on the manage_images.html page, this page allows the image to be replaced or its caption amended.
+
+<details>
+<summary>Click to view the edit image page</summary>
+            
+![Edit image page](assets/images/edit-image.webp)
 </details>
 
 #### Discount Codes Management Page
@@ -731,6 +755,18 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <summary>Click to view the newsletter signup page</summary>
             
 ![Newsletter signup page](assets/images/newsletter-signup.webp)
+</details>
+
+#### Newsletter Preferences Page
+
+##### edit_newsletter_preferences.html
+
+- Allows a user to adjust their newsletter preferences, by updating their selection of genres.
+
+<details>
+<summary>Click to view the newsletter preferences page</summary>
+            
+![Newsletter preferences page](assets/images/newsletter-preferences.webp)
 </details>
 
 #### Newsletter Unsubscribe Page

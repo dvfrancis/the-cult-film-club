@@ -3,8 +3,7 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.shortcuts import render
-from django.http import HttpResponseBadRequest
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import PermissionDenied, SuspiciousOperation
 
 
 # Custom error handlers
@@ -25,6 +24,7 @@ def custom_server_error(request):
 
 
 # Test error views (for development/debug only)
+
 def raise_server_error(request):
     raise Exception("Test 500 error")
 
@@ -34,7 +34,7 @@ def raise_permission_denied(request):
 
 
 def raise_bad_request(request):
-    return HttpResponseBadRequest()
+    raise SuspiciousOperation("Test 400 error")
 
 
 # Assign custom error handlers

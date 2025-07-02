@@ -1530,5 +1530,5 @@ Copy the GitHub repository locally in one of two ways:
 
 ## Acknowledgements
 
-- Andrew Parton, for convincing me to finish this course.
-- Juliia Konovalova, for her mentorship on every single one of these projects.
+- [Andrew Parton](https://www.andrewparton.co.uk), for convincing me to finish this course.
+- [Juliia Konovalova](https://github.com/IuliiaKonovalova), for her mentorship on every single one of these projects.

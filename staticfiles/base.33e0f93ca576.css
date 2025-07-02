@@ -1,0 +1,911 @@
+/* C S S  R E S E T */
+
+/* Taken from http://meyerweb.com/eric/tools/css/reset v2.0 | 20110126 License: none (public domain) */
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: circle;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: "";
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* P R O J E C T  S T Y L E S */
+
+html {
+    font-family: 'Raleway', sans-serif;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background: #FFF !important;
+    color: #080808 !important;
+    font-family: 'Raleway', Arial, sans-serif !important;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+h1,
+h2 {
+    color: #080808 !important;
+    font-size: xx-large;
+    font-weight: 900;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    font-size: large;
+    font-weight: 700;
+}
+
+.crimson-btn {
+    background: #ca0000;
+    color: #fff;
+
+}
+
+.black-btn {
+    background: #080808;
+    color: white;
+    border: 1px solid black;
+}
+
+.black-btn:hover,
+.black-btn:focus {
+    color: #FFF;
+    background-color: #ca0000;
+}
+
+.btn-outline-black {
+    background: white;
+    color: black !important;
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:focus {
+    color: #FFF !important;
+    background-color: #ca0000;
+}
+
+.base-button {
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    width: 100px;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Add to Cart button on release_details.html */
+.add-to-cart-btn {
+    font-size: 1.1rem;
+    padding: 0 1.2rem;
+    margin-left: 8px;
+    height: 32px;
+    line-height: 32px;
+    vertical-align: middle;
+}
+
+.card-heading {
+    font-family: 'Raleway', Arial, sans-serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.05em;
+    color: #ca0000;
+}
+
+header,
+footer {
+    background: #080808;
+    color: #FFF;
+}
+
+header a,
+footer a {
+    position: relative;
+    color: #FFF !important;
+    overflow: hidden;
+    z-index: 1;
+    transition: color 0.2s, background 0.2s;
+    padding: 0.5em 1.2em;
+    display: inline-block;
+    border-radius: 0.5em;
+    background: transparent;
+}
+
+header a:not(.no-highlight):hover,
+footer a:not(.no-highlight):hover,
+header a:not(.no-highlight):focus,
+footer a:not(.no-highlight):focus {
+    background: #ca0000 !important;
+    color: #FFF !important;
+}
+
+/* Used to center page content vertically on a page */
+.center-wrapper {
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Remove underline from links in Django message modals */
+a.no-underline {
+    text-decoration: none;
+}
+
+/* Styling for stock availability buttons on release.html */
+.availability {
+    background-color: #080808 !important;
+    color: #fff;
+    display: inline-block;
+    padding: 0.25em 0.75em;
+    text-align: right;
+    border-radius: 0.5em;
+    font-weight: bold;
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+@media (max-width: 1399px) {
+    .header-container {
+        padding-top: 200px !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .header-container {
+        padding-top: 125px !important;
+    }
+}
+
+/* Add padding to CKEditor editable inline area */
+.ck-editor__editable_inline {
+  padding: 10px 35px !important;
+}
+
+/* Hide number input spinners in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Hide number input spinners in Firefox */
+input[type="number"] {
+    appearance: textfield;
+    -moz-appearance: textfield;
+}
+
+.update-link,
+.remove-item {
+    cursor: pointer;
+}
+
+/* Make image carousel controls more prominent */
+.carousel-control-next-icon {
+    background-color: #080808;
+    border-radius: 50%;
+    border: 1px solid #080808;
+    padding: 0.5em;
+}
+
+.carousel-control-prev-icon {
+    background-color: #080808;
+    border-radius: 50%;
+    border: 1px solid #080808;
+    padding: 0.5em;
+}
+
+/* Tooltip for release_details.html quantity button validation */
+.qty-tooltip {
+    position: absolute;
+    background: #e1e1e3;
+    color: #080808;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    z-index: 1000;
+    transition: opacity 0.2s;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+/* Quantity selectors on checkout.html */
+.input-group-prepend,
+.input-group-append {
+    display: flex;
+}
+
+/* Search box placeholder text colour */
+
+input[name='q']::placeholder {
+    color: #080808 !important;
+}
+
+input::placeholder {
+    color: #080808 !important;
+}
+
+/* Header menus */
+.dropdown-menu {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: 1px solid #e1e1e3 !important;
+}
+
+.dropdown-menu .dropdown-item {
+    background-color: #080808 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus,
+.dropdown-menu .dropdown-item:active {
+    color: #FFF !important;
+    background-color: #ca0000 !important;
+}
+
+/* Ensure all card images in home and releases have a consistent height */
+.card-img-top {
+    height: 350px;
+    object-fit: scale-down;
+}
+
+/* Optional: Make card titles a consistent height for alignment */
+.card-title {
+    min-height: 3em;
+}
+
+/* Crispy Form fields spacing */
+.form-group,
+.form-row,
+.form-check {
+    margin-top: 1.2rem;
+    margin-bottom: 1.2rem;
+}
+
+a[href*="password/reset"] {
+    display: inline-block;
+    margin-top: 1.2rem;
+}
+
+/* Add space below the first password field on signup forms */
+input[type="password"]:first-of-type {
+    margin-bottom: 1.2rem;
+}
+
+/* Profile photo styling */
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 2px solid #eee;
+}
+
+/* Sidebar border for account page */
+@media (min-width: 992px) {
+    .account-sidebar {
+        border-right: 1px solid #eee;
+    }
+}
+
+/* Discount code input */
+.discount-input {
+    max-width: 200px;
+    min-width: 70px;
+}
+@media (max-width: 575.98px) {
+    .discount-input {
+        max-width: 80px;
+        min-width: 50px;
+    }
+}
+
+/* Responsive card padding for account page */
+@media (max-width: 991.98px) {
+    .account-card {
+        padding: 1.5rem !important;
+    }
+}
+
+/* Wishlist */
+.wishlist-actions {
+    min-width: 150px;
+    max-width: 150px;
+    gap: 0.5rem;
+}
+
+.wishlist-actions .wishlist-qty-label {
+    text-align: left;
+    width: 100%;
+    font-size: 1rem;
+    margin-bottom: 0.25rem;
+}
+
+.wishlist-actions .wishlist-qty-input,
+.wishlist-actions .wishlist-action-btn,
+.wishlist-actions .out-of-stock-btn {
+    width: 100%;
+    min-width: 120px;
+    max-width: 150px;
+    height: 38px;
+    font-size: 1rem;
+    text-align: center;
+    margin: 0;
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+}
+
+.wishlist-actions .out-of-stock-btn {
+    background: #aab0b6;
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+}
+
+/* Cart table - make images and cells responsive on small screens */
+@media (max-width: 575.98px) {
+    .cart-table-img {
+        max-width: 50px !important;
+        height: auto;
+    }
+
+    .cart-table-title,
+    .cart-table-price,
+    .cart-table-subtotal {
+        text-align: center !important;
+        word-break: break-word;
+        white-space: normal;
+    }
+
+    .cart-table-qty {
+        text-align: center !important;
+        min-width: 60px;
+        max-width: 100px;
+        margin: 0 auto;
+    }
+
+    /* Widen Title and Quantity columns */
+    .cart-table-title,
+    .cart-table-qty {
+        width: 48% !important;
+        display: table-cell;
+        text-align: center !important;
+        vertical-align: middle !important;
+    }
+
+    /* Center table headers */
+    .cart-table-title-header,
+    .cart-table-qty-header {
+        text-align: center !important;
+        width: 48% !important;
+    }
+
+    .cart-table-hide-xs {
+        display: none !important;
+    }
+
+    .cart-table-actions {
+        flex-direction: column !important;
+        gap: 0.25rem;
+    }
+
+    .table td,
+    .table th {
+        padding-left: 0.3rem;
+        padding-right: 0.3rem;
+        padding-top: 0.5rem;
+        padding-bottom: 0.5rem;
+        text-align: center !important;
+        white-space: normal !important;
+        word-break: break-word;
+    }
+
+    .qty_input,
+    .input-group .btn {
+        font-size: 0.95rem;
+        padding: 0.25rem 0.5rem;
+    }
+
+    .table {
+        table-layout: fixed;
+        width: 100%;
+    }
+
+    .input-group {
+        flex-wrap: wrap !important;
+    }
+
+    .input-group .form-control,
+    .input-group .btn {
+        min-width: 0;
+        width: auto;
+        flex: 1 1 auto;
+    }
+
+    .update-link,
+    .remove-item {
+        white-space: nowrap;
+        display: inline-block;
+    }
+
+    .delivery-options-row,
+    .delivery-options-label,
+    .delivery-options-select {
+        display: block;
+        width: 100% !important;
+        text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* Order confirmation page on XS */
+    .order-confirmation-wrapper {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    .order-confirmation-wrapper .col-6,
+    .order-confirmation-wrapper .col-md-4,
+    .order-confirmation-wrapper .col-md-8 {
+        max-width: 100%;
+        flex: 0 0 100%;
+        text-align: left;
+    }
+
+    .order-confirmation-wrapper {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
+
+/* Social sharing buttons */
+.social-share a {
+    text-decoration: none !important;
+    transition: color 0.2s;
+}
+
+.social-share a:hover,
+.social-share a:focus {
+    opacity: 0.8;
+    text-decoration: none;
+    transform: scale(1.15);
+}
+
+.social-share i {
+    font-size: 1.5rem;
+    vertical-align: middle;
+}
+
+/* Responsive gap for social icons */
+.social-share.gap-3>* {
+    margin-right: 1rem;
+}
+
+.social-share.gap-3>*:last-child {
+    margin-right: 0;
+}
+
+/* Star Ratings */
+.star-rating {
+    display: inline-block;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+
+.star-rating .star-filled {
+    color: #ca0000 !important;
+}
+
+.star-rating .star-empty {
+    color: #ddd;
+}
+
+/* Release details section backgrounds */
+.section-bg-red {
+    background-color: #fff5f5;
+}
+
+.section-bg-grey {
+    background-color: #f8f9fa;
+}
+
+.section-rounded {
+    border-radius: 1rem;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Title accent */
+.logo-font.text-danger {
+    letter-spacing: 1px;
+}
+
+.smallprint {
+    font-size: 1rem;
+    color: #fafafa;
+    text-decoration: none;
+}
+
+.smallprint:hover {
+    text-decoration: none;
+    color: #753da2;
+
+}
+
+/* Pagination styles */
+.pagination .page-link {
+    color: #ca0000;
+    border-radius: 0.5rem;
+    margin: 3px 5px;
+    border: 1px solid #ca000022;
+    transition: background 0.2s, color 0.2s;
+}
+
+.pagination .page-link:hover,
+.pagination .page-link:focus {
+    background-color: #fff5f5;
+    color: #ca0000;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ca0000;
+    color: #fff;
+    border-color: #ca0000;
+}
+
+.pagination .page-item.disabled .page-link {
+    color: rgb(8, 8, 8, 0.5);
+    background-color: #f8f9fa;
+    border-color: rgb(8, 8, 8, 0.5);
+}
+
+/* Stripe */
+
+.StripeElement,
+.stripe-style-input {
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 12px;
+    border: 1px solid transparent;
+    border-radius: 0px;
+    background-color: white;
+    box-shadow: 0 1px 3px 0 #e6ebf1;
+    -webkit-transition: box-shadow 150ms ease;
+    transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus,
+.stripe-style-input:focus,
+.stripe-style-input:active {
+    box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--webkit-autofill {
+    background-color: #fefde5 !important;
+}
+
+.stripe-style-input::placeholder {
+    color: #080808;
+}
+
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+#payment-form .form-control,
+#card-element {
+    color: #000;
+    border: 1px solid #000;
+}
+
+#loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgb(202, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    height: 100%;
+}
+
+/* Allauth */
+
+
+.allauth-form-inner-content a {
+    color: #17a2b8;
+}
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #080808;
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 0;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #080808;
+}
+
+.allauth-form-inner-content button,
+.allauth-form-inner-content input[type='submit'] {
+    display: inline-block;
+    font-weight: 400;
+    color: #fff !important;
+    text-align: center;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #000;
+    border: 1px solid #000;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: 0;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.allauth-form-inner-content button:hover,
+.allauth-form-inner-content input[type='submit']:hover {
+    color: #fff;
+    background-color: #080808;
+    border-color: #080808;
+}
+
+/* Bootstrap toasts */
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+.cart-notification-wrapper {
+    height: 100px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.fieldset-label {
+    position: relative;
+    right: .5rem;
+}
+
+#payment-form .form-control,
+#card-element {
+    color: #000;
+    border: 1px solid #000;
+}
+
+/* Utility classes copied from Bootstrap */
+
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+    border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+    border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+    border-bottom-color: #343a40 !important;
+}
+
+/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 10px solid black;
+    position: absolute;
+    top: -10px;
+    right: 36px;
+}

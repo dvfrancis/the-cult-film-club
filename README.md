@@ -1,5 +1,3 @@
-# DRAFT (NOT YET FINALISED)
-
 # The Cult Film Club
 
 ## Overview

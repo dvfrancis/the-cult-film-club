@@ -885,7 +885,9 @@ This is a custom model that stores the user's wishlist items.
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-many relationship* `on_delete=models.CASCADE, related_name='wishlists'`
-|Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, `through='WishlistItem'`, in a many-to-many relationship* `related_name='wishlists'`
+|Release Title|ManytoMany|`title`|CharField|*Linked to the `Releases` model, `through='WishlistItem'`, in a many-to-many relationship* `related_name='wishlists'`
+|Name|Key|`name`|CharField|`max_length=100, default="My Wishlist"`
+|Creation Date|Key|`created_at`|DateTimeField|`auto_now_add=True`
 
 Meta classes used `verbose_name = "Wishlist", verbose_name_plural = "Wishlists", constraints = [UniqueConstraint(fields=['user'], name='unique_user_wishlist')]`
 
@@ -900,7 +902,6 @@ This is a custom model that acts as an intermediate between the `Wishlist` and `
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True`
 |Notes|Key|`notes`|CKEditor5Field|`max_length=1000, blank=True, null=True`
 |Priority|Key|`priority`|CharField|`max_length=10, choices=PriorityLevel.choices, default=PriorityLevel.MEDIUM`
-|Purchased?|Key|`is_purchased`|BooleanField|`default=False, verbose_name='Purchased'`
 
 `class PriorityLevel(models.TextChoices):
     HIGH = "High", "High"

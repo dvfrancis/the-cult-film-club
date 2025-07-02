@@ -41,18 +41,26 @@ For casual moviegoers curious about diving into the world of cult cinema, **this
 
 Welcome to **The Cult Film Club**, where films find their forever home.
 
+---
+
 ### Site Preview
 
 ![A preview of the Cult Film Club website at various screen sizes](assets/images/site-preview.webp)
+
+---
 
 ### Site Link
 
 [live site]: https://the-cult-film-club-82f85068dd71.herokuapp.com
 Heroku is the host of the [live site].
 
+---
+
 ### GitHub Repository
 [here]: https://github.com/dvfrancis/the-cult-film-club
 The GitHub repository is [here].
+
+---
 
 ## Index
 
@@ -95,6 +103,8 @@ The GitHub repository is [here].
 6. [Credits and References](#credits-and-references)
 7. [Acknowledgements](#acknowledgements)
 
+---
+
 ## User Experience Design
 
 ### Project Structure
@@ -133,7 +143,11 @@ This approach keeps the project structure tidy and makes it easier to locate and
   ![Project task](assets/images/milestone-four-project-board-task.webp)
 </details>
 
+---
+
 ### Strategy
+
+---
 
 #### Key Business Goals
 
@@ -277,7 +291,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - Develop a rating system so users can leave feedback. 
 - Add filtering / sorting by film rating.
 
+---
+
 ### Scope
+
+---
 
 #### Existing Features
 
@@ -479,12 +497,6 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release details page](assets/images/film-release-details-page.webp)
 </details>
 
-<details>
-<summary>Click to view the example of automatic stock level adjustment</summary>
-            
-![Automatic stock level adjustment](assets/images/stock-level-adjustment.webp)
-</details>
-
 #### Product Management Page
 
 ##### product_management.html
@@ -493,7 +505,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and manage_images.html pages.
 
 <details>
-<summary>Click to view the product management page</summary>
+<summary>Click to view the top part of the product management page</summary>
             
 ![Product management page](assets/images/product-management-page.webp)
 </details>
@@ -566,7 +578,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <details>
 <summary>Click to view the discount codes page</summary>
             
-![](assets/images/.webp)
+![Discount codes page](assets/images/discount-codes-page.webp)
 </details>
 
 #### Edit Discount Code Page
@@ -613,7 +625,13 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - The shopping cart is cleared if the user logs out before checkout, or if the order is successful.
 
 <details>
-<summary>Click to view the shopping cart page</summary>
+<summary>Click to view the shopping cart page without any items</summary>
+            
+![Empty shopping cart page](assets/images/empty-shopping-cart-page.webp)
+</details>
+
+<details>
+<summary>Click to view the shopping cart page with items</summary>
             
 ![Shopping cart page](assets/images/shopping-cart-page.webp)
 </details>
@@ -649,6 +667,12 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <summary>Click to view the checkout page</summary>
             
 ![Checkout page](assets/images/checkout-page.webp)
+</details>
+
+<details>
+<summary>Click to view the payment processing page</summary>
+            
+![Payment processing page](assets/images/payment-processing-page.webp)
 </details>
 
 #### Checkout Success Page
@@ -794,7 +818,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <details>
 <summary>Click to view the signup page</summary>
             
-![Signup page](assets/images/sign-up-page.webp)
+![Signup page](assets/images/signup-page.webp)
 </details>
 
 ##### Login Page
@@ -846,7 +870,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 | [#86](https://github.com/dvfrancis/the-cult-film-club/issues/86) | Loyalty points | Allow users to collect points when buying items, and then redeem them against future purchases |
 | [#89](https://github.com/dvfrancis/the-cult-film-club/issues/89) | Alternative shipping types and providers | Give users the option to choose what type of shipping they'd like and also the shipping provider |
 
+---
+
 ### Structure
+
+---
 
 #### User Flow Diagram
 
@@ -1108,8 +1136,11 @@ Create, Read, Update, and Delete (CRUD) capabilities for each database model are
 | *Contact* | Create a message | Not applicable - messages are one way | Not applicable - messages are final | Not applicable - messages are final |
 | *Newsletter* | User subscribes | User views their subscription preferences | User edits their subscription preferences | User unsubscribes from the newsletter |
 
+---
 
 ### Skeleton
+
+---
 
 #### Wireframes
 
@@ -1127,7 +1158,11 @@ Click to view the [tablet wireframes](documentation/wireframes/wireframes-tablet
 
 Click to view the [desktop wireframes](documentation/wireframes/wireframes-desktop.pdf).
 
+---
+
 ### Surface
+
+---
 
 For this final project, I chose a minimal design approach, using a limited colour palette, a single font, and a clean, crisp layout. This aesthetic reflects the cult ethos of the website, allowing the content and unique character of each film to stand out without distraction.
 
@@ -1334,13 +1369,21 @@ Additionally, CoPilot was also used to compile a comprehensive list of films, wh
 
 All other material on the site was created independently by myself to provide a fully tailored and authentic experience.
 
-## Testing
+---
+
+### Testing
+
+---
 
 - Please refer to [TESTING.md](TESTING.md) for details.
 
-## Technologies Used
+---
 
-### Frontend Technologies
+### Technologies Used
+
+---
+
+#### Frontend Technologies
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1355,9 +1398,7 @@ All other material on the site was created independently by myself to provide a 
 | [Markdown Cheatsheet](https://github.com/im-luka/markdown-cheatsheet?tab=readme-ov-file#user-content-fnref-see-9a8706b544a1a3c855dd33d5106ad53f) | The only Markdown cheatsheet you need |
 | [CKEditor](https://ckeditor.com) | WYSIWYG editor for Python and Django |
 
----
-
-### Backend Technologies
+#### Backend Technologies
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1365,9 +1406,7 @@ All other material on the site was created independently by myself to provide a 
 | [Django](https://www.djangoproject.com/) | High-level Python web framework that encourages rapid development and clean design. |
 | [PostgreSQL](https://www.postgresql.org/) | Powerful, open-source relational database system used for storing website data. |
 
----
-
-### Development Tools & IDEs
+#### Development Tools & IDEs
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1377,18 +1416,14 @@ All other material on the site was created independently by myself to provide a 
 | [GitHub Copilot](https://marketplace.visualstudio.com/items/?itemName=GitHub.copilot) | AI pair programmer plugin for VS Code offering code suggestions and completions. |
 | [Flake8](https://marketplace.visualstudio.com/items/?itemName=ms-python.flake8) | Python linter extension for VS Code ensuring code quality and style adherence. |
 
----
-
-### Version Control & Deployment
+#### Version Control & Deployment
 
 | Tool / Technology | Description |
 |-------------------|-------------|
 | [GitHub](https://github.com/) | Cloud-based platform for version control and collaborative code management using Git. |
 | [Heroku](https://www.heroku.com/) | Cloud platform that enables easy deployment, scaling, and management of web applications. |
 
----
-
-### Design & Prototyping Tools
+#### Design & Prototyping Tools
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1396,9 +1431,7 @@ All other material on the site was created independently by myself to provide a 
 | [Sarah Renae Clarke's Colour Catalogue V2](https://sarahrenaeclark.com/color-palettes/) | Curated collection of harmonious color palettes for design inspiration. |
 | [This Person Does Not Exist](https://thispersondoesnotexist.com/) | AI-generated realistic human faces for use in design and testing. |
 
----
-
-### Browsers & Testing Tools
+#### Browsers & Testing Tools
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1411,9 +1444,7 @@ All other material on the site was created independently by myself to provide a 
 | [GoFullPage](https://gofullpage.com/) | Browser extension for capturing full-page screenshots (not supported on Firefox). |
 | [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) | Chrome extension for testing website layouts on multiple screen sizes simultaneously. |
 
----
-
-### Code Validation & Quality Assurance
+#### Code Validation & Quality Assurance
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1424,9 +1455,7 @@ All other material on the site was created independently by myself to provide a 
 | [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) | Tool for evaluating website accessibility compliance and identifying issues. |
 | [Django Testing Tutorial](https://www.youtube.com/playlist?list=PLbpAWbHbi5rMF2j5n6imm0enrSD9eQUaM) | How to test Django code |
 
----
-
-### Responsive Design & Layout
+#### Responsive Design & Layout
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1434,8 +1463,6 @@ All other material on the site was created independently by myself to provide a 
 | [CSS Tools: Reset CSS](https://meyerweb.com/eric/tools/css/reset/) | CSS snippet to remove default browser styling and ensure consistent layout. |
 | [Website Mock-up Generator](https://websitemockupgenerator.com/) | Tool for creating realistic previews of websites on various devices. |
 | [Materialize CSS Sticky Footer](https://materializecss.com/footer.html) | How to create a sticky footer |
-
----
 
 ### Image Resources & Management
 
@@ -1451,9 +1478,11 @@ All other material on the site was created independently by myself to provide a 
 
 ---
 
-## Deployment
+### Deployment
 
-### Database Creation and Management
+---
+
+#### Database Creation and Management
 
 To create a PostgreSQL database, follow the steps provided by **Code Institute**:
 
@@ -1461,7 +1490,7 @@ To create a PostgreSQL database, follow the steps provided by **Code Institute**
 2. Complete the form to create a new database.
 3. Once completed, you will receive the database URL via email.
 
-#### Database Creation Steps
+##### Database Creation Steps
 
 <details>
 <summary>Click to view step one of database creation</summary>
@@ -1500,11 +1529,11 @@ You can manage the database you created with the [CI Database Maker](https://dbs
 ![Click to view the management informational page](assets/images/db-management-info-page.png)
 </details>
 
-### Deploy Locally
+#### Deploy Locally
 
 To deploy the project locally, follow these steps:
 
-#### 1. Clone / download the repository
+##### 1. Clone / download the repository
 
 You can copy the GitHub repository locally in one of two ways:
 
@@ -1514,14 +1543,14 @@ You can copy the GitHub repository locally in one of two ways:
 ```bash
 git clone https://github.com/dvfrancis/the-cult-film-club.git
 ```
-#### 2. Install dependencies
+##### 2. Install dependencies
 
 Open a terminal window, in the root project folder, and install all required packages:
 
 ```bash
 pip3 install -r requirements.txt
 ```
-#### 3. Setup environment variables
+##### 3. Setup environment variables
 
 Create a file named `.gitignore` in the project root (if it doesn't already exist), and add the following entries. This ensures sensitive data (passwords, etc) are not tracked by Git:
 
@@ -1539,7 +1568,7 @@ os.environ['DATABASE_URL'] = 'Add your database URL'
 os.environ['DEBUG'] = 'True'
 ...other environment variables
 ```
-#### 4. Migrate the database
+##### 4. Migrate the database
 
 Run the following commands to apply changes to the relevant database tables:
 
@@ -1548,7 +1577,7 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-#### 5. Create the superuser account
+##### 5. Create the superuser account
 
 Set up an admin account by running the command shown below, and following the prompts to complete superuser creation:
 
@@ -1556,7 +1585,7 @@ Set up an admin account by running the command shown below, and following the pr
 python3 manage.py createsuperuser
 ```
 
-#### 6. Run the development server
+##### 6. Run the development server
 
 Start the Django development server and then `Ctrl` + `Click` on Windows (or `Cmd` + `Click` on macOS) the URL displayed in the terminal, to open the site in your browser:
 
@@ -1564,7 +1593,7 @@ Start the Django development server and then `Ctrl` + `Click` on Windows (or `Cm
 python3 manage.py runserver
 ```
 
-#### 7. Access the admin panel
+##### 7. Access the admin panel
 
 To access the Django Admin interface:
 
@@ -1573,11 +1602,11 @@ To access the Django Admin interface:
 
 You will now have full access to manage users, products, content, and more via the admin portal.
 
-### Deploy Remotely
+#### Deploy Remotely
 
 Follow these steps to deploy your Django project to [Heroku](https://www.heroku.com/):
 
-#### 1. Push Changes to GitHub
+##### 1. Push Changes to GitHub
 
 Make sure all changes are committed and pushed to your GitHub repository:
 
@@ -1586,13 +1615,13 @@ git add .
 git commit -m "Prepare for Heroku deployment"
 git push
 ```
-#### 2. Create a Heroku account and app
+##### 2. Create a Heroku account and app
 
 - Go to [Heroku](https://www.heroku.com) and sign up (or log in).
 - In the Heroku Dashboard, click 'New' > 'Create new app'.
 - Give your app a unique name, and choose your region.
 
-#### 3. Create a `Procfile`
+##### 3. Create a `Procfile`
 
 In your local project root directory, create a file named Procfile (no extension) and add the following line:
 
@@ -1601,7 +1630,7 @@ web: gunicorn <your_app_name>.wsgi:application
 ```
 Replace `<your_app_name>` with the name of your Django project (the folder containing `settings.py`). Don’t forget to commit and push this file to GitHub after creating it.
 
-#### 4. Configure environment variables on Heroku
+##### 4. Configure environment variables on Heroku
 
 In your Heroku app dashboard:
 
@@ -1622,7 +1651,7 @@ In your Heroku app dashboard:
 If you're using services like Cloudinary or Amazon Web Services, add the corresponding variables here too (for example, `CLOUDINARY_URL`).
 
 
-#### 5. Set local environment variables
+##### 5. Set local environment variables
 
 In your local `env.py` file, add your environment variables using:
 
@@ -1635,7 +1664,7 @@ os.environ.setdefault("KEY", "VALUE")
 
 Replace `KEY` and `VALUE` with your actual config keys and values.
 
-#### 6. Apply migrations
+##### 6. Apply migrations
 
 Run the following commands locally to set up your database schema:
 
@@ -1644,7 +1673,7 @@ python3 manage.py makemigrations
 python3 manage.py migrate
 ```
 
-#### 7. Update Django settings
+##### 7. Update Django settings
 
 In `settings.py`, set:
 
@@ -1653,7 +1682,7 @@ DEBUG = False
 ```
 Commit and push this change to GitHub.
 
-#### 8. Connect Heroku to GitHub
+##### 8. Connect Heroku to GitHub
 
 - In the Heroku app dashboard, go to the 'Deploy' tab.
 - Under Deployment method, select 'GitHub'.
@@ -1662,7 +1691,7 @@ Commit and push this change to GitHub.
 
 Optionally, enable automatic deploys so Heroku redeploys on every push to the `main` or `master` branch.
 
-#### 9. Final deployment steps
+##### 9. Final deployment steps
 
 When you're ready to finalise your project:
 - Double-check in `settings.py` that `DEBUG = False`.
@@ -1672,7 +1701,11 @@ When you're ready to finalise your project:
 
 Once deployed, your app should be live on Heroku. Visit your app URL and add `/admin` to access the Django admin panel using your superuser credentials.
 
-## Credits and References
+---
+
+### Credits and References
+
+---
 
 - [Duckett, J. (2011) HTML & CSS Design and Build Websites](https://htmlandcssbook.com/) - Indianapolis: John Wiley & Sons, Inc.
 - [Duckett, J. (2014) JavaScript and jQuery Interactive Front-End Web Development](https://javascriptbook.com/) - Indianapolis: John Wiley & Sons, Inc.
@@ -1680,7 +1713,11 @@ Once deployed, your app should be live on Heroku. Visit your app URL and add `/a
 - [Codecademy Build Python Web Apps with Django](https://www.codecademy.com/enrolled/paths/build-python-web-apps-with-django).
 - [Code Institute Boutique Ado project](https://learn.codeinstitute.net/courses/course-v1:CodeInstitute+BA101N+5/courseware/4201818c00aa4ba3a0dae243725f6e32/d3188bf68530497aa5fba55d07a9d7d7/).
 
-## Acknowledgements
+---
+
+### Acknowledgements
+
+---
 
 - [Andrew Parton](https://www.andrewparton.co.uk), for convincing me to finish this course.
 - [Juliia Konovalova](https://github.com/IuliiaKonovalova), for her mentorship on every single one of these projects.

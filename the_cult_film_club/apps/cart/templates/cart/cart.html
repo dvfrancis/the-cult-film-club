@@ -11,144 +11,142 @@
 {% block content %}
 <div class="container header-container center-wrapper">
     <div class="row justify-content-center">
-        <div class="col-lg-10">
-            <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
-                <h2 class="logo-font mt-4 mb-4 text-center">Your Cart</h2>
-                {% if purchases %}
-                <div class="table-responsive rounded">
-                    <table class="table table-borderless align-middle">
-                        <thead class="text-black">
-                            <tr class="text-center">
-                                <th scope="col" class="d-none d-sm-table-cell"><strong>Item</strong></th>
-                                <th scope="col" class="cart-table-title-header"><strong>Title</strong></th>
-                                <th scope="col" class="cart-table-hide-xs"><strong>Price</strong></th>
-                                <th scope="col" class="cart-table-qty-header"><strong>Quantity</strong></th>
-                                <th scope="col" class="cart-table-hide-xs"><strong>Subtotal</strong></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for item in purchases %}
-                            <tr class="text-center">
-                                <td class="w-25 d-none d-sm-table-cell">
-                                    <img class="img-fluid rounded cart-table-img"
-                                        src="{{ item.release.featured_image.image.url }}">
-                                </td>
-                                <td class="py-3 align-middle cart-table-title">
-                                    <p class="my-0">{{ item.release.title }}</p>
-                                </td>
-                                <td class="py-3 align-middle cart-table-price cart-table-hide-xs">
-                                    <p class="my-0">£{{ item.release.price }}</p>
-                                </td>
-                                <td class="py-3 align-middle cart-table-qty">
-                                    <form action="{% url 'amend_cart' item.item_id %}" class="form update-form"
-                                        method="POST">
-                                        {% csrf_token %}
-                                        <div class="input-group justify-content-center">
-                                            <button type="button"
-                                                class="decrement-qty btn btn-sm btn-outline-black rounded-0"
-                                                data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
-                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
-                                                <i class="fas fa-minus fa-sm"></i>
-                                            </button>
-                                            <input class="form-control form-control-sm qty_input text-center"
-                                                type="number" name="quantity"
-                                                value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
-                                                min="{% if item.release.copies_available == 0 %}0{% else %}1{% endif %}"
-                                                max="{{ item.release.copies_available }}"
-                                                data-item_id="{{ item.item_id }}" id="id_qty_{{ item.item_id }}"
-                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
-                                            <button type="button"
-                                                class="increment-qty btn btn-sm btn-outline-black rounded-0"
-                                                data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
-                                                {% if item.release.copies_available == 0 %}disabled{% endif %}>
-                                                <i class="fas fa-plus fa-sm"></i>
-                                            </button>
-                                        </div>
-                                        <div
-                                            class="d-flex flex-column flex-md-row justify-content-between mt-2 align-items-center gap-1 cart-table-actions">
-                                            <button type="submit"
-                                                class="btn btn-link p-0 m-0 align-baseline text-success update-link">
-                                                <small>Update</small>
-                                            </button>
-                                            <a class="remove-item text-danger"
-                                                id="remove_{{ item.item_id }}"><small>Remove</small></a>
-                                        </div>
-                                    </form>
-                                </td>
-                                <td class="py-3 align-middle cart-table-subtotal cart-table-hide-xs">
-                                    <p class="my-0">
-                                        £{{ item.release.price | calc_subtotal:item.quantity|floatformat:2 }}
-                                    </p>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                        <tfoot>
-                            <tr>
-                                <td colspan="5" class="text-end">
-                                    {% if free_delivery_diff > 0 %}
-                                    <h6><strong>Subtotal: £{{ subtotal|floatformat:2 }}</strong></h6>
-                                    <h6 class="mt-2">Delivery ({{ delivery_rate }}%): £{{ delivery|floatformat:2 }}</h6>
-                                    <h6 class="mt-3 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
-                                    <p class="text-danger">
-                                        <strong>FREE DELIVERY</strong> if you spend an additional
-                                        <strong>£{{ free_delivery_diff }}</strong>
-                                    </p>
-                                    {% elif free_delivery_diff <= 0 %}
-                                    <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
+        <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 col-lg-12 bg-white">
+            <h2 class="logo-font mt-4 mb-4 text-center">Your Cart</h2>
+            {% if purchases %}
+            <div class="table-responsive rounded">
+                <table class="table table-borderless align-middle">
+                    <thead class="text-black">
+                        <tr class="text-center">
+                            <th scope="col" class="d-none d-sm-table-cell"><strong>Item</strong></th>
+                            <th scope="col" class="cart-table-title-header"><strong>Title</strong></th>
+                            <th scope="col" class="cart-table-hide-xs"><strong>Price</strong></th>
+                            <th scope="col" class="cart-table-qty-header"><strong>Quantity</strong></th>
+                            <th scope="col" class="cart-table-hide-xs"><strong>Subtotal</strong></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in purchases %}
+                        <tr class="text-center">
+                            <td class="w-25 d-none d-sm-table-cell">
+                                <img class="img-fluid rounded cart-table-img"
+                                    src="{{ item.release.featured_image.image.url }}">
+                            </td>
+                            <td class="py-3 align-middle cart-table-title">
+                                <p class="my-0">{{ item.release.title }}</p>
+                            </td>
+                            <td class="py-3 align-middle cart-table-price cart-table-hide-xs">
+                                <p class="my-0">£{{ item.release.price }}</p>
+                            </td>
+                            <td class="py-3 align-middle cart-table-qty">
+                                <form action="{% url 'amend_cart' item.item_id %}" class="form update-form"
+                                    method="POST">
+                                    {% csrf_token %}
+                                    <div class="input-group justify-content-center">
+                                        <button type="button"
+                                            class="decrement-qty btn btn-sm btn-outline-black rounded-0"
+                                            data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
+                                            {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                            <i class="fas fa-minus fa-sm"></i>
+                                        </button>
+                                        <input class="form-control form-control-sm qty_input text-center" type="number"
+                                            name="quantity"
+                                            value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
+                                            min="{% if item.release.copies_available == 0 %}0{% else %}1{% endif %}"
+                                            max="{{ item.release.copies_available }}" data-item_id="{{ item.item_id }}"
+                                            id="id_qty_{{ item.item_id }}"
+                                            {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                        <button type="button"
+                                            class="increment-qty btn btn-sm btn-outline-black rounded-0"
+                                            data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
+                                            {% if item.release.copies_available == 0 %}disabled{% endif %}>
+                                            <i class="fas fa-plus fa-sm"></i>
+                                        </button>
+                                    </div>
+                                    <div
+                                        class="d-flex flex-column flex-md-row justify-content-between mt-2 align-items-center gap-1 cart-table-actions">
+                                        <button type="submit"
+                                            class="btn btn-link p-0 m-0 align-baseline text-success update-link">
+                                            <small>Update</small>
+                                        </button>
+                                        <a class="remove-item text-danger"
+                                            id="remove_{{ item.item_id }}"><small>Remove</small></a>
+                                    </div>
+                                </form>
+                            </td>
+                            <td class="py-3 align-middle cart-table-subtotal cart-table-hide-xs">
+                                <p class="my-0">
+                                    £{{ item.release.price | calc_subtotal:item.quantity|floatformat:2 }}
+                                </p>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="5" class="text-end">
+                                {% if free_delivery_diff > 0 %}
+                                <h6><strong>Subtotal: £{{ subtotal|floatformat:2 }}</strong></h6>
+                                <h6 class="mt-2">Delivery ({{ delivery_rate }}%): £{{ delivery|floatformat:2 }}</h6>
+                                <h6 class="mt-3 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
+                                <p class="text-danger">
+                                    <strong>FREE DELIVERY</strong> if you spend an additional
+                                    <strong>£{{ free_delivery_diff }}</strong>
+                                </p>
+                                {% elif free_delivery_diff <= 0 %}
+                                <h6 class="mt-4 mb-4"><strong>Total: £{{ total|floatformat:2 }}</strong></h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                        <tr>
+                            <td colspan="5" class="text-end align-middle">
+                                <form method="post" action="{% url 'apply_discount' %}">
+                                    {% csrf_token %}
+                                    <div class="d-flex justify-content-end align-items-center gap-2 flex-nowrap">
+                                        <label for="discount_code" class="mb-0">Discount Code</label>
+                                        <input type="text" name="discount_code" id="discount_code"
+                                            class="form-control form-control-sm discount-input w-auto text-end"
+                                            value="{{ discount_code|default:'' }}">
+                                        <button type="submit" class="btn btn-outline-black btn-sm">Apply</button>
+                                    </div>
+                                    {% if discount_error %}
+                                    <div class="text-end mt-2">
+                                        <span class="text-danger">{{ discount_error }}</span>
+                                    </div>
                                     {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                            <tr>
-                                <td colspan="5" class="text-end align-middle">
-                                    <form method="post" action="{% url 'apply_discount' %}">
-                                        {% csrf_token %}
-<div class="d-flex justify-content-end align-items-center gap-2 flex-nowrap">
-    <label for="discount_code" class="mb-0">Discount Code</label>
-    <input type="text" name="discount_code" id="discount_code"
-        class="form-control form-control-sm discount-input w-auto text-end"
-        value="{{ discount_code|default:'' }}">
-    <button type="submit" class="btn btn-outline-black btn-sm">Apply</button>
-</div>
-                                        {% if discount_error %}
-                                        <div class="text-end mt-2">
-                                            <span class="text-danger">{{ discount_error }}</span>
-                                        </div>
-                                        {% endif %}
-                                    </form>
-                                    {% if discount_amount and discount_percent %}
-                                    <h6 class="text-success mt-3 mb-0">
-                                        You save £{{ discount_amount|floatformat:2 }} ({{ discount_percent }}% discount)
-                                    </h6>
-                                    {% endif %}
-                                </td>
-                            </tr>
-                            <tr>
-                            </tr>
-                            <tr>
-                                <td colspan="5" class="text-end">
-                                    <a href="{% url 'releases' %}" class="btn btn-outline-black rounded-1 btn-lg mb-2">
-                                        <span class="text-uppercase">Add More Films</span>
-                                    </a>
-                                    <a href="{% url 'checkout' %}" class="btn btn-success rounded-1 mb-2 btn-lg">
-                                        <span class="text-uppercase">Checkout</span>
-                                        <i class="fas fa-lock"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                        </tfoot>
-                    </table>
-                </div>
-                {% else %}
-                <div class="text-center">
-                    <p class="lead mb-5">There is nothing in your shopping cart</p>
-                    <a href="{% url 'releases' %}" class="btn btn-success rounded-1 btn-lg">
-                        <span class="text-uppercase">Buy Films</span>
-                    </a>
-                </div>
-                {% endif %}
+                                </form>
+                                {% if discount_amount and discount_percent %}
+                                <h6 class="text-success mt-3 mb-0">
+                                    You save £{{ discount_amount|floatformat:2 }} ({{ discount_percent }}% discount)
+                                </h6>
+                                {% endif %}
+                            </td>
+                        </tr>
+                        <tr>
+                        </tr>
+                        <tr>
+                            <td colspan="5" class="text-end">
+                                <a href="{% url 'releases' %}" class="btn btn-outline-black rounded-1 btn-lg mb-2">
+                                    <span class="text-uppercase">Add More Films</span>
+                                </a>
+                                <a href="{% url 'checkout' %}" class="btn btn-success rounded-1 mb-2 btn-lg">
+                                    <span class="text-uppercase">Checkout</span>
+                                    <i class="fas fa-lock"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
+            {% else %}
+            <div class="text-center">
+                <p class="lead mb-5">There is nothing in your shopping cart</p>
+                <a href="{% url 'releases' %}" class="btn btn-success rounded-1 btn-lg">
+                    <span class="text-uppercase">Buy Films</span>
+                </a>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>

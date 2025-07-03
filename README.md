@@ -67,7 +67,7 @@ The GitHub repository is [here].
     2. [Site Link](#site-link)
     3. [GitHub Repository](#github-repository)
 2. [User Experience Design](#user-experience-design)
-    1. [Project Board](#project-board)
+    1. [Project Structure](#project-structure)
     2. [Strategy](#strategy)
         1. [Key Business Goals](#key-business-goals)
         2. [Key User Goals](#key-user-goals)
@@ -106,6 +106,8 @@ The GitHub repository is [here].
 ## User Experience Design
 
 ### Project Structure
+
+---
 
 For this project, I've chosen a non-standard folder structure that I believe is more effective and easier to navigate than the typical Django layout. All Django apps are organised within a dedicated subfolder named `apps`, inside the main project directory.
 

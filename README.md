@@ -509,6 +509,12 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Product management page](assets/images/product-management-page.webp)
 </details>
 
+<details>
+<summary>Click to view the add release form</summary>
+            
+![Add release form](assets/images/add-release-form.webp)
+</details>
+
 #### Edit Film Release Page
 
 ##### edit_release.html
@@ -575,9 +581,14 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - You can also add new discount codes via the form on this page.
 
 <details>
-<summary>Click to view the discount codes page</summary>
+<summary>Click to view the desktop version of the discount codes page</summary>
             
-![Discount codes page](assets/images/discount-codes-page.webp)
+![Desktop discount codes page](assets/images/discount-codes-page.webp)
+</details>
+
+<summary>Click to view the mobile version of the discount codes page</summary>
+            
+![Mobile discount codes page](assets/images/discount-codes-mobile-page.webp)
 </details>
 
 #### Edit Discount Code Page
@@ -633,6 +644,12 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <summary>Click to view the shopping cart page with items</summary>
             
 ![Shopping cart page](assets/images/shopping-cart-page.webp)
+</details>
+
+<details>
+<summary>Click to view the mobile version of the shopping cart page with items</summary>
+            
+![Mobile shopping cart page](assets/images/mobile-shopping-cart.webp)
 </details>
 
 #### Checkout Page

@@ -650,7 +650,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 <details>
 <summary>Click to view the mobile version of the shopping cart page with items</summary>
             
-![Mobile shopping cart page](assets/images/mobile-shopping-cart.webp)
+![Mobile shopping cart page](assets/images/mobile-shopping-cart-page.webp)
 </details>
 
 #### Checkout Page

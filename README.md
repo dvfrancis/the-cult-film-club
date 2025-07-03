@@ -586,6 +586,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Desktop discount codes page](assets/images/discount-codes-page.webp)
 </details>
 
+<details>
 <summary>Click to view the mobile version of the discount codes page</summary>
             
 ![Mobile discount codes page](assets/images/discount-codes-mobile-page.webp)

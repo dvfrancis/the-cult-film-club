@@ -24,9 +24,9 @@ With the rise of streaming, countless cult classics remain locked away, inaccess
 ### Features That Make Collecting Easier  
 
 - **Comprehensive Product Catalogue** – a fully searchable database of cult films with detailed descriptions, pricing, and availability.  
-- **User Accounts & Authentication** – secure user registration, customer order management, and “Collector’s Vault” wish-list features.  
-- **Streamlined Shopping Experience** – basket management, discount codes, loyalty points, and free shipping on larger orders.  
-- **Robust Admin Dashboard** – inventory management, sales tracking, and seamless order fulfilment.  
+- **User Accounts & Authentication** – secure user registration, customer order management, and wish-list features.  
+- **Streamlined Shopping Experience** – basket management, discount codes, and free shipping on larger orders.  
+- **Robust Product Management** – inventory management, sales tracking, and seamless order fulfilment.  
 - **Community Connection** – share your collection and discoveries with fellow fans across social media.  
 
 ### Join the Movement  
@@ -107,24 +107,23 @@ The GitHub repository is [here].
 
 ### Project Structure
 
-With this project, I've chosen a non-standard folder structure that I believe is more effective and easier to navigate than the typical Django layout.
+For this project, I've chosen a non-standard folder structure that I believe is more effective and easier to navigate than the typical Django layout. All Django apps are organised within a dedicated subfolder named `apps`, inside the main project directory.
 
-All Django apps are organised within a dedicated subfolder named `apps`, inside the main project directory.
-
-This approach keeps the project structure tidy and makes it easier to locate and manage individual apps, resulting in a clearer and more maintainable codebase.
+This approach keeps the project structure tidy, and makes it easier to locate and manage individual apps - resulting in a clearer and more maintainable codebase.
 
 ### Project Board
 
-- The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4). Amongst other things, it was used to track tasks, feature additions, bugs, and user stories.
+The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4). Amongst other things, it was used to track tasks, feature additions, bugs, and user stories.
 
-   <details>
-    <summary>Click to view a screenshot of the project board</summary>
+<details>
+<summary>Click to view a screenshot of the project board</summary>
             
-    ![Project board](assets/images/milestone-four-project-board-overview.webp)
-    </details>
+![Project board](assets/images/milestone-four-project-board-overview.webp)
+</details>
 
-- Each task was assigned to a milestone, with relevant labels and [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) categories.
-- The MoSCoW project split was as follows:
+Each task was assigned to a milestone, with relevant labels and [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) categories.
+
+The MoSCoW project split was as follows:
 
 | Type | Total | % Total |
 | --- | --- | --- |

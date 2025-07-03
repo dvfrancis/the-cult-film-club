@@ -18,33 +18,29 @@ Edit "{{ code.code }}"
 <div class="container header-container my-5">
     <div class="row justify-content-center">
         <div class="col-lg-6">
-
             <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white">
-
                 <h2 class="logo-font text-center mb-4">
                     Edit Discount Code: {{ code.code }}
                 </h2>
-
                 <hr>
-
                 <form method="post" novalidate>
                     {% csrf_token %}
                     <div class="mb-3">
                         {{ form|crispy }}
                     </div>
-
-                    <div class="d-flex mt-4">
-                        <button type="submit" class="btn btn-success rounded-0 btn-lg mx-2 text-uppercase" aria-label="Save changes to discount code">
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-success rounded-1 btn-lg mx-2 mb-2 text-uppercase"
+                            aria-label="Save changes to discount code">
                             Save
                         </button>
-                        <a href="{% url 'discount_codes_management' %}" class="btn btn-outline-black rounded-0 btn-lg text-uppercase" aria-label="Cancel and return to discount codes list">
+                        <a href="{% url 'discount_codes_management' %}"
+                            class="btn btn-outline-black rounded-1 btn-lg mb-2 text-uppercase"
+                            aria-label="Cancel and return to discount codes list">
                             Cancel
                         </a>
                     </div>
                 </form>
-
             </div>
-
         </div>
     </div>
 </div>

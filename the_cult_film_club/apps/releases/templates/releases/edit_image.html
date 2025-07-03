@@ -1,22 +1,27 @@
 {% extends "base.html" %}
 {% block extra_title %}Edit "{{ release.title }}" Image{% endblock %}
 {% block content %}
-<div class="container header-container my-5">
-    <h2 class="text-center">Edit "{{ release.title }}" Image</h2>
+<div class="header-container form-container container center-wrapper text-center">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-5">
+            <h2 class="text-center">Edit "{{ release.title }}" Image</h2>
 
-    {% if image.image %}
-    <div class="text-center mt-5 mb-3">
-        <img src="{{ image.image.url }}" alt="{{ image.caption }}">
-    </div>
-    {% endif %}
+            {% if image.image %}
+            <div class="text-center mt-5 mb-3">
+                <img src="{{ image.image.url }}" alt="{{ image.caption }}">
+            </div>
+            {% endif %}
 
-    <form method="post" enctype="multipart/form-data" novalidate class="w-75 mx-auto">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <div class="w-75 mx-auto">
-            <button type="submit" class="btn btn-success mt-3">Save</button>
-            <a href="{% url 'manage_images' release.id %}" class="btn btn-outline-black mt-3">Cancel</a>
+            <form method="post" enctype="multipart/form-data" novalidate class="w-75 mx-auto">
+                {% csrf_token %}
+                {{ form|crispy }}
+                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                    <button type="submit" class="btn btn-success rounded-1 mb-3 mx-2">Save</button>
+                    <a href="{% url 'manage_images' release.id %}"
+                        class="btn btn-outline-black rounded-1 mb-3 mx-2">Cancel</a>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock %}

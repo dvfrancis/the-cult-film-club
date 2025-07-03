@@ -12,36 +12,29 @@
 {% block extra_title %}Delete "{{ code.code }}"{% endblock %}
 
 {% block content %}
-<div class="container header-container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-
-            <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white text-center">
-
-                <h2 class="logo-font mb-4 text-danger" role="alert" aria-live="assertive">
-                    Delete Discount Code
-                </h2>
-
-                <hr>
-
-                <p class="mb-4">
-                    Are you sure you want to delete the discount code
-                    <strong>{{ code.code }}</strong>?
-                </p>
-
-                <form method="post" class="d-flex flex-column flex-md-row justify-content-center gap-3" aria-label="Confirm delete discount code form">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-outline-black btn-lg rounded-0 text-uppercase" aria-label="Confirm deletion of discount code {{ code.code }}">
-                        Delete
-                    </button>
-                    <a href="{% url 'discount_codes_management' %}"
-                        class="btn btn-lg btn-success rounded-0 text-uppercase" aria-label="Cancel and return to discount codes management">
-                        Cancel
-                    </a>
-                </form>
-
-            </div>
-
+<div class="header-container form-container container center-wrapper text-center">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-5">
+            <h2 class="logo-font mb-4 text-danger" role="alert" aria-live="assertive">
+                Delete Discount Code
+            </h2>
+            <hr>
+            <p class="mb-4">
+                Are you sure you want to delete the discount code
+                <strong>{{ code.code }}</strong>?
+            </p>
+            <form method="post" class="d-flex flex-column flex-md-row justify-content-center gap-3"
+                aria-label="Confirm delete discount code form">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-black btn-lg rounded-1 text-uppercase"
+                    aria-label="Confirm deletion of discount code {{ code.code }}">
+                    Delete
+                </button>
+                <a href="{% url 'discount_codes_management' %}" class="btn btn-lg btn-success rounded-1 text-uppercase"
+                    aria-label="Cancel and return to discount codes management">
+                    Cancel
+                </a>
+            </form>
         </div>
     </div>
 </div>

@@ -6,10 +6,9 @@
 {% endblock %}
 {% block extra_title %}Delete "{{ release.title }}"{% endblock %}
 {% block content %}
-<div class="container header-container my-5">
-    <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <div class="card shadow-lg rounded-3 border-0 p-4 p-md-5 bg-white text-center">
+<div class="header-container form-container container center-wrapper text-center">
+    <div class="card shadow-lg border-0 rounded-3">
+        <div class="card-body p-5">
                 <h2 class="logo-font mb-4 text-danger">Delete "{{ release.title }}"</h2>
                 <hr>
                 <p class="mt-4 mb-5">
@@ -17,16 +16,15 @@
                 </p>
                 <form method="post" class="d-flex flex-column flex-md-row justify-content-center gap-3">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-success btn-lg rounded-0 text-uppercase">
+                    <button type="submit" class="btn btn-success btn-lg rounded-1 text-uppercase">
                         Delete
                     </button>
                     <a href="{% url 'product_management' %}"
-                        class="btn btn-outline-black btn-lg rounded-0 text-uppercase">
+                        class="btn btn-outline-black btn-lg rounded-1 text-uppercase">
                         Cancel
                     </a>
                 </form>
             </div>
-        </div>
     </div>
 </div>
 {% endblock %}

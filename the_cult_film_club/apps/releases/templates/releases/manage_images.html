@@ -18,12 +18,14 @@ Manage Images for "{{ release.title }}"
                 <form method="post" enctype="multipart/form-data" class="mb-4">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <button type="submit" class="btn btn-success mt-2">
-                        <i class="fas fa-plus"></i> Add Image
-                    </button>
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-success mt-2">
+                            <i class="fas fa-plus"></i> Add Image
+                        </button>
+                    </div>
                 </form>
                 <hr>
-                <div class="row">
+                <div class="row d-flex flex-column flex-md-row justify-content-center align-items-center">
                     {% for image in images %}
                     <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
                         <div class="card h-100 shadow-sm">
@@ -52,9 +54,11 @@ Manage Images for "{{ release.title }}"
                     </div>
                     {% endfor %}
                 </div>
-                <a href="{% url 'product_management' %}" class="btn btn-outline-black w-25 mt-3">
-                    Cancel
-                </a>
+                <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                    <a href="{% url 'product_management' %}" class="btn text-uppercase btn-outline-black w-25 mt-3">
+                        Cancel
+                    </a>
+                </div>
             </div>
         </div>
     </div>

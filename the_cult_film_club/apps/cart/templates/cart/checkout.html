@@ -112,13 +112,12 @@
                         Your card will be charged <strong>£{{ total|floatformat:2 }}</strong>
                     </p>
                     <div class="d-flex flex-column flex-md-row justify-content-between align-items-center mt-4 gap-2">
-                        <a href="{% url 'cart' %}" class="btn btn-outline-black rounded-0 w-100 w-md-auto mb-2 mb-md-0" role="button" aria-label="Adjust Cart">
-                            <i class="fas fa-chevron-left"></i>
-                            <span class="font-weight-bold">Adjust Cart</span>
+                        <a href="{% url 'cart' %}" class="btn btn-outline-black rounded-1 w-100 w-md-auto mb-2 mb-md-0" role="button" aria-label="Adjust Cart">
+                            <span class="font-weight-bold text-uppercase">Adjust Cart</span>
                         </a>
 
                         <button id="submit-button"
-                            class="btn btn-success rounded-0 w-100 text-uppercase d-flex justify-content-center align-items-center gap-2"
+                            class="btn btn-success rounded-0 w-100 text-uppercase d-flex rounded-1 justify-content-center align-items-center gap-2"
                             type="submit"
                             aria-label="Submit Payment and Complete Purchase">
                             <span>Purchase</span>

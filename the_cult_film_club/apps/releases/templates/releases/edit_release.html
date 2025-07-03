@@ -17,13 +17,13 @@ Edit "{{ release.title }}"
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     {{ form|crispy }}
-                    <div class="d-flex justify-content-between mt-4">
-                        <button type="submit" class="btn btn-success btn-sm rounded-0 text-uppercase">
-                            <i class="fas fa-save"></i> Save Changes
+                    <div class="d-flex flex-column flex-md-row justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-success btn-sm rounded-1 mb-2 mx-2 text-uppercase">
+                            Save
                         </button>
                         <a href="{% url 'product_management' %}"
-                            class="btn btn-outline-black btn-sm rounded-0 text-uppercase">
-                            <i class="fas fa-times"></i> Cancel
+                            class="btn btn-outline-black btn-sm rounded-1 mb-2 mx-2 text-uppercase">
+                            Cancel
                         </a>
                     </div>
                 </form>

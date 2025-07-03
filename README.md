@@ -18,7 +18,7 @@ With the rise of streaming, countless cult classics remain locked away, inaccess
 
 - **Curated Selection** – from ultra-rare finds to must-have classics, our shop is packed with DVDs, Blu-rays, and 4K releases tailored for serious collectors and passionate newcomers alike.  
 - **Exclusive & Limited Editions** – discover collector’s items with special packaging, and releases you won’t find in mainstream retail stores.  
-- **Loyalty Scheme** – The Cult Film Club Card lets you save money, collect points, and exchange them for discounts on future purchases.  
+- **Wishlists** – Keep track of all those hidden gems with our fully customisable wishlists.  
 - **Secure Shopping & Fast Delivery** – browse with ease, pay securely, and have your next cinematic obsession delivered straight to your door.  
 
 ### Features That Make Collecting Easier  

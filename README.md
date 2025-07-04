@@ -125,8 +125,8 @@ The GitHub repository is [here].
     9. [Image Resources & Management](#image-resources--management)
 5. [Deployment](#deployment)
     1. [Database Creation and Management](#database-creation-and-management)
-    2. [Deploying Locally](#deploy-locally)
-    3. [Deploying Remotely](#deploy-remotely)
+    2. [Deploying Locally](#deploying-locally)
+    3. [Deploying Remotely](#deploying-remotely)
 6. [Credits and References](#credits-and-references)
 7. [Acknowledgements](#acknowledgements)
 

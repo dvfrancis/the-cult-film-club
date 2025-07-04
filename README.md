@@ -179,37 +179,38 @@ The MoSCoW project split was as follows:
 
 #### Key Business Goals
 
-- Grow a loyal customer base through brand identity, implementation of a loyalty scheme, and fostering an engaged community.
+- Grow a loyal customer base through brand identity, implementation of a wishlist system, and fostering an engaged community through ratings and reviews.
 - Drive revenue through website sales by offering exclusive editions, optimised pricing strategies, and continual expansion of the core product catalogue.
-- Improve shopping experience via an easy but secure checkout process, user interface optimisation, and fast and reliable shipping (including free delivery for larger orders, and priority shipping for loyalty scheme members).
+- Improve shopping experience via an easy but secure checkout process, user interface optimisation, and fast and reliable shipping (including free delivery for large orders).
 - Expand market reach and brand awareness through digital marketing and SEO practices, partnering with film distributors, and building a name in forums, on social media, and in film communities.
 - Establish a sustainable business model through streamlined inventory management, cost-effective supply chain, and exploration of subscription models.
 
 #### Key User Goals
 
 - Discover and explore cult films via a curated collection, searchable by keyword / genre / format, learning about individual films through their detailed item information.
-- Build a personal collection through purchase and by maintaining a wish-list that can be used to track special editions and other releases.
+- Build a personal collection through purchase and by maintaining a wishlist that can be used to track special editions and other releases.
 - Maximise opportunities to earn rewards by making regular purchases and redeeming accumulated reward points.
-- Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings.
+- Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings and reviews.
 - Shop with confidence via a hassle-free checkout experience utilising a secure, reliable payment service.
 
 #### User Experience
 
-- Target audience:
-    - Film enthusiasts (aged 18+) who appreciate unconventional, offbeat, and genre-defining films.
-    - Users may identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genre, person driven by nostalgia, movie buff, social sharer, member of an alternative subculture communities.
-    - May have an interest in rare or limited edition releases.
-    - Values physical ownership over digital streaming.
-    - Engages in movie discussions, reviews, and fan theories.
+- Target audience may:
+    - Be film enthusiasts (aged 18+) who appreciate unconventional, offbeat, and genre-defining films.
+    - Include users who identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genre, person driven by nostalgia, movie buff, social sharer, or member of an alternative subculture communities.
+    - Have an interest in rare or limited edition releases.
+    - Value physical ownership over digital streaming.
+    - Engage in movie discussions, reviews, and fan theories.
  
 #### User Expectations
 
-- A carefully curated, but wide, selection of authentic cult films, including rare editions.
-- A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality. Product descriptions should be comprehensive and engaging.
+- A carefully curated, wide selection of authentic cult films, including rare editions.
+- A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality.
+- Comprehensive and engaging product descriptions.
 - Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout, while being able to easily redeem and track loyalty points balance.
-- High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), include bonus content, and have collectible value.
+- High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), and include bonus content, and have collectible value.
 - Community engagement and social features allow users to share discoveries, recommend, and discuss films with others.
-- Reliable customer service through responsive support, and efficient handling of returns and refunds. Loyalty card members may also receive exclusive perks and priority assistance.
+- Reliable customer service through responsive support, and efficient handling of returns and refunds.
 
 #### User Stories
 
@@ -222,7 +223,6 @@ First-time visitors to The Cult Film Club will likely have different goals compa
 - “Which films are classed as 'Cult Classics'?”
 - "How much do different films cost?"
 - “Does the website accept discount codes?”
-- "Do I get rewarded for multiple purchases?"
 - "How do other users of the site rate the films?"
         
 ##### Returning visitor goals
@@ -240,9 +240,8 @@ Returning visitors to The Cult Film Club will likely have already explored the s
 Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and likely see the site as their go-to destination for cult cinema:
     
 - "Are there any special, or limited, editions available?"
-- "How many loyalty points do I have?"
 - "How many copies are available of a particular film?"
-- "Can I get priority shipping for my purchase?"
+- "Does my order qualify for free shipping?"
 - "Do you have a website newsletter I can join?"
 
 #### User Personas
@@ -291,14 +290,14 @@ Male, aged 29, wants to move away from streaming services and embrace physical m
 
 ##### Acceptance Criteria
 
-- A “Why Own Physical Media?” section explains the benefits of physical media, over streaming ([see issue #73](https://github.com/dvfrancis/the-cult-film-club/issues/73)).
-- Users can browse a “Collector’s Vault” wish-list to track films they plan to own ([see issue #74](https://github.com/dvfrancis/the-cult-film-club/issues/74)).
+- An about page explains the benefits of physical media, over streaming ([see issue #73](https://github.com/dvfrancis/the-cult-film-club/issues/73)).
+- Users can create wishlists to track films they plan to own ([see issue #74](https://github.com/dvfrancis/the-cult-film-club/issues/74)).
 - Releases highlight whether a film was / has been censored ([see issue #75](https://github.com/dvfrancis/the-cult-film-club/issues/75)).
     
 ##### Tasks
 
-- Write and design a “Why Own Physical Media?” information page.
-- Develop a wish-list system ("Collector’s Vault") for tracking future purchases.
+- Write and design an informational about page.
+- Develop a wishlist system for tracking future purchases.
 - Ensure film listings clearly highlight where films have been previously censored.
 
 #### User 4
@@ -311,13 +310,13 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 - Users can share film listings directly to any social media platform ([see issue #78](https://github.com/dvfrancis/the-cult-film-club/issues/78)).
 - Users can rate any film on the website ([see issue #77](https://github.com/dvfrancis/the-cult-film-club/issues/77)).
-- Users can sort and filter by film rating ([see issue #76](https://github.com/dvfrancis/the-cult-film-club/issues/76)).
+- Users can sort and filter by price and film rating ([see issue #76](https://github.com/dvfrancis/the-cult-film-club/issues/76)).
     
 ##### Tasks
 
 - Implement social media sharing buttons for easy film recommendations.
 - Develop a rating system so users can leave feedback. 
-- Add filtering / sorting by film rating.
+- Add filtering / sorting by price and film rating.
 
 ---
 
@@ -327,7 +326,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 #### Existing Features
 
-- All screenshots (unless stated) are from the website's desktop version.
+- All screenshots (unless stated otherwise) are from the website's desktop version.
 
 - General
 
@@ -340,9 +339,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
         ![Website favicon](assets/images/favicon.png)
         </details>
 
-#### Base Template
-
-##### base.html
+#### Base Template (base.html)
 
 - The `base.html` file contains the site header and footer, and is shared amongst all pages on the site.
 
@@ -388,6 +385,12 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
                 - Logout - sign out of user account for privacy and security.
 
     <details>
+    <summary>Click to view the navigation bar's Explore submenu</summary>
+            
+    ![Navigation bar Explore submenu](assets/images/explore-submenu.png)
+    </details>
+
+    <details>
     <summary>Click to view the navigation bar when a user is logged out</summary>
             
     ![Navigation bar when a user is logged out](assets/images/nav-bar-when-user-logged-out.webp)
@@ -407,6 +410,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 - Footer
 
+    - The footer stays fixed at the bottom of every screen, always appearing below the site’s content.
+    - It includes links to the about, contact, and newsletter signup pages, alongside links to the site's social media properties, and copyright information.
+
     <details>
     <summary>Click to view how the site footer appears on a desktop device.</summary>
             
@@ -419,12 +425,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![Mobile website footer](assets/images/mobile-website-footer.webp)
     </details>
 
-    - The footer stays fixed at the bottom of every screen, always appearing below the site’s content.
-    - It includes links to the about, contact, and newsletter signup pages, alongside links to the site's social media properties, and copyright information.
-
 #### Custom Error Pages
 
-##### bad_request.html (400 error page)
+- The site has four custom error pages which are styled to match the rest of the site, and give users a more streamlined experience.
+
+##### 400 error page (bad_request.html)
 
 - This page handles bad request errors, and renders a custom 400 error page.
 
@@ -434,7 +439,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![400 error page](assets/images/custom-400-error-page.webp)
     </details>
 
-##### permission_denied.html (403 error page)
+##### 403 error page (permission_denied.html)
 
 - This view handles permission denied errors and renders a custom 403 error page.
 
@@ -444,7 +449,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![403 error page](assets/images/custom-403-error-page.webp)
     </details>
 
-##### page_not_found.html (404 error page)
+##### 404 error page (page_not_found.html)
 
 - This page handles 'page not found' errors and renders a custom 404 error page.
 
@@ -454,7 +459,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![404 error page](assets/images/custom-404-error-page.webp)
     </details>
 
-##### server_error.html (500 error page)
+##### 500 error page (server_error.html)
 
 - This page handles server errors and renders a custom 500 error page.
 
@@ -464,13 +469,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![500 error page](assets/images/custom-500-error-page.webp)
     </details>
 
-#### Home Page
-
-##### index.html
+#### Home (index.html)
 
 - The homepage provides an overview of The Cult Film Club store, offering an introduction for new visitors and background information for those unfamiliar with the brand.
 - The hero section at the top of the page showcases the latest releases and pre-orders, giving visitors immediate access to new and upcoming films for purchase.
-- Further down the page, a curated selection of other available film releases is presented randomly, encouraging exploration of more titles for purchase.
+- Further down the page, a curated selection of other available film releases is presented randomly, encouraging exploration of more of the titles available for purchase.
 
 <details>
 <summary>Click to view the home page</summary>
@@ -478,20 +481,18 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Website home page](assets/images/website-home.webp)
 </details>
 
-#### Film Releases Page
+#### Film Releases (releases.html)
 
-##### releases.html
-
-- The film releases page shows a card grid of all film releases available in the store, which can also be filtered by genre, subgenre, director, and decade of release.
+- The film releases page shows a card grid of all film releases available in the store, which can be filtered by genre, subgenre, director, and decade of release.
 - Each release card shows:
     - Featured image.
     - Title.
-    - Site user rating.
+    - Site user ratings / reviews.
     - Director.
     - Year of release.
-    - In Stock / Low Stock / Out of Stock (colour coded)
+    - In Stock / Low Stock / Out of Stock indicators (that are colour coded green, yellow, and red, respectively)
     - Price
-- There is also breadcrumb navigation to allow quick navigation between pages of film releases.
+- There is also breadcrumb navigation to allow quick navigation between the different pages of film releases.
 
 <details>
 <summary>Click to view the film releases page</summary>
@@ -499,38 +500,42 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film releases page](assets/images/film-releases-page.webp)
 </details>
 
-#### Film Release Details Page
+#### Film Release Details (release_details.html)
 
-##### release_details.html
-
-- Provides details of a specific film release, when that release has been selected.
+- The film release details page provides details of a specific film release, when that release is clicked.
 - It shows:
-    - All images, with featured image shown first.
+    - All release images, with the featured image shown first.
     - Film title.
     - Genre(s) and Subgenre(s)
     - Overall user rating, calculated from all ratings submitted by website users.
     - Price.
-    - Total number of copies available (which is colour coded). Stock levels are automatically adjusted upon successful checkout.
-    - Quantity to add does not allow a zero to be entered (defaults to one copy) or more copies than are available (defaults to the maximum number of copies available).
+    - Total number of copies available (which is colour coded as on the film releases page). Stock levels are adjusted automatically upon successful checkout.
+    - Quantity to add does not allow a zero to be entered (and defaults to one copy). If a user attempts to purchase more copies than are available it defaults to the maximum number of copies available.
     - Description.
     - Special features.
     - Production details.
     - User reviews.
-    - Add or adjust user rating (when logged in).
-    - Add to wishlist button (when logged in).
+    - When the user is logged in:
+        - Add / adjust user rating.
+        - Add to wishlist button.
 
 <details>
-<summary>Click to view the film release details page</summary>
+<summary>Click to view the film release details page (when a user is logged in)</summary>
             
-![Film release details page](assets/images/film-release-details-page.webp)
+![Film release details page (user logged in)](assets/images/film-release-details-page-logged-in.png)
 </details>
 
-#### Product Management Page
+<details>
+<summary>Click to view the film release details page (when a user is logged out)</summary>
+            
+![Film release details page (user logged out)](assets/images/film-release-details-page.webp)
+</details>
 
-##### product_management.html
+#### Product Management (product_management.html)
 
-- New film releases can be added via the 'Add New Release' button on this page.
 - All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and manage_images.html pages.
+- New film releases can be added via the 'Add New Release' accordion button on this page.
+- Images associated with film releases are managed separately via the `manage_images.html` page
 
 <details>
 <summary>Click to view the top part of the product management page</summary>
@@ -544,12 +549,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Add release form](assets/images/add-release-form.webp)
 </details>
 
-#### Edit Film Release Page
-
-##### edit_release.html
+#### Edit Film Release (edit_release.html)
 
 - Film releases can be edited via this page.
-- Images associated with film releases are managed separately via the `manage_images.html` page
 
 <details>
 <summary>Click to view the film release edit page</summary>
@@ -557,9 +559,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release edit page](assets/images/edit-film-release.webp)
 </details>
 
-#### Delete Film Release Page
-
-##### delete_release.html
+#### Delete Film Release (delete_release.html)
 
 - This confirmation page is shown when selecting a film release to delete. 
 
@@ -569,13 +569,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release deletion page](assets/images/delete-film-release.webp)
 </details>
 
-#### Manage Film Release Images Page
+#### Manage Film Release Images (manage_images.html)
 
-##### manage_images.html
-
-- Allows film release images to added, edited, and deleted.
-- Featured images display a 'Featured' badge to make them easier to identify.
-- A 'Delete' button on all images allows them to be removed.
+- Allows film release images to be added, edited, and deleted.
+- The featured image display a 'Featured' badge to make it easier to identify.
+- A 'Delete' button on an image allows it to be removed entirely.
 
 <details>
 <summary>Click to view the manage images page</summary>
@@ -583,11 +581,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Manage images page](assets/images/manage-images.webp)
 </details>
 
-#### Edit Film Release Images Page
+#### Edit Film Release Images (edit_image.html)
 
-##### edit_image.html
-
-- Accessible via a button on any image shown on the manage_images.html page, this page allows the image to be replaced or its caption amended.
+- This page allows the image to be replaced, or its caption amended, and is accessible via a button shown on the image, on the manage_images.html page.
 
 <details>
 <summary>Click to view the edit image page</summary>
@@ -595,18 +591,16 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Edit image page](assets/images/edit-image.webp)
 </details>
 
-#### Discount Codes Management Page
+#### Discount Codes Management (discount_codes.html)
 
-##### discount_codes.html
-
-- Only users with superuser privileges are able to access this, and associated, pages.
+- Only users with superuser privileges are able to access this, and associated pages.
 - It displays information on all discount codes created.
-- Each discount code consists of:
+- Each discount code consists of the:
     - Discount codeword.
     - Discount percentage.
     - Valid from date.
     - Valid to date.
-    - Whether it’s active or not (which is indicated via a colour coded badge).
+    - Active status (which is indicated via a green / red colour-coded badge).
 - You can also add new discount codes via the form on this page.
 
 <details>
@@ -621,9 +615,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Mobile discount codes page](assets/images/discount-codes-mobile-page.webp)
 </details>
 
-#### Edit Discount Code Page
-
-##### edit_discount_code.html
+#### Edit Discount Code (edit_discount_code.html)
 
 - Discount codes can be edited via this page.
 
@@ -633,9 +625,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Discount code edit page](assets/images/edit-discount-code.webp)
 </details>
 
-#### Delete Discount Code Page
-
-##### delete_discount_code.html
+#### Delete Discount Code (delete_discount_code.html)
 
 - This confirmation page is shown when selecting a discount code to delete. 
 
@@ -645,9 +635,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Discount code deletion page](assets/images/delete-discount-code.webp)
 </details>
 
-#### Shopping Cart Page
-
-##### cart.html
+#### Shopping Cart (cart.html)
 
 - The cart shows items selected for purchase, with the ability to increase / decrease the number of items or remove it entirely from the cart.
 - Validation on the quantity field prevents users entering a zero (defaults to one copy) or trying to buy more copies than are available (defaults to the maximum number of copies available).
@@ -682,9 +670,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Mobile shopping cart page](assets/images/mobile-shopping-cart-page.webp)
 </details>
 
-#### Checkout Page
-
-##### checkout.html
+#### Checkout (checkout.html)
 
 - The checkout page is only displayed for logged in users (and a user is prompted to login, if not already, when moving to checkout on an order).
 - It shows an order summary, including:
@@ -721,9 +707,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Payment processing page](assets/images/payment-processing-page.webp)
 </details>
 
-#### Checkout Success Page
-
-##### checkout_success.html
+#### Checkout Success (checkout_success.html)
 
 - This is displayed when an order has been placed, and payment has been taken.
 - It shows:
@@ -742,9 +726,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Checkout success page](assets/images/checkout-success.webp)
 </details>
 
-#### Order Confirmation Page
-
-##### order_details.html
+#### Order Confirmation (order_details.html)
 
 - When clicking on the link to an order in the user profile account page, a summary of the order is presented showing the following information:
     - Order number.
@@ -764,9 +746,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Order confirmation page](assets/images/order-confirmation.webp)
 </details>
 
-#### User Account Page
-
-##### account.html
+#### User Profile (account.html)
 
 - This page encompasses several different aspects of the user website experience, and contains the following information:
     - Username as part of the “`<username>`’s Profile” title.
@@ -791,9 +771,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![User profile page](assets/images/user-profile-page.webp)
 </details>
 
-#### About Page
-
-##### about.html
+#### About (about.html)
 
 - Informational page explaining the advantages of owning physical media and the website’s ethos.
 
@@ -803,9 +781,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![About page](assets/images/about-page.webp)
 </details>
 
-#### Contact Page
-
-##### contact_us.html
+#### Contact (contact_us.html)
 
 - Users can contact the website via this contact page.
 
@@ -815,9 +791,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Contact page](assets/images/contact-page.webp)
 </details>
 
-#### Newsletter Page
-
-##### newsletter.html
+#### Newsletter (newsletter.html)
 
 - Allows a user to signup to the website newsletter, and specify specific genres of interest, to receive a regular email with content tailored to their tastes.
 
@@ -827,9 +801,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter signup page](assets/images/newsletter-signup.webp)
 </details>
 
-#### Newsletter Preferences Page
-
-##### edit_newsletter_preferences.html
+#### Newsletter Preferences (edit_newsletter_preferences.html)
 
 - Allows a user to adjust their newsletter preferences, by updating their selection of genres.
 
@@ -839,9 +811,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter preferences page](assets/images/newsletter-preferences.webp)
 </details>
 
-#### Newsletter Unsubscribe Page
-
-##### unsubscribe.html
+#### Newsletter Unsubscribe (unsubscribe.html)
 
 - When a user enters their account email address they will receive an unsubscribe link via email.
 
@@ -851,13 +821,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter unsubscribe page](assets/images/newsletter-unsubscribe.webp)
 </details>
 
-#### Allauth Pages
+#### Allauth 
 
 - Allauth pages were provided as part of the plugin, but have been styled to fit with the rest of the site.
 
-##### Signup Page
-
-###### signup.html
+##### Signup (signup.html)
 
 - Enables a user to create their own account that allows them to access all features of the website.
 
@@ -867,9 +835,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Signup page](assets/images/signup-page.webp)
 </details>
 
-##### Login Page
-
-###### login.html
+##### Login (login.html)
 
 - Allows a user to login to the website and access their account, as well as allow them to use all the features of the site. 
 
@@ -879,9 +845,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Login page](assets/images/login-page.webp)
 </details>
 
-##### Password Reset Page
-
-###### password_reset.html
+##### Password Reset (password_reset.html)
 
 - When a user enters their account email address they will receive a password reset link via email.
 
@@ -891,9 +855,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Password reset page](assets/images/password-reset-page.webp)
 </details>
 
-##### Logout Page
-
-###### logout.html
+##### Logout (logout.html)
 
 - This page logs a user out of their user account.
 

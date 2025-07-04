@@ -384,6 +384,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
                 - My profile - view and edit user profile details, orders, and wishlist.
                 - Logout - sign out of user account for privacy and security.
 
+
     <details>
     <summary>Click to view the navigation bar's Explore submenu</summary>
             
@@ -412,6 +413,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
     - The footer stays fixed at the bottom of every screen, always appearing below the site’s content.
     - It includes links to the about, contact, and newsletter signup pages, alongside links to the site's social media properties, and copyright information.
+
 
     <details>
     <summary>Click to view how the site footer appears on a desktop device.</summary>

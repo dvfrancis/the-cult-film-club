@@ -1,5 +1,24 @@
 # The Cult Film Club
 
+![GitHub last commit](https://img.shields.io/github/last-commit/dvfrancis/the-cult-film-club?style=for-the-badge&color=ca0000)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dvfrancis/the-cult-film-club?style=for-the-badge&color=ff7900)
+![GitHub issues](https://img.shields.io/github/issues/dvfrancis/the-cult-film-club?style=for-the-badge&color=ffb700)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/dvfrancis/the-cult-film-club?style=for-the-badge&color=080808)
+![GitHub language count](https://img.shields.io/github/languages/count/dvfrancis/the-cult-film-club?style=for-the-badge&color=e1e1e3)
+
+The Cult Film Club is a business-to-consumer (B2C) full stack e-commerce platform, built using these modern web technologies:
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Django](https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
+![HTML5](https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
+![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=Cloudinary&logoColor=white)
+![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
+![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+
 ## Overview
 
 ### Where Physical Media Reigns  
@@ -1447,6 +1466,7 @@ All other material on the site was created independently by myself to provide a 
 | [Figma](https://www.figma.com/) | Collaborative interface design tool used for creating wireframes, prototypes, and diagrams. |
 | [Sarah Renae Clarke's Colour Catalogue V2](https://sarahrenaeclark.com/color-palettes/) | Curated collection of harmonious color palettes for design inspiration. |
 | [This Person Does Not Exist](https://thispersondoesnotexist.com/) | AI-generated realistic human faces for use in design and testing. |
+| [Shields.io](https://github.com/badges/shields) | Badges for GitHub readme pages |
 
 #### Browsers & Testing Tools
 

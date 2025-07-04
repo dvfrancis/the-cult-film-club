@@ -43,8 +43,8 @@ With the rise of streaming, countless cult classics remain locked away, inaccess
 ### Features That Make Collecting Easier  
 
 - **Comprehensive Product Catalogue** – a fully searchable database of cult films with detailed descriptions, pricing, and availability.  
-- **User Accounts & Authentication** – secure user registration, customer order management, and wish-list features.  
-- **Streamlined Shopping Experience** – basket management, discount codes, and free shipping on larger orders.  
+- **User Accounts & Authentication** – secure user registration, customer order, and address management.  
+- **Streamlined Shopping Experience** – basket management, discount codes, wish-list features, and free shipping for large orders.  
 - **Robust Product Management** – inventory management, sales tracking, and seamless order fulfilment.  
 - **Community Connection** – share your collection and discoveries with fellow fans across social media.  
 
@@ -100,7 +100,8 @@ The GitHub repository is [here].
     4. [Structure](#structure)
         1. [User Flow Diagram](#user-flow-diagram)
         2. [Database Architecture](#database-architecture)
-            1. [C R U D Fulfilment](#c-r-u-d-fulfilment)
+        3. [Data Models](#data-models)
+        4. [C R U D](#c-r-u-d)
     5. [Skeleton](#skeleton)
         1. [Wireframes](#wireframes)
             1. [Mobile](#mobile)
@@ -113,10 +114,19 @@ The GitHub repository is [here].
         4. [Content](#content)
 3. [Testing](#testing)
 4. [Technologies Used](#technologies-used)
+    1. [Frontend](#frontend)
+    2. [Backend](#backend)
+    3. [Development Tools & IDEs](#development-tools--ides)
+    4. [Version Control & Deployment](#version-control--deployment)
+    5. [Design & Prototyping](#design--prototyping)
+    6. [Browsers & Testing](#browsers--testing)
+    7. [Code Validation](#code-validation)
+    8. [Responsive Design & layout](#responsive-design--layout)
+    9. [Image Resources & Management](#image-resources--management)
 5. [Deployment](#deployment)
     1. [Database Creation and Management](#database-creation-and-management)
-    2. [Deploy Locally](#deploy-locally)
-    3. [Deploy Remotely](#deploy-remotely)
+    2. [Deploying Locally](#deploy-locally)
+    3. [Deploying Remotely](#deploy-remotely)
 6. [Credits and References](#credits-and-references)
 7. [Acknowledgements](#acknowledgements)
 
@@ -1152,7 +1162,7 @@ This is a custom model that stores email subscriber details.
 
 Meta classes used `verbose_name = "Subscriber", verbose_name_plural = "Subscribers", ordering = ['-date_joined']`
 
-#### C R U D Fulfilment
+#### C R U D
 
 Create, Read, Update, and Delete (CRUD) capabilities for each database model are shown in the following table. I believe this demonstrates that full CRUD has been achieved across the project:
 
@@ -1419,7 +1429,7 @@ All other material on the site was created independently by myself to provide a 
 
 ---
 
-#### Frontend Technologies
+#### Frontend
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1434,7 +1444,7 @@ All other material on the site was created independently by myself to provide a 
 | [Markdown Cheatsheet](https://github.com/im-luka/markdown-cheatsheet?tab=readme-ov-file#user-content-fnref-see-9a8706b544a1a3c855dd33d5106ad53f) | The only Markdown cheatsheet you need |
 | [CKEditor](https://ckeditor.com) | WYSIWYG editor for Python and Django |
 
-#### Backend Technologies
+#### Backend
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1459,7 +1469,7 @@ All other material on the site was created independently by myself to provide a 
 | [GitHub](https://github.com/) | Cloud-based platform for version control and collaborative code management using Git. |
 | [Heroku](https://www.heroku.com/) | Cloud platform that enables easy deployment, scaling, and management of web applications. |
 
-#### Design & Prototyping Tools
+#### Design & Prototyping
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1468,7 +1478,7 @@ All other material on the site was created independently by myself to provide a 
 | [This Person Does Not Exist](https://thispersondoesnotexist.com/) | AI-generated realistic human faces for use in design and testing. |
 | [Shields.io](https://github.com/badges/shields) | Badges for GitHub readme pages |
 
-#### Browsers & Testing Tools
+#### Browsers & Testing
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1481,7 +1491,7 @@ All other material on the site was created independently by myself to provide a 
 | [GoFullPage](https://gofullpage.com/) | Browser extension for capturing full-page screenshots (not supported on Firefox). |
 | [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en) | Chrome extension for testing website layouts on multiple screen sizes simultaneously. |
 
-#### Code Validation & Quality Assurance
+#### Code Validation
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1501,7 +1511,7 @@ All other material on the site was created independently by myself to provide a 
 | [Website Mock-up Generator](https://websitemockupgenerator.com/) | Tool for creating realistic previews of websites on various devices. |
 | [Materialize CSS Sticky Footer](https://materializecss.com/footer.html) | How to create a sticky footer |
 
-### Image Resources & Management
+#### Image Resources & Management
 
 | Tool / Technology | Description |
 |-------------------|-------------|
@@ -1547,7 +1557,7 @@ To create a PostgreSQL database, follow the steps provided by **Code Institute**
 ![Click to view step three of database creation](assets/images/database-step-three.png)
 </details>
 
-#### Managing Your Database
+##### Managing Your Database
 
 You can manage the database you created with the [CI Database Maker](https://dbs.ci-dbs.net). This allows you to:
 
@@ -1566,7 +1576,7 @@ You can manage the database you created with the [CI Database Maker](https://dbs
 ![Click to view the management informational page](assets/images/db-management-info-page.png)
 </details>
 
-#### Deploy Locally
+#### Deploying Locally
 
 To deploy the project locally, follow these steps:
 
@@ -1639,7 +1649,7 @@ To access the Django Admin interface:
 
 You will now have full access to manage users, products, content, and more via the admin portal.
 
-#### Deploy Remotely
+#### Deploying Remotely
 
 Follow these steps to deploy your Django project to [Heroku](https://www.heroku.com/):
 

@@ -339,7 +339,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
         ![Website favicon](assets/images/favicon.png)
         </details>
 
-#### Base Template (base.html)
+##### Base Template (base.html)
 
 - The `base.html` file contains the site header and footer, and is shared amongst all pages on the site.
 
@@ -425,11 +425,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![Mobile website footer](assets/images/mobile-website-footer.webp)
     </details>
 
-#### Custom Error Pages
+##### Custom Error Pages
 
 - The site has four custom error pages which are styled to match the rest of the site, and give users a more streamlined experience.
 
-##### 400 error page (bad_request.html)
+###### 400 error page (bad_request.html)
 
 - This page handles bad request errors, and renders a custom 400 error page.
 
@@ -439,7 +439,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![400 error page](assets/images/custom-400-error-page.webp)
     </details>
 
-##### 403 error page (permission_denied.html)
+###### 403 error page (permission_denied.html)
 
 - This view handles permission denied errors and renders a custom 403 error page.
 
@@ -449,7 +449,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![403 error page](assets/images/custom-403-error-page.webp)
     </details>
 
-##### 404 error page (page_not_found.html)
+###### 404 error page (page_not_found.html)
 
 - This page handles 'page not found' errors and renders a custom 404 error page.
 
@@ -459,7 +459,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![404 error page](assets/images/custom-404-error-page.webp)
     </details>
 
-##### 500 error page (server_error.html)
+###### 500 error page (server_error.html)
 
 - This page handles server errors and renders a custom 500 error page.
 
@@ -469,7 +469,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     ![500 error page](assets/images/custom-500-error-page.webp)
     </details>
 
-#### Home (index.html)
+##### Home (index.html)
 
 - The homepage provides an overview of The Cult Film Club store, offering an introduction for new visitors and background information for those unfamiliar with the brand.
 - The hero section at the top of the page showcases the latest releases and pre-orders, giving visitors immediate access to new and upcoming films for purchase.
@@ -481,7 +481,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Website home page](assets/images/website-home.webp)
 </details>
 
-#### Film Releases (releases.html)
+##### Film Releases (releases.html)
 
 - The film releases page shows a card grid of all film releases available in the store, which can be filtered by genre, subgenre, director, and decade of release.
 - Each release card shows:
@@ -500,7 +500,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film releases page](assets/images/film-releases-page.webp)
 </details>
 
-#### Film Release Details (release_details.html)
+##### Film Release Details (release_details.html)
 
 - The film release details page provides details of a specific film release, when that release is clicked.
 - It shows:
@@ -531,7 +531,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release details page (user logged out)](assets/images/film-release-details-page.webp)
 </details>
 
-#### Product Management (product_management.html)
+##### Product Management (product_management.html)
 
 - All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and manage_images.html pages.
 - New film releases can be added via the 'Add New Release' accordion button on this page.
@@ -549,7 +549,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Add release form](assets/images/add-release-form.webp)
 </details>
 
-#### Edit Film Release (edit_release.html)
+##### Edit Film Release (edit_release.html)
 
 - Film releases can be edited via this page.
 
@@ -559,7 +559,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release edit page](assets/images/edit-film-release.webp)
 </details>
 
-#### Delete Film Release (delete_release.html)
+##### Delete Film Release (delete_release.html)
 
 - This confirmation page is shown when selecting a film release to delete. 
 
@@ -569,7 +569,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Film release deletion page](assets/images/delete-film-release.webp)
 </details>
 
-#### Manage Film Release Images (manage_images.html)
+##### Manage Film Release Images (manage_images.html)
 
 - Allows film release images to be added, edited, and deleted.
 - The featured image display a 'Featured' badge to make it easier to identify.
@@ -581,7 +581,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Manage images page](assets/images/manage-images.webp)
 </details>
 
-#### Edit Film Release Images (edit_image.html)
+##### Edit Film Release Images (edit_image.html)
 
 - This page allows the image to be replaced, or its caption amended, and is accessible via a button shown on the image, on the manage_images.html page.
 
@@ -591,7 +591,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Edit image page](assets/images/edit-image.webp)
 </details>
 
-#### Discount Codes Management (discount_codes.html)
+##### Discount Codes Management (discount_codes.html)
 
 - Only users with superuser privileges are able to access this, and associated pages.
 - It displays information on all discount codes created.
@@ -615,7 +615,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Mobile discount codes page](assets/images/discount-codes-mobile-page.webp)
 </details>
 
-#### Edit Discount Code (edit_discount_code.html)
+##### Edit Discount Code (edit_discount_code.html)
 
 - Discount codes can be edited via this page.
 
@@ -625,7 +625,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Discount code edit page](assets/images/edit-discount-code.webp)
 </details>
 
-#### Delete Discount Code (delete_discount_code.html)
+##### Delete Discount Code (delete_discount_code.html)
 
 - This confirmation page is shown when selecting a discount code to delete. 
 
@@ -635,7 +635,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Discount code deletion page](assets/images/delete-discount-code.webp)
 </details>
 
-#### Shopping Cart (cart.html)
+##### Shopping Cart (cart.html)
 
 - The cart shows items selected for purchase, with the ability to increase / decrease the number of items or remove it entirely from the cart.
 - Validation on the quantity field prevents users entering a zero (defaults to one copy) or trying to buy more copies than are available (defaults to the maximum number of copies available).
@@ -670,7 +670,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Mobile shopping cart page](assets/images/mobile-shopping-cart-page.webp)
 </details>
 
-#### Checkout (checkout.html)
+##### Checkout (checkout.html)
 
 - The checkout page is only displayed for logged in users (and a user is prompted to login, if not already, when moving to checkout on an order).
 - It shows an order summary, including:
@@ -707,7 +707,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Payment processing page](assets/images/payment-processing-page.webp)
 </details>
 
-#### Checkout Success (checkout_success.html)
+##### Checkout Success (checkout_success.html)
 
 - This is displayed when an order has been placed, and payment has been taken.
 - It shows:
@@ -726,7 +726,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Checkout success page](assets/images/checkout-success.webp)
 </details>
 
-#### Order Confirmation (order_details.html)
+##### Order Confirmation (order_details.html)
 
 - When clicking on the link to an order in the user profile account page, a summary of the order is presented showing the following information:
     - Order number.
@@ -746,7 +746,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Order confirmation page](assets/images/order-confirmation.webp)
 </details>
 
-#### User Profile (account.html)
+##### User Profile (account.html)
 
 - This page encompasses several different aspects of the user website experience, and contains the following information:
     - Username as part of the “`<username>`’s Profile” title.
@@ -771,7 +771,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![User profile page](assets/images/user-profile-page.webp)
 </details>
 
-#### About (about.html)
+##### About (about.html)
 
 - Informational page explaining the advantages of owning physical media and the website’s ethos.
 
@@ -781,7 +781,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![About page](assets/images/about-page.webp)
 </details>
 
-#### Contact (contact_us.html)
+##### Contact (contact_us.html)
 
 - Users can contact the website via this contact page.
 
@@ -791,7 +791,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Contact page](assets/images/contact-page.webp)
 </details>
 
-#### Newsletter (newsletter.html)
+##### Newsletter (newsletter.html)
 
 - Allows a user to signup to the website newsletter, and specify specific genres of interest, to receive a regular email with content tailored to their tastes.
 
@@ -801,7 +801,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter signup page](assets/images/newsletter-signup.webp)
 </details>
 
-#### Newsletter Preferences (edit_newsletter_preferences.html)
+##### Newsletter Preferences (edit_newsletter_preferences.html)
 
 - Allows a user to adjust their newsletter preferences, by updating their selection of genres.
 
@@ -811,7 +811,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter preferences page](assets/images/newsletter-preferences.webp)
 </details>
 
-#### Newsletter Unsubscribe (unsubscribe.html)
+##### Newsletter Unsubscribe (unsubscribe.html)
 
 - When a user enters their account email address they will receive an unsubscribe link via email.
 
@@ -821,11 +821,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Newsletter unsubscribe page](assets/images/newsletter-unsubscribe.webp)
 </details>
 
-#### Allauth 
+##### Allauth 
 
 - Allauth pages were provided as part of the plugin, but have been styled to fit with the rest of the site.
 
-##### Signup (signup.html)
+###### Signup (signup.html)
 
 - Enables a user to create their own account that allows them to access all features of the website.
 
@@ -835,7 +835,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Signup page](assets/images/signup-page.webp)
 </details>
 
-##### Login (login.html)
+###### Login (login.html)
 
 - Allows a user to login to the website and access their account, as well as allow them to use all the features of the site. 
 
@@ -845,7 +845,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Login page](assets/images/login-page.webp)
 </details>
 
-##### Password Reset (password_reset.html)
+###### Password Reset (password_reset.html)
 
 - When a user enters their account email address they will receive a password reset link via email.
 
@@ -855,7 +855,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 ![Password reset page](assets/images/password-reset-page.webp)
 </details>
 
-##### Logout (logout.html)
+###### Logout (logout.html)
 
 - This page logs a user out of their user account.
 

@@ -1,11 +1,5 @@
 # The Cult Film Club
 
-![GitHub last commit](https://img.shields.io/github/last-commit/dvfrancis/the-cult-film-club?style=for-the-badge&color=ca0000)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dvfrancis/the-cult-film-club?style=for-the-badge&color=ff7900)
-![GitHub issues](https://img.shields.io/github/issues/dvfrancis/the-cult-film-club?style=for-the-badge&color=ffb700)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/dvfrancis/the-cult-film-club?style=for-the-badge&color=080808)
-![GitHub language count](https://img.shields.io/github/languages/count/dvfrancis/the-cult-film-club?style=for-the-badge&color=e1e1e3)
-
 The Cult Film Club is a business-to-consumer (B2C) full stack e-commerce platform, built using these modern web technologies:
 
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
@@ -384,7 +378,6 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
                 - My profile - view and edit user profile details, orders, and wishlist.
                 - Logout - sign out of user account for privacy and security.
 
-
     <details>
     <summary>Click to view the navigation bar's Explore submenu</summary>
             
@@ -413,7 +406,6 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
     - The footer stays fixed at the bottom of every screen, always appearing below the site’s content.
     - It includes links to the about, contact, and newsletter signup pages, alongside links to the site's social media properties, and copyright information.
-
 
     <details>
     <summary>Click to view how the site footer appears on a desktop device.</summary>
@@ -535,7 +527,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### Product Management (product_management.html)
 
-- All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and manage_images.html pages.
+- All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and `manage_images.html` pages.
 - New film releases can be added via the 'Add New Release' accordion button on this page.
 - Images associated with film releases are managed separately via the `manage_images.html` page
 
@@ -653,6 +645,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - How much more needs to be sent to qualify for free delivery
 - Users can also add a valid, active discount code to the order, to receive the associated discount on their order.
 - The shopping cart is cleared if the user logs out before checkout, or if the order is successful.
+- On the mobile view of the shopping cart, the film release image is not displayed - to save space.
 
 <details>
 <summary>Click to view the shopping cart page without any items</summary>
@@ -757,15 +750,17 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - The ability to upload / replace a user profile picture.
 - Addresses:
     - Allows users to add multiple addresses, choose between them, and set one as the default (which will appear as the address when ordering an item).
-    - Users can also update or delete any chosen address.
+    - Users can also update or delete any or all addresses.
 - Order history:
-    - Displays a list of previous orders with a link to order_details.html to show specific details.
+    - Displays a list of previous orders with a link to 'order_details.html' that shows the specific order information.
 - Wishlist:
-    - Shows a list of releases the user has added to their wishlist.
+    - Users can create as many wishlists as they require, and these can be selected via a drop-down menu.
+    - Each wishlist shows a list of releases the user has added to that wishlist.
     - Each entry shows the title, any notes added, a priority badge, and the total number in stock.
-    - A user can directly add an item (or multiples thereof) by clicking the 'Buy' button (which then removes it from the wishlist).
+    - A user can directly add an item (or multiples thereof) by clicking the 'Buy' button (this then removes it from the wishlist).
     - Users can remove an item by clicking the 'Remove' button.
     - There is also a form to be able to add a release directly to the wishlist with any notes and priority.
+    - Any or all wishlists can be deleted, if desired.
 
 <details>
 <summary>Click to view the user profile page</summary>
@@ -1373,9 +1368,9 @@ The following font (from [Google Fonts](https://fonts.google.com)) was used for 
 
 #### Content
 
-The initial content for this site was created using [Microsoft CoPilot](https://copilot.microsoft.com/), which served as a helpful starting point. I thoroughly reviewed and refined the generated material to ensure it perfectly matched the site’s tone, style, and specific needs.
+Initial content for this site was created, in part, by using [Microsoft CoPilot](https://copilot.microsoft.com/), which served as a helpful starting point. I thoroughly reviewed and refined the generated material to ensure it matched the site’s tone, style, and requirements.
 
-Additionally, CoPilot was also used to compile a comprehensive list of films, which I carefully curated and edited it to maintain accuracy and relevance.
+Additionally, CoPilot was also used to compile a comprehensive list of films, which I carefully curated and edited to maintain accuracy and relevance.
 
 All other material on the site was created independently by myself to provide a fully tailored and authentic experience.
 
@@ -1732,3 +1727,11 @@ Once deployed, your app should be live on Heroku. Visit your app URL and add `/a
 
 - [Andrew Parton](https://www.andrewparton.co.uk), for convincing me to finish this course.
 - [Juliia Konovalova](https://github.com/IuliiaKonovalova), for her mentorship on every single one of these projects.
+
+---
+
+![GitHub last commit](https://img.shields.io/github/last-commit/dvfrancis/the-cult-film-club?style=for-the-badge&color=ca0000)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/dvfrancis/the-cult-film-club?style=for-the-badge&color=ff7900)
+![GitHub issues](https://img.shields.io/github/issues/dvfrancis/the-cult-film-club?style=for-the-badge&color=ffb700)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/dvfrancis/the-cult-film-club?style=for-the-badge&color=080808)
+![GitHub language count](https://img.shields.io/github/languages/count/dvfrancis/the-cult-film-club?style=for-the-badge&color=e1e1e3)

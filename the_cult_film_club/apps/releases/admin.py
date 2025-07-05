@@ -11,8 +11,8 @@ class ReleasesAdminForm(forms.ModelForm):
         model = Releases
         fields = "__all__"
         widgets = {
-            "description": CKEditor5Widget(config_name="extends"),
-            "special_features": CKEditor5Widget(config_name="extends"),
+            "description": CKEditor5Widget(config_name="default"),
+            "special_features": CKEditor5Widget(config_name="default"),
         }
 
 
@@ -22,7 +22,7 @@ class RatingAdminForm(forms.ModelForm):
         model = Rating
         fields = "__all__"
         widgets = {
-            "review": CKEditor5Widget(config_name="extends"),
+            "review": CKEditor5Widget(config_name="default"),
         }
 
 

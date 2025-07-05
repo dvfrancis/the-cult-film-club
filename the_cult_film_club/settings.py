@@ -116,6 +116,16 @@ CKEDITOR_5_CONFIGS = {
                     'class': 'ck-heading_heading3'
                 },
             ]
+        },
+        'image': {
+            'toolbar': [
+                'imageStyle:inline',
+                'imageStyle:wrapText',
+                'imageStyle:breakText',
+                '|',
+                'toggleImageCaption',
+                'imageTextAlternative'
+            ]
         }
     }
 }

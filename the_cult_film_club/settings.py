@@ -83,6 +83,67 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",  # Bootstrap 4 theme for crispy forms
 ]
 
+# CKEditor 5 configuration for rich text editing
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': {
+            'items': [
+                'heading', '|',
+                'bold', 'italic', 'underline', 'strikethrough', '|',
+                'bulletedList', 'numberedList', '|',
+                'outdent', 'indent', '|',
+                'todoList', 'link', 'blockQuote', 'insertTable', '|',
+                'undo', 'redo'
+            ]
+        },
+        'heading': {
+            'options': [
+                {
+                    'model': 'paragraph',
+                    'title': 'Paragraph',
+                    'class': 'ck-heading_paragraph'
+                },
+                {
+                    'model': 'heading1',
+                    'view': 'h1',
+                    'title': 'Heading 1',
+                    'class': 'ck-heading_heading1'
+                },
+                {
+                    'model': 'heading2',
+                    'view': 'h2',
+                    'title': 'Heading 2',
+                    'class': 'ck-heading_heading2'
+                },
+                {
+                    'model': 'heading3',
+                    'view': 'h3',
+                    'title': 'Heading 3',
+                    'class': 'ck-heading_heading3'
+                },
+            ]
+        },
+        'image': {
+            'toolbar': [
+                'imageTextAlternative', '|',
+                'imageStyle:alignLeft',
+                'imageStyle:alignRight',
+                'imageStyle:alignCenter',
+                'imageStyle:alignBlockLeft',
+                'imageStyle:alignBlockRight',
+                '|',
+                'resizeImage',
+            ]
+        },
+        'table': {
+            'contentToolbar': [
+                'tableColumn', 'tableRow', 'mergeTableCells',
+                'tableProperties', 'tableCellProperties'
+            ]
+        }
+    }
+}
+
 # Use Bootstrap 5 for crispy forms
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 

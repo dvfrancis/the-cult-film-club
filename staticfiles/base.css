@@ -195,7 +195,7 @@ h6 {
 
 .btn-outline-black:hover,
 .btn-outline-black:focus {
-    color: #FFF!important;
+    color: #FFF !important;
     background-color: #ca0000;
 }
 
@@ -215,7 +215,8 @@ h6 {
 
 .navbar-dark .navbar-nav .nav-link.active,
 header nav.navbar .navbar-nav .nav-link.active,
-.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active,
+.dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item:active,
 footer a.active {
     background-color: #ca0000 !important;
     color: #fff !important;
@@ -326,7 +327,7 @@ a.no-underline {
 
 /* Add padding to CKEditor editable inline area */
 .ck-editor__editable_inline {
-  padding: 10px 35px !important;
+    padding: 10px 35px !important;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
@@ -349,16 +350,16 @@ input[type="number"] {
 
 /* Make image carousel controls more prominent */
 .carousel-control-next-icon {
-    background-color: #080808;
+    background-color: #ca0000!important;
     border-radius: 50%;
-    border: 1px solid #080808;
+    border: 1px solid #ca0000;
     padding: 0.5em;
 }
 
 .carousel-control-prev-icon {
-    background-color: #080808;
+    background-color: #ca0000!important;
     border-radius: 50%;
-    border: 1px solid #080808;
+    border: 1px solid #ca0000;
     padding: 0.5em;
 }
 
@@ -463,6 +464,7 @@ input[type="password"]:first-of-type {
     max-width: 200px;
     min-width: 70px;
 }
+
 @media (max-width: 575.98px) {
     .discount-input {
         max-width: 80px;

@@ -664,6 +664,12 @@ input[type="password"]:first-of-type {
     margin-right: 0;
 }
 
+#lightboxImage {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
 /* Star Ratings */
 .star-rating {
     display: inline-block;

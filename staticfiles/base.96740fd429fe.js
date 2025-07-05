@@ -473,36 +473,30 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
             });
         });
-    }
-    // Handle lightbox button clicks to prevent carousel interference
-    document.querySelectorAll('[data-bs-target="#lightboxModal"]').forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.stopPropagation(); // Prevent carousel from handling the click
-        });
-    });
-    // Lightbox modal for release details
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImage = document.getElementById('lightboxImage');
 
-    if (lightboxModal && lightboxImage) {
-        lightboxModal.addEventListener('show.bs.modal', function (event) {
-            // Button that triggered the modal
-            const button = event.relatedTarget;
+        // Lightbox modal for release details
+        let lightboxModal = document.getElementById('lightboxModal');
+        let lightboxImage = document.getElementById('lightboxImage');
+        let carouselImages = document.querySelectorAll('[data-img-url]');
 
-            // Extract info from data-* attributes
-            const imageUrl = button.getAttribute('data-img-url');
-
-            // Update the modal's image source
-            if (imageUrl) {
-                lightboxImage.src = imageUrl;
-                lightboxImage.alt = 'Large image preview';
-            }
+        // Attach click event to carousel images to show in lightbox
+        carouselImages.forEach(function (imgLink) {
+            imgLink.addEventListener('click', function (e) {
+                e.preventDefault();
+                let imgUrl = this.getAttribute('data-img-url');
+                if (imgUrl && lightboxImage) {
+                    lightboxImage.src = imgUrl;
+                }
+            });
         });
 
         // Clear lightbox image when modal is closed
-        lightboxModal.addEventListener('hidden.bs.modal', function () {
-            lightboxImage.src = '';
-        });
+        if (lightboxModal) {
+            lightboxModal.addEventListener('hidden.bs.modal', function () {
+                if (lightboxImage) {
+                    lightboxImage.src = '';
+                }
+            });
+        }
     }
-
 });

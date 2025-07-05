@@ -350,16 +350,16 @@ input[type="number"] {
 
 /* Make image carousel controls more prominent */
 .carousel-control-next-icon {
-    background-color: #ca0000!important;
+    background-color: #080808;
     border-radius: 50%;
-    border: 1px solid #ca0000;
+    border: 1px solid #080808;
     padding: 0.5em;
 }
 
 .carousel-control-prev-icon {
-    background-color: #ca0000!important;
+    background-color: #080808;
     border-radius: 50%;
-    border: 1px solid #ca0000;
+    border: 1px solid #080808;
     padding: 0.5em;
 }
 
@@ -662,6 +662,12 @@ input[type="password"]:first-of-type {
 
 .social-share.gap-3>*:last-child {
     margin-right: 0;
+}
+
+#lightboxImage {
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
 }
 
 /* Star Ratings */

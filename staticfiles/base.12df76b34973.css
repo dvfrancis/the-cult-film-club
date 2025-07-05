@@ -213,10 +213,11 @@ h6 {
     font-weight: bold;
 }
 
-.navbar-dark .navbar-nav .nav-link.active,
-header nav.navbar .navbar-nav .nav-link.active,
-.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active,
+.navbar-dark .navbar-nav .nav-link.active:not(.dropdown-toggle),
+header nav.navbar .navbar-nav .nav-link.active:not(.dropdown-toggle),
+.dropdown-item.active,
 footer a.active {
+    font-weight: bold;
     background-color: #ca0000 !important;
     color: #fff !important;
     border-radius: 0.25rem;
@@ -241,10 +242,6 @@ footer a.active {
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
     color: #ca0000;
-}
-
-.smallprint {
-    text-decoration: none;
 }
 
 header,

@@ -195,7 +195,7 @@ h6 {
 
 .btn-outline-black:hover,
 .btn-outline-black:focus {
-    color: #FFF !important;
+    color: #FFF;
     background-color: #ca0000;
 }
 
@@ -211,6 +211,15 @@ h6 {
     cursor: pointer;
     text-align: center;
     font-weight: bold;
+}
+
+.navbar-dark .navbar-nav .nav-link.active,
+header nav.navbar .navbar-nav .nav-link.active,
+.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active,
+footer a.active {
+    background-color: #ca0000 !important;
+    color: #fff !important;
+    border-radius: 0.25rem;
 }
 
 /* Add to Cart button on release_details.html */
@@ -234,6 +243,10 @@ h6 {
     color: #ca0000;
 }
 
+.smallprint {
+    text-decoration: none;
+}
+
 header,
 footer {
     background: #080808;
@@ -249,7 +262,7 @@ footer a {
     transition: color 0.2s, background 0.2s;
     padding: 0.5em 1.2em;
     display: inline-block;
-    border-radius: 0.5em;
+    border-radius: 0.25em;
     background: transparent;
 }
 
@@ -257,8 +270,8 @@ header a:not(.no-highlight):hover,
 footer a:not(.no-highlight):hover,
 header a:not(.no-highlight):focus,
 footer a:not(.no-highlight):focus {
-    background: #ca0000 !important;
-    color: #FFF !important;
+    background: #ca0000;
+    color: #FFF;
 }
 
 /* Used to center page content vertically on a page */
@@ -282,7 +295,7 @@ a.no-underline {
     display: inline-block;
     padding: 0.25em 0.75em;
     text-align: right;
-    border-radius: 0.5em;
+    border-radius: 0.25em;
     font-weight: bold;
 }
 
@@ -295,15 +308,20 @@ a.no-underline {
 }
 
 @media (max-width: 1399px) {
-.header-container {
-    padding-top: 200px !important;
-}
+    .header-container {
+        padding-top: 200px !important;
+    }
 }
 
 @media (min-width: 1400px) {
     .header-container {
         padding-top: 125px !important;
     }
+}
+
+/* Add padding to CKEditor editable inline area */
+.ck-editor__editable_inline {
+  padding: 10px 35px !important;
 }
 
 /* Hide number input spinners in Chrome, Safari, Edge, Opera */
@@ -359,21 +377,14 @@ input[type="number"] {
     display: flex;
 }
 
-.profile-photo {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
-    border-radius: 50%;
-}
-
 /* Search box placeholder text colour */
 
 input[name='q']::placeholder {
-    color: #aab7c4;
+    color: #080808 !important;
 }
 
 input::placeholder {
-    color: rgb(170, 183, 196, 0.75) !important;
+    color: #080808 !important;
 }
 
 /* Header menus */
@@ -407,7 +418,7 @@ input::placeholder {
     min-height: 3em;
 }
 
-/* Space Crispy Form fields out more */
+/* Crispy Form fields spacing */
 .form-group,
 .form-row,
 .form-check {
@@ -435,16 +446,22 @@ input[type="password"]:first-of-type {
     border: 2px solid #eee;
 }
 
-/* Loyalty badge styling */
-.badge.bg-warning.text-dark {
-    font-size: 1rem;
-    padding: 0.5em 0.75em;
-}
-
 /* Sidebar border for account page */
 @media (min-width: 992px) {
     .account-sidebar {
         border-right: 1px solid #eee;
+    }
+}
+
+/* Discount code input */
+.discount-input {
+    max-width: 200px;
+    min-width: 70px;
+}
+@media (max-width: 575.98px) {
+    .discount-input {
+        max-width: 80px;
+        min-width: 50px;
     }
 }
 
@@ -455,6 +472,7 @@ input[type="password"]:first-of-type {
     }
 }
 
+/* Wishlist */
 .wishlist-actions {
     min-width: 150px;
     max-width: 150px;
@@ -462,7 +480,7 @@ input[type="password"]:first-of-type {
 }
 
 .wishlist-actions .wishlist-qty-label {
-    text-align: left !important;
+    text-align: left;
     width: 100%;
     font-size: 1rem;
     margin-bottom: 0.25rem;
@@ -478,7 +496,7 @@ input[type="password"]:first-of-type {
     font-size: 1rem;
     text-align: center;
     margin: 0;
-    border-radius: 0.5rem;
+    border-radius: 0.25rem;
     box-sizing: border-box;
 }
 
@@ -522,6 +540,7 @@ input[type="password"]:first-of-type {
         text-align: center !important;
         vertical-align: middle !important;
     }
+
     /* Center table headers */
     .cart-table-title-header,
     .cart-table-qty-header {
@@ -570,11 +589,13 @@ input[type="password"]:first-of-type {
         width: auto;
         flex: 1 1 auto;
     }
+
     .update-link,
     .remove-item {
         white-space: nowrap;
         display: inline-block;
     }
+
     .delivery-options-row,
     .delivery-options-label,
     .delivery-options-select {
@@ -594,6 +615,7 @@ input[type="password"]:first-of-type {
         margin-left: 0 !important;
         margin-right: 0 !important;
     }
+
     .order-confirmation-wrapper .col-6,
     .order-confirmation-wrapper .col-md-4,
     .order-confirmation-wrapper .col-md-8 {
@@ -601,6 +623,7 @@ input[type="password"]:first-of-type {
         flex: 0 0 100%;
         text-align: left;
     }
+
     .order-confirmation-wrapper {
         padding-left: 0.5rem;
         padding-right: 0.5rem;
@@ -612,14 +635,26 @@ input[type="password"]:first-of-type {
     text-decoration: none !important;
     transition: color 0.2s;
 }
-.social-share a:hover, .social-share a:focus {
+
+.social-share a:hover,
+.social-share a:focus {
     opacity: 0.8;
     text-decoration: none;
     transform: scale(1.15);
 }
+
 .social-share i {
     font-size: 1.5rem;
     vertical-align: middle;
+}
+
+/* Responsive gap for social icons */
+.social-share.gap-3>* {
+    margin-right: 1rem;
+}
+
+.social-share.gap-3>*:last-child {
+    margin-right: 0;
 }
 
 /* Star Ratings */
@@ -628,33 +663,24 @@ input[type="password"]:first-of-type {
     font-size: 1.25rem;
     line-height: 1;
 }
+
 .star-rating .star-filled {
     color: #ca0000 !important;
 }
+
 .star-rating .star-empty {
     color: #ddd;
 }
-.star-rating .text-warning {
-    color: #ca0000 !important;
-}
-.star-rating .text-secondary {
-    color: #dee2e6 !important;
-}
-.star-rating::before,
-.star-rating::after {
-    content: none !important;
-    display: none !important;
-}
 
-/* Section backgrounds */
+/* Release details section backgrounds */
 .section-bg-red {
     background-color: #fff5f5;
 }
+
 .section-bg-grey {
     background-color: #f8f9fa;
 }
 
-/* Section padding and rounded corners */
 .section-rounded {
     border-radius: 1rem;
     padding: 1.5rem;
@@ -666,39 +692,34 @@ input[type="password"]:first-of-type {
     letter-spacing: 1px;
 }
 
-/* Responsive gap for social icons */
-.social-share.gap-3 > * {
-    margin-right: 1rem;
-}
-.social-share.gap-3 > *:last-child {
-    margin-right: 0;
-}
-
 /* Pagination styles */
 .pagination .page-link {
-    color: #ca0000; /* Your site red */
-    border-radius: 0.5rem;
+    color: #ca0000;
+    border-radius: 0.25rem;
     margin: 3px 5px;
     border: 1px solid #ca000022;
     transition: background 0.2s, color 0.2s;
 }
+
 .pagination .page-link:hover,
 .pagination .page-link:focus {
     background-color: #fff5f5;
     color: #ca0000;
 }
+
 .pagination .page-item.active .page-link {
     background-color: #ca0000;
     color: #fff;
     border-color: #ca0000;
 }
+
 .pagination .page-item.disabled .page-link {
     color: rgb(8, 8, 8, 0.5);
     background-color: #f8f9fa;
     border-color: rgb(8, 8, 8, 0.5);
 }
 
-/* S T R I P E */
+/* Stripe */
 
 .StripeElement,
 .stripe-style-input {
@@ -724,7 +745,7 @@ input[type="password"]:first-of-type {
 }
 
 .stripe-style-input::placeholder {
-    color: #aab7c4;
+    color: #080808;
 }
 
 .fieldset-label {
@@ -745,7 +766,7 @@ input[type="password"]:first-of-type {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(23, 162, 184, .85);
+    background: rgb(202, 0, 0, 0.5);
     z-index: 9999;
 }
 
@@ -757,15 +778,17 @@ input[type="password"]:first-of-type {
     height: 100%;
 }
 
-/* A L L A U T H */
+/* Allauth */
+
 
 .allauth-form-inner-content a {
-    color: #080808 !important;
+    color: #17a2b8;
 }
 
 .allauth-form-inner-content p {
     margin-top: 1.5rem;
-    color: #6c757d;
+    margin-bottom: 1.5rem;
+    color: #080808;
 }
 
 .allauth-form-inner-content input {
@@ -778,7 +801,7 @@ input[type="password"]:first-of-type {
 }
 
 .allauth-form-inner-content input::placeholder {
-    color: #aab7c4;
+    color: #080808;
 }
 
 .allauth-form-inner-content button,
@@ -808,11 +831,7 @@ input[type="password"]:first-of-type {
     border-color: #080808;
 }
 
-.allauth-form-inner-content a {
-    color: #17a2b8;
-}
-
-/* B O O T S T R A P  T O A S T S */
+/* Bootstrap toasts */
 
 .message-container {
     position: fixed;
@@ -846,7 +865,7 @@ input[type="password"]:first-of-type {
     border: 1px solid #000;
 }
 
-/* U T I L I T Y  C L A S S E S  C O P I E D  F R O M  B O O T S T R A P */
+/* Utility classes copied from Bootstrap */
 
 .arrow-primary {
     border-bottom-color: #007bff !important;

@@ -213,13 +213,14 @@ h6 {
     font-weight: bold;
 }
 
-.navbar-dark .navbar-nav .nav-link.active,
-header nav.navbar .navbar-nav .nav-link.active,
-.dropdown-menu .dropdown-item.active, .dropdown-menu .dropdown-item:active,
+.navbar-dark .navbar-nav .nav-link.active:not(.dropdown-toggle),
+header nav.navbar .navbar-nav .nav-link.active:not(.dropdown-toggle),
+.dropdown-item.active,
 footer a.active {
+    font-weight: bold;
     background-color: #ca0000 !important;
     color: #fff !important;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
 }
 
 /* Add to Cart button on release_details.html */
@@ -243,10 +244,6 @@ footer a.active {
     color: #ca0000;
 }
 
-.smallprint {
-    text-decoration: none;
-}
-
 header,
 footer {
     background: #080808;
@@ -262,7 +259,7 @@ footer a {
     transition: color 0.2s, background 0.2s;
     padding: 0.5em 1.2em;
     display: inline-block;
-    border-radius: 0.25em;
+    border-radius: 0.5em;
     background: transparent;
 }
 
@@ -295,7 +292,7 @@ a.no-underline {
     display: inline-block;
     padding: 0.25em 0.75em;
     text-align: right;
-    border-radius: 0.25em;
+    border-radius: 0.5em;
     font-weight: bold;
 }
 
@@ -496,7 +493,7 @@ input[type="password"]:first-of-type {
     font-size: 1rem;
     text-align: center;
     margin: 0;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     box-sizing: border-box;
 }
 
@@ -695,7 +692,7 @@ input[type="password"]:first-of-type {
 /* Pagination styles */
 .pagination .page-link {
     color: #ca0000;
-    border-radius: 0.25rem;
+    border-radius: 0.5rem;
     margin: 3px 5px;
     border: 1px solid #ca000022;
     transition: background 0.2s, color 0.2s;

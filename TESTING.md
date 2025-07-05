@@ -8,17 +8,35 @@
 
 1. [Code Validation](#code-validation)
 2. [Manual Validation](#manual-validation)
-    1. [index.html](#indexhtml)
-    2. [diary.html](#diaryhtml)
-    3. [details.html](#detailshtml)
-    4. [faq.html](#faqhtml)
-    5. [contact.html](#contacthtml)
-    6. [register.html](#registerhtml)
-    7. [login.html](#loginhtml)
-    8. [account.html](#accounthtml)
-    9. [update_profile.html](#update_profilehtml)
-    10. [404.html](#404html)
-    11. [500.html](#500html)
+    1. [index.html]()
+    2. [bad_request.html]()
+    3. [permission_denied.html]()
+    4. [page_not_found.html]()
+    5. [server_error.html]()
+    6. [releases.html]()
+    7. [release_details.html]()
+    8. [product_management.html]()
+    9. [edit_release.html]()
+    10. [delete_release.html]()
+    11. [manage_images.html]()
+    12. [edit_image.html]()
+    13. [discount_codes.html]()
+    14. [edit_discount_code.html]()
+    15. [delete_discount_code.html]()
+    16. [cart.html]()
+    17. [checkout.html]()
+    18. [checkout_success.html]()
+    19. [order_details.html]()
+    20. [account.html]()
+    21. [about.html]()
+    22. [contact_us.html]()
+    23. [newsletter.html]()
+    24. [edit_newsletter_preferences.html]()
+    25. [unsubscribe.html]()
+    26. [signup.html]()
+    27. [login.html]()
+    28. [password_reset.html]()
+    29. [logout.html]()
 3. [User Story Validation](#user-story-validation)
     1. [First Time Visitor Goals](#first-time-visitor-goals)
     2. [Returning Visitor Goals](#returning-visitor-goals)
@@ -35,31 +53,21 @@
 
 ### HTML
 
-- Click to view the [HTML Validation Report](documentation/validation/html/html-validation-report.pdf).
+- The [W3C Markup Validation Service](https://validator.w3.org) was used to check all HTML. The code for each page was validated by direct input of the code copied from each rendered page. Click to view the [HTML report](documentation/validation/html-report.pdf).
 
-- All HTML code was validated by direct input of copied page source code into the [W3C Markup Validation Service](https://validator.w3.org).
-
-- The base.html template file has been tested as part of all the other pages.
+- I did not test base.html directly, as it is a part of all other pages.
 
 ### CSS
 
-- Click to view the [CSS Validation Report](documentation/validation/css/css-validation-report.pdf).
-
-- All CSS code was tested using the [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator).
+- The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator) was used to check base.css. Click to view the [CSS report](documentation/validation/css-report.pdf).
 
 ### JavaScript
 
-- Click to view the [JavaScript Validation Report](documentation/validation/javascript/javascript-validation-report.pdf).
-
-- All JavaScript code was tested using [JSHint](https://jshint.com/).
-
-- I did not need to use JavaScript in this project, apart for the provision of Bootstrap Toast messages.
+- [JSHint](https://jshint.com/) was used to check base.js. Click to view the [JavaScript report](documentation/validation/javascript-report.pdf).
 
 ### Python
 
-- Click to view the [Python Validation Report](documentation/validation/python/python-validation-report.pdf).
-
-- All Python code was tested using [CI Python Linter](https://pep8ci.herokuapp.com/).
+- The [CI Python Linter](https://pep8ci.herokuapp.com/) was used to check all Python code. Click to view the [Python report](documentation/validation/python-report.pdf).
 
 ## Manual Validation
 

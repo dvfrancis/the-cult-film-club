@@ -474,37 +474,4 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         });
     }
-    // Handle lightbox button clicks to prevent carousel interference
-    document.querySelectorAll('[data-bs-target="#lightboxModal"]').forEach(function (button) {
-        button.addEventListener('click', function (e) {
-            e.stopPropagation(); // Prevent carousel from handling the click
-        });
-    });
-
-    // Lightbox modal for release details
-    const lightboxModal = document.getElementById('lightboxModal');
-    const lightboxImage = document.getElementById('lightboxImage');
-
-    if (lightboxModal && lightboxImage) {
-        lightboxModal.addEventListener('show.bs.modal', function (event) {
-            const button = event.relatedTarget;
-            const imageUrl = button.getAttribute('data-img-url');
-
-            if (imageUrl) {
-                lightboxImage.src = imageUrl;
-                lightboxImage.alt = 'Large image preview';
-            }
-        });
-
-        // Remove aria-hidden when modal is shown
-        lightboxModal.addEventListener('shown.bs.modal', function () {
-            lightboxModal.removeAttribute('aria-hidden');
-        });
-
-        // Clear lightbox image when modal is closed and restore aria-hidden
-        lightboxModal.addEventListener('hidden.bs.modal', function () {
-            lightboxImage.src = '';
-            lightboxModal.setAttribute('aria-hidden', 'true');
-        });
-    }
 });

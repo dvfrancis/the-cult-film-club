@@ -480,24 +480,19 @@ document.addEventListener('DOMContentLoaded', function () {
             e.stopPropagation(); // Prevent carousel from handling the click
         });
     });
+
     // Lightbox modal for release details
     const lightboxModal = document.getElementById('lightboxModal');
     const lightboxImage = document.getElementById('lightboxImage');
 
     if (lightboxModal && lightboxImage) {
         lightboxModal.addEventListener('show.bs.modal', function (event) {
-            console.log('Modal opening!', event);
             const button = event.relatedTarget;
-            console.log('Button:', button);
             const imageUrl = button.getAttribute('data-img-url');
-            console.log('Image URL:', imageUrl);
 
             if (imageUrl) {
                 lightboxImage.src = imageUrl;
                 lightboxImage.alt = 'Large image preview';
-                console.log('Image src set to:', lightboxImage.src);
-            } else {
-                console.log('No image URL found!');
             }
         });
 

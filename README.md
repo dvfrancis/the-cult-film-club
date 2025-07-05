@@ -138,7 +138,7 @@ This approach keeps the project structure tidy, and makes it easier to locate an
 
 ### Project Board
 
-The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4). Amongst other things, it was used to track tasks, feature additions, bugs, and user stories.
+The entire implementation process was guided through a dedicated GitHub [project board](https://github.com/users/dvfrancis/projects/4) which was used to track tasks, feature additions, bugs, and user stories.
 
 <details>
 <summary>Click to view a screenshot of the project board</summary>
@@ -146,7 +146,27 @@ The entire implementation process was guided through a dedicated GitHub [project
 ![Project board](assets/images/milestone-four-project-board-overview.webp)
 </details>
 
+Custom issue templates were also created to use during project development.
+
+<details>
+<summary>Click to view the custom issue templates</summary>
+            
+![Custom issue templates](assets/images/custom-issue-templates.png)
+</details>
+
 Each task was assigned to a milestone, with relevant labels and [MoSCoW](https://en.wikipedia.org/wiki/MoSCoW_method) categories.
+
+<details>
+<summary>Click to view the different milestones</summary>
+            
+![Project milestones](assets/images/project-milestones.png)
+</details>
+
+<details>
+<summary>Click to view the project labels</summary>
+            
+![Project labels](assets/images/project-labels.png)
+</details>
 
 The MoSCoW project split was as follows:
 

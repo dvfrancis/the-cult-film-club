@@ -664,8 +664,8 @@ input[type="password"]:first-of-type {
 
 /* Star Ratings */
 .star-rating {
-    display: inline-block;
-    font-size: 1.25rem;
+    /* display: inline-block; */
+    /* font-size: 1.25rem; */
     line-height: 1;
 }
 
@@ -674,7 +674,7 @@ input[type="password"]:first-of-type {
 }
 
 .star-rating .star-empty {
-    color: #FFF;
+    color: #ddd;
 }
 
 /* Release details section backgrounds */

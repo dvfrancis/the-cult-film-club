@@ -72,23 +72,28 @@
             <div class="mb-3 text-center small text-muted">
               {% if release.director %}<span><strong>Directed by </strong> {{ release.director }}</span>{% endif %}
               {% if release.release_date %} | {{ release.release_date|date:"Y" }}</span>{% endif %}
-              {% comment %} {% if release.edition %} | <span><strong>Edition:</strong> {{ release.edition }}</span>{% endif %} {% endcomment %}
+              {% comment %} {% if release.edition %} | <span><strong>Edition:</strong>
+                {{ release.edition }}</span>{% endif %} {% endcomment %}
             </div>
 
             {# STAR RATING DISPLAY #}
             <p class="lead mb-3 text-center">
+              {% if release.average_rating %}
               <span class="star-rating align-middle"
-                aria-label="Average rating: {{ release.average_rating|default:0|floatformat:1 }} out of 5 stars">
+                aria-label="Average rating: {{ release.average_rating|floatformat:1 }} out of 5 stars">
                 {% for _ in full_stars_range %}
-                <span class="star-filled" aria-hidden="true">&#9733;</span>
+                <span class="star-filled" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
                 {% endfor %}
                 {% if has_half_star %}
-                <span class="star-filled"><i class="fas fa-star-half-alt"></i></span>
+                <span class="star-filled"><i class="fa-solid fa-star-half"></i></span>
                 {% endif %}
                 {% for _ in empty_stars_range %}
-                <span class="star-empty" aria-hidden="true">&#9733;</span>
                 {% endfor %}
               </span>
+              {% else %}
+              <span class="star-rating align-middle">Not rated</span>
+              {% endif %}
+
             </p>
 
             {# PRICE & STOCK STATUS #}
@@ -200,7 +205,8 @@
                 {% if release.censor_status %}<li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
                 {% endif %}
                 {% if release.packaging %}<li><strong>Packaging:</strong> {{ release.packaging }}</li>{% endif %}
-                {% if release.release_date %}<li><strong>Original Release Date:</strong> {{ release.release_date|date:"j F Y" }}
+                {% if release.release_date %}<li><strong>Original Release Date:</strong>
+                  {{ release.release_date|date:"j F Y" }}
                 </li>{% endif %}
               </ul>
             </div>

@@ -223,6 +223,10 @@ footer a.active {
     padding: 0.5em 1em;
 }
 
+.fa-star {
+    color: #ffb700;
+}
+
 /* Add to Cart button on release_details.html */
 .add-to-cart-btn {
     font-size: 1.1rem;
@@ -666,11 +670,11 @@ input[type="password"]:first-of-type {
 }
 
 .star-rating .star-filled {
-    color: #ca0000 !important;
+    color: #ffb700 !important;
 }
 
 .star-rating .star-empty {
-    color: #ddd;
+    color: #FFF;
 }
 
 /* Release details section backgrounds */

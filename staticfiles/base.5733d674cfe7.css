@@ -664,9 +664,10 @@ input[type="password"]:first-of-type {
 
 /* Star Ratings */
 .star-rating {
-    display: inline-block;
-    font-size: 1.25rem;
-    line-height: 1;
+    /* display: inline-block; */
+    /* font-size: 1.25rem; */
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
 }
 
 .star-rating .star-filled {
@@ -674,7 +675,7 @@ input[type="password"]:first-of-type {
 }
 
 .star-rating .star-empty {
-    color: #FFF;
+    color: #ddd;
 }
 
 /* Release details section backgrounds */

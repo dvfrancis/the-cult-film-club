@@ -195,7 +195,7 @@ h6 {
 
 .btn-outline-black:hover,
 .btn-outline-black:focus {
-    color: #FFF;
+    color: #FFF!important;
     background-color: #ca0000;
 }
 

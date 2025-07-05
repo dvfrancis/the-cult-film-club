@@ -486,27 +486,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (lightboxModal && lightboxImage) {
         lightboxModal.addEventListener('show.bs.modal', function (event) {
-            console.log('Modal opening!', event);
             const button = event.relatedTarget;
-            console.log('Button:', button);
             const imageUrl = button.getAttribute('data-img-url');
-            console.log('Image URL:', imageUrl);
 
             if (imageUrl) {
                 lightboxImage.src = imageUrl;
                 lightboxImage.alt = 'Large image preview';
-                console.log('Image src set to:', lightboxImage.src);
-            } else {
-                console.log('No image URL found!');
             }
         });
 
-        // Remove aria-hidden when modal is shown
+        // Fix accessibility issue by removing aria-hidden when modal is shown
         lightboxModal.addEventListener('shown.bs.modal', function () {
             lightboxModal.removeAttribute('aria-hidden');
         });
 
-        // Clear lightbox image when modal is closed and restore aria-hidden
+        // Clear lightbox image when modal is closed
         lightboxModal.addEventListener('hidden.bs.modal', function () {
             lightboxImage.src = '';
             lightboxModal.setAttribute('aria-hidden', 'true');

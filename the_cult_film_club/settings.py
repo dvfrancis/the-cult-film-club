@@ -86,16 +86,10 @@ INSTALLED_APPS = [
 # CKEditor 5 configuration for rich text editing
 CKEDITOR_5_CONFIGS = {
     'default': {
-        'toolbar': {
-            'items': [
-                'heading', '|',
-                'bold', 'italic', 'underline', 'strikethrough', '|',
-                'bulletedList', 'numberedList', '|',
-                'outdent', 'indent', '|',
-                'todoList', 'link', 'blockQuote', 'insertTable', '|',
-                'undo', 'redo'
-            ]
-        },
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', '|',
+            'bulletedList', 'numberedList', '|', 'undo', 'redo'
+        ],
         'heading': {
             'options': [
                 {
@@ -122,24 +116,6 @@ CKEDITOR_5_CONFIGS = {
                     'class': 'ck-heading_heading3'
                 },
             ]
-        },
-        'image': {
-            'toolbar': [
-                'imageTextAlternative', '|',
-                'imageStyle:alignLeft',
-                'imageStyle:alignRight',
-                'imageStyle:alignCenter',
-                'imageStyle:alignBlockLeft',
-                'imageStyle:alignBlockRight',
-                '|',
-                'resizeImage',
-            ]
-        },
-        'table': {
-            'contentToolbar': [
-                'tableColumn', 'tableRow', 'mergeTableCells',
-                'tableProperties', 'tableCellProperties'
-            ]
         }
     }
 }
@@ -165,6 +141,7 @@ CLOUDINARY_STORAGE = {
     "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
     "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
     "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+    "SECURE": True,  # Use secure URLs for media files
 }
 
 # Static files storage configuration (using WhiteNoise)
@@ -227,52 +204,6 @@ WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-
-# CKEditor 5 configuration for rich text editing
-CKEDITOR_5_CONFIGS = {
-    'default': {
-        'toolbar': ['heading', '|', 'bold', 'italic', 'link'],
-    },
-    'extends': {
-        'block-toolbar': [
-            'paragraph', 'heading1', 'heading2', 'heading3', '|',
-            'bulletedList', 'numberedList', 'blockQuote',
-        ],
-        'toolbar': [
-            'bold', 'italic', 'link', 'underline', 'strikethrough', 'code',
-            'subscript', 'superscript', '|', 'outdent', 'indent', 'alignment',
-            '|', 'imageUpload', 'insertTable', 'blockQuote', 'mediaEmbed',
-            '|', 'undo', 'redo'
-        ],
-        'heading': {
-            'options': [
-                {
-                    'model': 'paragraph',
-                    'title': 'Paragraph',
-                    'class': 'ck-heading_paragraph'
-                },
-                {
-                    'model': 'heading1',
-                    'view': 'h1',
-                    'title': 'Heading 1',
-                    'class': 'ck-heading_heading1'
-                },
-                {
-                    'model': 'heading2',
-                    'view': 'h2',
-                    'title': 'Heading 2',
-                    'class': 'ck-heading_heading2'
-                },
-                {
-                    'model': 'heading3',
-                    'view': 'h3',
-                    'title': 'Heading 3',
-                    'class': 'ck-heading_heading3'
-                },
-            ]
-        }
-    }
-}
 
 # Use database-backed sessions
 SESSION_ENGINE = "django.contrib.sessions.backends.db"

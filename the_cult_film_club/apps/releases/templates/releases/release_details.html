@@ -70,10 +70,9 @@
 
             {# PRODUCTION DETAILS SUMMARY #}
             <div class="mb-3 text-center small text-muted">
-              {% if release.director %}<span><strong>Director:</strong> {{ release.director }}</span>{% endif %}
-              {% if release.release_date %} | <span><strong>Year:</strong>
-                {{ release.release_date|date:"Y" }}</span>{% endif %}
-              {% if release.edition %} | <span><strong>Edition:</strong> {{ release.edition }}</span>{% endif %}
+              {% if release.director %}<span><strong>Directed by </strong> {{ release.director }}</span>{% endif %}
+              {% if release.release_date %} | {{ release.release_date|date:"Y" }}</span>{% endif %}
+              {% comment %} {% if release.edition %} | <span><strong>Edition:</strong> {{ release.edition }}</span>{% endif %} {% endcomment %}
             </div>
 
             {# STAR RATING DISPLAY #}
@@ -201,7 +200,7 @@
                 {% if release.censor_status %}<li><strong>Censor Status:</strong> {{ release.censor_status }}</li>
                 {% endif %}
                 {% if release.packaging %}<li><strong>Packaging:</strong> {{ release.packaging }}</li>{% endif %}
-                {% if release.release_date %}<li><strong>Released:</strong> {{ release.release_date|date:"l, j F Y" }}
+                {% if release.release_date %}<li><strong>Original Release Date:</strong> {{ release.release_date|date:"j F Y" }}
                 </li>{% endif %}
               </ul>
             </div>

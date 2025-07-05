@@ -220,6 +220,7 @@ footer a.active {
     background-color: #ca0000 !important;
     color: #fff !important;
     border-radius: 0.25rem;
+    padding: 0.5em 1em;
 }
 
 /* Add to Cart button on release_details.html */

@@ -296,10 +296,12 @@ footer a:not(.no-highlight):focus {
 }
 
 .release-header,
-.release-header + form {
+.release-header + form,
+.release-header ~ div {
     color: #FFF;
 }
-#id_rating_helptext {
+
+label[for="id_rating"] {
     color: #FFF;
 }
 

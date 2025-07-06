@@ -296,11 +296,17 @@ footer a:not(.no-highlight):focus {
 }
 
 .release-header,
-.release-header + form {
+.release-header ~ form,
+.release-header ~ form label,
+.release-header ~ form input,
+.release-header ~ form button {
     color: #FFF;
 }
-#id_rating_helptext {
-    color: #FFF;
+
+/* More specific targeting for the rating label */
+.release-header ~ form label[for="id_rating"],
+.release-header ~ form .form-label {
+    color: #FFF !important;
 }
 
 /* Used to center page content vertically on a page */

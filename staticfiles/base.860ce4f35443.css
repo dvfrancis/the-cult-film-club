@@ -288,19 +288,12 @@ footer a:not(.no-highlight):focus {
 .product-mgmt-header,
 .discount-code-header,
 .account-header,
-.about-header {
+.about-header,
+.release-header {
     margin: 1.5rem 0 0.5rem;
     font-size: 1.25rem;
     font-weight: 700;
     color: #080808;
-}
-
-.release-header,
-.release-header + form {
-    color: #FFF;
-}
-#id_rating_helptext {
-    color: #FFF;
 }
 
 /* Used to center page content vertically on a page */

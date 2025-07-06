@@ -299,7 +299,7 @@ footer a:not(.no-highlight):focus {
 .release-header + form {
     color: #FFF;
 }
-#id_rating_helptext {
+.id_rating_helptext {
     color: #FFF;
 }
 

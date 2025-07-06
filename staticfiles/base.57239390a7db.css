@@ -299,8 +299,8 @@ footer a:not(.no-highlight):focus {
 .release-header + form {
     color: #FFF;
 }
-#id_rating_helptext {
-    color: #FFF;
+.id_rating_helptext {
+    color: #FFF!important;
 }
 
 /* Used to center page content vertically on a page */

@@ -234,7 +234,7 @@
             {# AVERAGE RATING AND USER RATING FORM #}
             <div class="section-bg-red section-rounded">
               {% if user.is_authenticated %}
-              <h5 class="mb-4 ">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
+              <h5 class="mb-4 release-header">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
               <form method="post" aria-label="Submit your rating">
                 {% csrf_token %}
                 {{ rating_form|crispy }}

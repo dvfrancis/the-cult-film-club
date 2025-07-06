@@ -44,7 +44,7 @@
         <hr>
 
         {# Existing Releases Heading #}
-        <h4 class="mb-3 text-center">Current Releases</h4>
+        <h4 class="mb-3 text-center product-mgmt-header">Current Releases</h4>
 
         {# Table View for md and up #}
         <div class="table-responsive d-none d-md-block">
@@ -74,19 +74,19 @@
                 </td>
                 <td class="text-center">
                   <a href="{% url 'edit_release' release.id %}" 
-                     class="btn btn-sm btn-outline-primary me-1 mb-1" 
+                     class="btn btn-sm black-btn me-1 mb-1" 
                      title="Edit {{ release.title }}" aria-label="Edit {{ release.title }}">
-                    <i class="fas fa-edit"></i> Edit
+                    Edit
                   </a>
                   <a href="{% url 'delete_release' release.id %}" 
-                     class="btn btn-sm btn-outline-danger me-1 mb-1" 
+                     class="btn btn-sm btn-outline-black me-1 mb-1" 
                      title="Delete {{ release.title }}" aria-label="Delete {{ release.title }}">
-                    <i class="fas fa-trash-alt"></i> Delete
+                    Delete
                   </a>
                   <a href="{% url 'manage_images' release.id %}" 
-                     class="btn btn-sm btn-outline-info mb-1" 
+                     class="btn btn-sm black-btn mb-1" 
                      title="Manage images for {{ release.title }}" aria-label="Manage images for {{ release.title }}">
-                    <i class="fas fa-images"></i> Manage Images
+                    Manage Images
                   </a>
                 </td>
               </tr>

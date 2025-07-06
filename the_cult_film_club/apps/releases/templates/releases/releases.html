@@ -53,11 +53,11 @@
       <div class="card h-100 border-0 shadow-lg pt-4 pb-4 px-2 position-relative">
         {% if release.featured_image %}
         <img class="card-img-top img-fluid w-75 mx-auto d-block rounded" src="{{ release.featured_image.image.url }}"
-          alt="{{ release.title }}" />
+          alt="{{ release.title }}">
         {% else %}
         <img class="card-img-top img-fluid w-75 mx-auto d-block rounded"
           src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-          alt="{{ release.title }}" />
+          alt="{{ release.title }}">
         {% endif %}
         <div class="card-body mx-4 px-0">
           <div class="d-flex justify-content-between align-items-center mb-2">

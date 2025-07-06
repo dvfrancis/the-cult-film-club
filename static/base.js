@@ -14,6 +14,65 @@ function getCookie(name) {
     return cookieValue;
 }
 
+// Quantity controls for cart items
+function EnableDisableQuantityChange(itemId) {
+    let input = document.getElementById(`id_qty_${itemId}`);
+    if (!input) return;
+    let currentValue = parseInt(input.value);
+    let minValue = parseInt(input.getAttribute('min')) || 1;
+    let maxValue = parseInt(input.getAttribute('max'));
+    let minusDisabled = currentValue <= minValue;
+    let plusDisabled = currentValue >= maxValue;
+    let decBtn = document.getElementById(`decrement-qty_${itemId}`);
+    let incBtn = document.getElementById(`increment-qty_${itemId}`);
+    if (decBtn) decBtn.disabled = minusDisabled;
+    if (incBtn) incBtn.disabled = plusDisabled;
+}
+
+// Tooltip for quantity input validation
+function showTooltip(input, message) {
+    let oldTip = input.parentElement.querySelector('.qty-tooltip');
+    if (oldTip) oldTip.remove();
+    let tooltip = document.createElement('div');
+    tooltip.className = 'qty-tooltip';
+    tooltip.textContent = message;
+    tooltip.style.top = (input.offsetTop - 30) + 'px';
+    tooltip.style.left = input.offsetLeft + 'px';
+    input.parentElement.style.position = 'relative';
+    input.parentElement.appendChild(tooltip);
+    setTimeout(function () {
+        tooltip.remove();
+    }, 2000);
+}
+
+// Helper function to poll for order and redirect to success page
+function pollForOrderAndRedirectByPid(pid, attempts = 0, maxAttempts = 30) {
+    fetch(`/checkout/get-order-number-by-pid/${pid}/`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.order_number) {
+                window.location.href = `/checkout/checkout_success/${data.order_number}/`;
+            } else if (attempts < maxAttempts) {
+                setTimeout(function () {
+                    pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
+                }, 2000); // 2 seconds
+            } else {
+                alert('Order processing is taking longer than expected. Please check your email for confirmation.');
+                window.location.href = '/checkout/';
+            }
+        })
+        .catch(() => {
+            if (attempts < maxAttempts) {
+                setTimeout(function () {
+                    pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
+                }, 2000);
+            } else {
+                alert('Order processing is taking longer than expected. Please check your email for confirmation.');
+                window.location.href = '/checkout/';
+            }
+        });
+}
+
 // Main DOMContentLoaded event for all interactive features
 document.addEventListener('DOMContentLoaded', function () {
     // Filter dropdowns for releases page
@@ -27,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const resetBtn = document.getElementById('reset-filters-btn');
 
         // Dynamically update dropdown options based on current selections
-        function updateDropdowns() {
+        const updateDropdowns = function() {
             const genre = genreSelect.value;
             const subgenre = subgenreSelect.value;
             const director = directorSelect.value;
@@ -84,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
             if (decades.length === 1) {
                 decadeSelect.value = decades[0];
             }
-        }
+        };
 
         // Attach event listeners for dropdowns to update and submit filters
         genreSelect.addEventListener('focus', updateDropdowns);
@@ -117,20 +176,6 @@ document.addEventListener('DOMContentLoaded', function () {
         updateDropdowns();
     }
 
-    // Quantity controls for cart items
-    function EnableDisableQuantityChange(itemId) {
-        let input = document.getElementById(`id_qty_${itemId}`);
-        if (!input) return;
-        let currentValue = parseInt(input.value);
-        let minValue = parseInt(input.getAttribute('min')) || 1;
-        let maxValue = parseInt(input.getAttribute('max'));
-        let minusDisabled = currentValue <= minValue;
-        let plusDisabled = currentValue >= maxValue;
-        let decBtn = document.getElementById(`decrement-qty_${itemId}`);
-        let incBtn = document.getElementById(`increment-qty_${itemId}`);
-        if (decBtn) decBtn.disabled = minusDisabled;
-        if (incBtn) incBtn.disabled = plusDisabled;
-    }
     // Attach listeners to quantity input fields
     document.querySelectorAll('.qty_input').forEach(function (input) {
         let itemId = input.getAttribute('data-item_id');
@@ -205,21 +250,6 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    // Tooltip for quantity input validation
-    function showTooltip(input, message) {
-        let oldTip = input.parentElement.querySelector('.qty-tooltip');
-        if (oldTip) oldTip.remove();
-        let tooltip = document.createElement('div');
-        tooltip.className = 'qty-tooltip';
-        tooltip.textContent = message;
-        tooltip.style.top = (input.offsetTop - 30) + 'px';
-        tooltip.style.left = input.offsetLeft + 'px';
-        input.parentElement.style.position = 'relative';
-        input.parentElement.appendChild(tooltip);
-        setTimeout(function () {
-            tooltip.remove();
-        }, 2000);
-    }
     // Listen for manual input and show tooltip if out of bounds
     document.querySelectorAll('.qty_input').forEach(function (input) {
         input.addEventListener('input', function () {
@@ -294,33 +324,6 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
 
-        // Helper function to poll for order and redirect to success page
-        function pollForOrderAndRedirectByPid(pid, attempts = 0, maxAttempts = 30) {
-            fetch(`/checkout/get-order-number-by-pid/${pid}/`)
-                .then(response => response.json())
-                .then(data => {
-                    if (data.order_number) {
-                        window.location.href = `/checkout/checkout_success/${data.order_number}/`;
-                    } else if (attempts < maxAttempts) {
-                        setTimeout(function () {
-                            pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
-                        }, 2000); // 2 seconds
-                    } else {
-                        alert('Order processing is taking longer than expected. Please check your email for confirmation.');
-                        window.location.href = '/checkout/';
-                    }
-                })
-                .catch(() => {
-                    if (attempts < maxAttempts) {
-                        setTimeout(function () {
-                            pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
-                        }, 2000);
-                    } else {
-                        alert('Order processing is taking longer than expected. Please check your email for confirmation.');
-                        window.location.href = '/checkout/';
-                    }
-                });
-        }
         // Stripe payment form submission handler
         let form = document.getElementById('payment-form');
         form.addEventListener('submit', function (ev) {

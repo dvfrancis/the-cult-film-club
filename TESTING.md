@@ -435,46 +435,44 @@ These results apply to all 21 classes:
 
 ## Browser Compatibility
 
-The website has been tested on the following browsers:
-
 ### Google Chrome
 
 <details>
-<summary>Click here for a preview of the home page in Google Chrome</summary>
+<summary>Click here to view the site in Google Chrome</summary>
 
-![Website in Google Chrome](documentation/validation/browsers/preview-in-google-chrome.webp)
+![Website in Google Chrome](documentation/browsers/website-google-chrome.png)
 </details>
 
 ### Microsoft Edge
 
 <details>
-<summary>Click here for a preview of the home page in Microsoft Edge</summary>
+<summary>Click here to view the site in Microsoft Edge</summary>
 
-![Website in Microsoft Edge](documentation/validation/browsers/preview-in-microsoft-edge.webp)
+![Website in Microsoft Edge](documentation/browsers/website-microsoft-edge.png)
 </details>
 
 ### Firefox
 
 <details>
-<summary>Click here for a preview of the home page in Mozilla Firefox</summary>
+<summary>Click here to view the site in Mozilla Firefox</summary>
 
-![Website in Mozilla Firefox](documentation/validation/browsers/preview-in-mozilla-firefox.webp)
+![Website in Mozilla Firefox](documentation/browsers/website-mozilla-firefox.png)
 </details>
 
 ### Opera
 
 <details>
-<summary>Click here for a preview of the home page in Opera</summary>
+<summary>Click here to view the site in Opera</summary>
 
-![Website in Opera](documentation/validation/browsers/preview-in-opera.webp)
+![Website in Opera](documentation/browsers/website-opera.png)
 </details>
 
 ### Safari
 
 <details>
-<summary>Click here for a preview of the home page in Safari</summary>
+<summary>Click here to view the site in Safari</summary>
 
-![Website in Safari](documentation/validation/browsers/preview-in-safari.webp)
+![Website in Safari](documentation/browsers/website-safari.png)
 </details>
 
 ## Accessibility

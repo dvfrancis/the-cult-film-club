@@ -664,7 +664,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - Total.
     - How much more needs to be sent to qualify for free delivery
 - Users can also add a valid, active discount code to the order, to receive the associated discount on their order.
-- A webhook is used to process customer orders.
+- Webhooks are used to process customer orders.
 - The shopping cart is cleared if the user logs out before checkout, or if the order is successful.
 - On the mobile view of the shopping cart, the film release image is not displayed - to save space.
 

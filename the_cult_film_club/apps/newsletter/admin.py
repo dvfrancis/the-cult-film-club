@@ -10,7 +10,6 @@ class NewsletterSignupAdmin(admin.ModelAdmin):
         'date_joined',
         'unsubscribe_token',
     )
-    # Can't filter on genres easily as it's a comma-separated string
     list_filter = ('date_joined',)
     search_fields = ('email',)
     ordering = ['-date_joined']

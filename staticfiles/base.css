@@ -309,17 +309,17 @@ a.no-underline {
     background-color: #1d8235;
     display: inline-block;
     padding: 0.25em 0.75em;
-    text-align: right;
+    text-align: center;
     border-radius: 0.25em;
     font-weight: bold;
 }
 
 .copies-low {
     color: #FFF;
-    background-color: #ff7900;
+    background-color: #c25a00;
     display: inline-block;
     padding: 0.25em 0.75em;
-    text-align: right;
+    text-align: center;
     border-radius: 0.25em;
     font-weight: bold;
 }
@@ -329,7 +329,7 @@ a.no-underline {
     background-color: #ca0000;
     display: inline-block;
     padding: 0.25em 0.75em;
-    text-align: right;
+    text-align: center;
     border-radius: 0.25em;
     font-weight: bold;
 }

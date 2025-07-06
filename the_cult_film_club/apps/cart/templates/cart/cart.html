@@ -30,7 +30,7 @@
                         <tr class="text-center">
                             <td class="w-25 d-none d-sm-table-cell">
                                 <img class="img-fluid rounded cart-table-img"
-                                    src="{{ item.release.featured_image.image.url }}">
+                                    src="{{ item.release.featured_image.image.url }}" alt="{{ item.release.title }} cover image">
                             </td>
                             <td class="py-3 align-middle cart-table-title">
                                 <p class="my-0">{{ item.release.title }}</p>
@@ -99,7 +99,6 @@
                             </td>
                         </tr>
                         <tr>
-                        <tr>
                             <td colspan="5" class="text-end align-middle">
                                 <form method="post" action="{% url 'apply_discount' %}">
                                     {% csrf_token %}
@@ -122,8 +121,6 @@
                                 </h6>
                                 {% endif %}
                             </td>
-                        </tr>
-                        <tr>
                         </tr>
                         <tr>
                             <td colspan="5" class="text-end">

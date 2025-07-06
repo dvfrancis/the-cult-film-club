@@ -1170,7 +1170,7 @@ Create, Read, Update, and Delete (CRUD) capabilities for each database model are
 
 #### Wireframes
 
-Initial ideas for wireframes across differently-sized devices are shown below. These are very much initial ideas, and may have changed as the project progressed.
+My initial wireframe concepts for website pages are shown below. During development, numerous additional pages were created beyond these initial designs, including a product management interface, user profile section, and various administrative features. While these additional pages are not represented in the original wireframes, they all maintained consistent design principles and structural elements established in these foundational layouts.
 
 #### Mobile
 

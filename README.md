@@ -1204,11 +1204,12 @@ The restrained use of colour and simple visual elements create a focused, user-f
 </details>
 
 - The website colour scheme was taken from the Sarah Renae Clarke Colour Catalogue: Volume 2, colour palette 251:
+    - White (#FFF)
     - Black (#080808)
-    - Crimson (#ca0000)
-    - Orange (#ff7900)
-    - Amber (#ffb700) 
-    - Platinum (#e1e1e3)
+    - Crimson (#CA0000)
+    - Orange (#FF7900)
+    - Amber (#FFB700) 
+    - Platinum (#E1E1E3)
 
 #### Typography
 

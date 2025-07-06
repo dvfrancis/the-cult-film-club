@@ -315,8 +315,8 @@ a.no-underline {
 }
 
 .copies-low {
-    color: #FFF;
-    background-color: #c25a00;
+    color: #000;
+    background-color: #ffb700;
     display: inline-block;
     padding: 0.25em 0.75em;
     text-align: center;
@@ -734,17 +734,18 @@ input[type="password"]:first-of-type {
 
 /* Pagination styles */
 .pagination .page-link {
-    color: #ca0000;
+    color: #080808;
     border-radius: 0.25rem;
     margin: 3px 5px;
-    border: 1px solid #ca000022;
+    border: 1px solid #080808;
     transition: background 0.2s, color 0.2s;
 }
 
 .pagination .page-link:hover,
 .pagination .page-link:focus {
-    background-color: #fff5f5;
-    color: #ca0000;
+    background-color: #ca0000;
+    border-color: #ca0000;
+    color: #FFF;
 }
 
 .pagination .page-item.active .page-link {
@@ -754,9 +755,9 @@ input[type="password"]:first-of-type {
 }
 
 .pagination .page-item.disabled .page-link {
-    color: rgb(8, 8, 8, 0.5);
-    background-color: #f8f9fa;
-    border-color: rgb(8, 8, 8, 0.5);
+    color: #FFF;
+    background-color: #FFF;
+    border-color: #FFF;
 }
 
 /* Stripe */

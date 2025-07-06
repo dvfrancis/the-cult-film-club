@@ -46,8 +46,9 @@
 6. [Accessibility](#accessibility)
 7. [Responsiveness](#responsiveness)
 8. [Performance](#performance)
-9. [Fixed Bugs](#fixed-bugs)
-10. [Unfixed Bugs](#unfixed-bugs)
+9. [Bugs](#bugs)
+    1. [Resolved](#resolved)
+    2. [Unresolved](#unresolved)
 
 ## Code Validation
 
@@ -496,11 +497,13 @@ Both mobile and desktop page performance was assessed with [Google Lighthouse](h
 
 Click here to see the [Performance report](documentation/validation/performance/performance-report.pdf)
 
-## Fixed Bugs
+## Bugs
 
-Fixed bugs match the cases raised on the project board attached to the GitGub repository. They're named after their GitHub issue number (so are not sequential).
+### Resolved
 
-### Bug 61
+Resolved bugs match the cases raised on the project board attached to the GitGub repository. They're named after their GitHub issue number (so are not sequential).
+
+#### Bug 61
 
 <details>
 <summary>Click here to see a screenshot of bug #61</summary>
@@ -530,7 +533,7 @@ Fixed bugs match the cases raised on the project board attached to the GitGub re
 | --- | --- | --- |
 | [#61](https://github.com/dvfrancis/craftr/issues/61) | Heroku deployment keeps failing with the error shown above. Settings.py, Procfile, and requirements.txt all checked and confirmed as correctly configured | When I first created the project I used the following command but forgot to add the full stop at the end `django-admin startproject craftr.` This meant that the files were created in a directory called craftr, and not directly in the root. The folders and files highlighted in the above folder structure image should be in the root. This also had a knock-on effect as the local server no longer worked either. This is because manage.py and db.sqlite3 ended up in the craftr folder, and not in the root as expected. Once they were moved to the root, the local server also started working again |
 
-### Bug 63
+#### Bug 63
 
 <details>
 <summary>Click here to see a screenshot of bug #63</summary>
@@ -550,7 +553,7 @@ for user in User.objects.all():
     UserProfile.objects.get_or_create(user=user)
 ```
 
-### Bug 64
+#### Bug 64
 
 <details>
 <summary>Click here to see a screenshot of bug #64</summary>
@@ -568,7 +571,7 @@ for user in User.objects.all():
 | --- | --- | --- |
 | [#64](https://github.com/dvfrancis/craftr/issues/64) | Unable to see apps in Django admin portal - I am only able to see the event `Event days` app in the Django admin portal. | I had forgotten to add the apps to `INSTALLED_APPS` in `settings.py`. Once I did this, they appeared in the admin portal, as shown in the second screenshot above |
 
-### Bug 65
+#### Bug 65
 
 <details>
 <summary>Click here to see a screenshot of bug #65</summary>
@@ -591,7 +594,7 @@ for user in User.objects.all():
         ]
 ```
 
-### Bug 67
+#### Bug 67
 
 <details>
 <summary>Click here to see a screenshot of bug #67</summary>
@@ -665,7 +668,7 @@ def register_user(request):
     )
 ```
 
-### Bug 68
+#### Bug 68
 
 <details>
 <summary>Click here to see a screenshot of bug #68</summary>
@@ -677,13 +680,13 @@ def register_user(request):
 | --- | --- | --- |
 | [#68](https://github.com/dvfrancis/craftr/issues/68) | SMTP authentication error - when sending a message via the contact form, it is unable to email the administrator due to the error shown in the screenshot above | I cannot use my main email account password directly as my email provider requires the use of app-specific passwords. Once I had generated one and updated `env.py`, the form was able to send the email as expected.|
 
-### Bug 69
+#### Bug 69
 
 | Issue | Bug | Fix |
 | --- | --- | --- |
 | [#69](https://github.com/dvfrancis/craftr/issues/69) | The contact form does not send an email notification to the admin of the site when deployed to Heroku (although it still creates the contact form in the database). | I have put all sensitive info (secret key, email addresses, passwords) into `env.py`, which is not synced to GitHub as it is in `.gitignore`. I needed to add the email address and email password variables to Heroku, after which the email functionality worked as expected |
 
-### Bug 70
+#### Bug 70
 
 <details>
 <summary>Click here to see a screenshot of bug #70</summary>
@@ -695,7 +698,7 @@ def register_user(request):
 | --- | --- | --- |
 | [#70](https://github.com/dvfrancis/craftr/issues/70) | When attempting to register a new account from the login page, you are prompted to login first. When logged in, it redirects to the details page when the register button is clicked. | The 'Register' button was defined within the `<form>` HTML element, which was causing this bug. When moved outside of that element it behaves as expected. Buttons inside `<form>` elements often inherit functionality tied to the form itself |
 
-### Bug 75
+#### Bug 75
 
 <details>
 <summary>Click here to see a screenshot of bug #75</summary>
@@ -718,7 +721,7 @@ else:
                         "Please enter them again."
                     ))
 ```
-### Bug 83
+#### Bug 83
 
 <details>
 <summary>Click here to see a screenshot of bug #83</summary>
@@ -730,7 +733,7 @@ else:
 | --- | --- | --- |
 | [#83](https://github.com/dvfrancis/craftr/issues/83) | Images do not appear to work correctly when DEBUG is set to False; for example, the logo in the footer displays without problem when `DEBUG=True` but not when `DEBUG=False` | Apparently, this behaviour is by design (as detailed in [this article](https://www.geeksforgeeks.org/why-django-not-serve-your-static-files-in-debug-false-mode/)). Once I uploaded the images to Cloudinary, and used the correct URL, the images appeared as expected - even when `DEBUG=False` |
 
-### Bug 84
+#### Bug 84
 
 <details>
 <summary>Click here to see a screenshot of bug #84, before clicking an accordion item</summary>
@@ -759,7 +762,7 @@ else:
   background-attachment: fixed;
 }
 ```
-### Bug 87
+#### Bug 87
 
 | Issue | Bug | Fix |
 | --- | --- | --- |
@@ -787,6 +790,6 @@ I've also created an if statement to check a Toast message exists, before attemp
 
 The updated code removes the error from the console.
 
-## Unfixed Bugs
+### Unresolved
 
-There are no unfixed bugs in the project.
+There are no unresolved bugs in the project.

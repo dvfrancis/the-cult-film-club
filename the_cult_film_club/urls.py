@@ -57,7 +57,7 @@ urlpatterns = [
 
 # Only expose test error URLs in DEBUG mode
 # Change setting.DEBUG to True to enable these URLs
-if True:
+if settings.DEBUG:
     urlpatterns += [
         path('test-400/', raise_bad_request, name='raise_bad_request'),
         path(

@@ -40,12 +40,12 @@
                 </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#featuredReleasesCarousel"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true" aria-label="Previous"></span>
+                data-bs-slide="prev" aria-label="Previous slide">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             </button>
             <button class="carousel-control-next" type="button" data-bs-target="#featuredReleasesCarousel"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true" aria-label="Next"></span>
+                data-bs-slide="next" aria-label="Next slide">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
             </button>
             <div class="carousel-indicators">
                 <button type="button" data-bs-target="#featuredReleasesCarousel" data-bs-slide-to="0" class="active"
@@ -120,10 +120,12 @@
                     {% else %}
                     <img src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
                         class="card-img-top img-fluid w-75 mx-auto d-block" alt="{{ release.title }}">
-                    {% endif %} <div class="card-body d-flex flex-column justify-content-between text-center">
+                    {% endif %}
+                    <div class="card-body d-flex flex-column justify-content-between text-center">
                         <h5 class="logo-font card-title mt-4">{{ release.title }}</h5>
                         <p class="card-text mb-5">£{{ release.price }}</p>
-                        <a href="{% url 'release_details' release.id %}" class="btn black-btn mt-auto mb-4">Details</a>
+                        <a href="{% url 'release_details' release.id %}" class="btn black-btn mt-auto mb-4"
+                            aria-label="View details for {{ release.title }}">Details</a>
                     </div>
                 </div>
             </div>

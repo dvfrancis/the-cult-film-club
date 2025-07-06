@@ -14,26 +14,6 @@ function getCookie(name) {
     return cookieValue;
 }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Ensure all form inputs have labels
-    const inputs = document.querySelectorAll('input[type="text"], input[type="email"], input[type="password"]');
-    inputs.forEach(function(input) {
-        if (!input.labels.length && !input.getAttribute('aria-label')) {
-            const fieldName = input.name;
-            let labelText = fieldName.charAt(0).toUpperCase() + fieldName.slice(1);
-            
-            // Create label element
-            const label = document.createElement('label');
-            label.setAttribute('for', input.id);
-            label.textContent = labelText;
-            label.classList.add('form-label');
-            
-            // Insert label before input
-            input.parentNode.insertBefore(label, input);
-        }
-    });
-});
-
 // Quantity controls for cart items
 function EnableDisableQuantityChange(itemId) {
     let input = document.getElementById(`id_qty_${itemId}`);

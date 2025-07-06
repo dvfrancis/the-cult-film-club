@@ -4,6 +4,46 @@ from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
 from .models import Profile, Address, WishlistItem, PriorityLevel
+from allauth.account.forms import LoginForm
+from allauth.account.forms import ResetPasswordForm
+
+
+class CustomResetPasswordForm(ResetPasswordForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Add proper labels and attributes
+        self.fields['email'].label = 'Email Address'
+        self.fields['email'].widget.attrs.update({
+            'aria-label': 'Email Address',
+            'class': 'form-control',
+            'placeholder': 'Enter your email address'
+        })
+
+
+class CustomLoginForm(LoginForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Add proper labels and attributes
+        self.fields['login'].label = 'Username or Email'
+        self.fields['login'].widget.attrs.update({
+            'aria-label': 'Username or Email',
+            'class': 'form-control'
+        })
+
+        self.fields['password'].label = 'Password'
+        self.fields['password'].widget.attrs.update({
+            'aria-label': 'Password',
+            'class': 'form-control'
+        })
+
+        if 'remember' in self.fields:
+            self.fields['remember'].label = 'Remember Me'
+            self.fields['remember'].widget.attrs.update({
+                'aria-label': 'Remember Me',
+                'class': 'form-check-input'
+            })
 
 
 class AccessibleCountrySelectWidget(CountrySelectWidget):

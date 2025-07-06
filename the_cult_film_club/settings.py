@@ -21,7 +21,11 @@ DEFAULT_FROM_EMAIL = "tcfc@dominicfrancis.co.uk"
 
 # Custom user signup form for django-allauth
 ACCOUNT_FORMS = {
+    'login': 'the_cult_film_club.apps.account.forms.CustomLoginForm',
     'signup': 'the_cult_film_club.apps.account.forms.AccountSignupForm',
+    'reset_password': (
+        'the_cult_film_club.apps.account.forms.CustomResetPasswordForm'
+    ),
 }
 
 # Allow login by email or username

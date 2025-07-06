@@ -5,16 +5,20 @@ from django.forms.widgets import ClearableFileInput
 
 
 class CustomClearableFileInput(ClearableFileInput):
-    def __init__(self, attrs=None):
-        super().__init__(attrs)
-        self.clear_checkbox_label = 'Clear image'
-    
-    def get_context(self, name, value, attrs):
-        context = super().get_context(name, value, attrs)
-        # Add aria-label to the clear checkbox link
-        if 'widget' in context and 'clear_checkbox_label' in context['widget']:
-            context['widget']['clear_checkbox_label'] = 'Clear current image'
-        return context
+    template_name = 'django/forms/widgets/clearable_file_input.html'
+
+    def format_value(self, value):
+        if self.is_initial(value):
+            return value
+        return None
+
+    def value_from_datadict(self, data, files, name):
+        upload = super().value_from_datadict(data, files, name)
+        if not self.is_required and self.clear_checkbox_name(name) in data:
+            if upload:
+                return upload
+            return False
+        return upload
 
 
 class ReleaseForm(forms.ModelForm):
@@ -87,14 +91,20 @@ class ImageForm(forms.ModelForm):
     """
     Form for adding or editing images related to a release.
     """
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Add custom attributes to the image field
+        self.fields['image'].widget.attrs.update({
+            'class': 'form-control',
+            'aria-label': 'Select image file'
+        })
+
     class Meta:
         model = Images
         fields = ['image', 'caption', 'is_featured']
         widgets = {
-            'image': CustomClearableFileInput(attrs={
-                'class': 'form-control',
-                'aria-label': 'Select image file'
-            }),
+            'image': CustomClearableFileInput(),
         }
         labels = {
             'image': 'Image',

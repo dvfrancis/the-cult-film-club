@@ -44,7 +44,8 @@
                                 <button type="submit" name="update_photo" class="btn btn-success text-uppercase btn-sm">
                                     Update Photo
                                 </button>
-                                <button type="submit" name="delete_photo" class="btn btn-outline-black text-uppercase btn-sm">
+                                <button type="submit" name="delete_photo"
+                                    class="btn btn-outline-black text-uppercase btn-sm">
                                     Delete Photo
                                 </button>
                             </form>
@@ -87,23 +88,26 @@
                                 {% csrf_token %}
                                 {{ address_form|crispy }}
                                 <input type="hidden" name="address" value="{{ selected_address.id|default:'' }}">
-<div class="d-flex w-100 gap-2" role="group">
-    <span data-bs-toggle="tooltip" title="Select 'Add an address' to enable this button" class="flex-fill">
-        <button type="submit" name="add_address" class="btn btn-outline-black text-uppercase w-100"
-            {% if selected_address %}disabled{% endif %}>Add
-        </button>
-    </span>
-    <button type="submit" name="update_address" class="btn btn-outline-black text-uppercase flex-fill"
-        {% if not selected_address %}disabled{% endif %}>
-        Update
-    </button>
-    <button type="submit" name="delete_address"
-        class="btn btn-outline-black text-uppercase flex-fill"
-        {% if not selected_address %}disabled{% endif %}
-        onclick="return confirm('Are you sure you want to delete this address?');">
-        Delete
-    </button>
-</div>
+                                <div class="d-flex w-100 gap-2" role="group">
+                                    <span data-bs-toggle="tooltip" title="Select 'Add an address' to enable this button"
+                                        class="flex-fill">
+                                        <button type="submit" name="add_address"
+                                            class="btn btn-outline-black text-uppercase w-100"
+                                            {% if selected_address %}disabled{% endif %}>Add
+                                        </button>
+                                    </span>
+                                    <button type="submit" name="update_address"
+                                        class="btn btn-outline-black text-uppercase flex-fill"
+                                        {% if not selected_address %}disabled{% endif %}>
+                                        Update
+                                    </button>
+                                    <button type="submit" name="delete_address"
+                                        class="btn btn-outline-black text-uppercase flex-fill"
+                                        {% if not selected_address %}disabled{% endif %}
+                                        onclick="return confirm('Are you sure you want to delete this address?');">
+                                        Delete
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -168,14 +172,17 @@
                                     <div class="wishlist-actions d-flex flex-column align-items-end ms-3">
                                         <a href="{% url 'user_profile' %}?wishlist={{ selected_wishlist.id }}&edit_item={{ item.id }}"
                                             class="btn btn-outline-primary btn-sm text-uppercase mt-2 mb-2">Edit</a>
-
                                         {% if item.title.copies_available > 0 %}
                                         <form method="post" action="{% url 'add_to_cart' item.title.id %}"
                                             class="w-100 mb-2">
                                             {% csrf_token %}
+                                            <label for="quantity-{{ item.id }}" class="form-label visually-hidden">
+                                                Quantity for {{ item.title.title }}
+                                            </label>
                                             <input type="number" name="quantity" value="1" min="1"
-                                                max="{{ item.title.copies_available }}"
-                                                class="form-control form-control-sm wishlist-qty-input">
+                                                max="{{ item.title.copies_available }}" id="quantity-{{ item.id }}"
+                                                class="form-control form-control-sm wishlist-qty-input"
+                                                aria-label="Quantity for {{ item.title.title }}">
                                             <input type="hidden" name="redirect_url" value="{{ request.path }}">
                                             <span
                                                 class="text-muted small d-block text-end mt-2 mb-1 wishlist-qty-label">
@@ -186,8 +193,7 @@
                                         </form>
                                         {% else %}
                                         <span class="out-of-stock-btn mb-2">Out of Stock</span>
-                                        {% endif %}
-                                        <form method="post" class="w-100">
+                                        {% endif %} <form method="post" class="w-100">
                                             {% csrf_token %}
                                             <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
                                             <button type="submit" name="remove_item" value="{{ item.id }}"
@@ -208,7 +214,8 @@
                                         {% csrf_token %}
                                         <input type="text" name="wishlist_name" class="form-control"
                                             placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
-                                        <button type="submit" name="create_wishlist" class="btn btn-success text-uppercase">
+                                        <button type="submit" name="create_wishlist"
+                                            class="btn btn-success text-uppercase">
                                             Create
                                         </button>
                                     </form>
@@ -220,7 +227,8 @@
                                         onsubmit="return confirm('Delete this wishlist and all its items?');">
                                         {% csrf_token %}
                                         <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
-                                        <button type="submit" name="delete_wishlist" class="btn btn-outline-black text-uppercase">
+                                        <button type="submit" name="delete_wishlist"
+                                            class="btn btn-outline-black text-uppercase">
                                             Delete
                                         </button>
                                     </form>

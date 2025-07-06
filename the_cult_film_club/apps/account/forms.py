@@ -36,31 +36,38 @@ class AccountSignupForm(SignupForm):
 
     photograph = forms.ImageField(
         required=False,
+        label="Profile Photo",
         # Removes placeholder attribute from file input as it's not valid HTML
         widget=forms.ClearableFileInput()
     )
     first_line = forms.CharField(
         max_length=100, required=True,
+        label="Address Line 1",
         widget=forms.TextInput(attrs={'placeholder': 'Address line 1'})
     )
     second_line = forms.CharField(
         max_length=100, required=False,
+        label="Address Line 2",
         widget=forms.TextInput(attrs={'placeholder': 'Address line 2'})
     )
     city = forms.CharField(
         max_length=50, required=True,
+        label="City",
         widget=forms.TextInput(attrs={'placeholder': 'City'})
     )
     county = forms.CharField(
         max_length=50, required=False,
+        label="County",
         widget=forms.TextInput(attrs={'placeholder': 'County'})
     )
     postcode = forms.CharField(
         max_length=10, required=True,
+        label="Postcode",
         widget=forms.TextInput(attrs={'placeholder': 'Postcode'})
     )
     country = CountryField().formfield(
         required=True,
+        label="Country",
         # Uses custom widget that removes invalid placeholder
         widget=AccessibleCountrySelectWidget()
     )
@@ -68,6 +75,7 @@ class AccountSignupForm(SignupForm):
         regex=r'^\d+$',
         max_length=20,
         required=False,
+        label="Phone Number",
         widget=forms.TextInput(attrs={
             'placeholder': 'Phone number',
             'pattern': '[0-9]*',
@@ -78,6 +86,51 @@ class AccountSignupForm(SignupForm):
             'invalid': 'Enter a valid phone number (numbers only).'
         }
     )
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        # Add proper labels and attributes to inherited fields
+        self.fields['email'].label = 'Email Address'
+        self.fields['email'].widget.attrs.update(
+            {'aria-label': 'Email Address'}
+        )
+
+        self.fields['email2'].label = 'Confirm Email Address'
+        self.fields['email2'].widget.attrs.update(
+            {'aria-label': 'Confirm Email Address'}
+        )
+
+        self.fields['username'].label = 'Username'
+        self.fields['username'].widget.attrs.update({'aria-label': 'Username'})
+
+        self.fields['password1'].label = 'Password'
+        self.fields['password1'].widget.attrs.update(
+            {'aria-label': 'Password'}
+        )
+
+        self.fields['password2'].label = 'Confirm Password'
+        self.fields['password2'].widget.attrs.update(
+            {'aria-label': 'Confirm Password'}
+        )
+
+        # Add aria-labels to custom fields
+        self.fields['photograph'].widget.attrs.update(
+            {'aria-label': 'Profile Photo'}
+        )
+        self.fields['first_line'].widget.attrs.update(
+            {'aria-label': 'Address Line 1'}
+        )
+        self.fields['second_line'].widget.attrs.update(
+            {'aria-label': 'Address Line 2'}
+        )
+        self.fields['city'].widget.attrs.update({'aria-label': 'City'})
+        self.fields['county'].widget.attrs.update({'aria-label': 'County'})
+        self.fields['postcode'].widget.attrs.update({'aria-label': 'Postcode'})
+        self.fields['country'].widget.attrs.update({'aria-label': 'Country'})
+        self.fields['phone_number'].widget.attrs.update(
+            {'aria-label': 'Phone Number'}
+        )
 
     def save(self, request):
         """

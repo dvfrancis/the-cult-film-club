@@ -20,8 +20,7 @@
 {# IMAGES CAROUSEL or fallback image #}
 <div class="text-center pt-3 pt-md-5 px-2 px-md-4">
   {% if release.images.exists %}
-  <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel"
-    aria-label="Image carousel for {{ release.title }}">
+  <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
     <div class="carousel-inner">
       {% for img in release.images.all %}
       <div class="carousel-item {% if forloop.first %}active{% endif %}">
@@ -67,16 +66,13 @@
             {# PRODUCTION DETAILS SUMMARY #}
             <div class="mb-3 text-center small text-muted">
               {% if release.director %}<span><strong>Directed by </strong> {{ release.director }}</span>{% endif %}
-              {% if release.release_date %} | {{ release.release_date|date:"Y" }}</span>{% endif %}
-              {% comment %} {% if release.edition %} | <span><strong>Edition:</strong>
-                {{ release.edition }}</span>{% endif %} {% endcomment %}
+              {% if release.release_date %} | {{ release.release_date|date:"Y" }}{% endif %}
             </div>
 
             {# STAR RATING DISPLAY #}
             <p class="lead mb-3 text-center">
               {% if release.average_rating %}
-              <span class="star-rating align-middle"
-                aria-label="Average rating: {{ release.average_rating|floatformat:1 }} out of 5 stars">
+              <span class="star-rating align-middle">
                 {% for _ in full_stars_range %}
                 <span class="star-filled" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
                 {% endfor %}
@@ -178,7 +174,7 @@
             {# DESCRIPTION SECTION #}
             <div class="section-bg-red section-rounded">
               <h4 class="mb-2 text-danger">Description</h4>
-              <p>{{ release.description|safe }}</p>
+              {{ release.description|safe }}
             </div>
 
             {# SPECIAL FEATURES SECTION #}
@@ -213,7 +209,7 @@
               {% for review in release.ratings.all %}
               <div class="border rounded p-3 mb-2 bg-white">
                 <strong>{{ review.user.username }}</strong>
-                <span class="star-rating ms-2" aria-label="Rating: {{ review.rating }} stars">
+                <span class="star-rating ms-2">
                   {% for i in "xxxxx" %}
                   {% if forloop.counter <= review.rating %}
                   <span class="star-filled" aria-hidden="true">&#9733;</span>

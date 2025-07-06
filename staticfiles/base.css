@@ -287,7 +287,8 @@ footer a:not(.no-highlight):focus {
 
 .product-mgmt-header,
 .discount-code-header,
-.account-header {
+.account-header,
+.about-header {
     margin: 1.5rem 0 0.5rem;
     font-size: 1.25rem;
     font-weight: 700;

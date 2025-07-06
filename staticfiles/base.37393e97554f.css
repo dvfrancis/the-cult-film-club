@@ -755,9 +755,9 @@ input[type="password"]:first-of-type {
 }
 
 .pagination .page-item.disabled .page-link {
-    color: #ca0000;
+    color: #080808;
     background-color: #FFF;
-    border-color: #ca0000;
+    border-color: #080808;
 }
 
 /* Stripe */

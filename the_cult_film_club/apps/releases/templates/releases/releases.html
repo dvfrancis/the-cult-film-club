@@ -79,7 +79,7 @@
           <br>
           <p class="mb-2 text-muted text-end small">Dir(s): {{ release.director }}</p>
           <p class="text-muted small text-end mb-2">Year: {{ release.release_date|date:"Y" }}</p>
-          <a href="{% url 'release_details' release.id %}" class="stretched-link"></a>
+          <a href="{% url 'release_details' release.id %}" class="stretched-link" aria-label="View details for {{ release.title }}" aria-hidden="true"></a>
         </div>
         <div class="card-footer bg-white mx-1 border-0 d-flex justify-content-between align-items-center pt-2">
           <span class="lead font-weight-bold">£{{ release.price }}</span>

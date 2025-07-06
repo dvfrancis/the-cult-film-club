@@ -229,6 +229,11 @@ footer a.active {
     padding: 0.5em 1em;
 }
 
+.fa-star {
+    color: #ffb700;
+    border: 1px solid #080808;
+}
+
 .detail-text {
     color: #FFF;
 }
@@ -701,7 +706,7 @@ input[type="password"]:first-of-type {
 }
 
 .star-rating .star-filled {
-    color: #ca0000 !important;
+    color: #ffb700 !important;
 }
 
 .star-rating .star-empty {

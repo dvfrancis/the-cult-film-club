@@ -6,6 +6,28 @@ from django_countries.widgets import CountrySelectWidget
 from .models import Profile, Address, WishlistItem, PriorityLevel
 
 
+class AccessibleCountrySelectWidget(CountrySelectWidget):
+    """
+    Custom CountrySelectWidget that removes invalid placeholder attribute
+    and adds proper alt text to flag images
+    """
+    def __init__(self, attrs=None):
+        # Remove placeholder from attrs if present
+        if attrs and 'placeholder' in attrs:
+            attrs = attrs.copy()
+            del attrs['placeholder']
+        super().__init__(attrs)
+
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        # Add alt attribute to the flag image
+        html = html.replace(
+            'src="/static/flags/__.gif"',
+            'src="/static/flags/__.gif" alt="Country flag"'
+        )
+        return html
+
+
 class AccountSignupForm(SignupForm):
     """
     Extends the default allauth SignupForm to collect additional user profile
@@ -14,7 +36,8 @@ class AccountSignupForm(SignupForm):
 
     photograph = forms.ImageField(
         required=False,
-        widget=forms.ClearableFileInput(attrs={'placeholder': 'Profile photo'})
+        # Removes placeholder attribute from file input as it's not valid HTML
+        widget=forms.ClearableFileInput()
     )
     first_line = forms.CharField(
         max_length=100, required=True,
@@ -38,7 +61,8 @@ class AccountSignupForm(SignupForm):
     )
     country = CountryField().formfield(
         required=True,
-        widget=CountrySelectWidget(attrs={'placeholder': 'Country'})
+        # Uses custom widget that removes invalid placeholder
+        widget=AccessibleCountrySelectWidget()
     )
     phone_number = forms.RegexField(
         regex=r'^\d+$',
@@ -46,7 +70,6 @@ class AccountSignupForm(SignupForm):
         required=False,
         widget=forms.TextInput(attrs={
             'placeholder': 'Phone number',
-            'inputmode': 'numeric',
             'pattern': '[0-9]*',
             'type': 'tel',
             'title': 'Numbers only (no spaces or symbols)'
@@ -71,7 +94,7 @@ class AccountSignupForm(SignupForm):
         profile.save()
 
         # Create and link a new address as the default
-        address = Address.objects.create(
+        Address.objects.create(
             user=user,
             phone_number=self.cleaned_data.get('phone_number'),
             first_line=self.cleaned_data.get('first_line'),
@@ -129,9 +152,8 @@ class AddressForm(forms.ModelForm):
             'city': forms.TextInput(attrs={'placeholder': 'City'}),
             'county': forms.TextInput(attrs={'placeholder': 'County'}),
             'postcode': forms.TextInput(attrs={'placeholder': 'Postcode'}),
-            'country': CountrySelectWidget(
-                attrs={'placeholder': 'Country'}
-            ),
+            # Uses custom widget that removes invalid placeholder
+            'country': AccessibleCountrySelectWidget(),
             'phone_number': forms.TextInput(
                 attrs={'placeholder': 'Phone number'}
             ),

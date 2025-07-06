@@ -47,9 +47,9 @@
                                 <td>{{ code.valid_to|date:"d-m-Y" }}</td>
                                 <td>
                                     {% if code.is_active %}
-                                    <span class="badge bg-success" aria-label="Active">Yes</span>
+                                    <span class="badge bg-success">Yes</span>
                                     {% else %}
-                                    <span class="badge bg-danger" aria-label="Inactive">No</span>
+                                    <span class="badge bg-danger">No</span>
                                     {% endif %}
                                 </td>
                                 <td>
@@ -79,9 +79,9 @@
                         <div class="mb-2">
                             <strong>Active:</strong>
                             {% if code.is_active %}
-                            <span class="badge bg-success" aria-label="Active">Yes</span>
+                            <span class="badge bg-success">Yes</span>
                             {% else %}
-                            <span class="badge bg-danger" aria-label="Inactive">No</span>
+                            <span class="badge bg-danger">No</span>
                             {% endif %}
                         </div>
                         <div>

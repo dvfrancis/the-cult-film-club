@@ -83,15 +83,7 @@
         </div>
         <div class="card-footer bg-white mx-1 border-0 d-flex justify-content-between align-items-center pt-2">
           <span class="lead font-weight-bold">£{{ release.price }}</span>
-          <span class="
-              {% if release.copies_available == 0 %}
-                  text-danger
-              {% elif release.copies_available < 10 %}
-                  text-warning
-              {% else %}
-                  text-success
-              {% endif %}
-              availability small">
+          <span class="{% if release.copies_available == 0 %}copies-unavailable{% elif release.copies_available < 10 %}copies-low{% else %}copies-available{% endif %} small">
             {% if sorting_by_copies %}
             {% if release.copies_available == 0 %}
             Out of stock

@@ -237,6 +237,21 @@ footer a.active {
     color: #FFF;
 }
 
+.copies-available {
+    color: #FFF;
+    background-color: #ffb700;
+}
+
+.copies-low {
+    color: #FFF;            
+    background-color: #ff7900;
+}
+
+.copies-unavailable {
+    color: #FFF;
+    background-color: #ca0000;
+}
+
 /* Add to Cart button on release_details.html */
 .add-to-cart-btn {
     font-size: 1.1rem;
@@ -304,29 +319,9 @@ a.no-underline {
 }
 
 /* Styling for stock availability buttons on release.html */
-.copies-available {
-    color: #FFF;
-    background-color: #1d8235;
-    display: inline-block;
-    padding: 0.25em 0.75em;
-    text-align: right;
-    border-radius: 0.25em;
-    font-weight: bold;
-}
-
-.copies-low {
-    color: #FFF;
-    background-color: #ff7900;
-    display: inline-block;
-    padding: 0.25em 0.75em;
-    text-align: right;
-    border-radius: 0.25em;
-    font-weight: bold;
-}
-
-.copies-unavailable {
-    color: #FFF;
-    background-color: #ca0000;
+.availability {
+    background-color: #080808 !important;
+    color: #fff;
     display: inline-block;
     padding: 0.25em 0.75em;
     text-align: right;
@@ -379,14 +374,14 @@ input[type="number"] {
 
 /* Make image carousel controls more prominent */
 .carousel-control-next-icon {
-    background-color: #ca0000 !important;
+    background-color: #ca0000!important;
     border-radius: 50%;
     border: 1px solid #ca0000;
     padding: 0.5em;
 }
 
 .carousel-control-prev-icon {
-    background-color: #ca0000 !important;
+    background-color: #ca0000!important;
     border-radius: 50%;
     border: 1px solid #ca0000;
     padding: 0.5em;
@@ -696,7 +691,6 @@ input[type="password"]:first-of-type {
 .social-colour {
     color: #080808;
 }
-
 /* Star Ratings */
 .star-rating {
     display: inline-block;

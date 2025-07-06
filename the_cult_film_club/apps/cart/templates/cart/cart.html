@@ -43,20 +43,20 @@
                                     method="POST">
                                     {% csrf_token %}
                                     <div class="input-group justify-content-center">
-                                        <button type="button"
+                                        <button type="button" aria-label="Decrease quantity"
                                             class="decrement-qty btn btn-sm btn-outline-black rounded-0"
                                             data-item_id="{{ item.item_id }}" id="decrement-qty_{{ item.item_id }}"
                                             {% if item.release.copies_available == 0 %}disabled{% endif %}>
                                             <i class="fas fa-minus fa-sm"></i>
                                         </button>
                                         <input class="form-control form-control-sm qty_input text-center" type="number"
-                                            name="quantity"
+                                            name="quantity" aria-label="Quantity"
                                             value="{% if item.quantity %}{{ item.quantity }}{% else %}1{% endif %}"
                                             min="{% if item.release.copies_available == 0 %}0{% else %}1{% endif %}"
                                             max="{{ item.release.copies_available }}" data-item_id="{{ item.item_id }}"
                                             id="id_qty_{{ item.item_id }}"
                                             {% if item.release.copies_available == 0 %}disabled{% endif %}>
-                                        <button type="button"
+                                        <button type="button" aria-label="Increase quantity"
                                             class="increment-qty btn btn-sm btn-outline-black rounded-0"
                                             data-item_id="{{ item.item_id }}" id="increment-qty_{{ item.item_id }}"
                                             {% if item.release.copies_available == 0 %}disabled{% endif %}>

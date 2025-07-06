@@ -705,7 +705,7 @@ input[type="password"]:first-of-type {
 }
 
 .star-rating .star-empty {
-    color: #FFF;
+    color: #E1E1E3;
 }
 
 /* Release details section backgrounds */
@@ -718,7 +718,7 @@ input[type="password"]:first-of-type {
 }
 
 .section-rounded {
-    border-radius: 1rem;
+    border-radius: 0.25rem;
     padding: 1.5rem;
     margin-bottom: 1.5rem;
 }

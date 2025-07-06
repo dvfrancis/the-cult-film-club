@@ -208,9 +208,9 @@
                 <span class="star-rating ms-2">
                   {% for i in "xxxxx" %}
                   {% if forloop.counter <= review.rating %}
-                  <span class="star-filled" aria-hidden="true">&#9733;</span>
+                  <span class="star-filled" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
                   {% else %}
-                  <span class="star-empty" aria-hidden="true">&#9733;</span>
+                  <span class="star-empty" aria-hidden="true"><i class="fa-solid fa-star"></i></span>
                   {% endif %}
                   {% endfor %}
                 </span>

@@ -8,7 +8,10 @@
 
             {% if image.image %}
             <div class="text-center mt-5 mb-3">
-                <img src="{{ image.image.url }}" alt="{{ image.caption }}">
+                <a href="{{ image.image.url }}" target="_blank"
+                    aria-label="View full size image of {{ image.caption }}">
+                    <img src="{{ image.image.url }}" alt="{{ image.caption }}" class="img-fluid">
+                </a>
             </div>
             {% endif %}
 

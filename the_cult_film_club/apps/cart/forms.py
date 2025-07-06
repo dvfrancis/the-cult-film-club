@@ -5,6 +5,30 @@ from django_countries.fields import CountryField
 from django_countries.widgets import CountrySelectWidget
 
 
+class AccessibleCountrySelectWidget(CountrySelectWidget):
+    def __init__(self, attrs=None):
+        super().__init__(attrs)
+        self.attrs['class'] = 'form-control countryselectwidget form-select'
+
+    def create_option(
+        self, name, value, label, selected, index,
+        subindex=None, attrs=None
+    ):
+        option = super().create_option(
+            name, value, label, selected, index, subindex, attrs
+        )
+        return option
+
+    def render(self, name, value, attrs=None, renderer=None):
+        html = super().render(name, value, attrs, renderer)
+        # Add alt text to flag image
+        html = html.replace(
+            '<img class="country-select-flag"',
+            '<img class="country-select-flag" alt="Country flag"'
+        )
+        return html
+
+
 class OrderForm(forms.ModelForm):
     """
     Form for capturing order information.
@@ -14,7 +38,7 @@ class OrderForm(forms.ModelForm):
 
     country = CountryField().formfield(
         required=True,
-        widget=CountrySelectWidget(
+        widget=AccessibleCountrySelectWidget(
             attrs={'class': 'form-control', 'required': True}
         )
     )
@@ -33,7 +57,6 @@ class OrderForm(forms.ModelForm):
             'street_address1': forms.TextInput(attrs={'required': True}),
             'town_or_city': forms.TextInput(attrs={'required': True}),
             'postcode': forms.TextInput(attrs={'required': True}),
-            'country': forms.Select(attrs={'required': True}),
         }
 
     def __init__(self, *args, **kwargs):

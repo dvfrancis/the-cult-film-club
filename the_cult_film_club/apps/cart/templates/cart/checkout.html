@@ -42,7 +42,7 @@
                             {% else %}
                             <img class="img-fluid rounded"
                                 src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-                                alt="{{ item.release.title }}" />
+                                alt="{{ item.release.title }}">
                             {% endif %}
                         </a>
                     </div>
@@ -104,7 +104,7 @@
                         <legend class="fieldset-label small text-black px-2 w-auto">Payment</legend>
                         <div class="mb-3" id="card-element" aria-describedby="card-errors"></div>
                         <div class="mb-3 text-danger" id="card-errors" role="alert" aria-live="assertive"></div>
-                        <input type="hidden" value="{{ client_secret }}" name="client_secret" />
+                        <input type="hidden" value="{{ client_secret }}" name="client_secret">
                     </fieldset>
 
                     <p class="small text-danger my-2 text-center">
@@ -132,12 +132,12 @@
     {# Loading Overlay (hidden by default, toggle with JS during payment process) #}
     <div id="loading-overlay" style="display:none;">
         <h1 class="text-light logo-font loading-spinner">
+            <span class="sr-only">Processing payment...</span>
             <span class="icon">
                 <i class="fas fa-3x fa-sync-alt fa-spin"></i>
             </span>
         </h1>
     </div>
-</div>
 
 {{ block.super }}
 {{ stripe_public_key|json_script:"id_stripe_public_key" }}

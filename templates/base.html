@@ -219,6 +219,9 @@
   <script src="{% static 'base.js' %}"></script>
   {% endblock %}
 
+  {% block postloadjs %}
+  {% endblock %}
+
   {% if rating_form %}
   {{ rating_form.media }}
   {% endif %}

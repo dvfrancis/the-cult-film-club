@@ -218,12 +218,6 @@ h4 {
     font-weight: bold;
 }
 
-/* Hide empty links in clearable file inputs */
-.clearable-file-input a:empty,
-input[type="checkbox"] + a:empty {
-    display: none !important;
-}
-
 .navbar-dark .navbar-nav .nav-link.active,
 header nav.navbar .navbar-nav .nav-link.active,
 .dropdown-menu .dropdown-item.active,

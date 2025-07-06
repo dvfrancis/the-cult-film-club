@@ -673,9 +673,6 @@ input[type="password"]:first-of-type {
     margin-right: 0;
 }
 
-.social-colour {
-    color: #080808;
-}
 /* Star Ratings */
 .star-rating {
     display: inline-block;

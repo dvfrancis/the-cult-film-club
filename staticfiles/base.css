@@ -162,9 +162,14 @@ h2 {
 }
 
 h3,
-h4,
 h5,
 h6 {
+    font-size: large;
+    font-weight: 700;
+}
+
+h4 {
+    color: #FFF;
     font-size: large;
     font-weight: 700;
 }
@@ -226,6 +231,10 @@ footer a.active {
 
 .fa-star {
     color: #ffb700;
+}
+
+.detail-text {
+    color: #FFF;
 }
 
 /* Add to Cart button on release_details.html */
@@ -664,6 +673,9 @@ input[type="password"]:first-of-type {
     margin-right: 0;
 }
 
+.social-colour {
+    color: #080808;
+}
 /* Star Ratings */
 .star-rating {
     display: inline-block;
@@ -681,11 +693,11 @@ input[type="password"]:first-of-type {
 
 /* Release details section backgrounds */
 .section-bg-red {
-    background-color: #fff5f5;
+    background-color: #ca0000;
 }
 
-.section-bg-grey {
-    background-color: #f8f9fa;
+.section-bg-black {
+    background-color: #080808;
 }
 
 .section-rounded {

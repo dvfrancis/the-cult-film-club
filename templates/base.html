@@ -41,8 +41,8 @@
             <div class="input-group">
               <input class="form-control border border-black rounded-0" type="text" name="q"
                 placeholder="Search the site">
-              <button class="btn black-btn border border-black rounded-0" type="submit">
-                <i class="fas fa-search"></i>
+              <button class="btn black-btn border border-black rounded-0" title="Search" type="submit">
+                <i class="fas fa-search"></i><span class="visually-hidden">Search</span>
               </button>
             </div>
           </form>
@@ -131,7 +131,7 @@
               <li class="nav-item px-1">
                 <a class="nav-link {% if request.resolver_match.url_name == 'cart' %}active{% endif %} {% if total %}fw-bold{% endif %}"
                   href="{% url 'cart' %}">
-                  <i class="fa-solid fa-cart-shopping"></i>{% if total %} £{{ total|floatformat:2 }}{% endif %}
+                  <i class="fa-solid fa-cart-shopping"></i>{% if total %} £{{ total|floatformat:2 }}{% endif %}<span class="visually-hidden">Cart</span>
                 </a>
               </li>
             </ul>

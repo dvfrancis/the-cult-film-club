@@ -233,10 +233,6 @@ footer a.active {
     color: #ffb700;
 }
 
-.detail-text {
-    color: #FFF;
-}
-
 /* Add to Cart button on release_details.html */
 .add-to-cart-btn {
     font-size: 1.1rem;
@@ -673,9 +669,6 @@ input[type="password"]:first-of-type {
     margin-right: 0;
 }
 
-.social-colour {
-    color: #080808;
-}
 /* Star Ratings */
 .star-rating {
     display: inline-block;
@@ -696,8 +689,8 @@ input[type="password"]:first-of-type {
     background-color: #ca0000;
 }
 
-.section-bg-black {
-    background-color: #080808;
+.section-bg-grey {
+    background-color: #f8f9fa;
 }
 
 .section-rounded {

@@ -51,7 +51,7 @@
 </div>
           {# TITLE & BADGES #}
           <div class="card-body p-4">
-            <h2 class="mb-3 font-weight-bold logo-font text-danger text-center">
+            <h2 class="mb-3 font-weight-bold logo-font  text-center">
               {{ release.title }}
             </h2>
             <div class="mb-3 text-center">
@@ -92,7 +92,7 @@
             <div class="mb-3 text-center">
               <span class="lead font-weight-bold me-3">£{{ release.price }}</span>
               {% if release.copies_available == 0 %}
-              <span class="text-danger availability" role="alert">Out of stock</span>
+              <span class=" availability" role="alert">Out of stock</span>
               {% elif release.copies_available < 10 %}
               <span class="text-warning availability">{{ release.copies_available }} left</span>
               {% else %}
@@ -169,26 +169,24 @@
               {% endif %}
             </div>
 
-            <hr class="mt-4 mb-4">
-
             {# DESCRIPTION SECTION #}
-            <div class="section-bg-red section-rounded">
-              <h4 class="mb-2 text-danger">Description</h4>
-              {{ release.description|safe }}
+            <div class="section-bg-red section-rounded mt-4">
+              <h4 class="mb-2 ">Description</h4>
+              <span class="detail-text">{{ release.description|safe }}</span>
             </div>
 
             {# SPECIAL FEATURES SECTION #}
-            <div class="section-bg-grey section-rounded">
-              <h4 class="mb-2 text-danger">Special Features</h4>
+            <div class="section-bg-black section-rounded">
+              <h4 class="mb-2 ">Special Features</h4>
               <div class="ms-3 mb-3">
-                {{ release.special_features|safe }}
+                <span class="detail-text">{{ release.special_features|safe }}</span>
               </div>
             </div>
 
             {# PRODUCTION DETAILS LIST #}
             <div class="section-bg-red section-rounded">
-              <h4 class="mb-2 text-danger">Production Details</h4>
-              <ul class="list-unstyled mb-2">
+              <h4 class="mb-2 ">Production Details</h4>
+              <ul class="list-unstyled mb-2 detail-text">
                 {% if release.director %}<li><strong>Director:</strong> {{ release.director }}</li>{% endif %}
                 {% if release.genre %}<li><strong>Genre:</strong> {{ release.genre }}</li>{% endif %}
                 {% if release.subgenre %}<li><strong>Subgenre:</strong> {{ release.subgenre }}</li>{% endif %}
@@ -204,8 +202,8 @@
             </div>
 
             {# USER REVIEWS #}
-            <div class="section-bg-grey section-rounded">
-              <h4 class="mb-4 text-danger">User Reviews</h4>
+            <div class="section-bg-black section-rounded">
+              <h4 class="mb-4 detail-text">User Reviews</h4>
               {% for review in release.ratings.all %}
               <div class="border rounded p-3 mb-2 bg-white">
                 <strong>{{ review.user.username }}</strong>
@@ -222,7 +220,7 @@
                 <div class="mt-2">{{ review.review|safe }}</div>
               </div>
               {% empty %}
-              <p>No reviews yet.</p>
+              <p class="detail-text">No reviews yet.</p>
               {% endfor %}
               {# Only show delete option if user has rated #}
               {% if user.is_authenticated and user_rating %}
@@ -238,7 +236,7 @@
             {# AVERAGE RATING AND USER RATING FORM #}
             <div class="section-bg-red section-rounded">
               {% if user.is_authenticated %}
-              <h5 class="mb-4 text-danger">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
+              <h5 class="mb-4 ">{% if user_rating %}Edit{% else %}Add{% endif %} Your Rating</h5>
               <form method="post" aria-label="Submit your rating">
                 {% csrf_token %}
                 {{ rating_form|crispy }}
@@ -248,7 +246,7 @@
               </form>
               {% else %}
               <p>
-                <a href="{% url 'account_login' %}?next={{ request.path }}">Log in</a> to add your rating.
+                <a href="{% url 'account_login' %}?next={{ request.path }}" class="detail-text">Log in</a><span class="detail-text"> to add your rating.</span>
               </p>
               {% endif %}
             </div>
@@ -258,38 +256,36 @@
               aria-label="Social share buttons">
               <a href="https://www.facebook.com/sharer/sharer.php?u={{ request.build_absolute_uri }}" target="_blank"
                 rel="noopener" class="text-primary" aria-label="Share on Facebook">
-                <i class="fab fa-facebook fa-lg"></i>
+                <i class="social-colour fab fa-facebook fa-lg"></i>
               </a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener" class="text-danger"
+              <a href="https://instagram.com/" target="_blank" rel="noopener" class=""
                 aria-label="Share on Instagram">
-                <i class="fab fa-instagram fa-lg"></i>
+                <i class="social-colour fab fa-instagram fa-lg"></i>
               </a>
               <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
                 target="_blank" rel="noopener" class="text-dark" aria-label="Share on Threads">
-                <i class="fa-brands fa-threads fa-lg"></i>
+                <i class="social-colour fa-brands fa-threads fa-lg"></i>
               </a>
               <a href="https://reddit.com/submit?url={{ request.build_absolute_uri }}&title={{ release.title|urlencode }}"
-                target="_blank" rel="noopener" class="text-danger" aria-label="Share on Reddit">
-                <i class="fab fa-reddit fa-lg"></i>
+                target="_blank" rel="noopener" class="" aria-label="Share on Reddit">
+                <i class="social-colour fab fa-reddit fa-lg"></i>
               </a>
               <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}"
-                class="text-danger" aria-label="Share by Email">
-                <i class="fas fa-envelope fa-lg"></i>
+                class="" aria-label="Share by Email">
+                <i class="social-colour fas fa-envelope fa-lg"></i>
               </a>
             </div>
-
-            <hr class="mt-4 mb-4">
 
             {# PREVIOUS / NEXT NAVIGATION #}
             <div class="d-flex justify-content-between mt-4">
               {% if prev_release %}
-              <a href="{% url 'release_details' prev_release.pk %}" class="btn btn-secondary mx-2"
+              <a href="{% url 'release_details' prev_release.pk %}" class="btn black-btn mx-2"
                 aria-label="Previous Release: {{ prev_release.title }}">
                 &larr; Previous Release
               </a>
               {% endif %}
               {% if next_release %}
-              <a href="{% url 'release_details' next_release.pk %}" class="btn btn-secondary ms-auto"
+              <a href="{% url 'release_details' next_release.pk %}" class="btn black-btn ms-auto"
                 aria-label="Next Release: {{ next_release.title }}">
                 Next Release &rarr;
               </a>

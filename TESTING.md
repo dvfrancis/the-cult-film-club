@@ -477,9 +477,7 @@ These results apply to all 21 classes:
 
 ## Accessibility
 
-Accessibility was tested using the [Wave Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org).
-
-Click here to see the [Accessibility report](documentation/validation/accessibility/accessibility-report.pdf)
+The [Wave Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org) was used to create an [accessibility report](documentation/accessibility/accessibility-report.pdf) for this project.
 
 ## Responsiveness
 

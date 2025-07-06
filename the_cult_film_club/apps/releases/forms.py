@@ -1,6 +1,20 @@
 from django import forms
 from .models import Releases, Images, Rating
 from django_ckeditor_5.widgets import CKEditor5Widget
+from django.forms.widgets import ClearableFileInput
+
+
+class CustomClearableFileInput(ClearableFileInput):
+    def __init__(self, attrs=None):
+        super().__init__(attrs)
+        self.clear_checkbox_label = 'Clear image'
+    
+    def get_context(self, name, value, attrs):
+        context = super().get_context(name, value, attrs)
+        # Add aria-label to the clear checkbox link
+        if 'widget' in context and 'clear_checkbox_label' in context['widget']:
+            context['widget']['clear_checkbox_label'] = 'Clear current image'
+        return context
 
 
 class ReleaseForm(forms.ModelForm):
@@ -76,6 +90,21 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model = Images
         fields = ['image', 'caption', 'is_featured']
+        widgets = {
+            'image': CustomClearableFileInput(attrs={
+                'class': 'form-control',
+                'aria-label': 'Select image file'
+            }),
+        }
+        labels = {
+            'image': 'Image',
+            'caption': 'Caption',
+            'is_featured': 'Featured Image',
+        }
+        help_texts = {
+            'caption': 'Enter a descriptive caption for the image.',
+            'is_featured': 'Check this box to make this the featured image.',
+        }
 
 
 class ReleaseEditForm(forms.ModelForm):

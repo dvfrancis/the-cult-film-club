@@ -1,28 +1,6 @@
 from django import forms
 from .models import Releases, Images, Rating
 from django_ckeditor_5.widgets import CKEditor5Widget
-from django.forms.widgets import ClearableFileInput
-
-
-class CustomClearableFileInput(ClearableFileInput):
-    """Custom file input widget that removes empty links for accessibility"""
-
-    def get_context(self, name, value, attrs):
-        context = super().get_context(name, value, attrs)
-        # Remove the empty link by setting the URL to None if there's no
-        # meaningful content
-        if (
-            context['widget']['value'] and
-            hasattr(context['widget']['value'], 'url')
-        ):
-            # Keep the URL but we'll handle the display differently
-            pass
-        return context
-
-    class Media:
-        css = {
-            'all': ('css/custom-file-input.css',)
-        }
 
 
 class ReleaseForm(forms.ModelForm):
@@ -95,30 +73,9 @@ class ImageForm(forms.ModelForm):
     """
     Form for adding or editing images related to a release.
     """
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        # Add custom attributes to the image field
-        self.fields['image'].widget.attrs.update({
-            'class': 'form-control',
-            'aria-label': 'Select image file'
-        })
-
     class Meta:
         model = Images
         fields = ['image', 'caption', 'is_featured']
-        widgets = {
-            'image': CustomClearableFileInput(),
-        }
-        labels = {
-            'image': 'Image',
-            'caption': 'Caption',
-            'is_featured': 'Featured Image',
-        }
-        help_texts = {
-            'caption': 'Enter a descriptive caption for the image.',
-            'is_featured': 'Check this box to make this the featured image.',
-        }
 
 
 class ReleaseEditForm(forms.ModelForm):

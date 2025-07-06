@@ -218,23 +218,6 @@ h4 {
     font-weight: bold;
 }
 
-/* Hide empty links in clearable file inputs - accessibility fix */
-.form-control a:empty,
-.input-group .form-control a:empty,
-.form-control .text-break a:empty {
-    display: none !important;
-}
-
-/* Alternative: hide the entire span containing the empty link */
-.form-control .text-break:has(a:empty) {
-    display: none !important;
-}
-
-/* Fallback for browsers that don't support :has() */
-.form-control .text-break a[href]:empty {
-    display: none !important;
-}
-
 .navbar-dark .navbar-nav .nav-link.active,
 header nav.navbar .navbar-nav .nav-link.active,
 .dropdown-menu .dropdown-item.active,

@@ -252,51 +252,129 @@ The base.html page is not included here as it is validated as part of all other 
 
 ### First Time Visitor Goals
 
-"What is Craftr about?” and “How do I sign up?”
+1. "What is The Cult Film Club about?”
+2. "What films are available?"
+3. “Which films are classed as 'Cult Classics'?”
+4. "How much do different films cost?"
+5. “Does the website accept discount codes?”
+6. "How do other users of the site rate the films?"
 
 <details>
-<summary>Click here to see proof of first time visitor goal number 1 and 4</summary>
+<summary>Click here to see proof of first time visitor goal number 1 and 3</summary>
 
-![First time visitor goal 1 and 4](documentation/validation/users-stories-personas/first-time-visitor-goal-1-4.webp)
+![First time visitor goal 1 and 3](documentation/user-stories-personas/first-time-visitor-goal-1-3.png)
 </details>
 
-| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
-| --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+<details>
+<summary>Click here to see proof of first time visitor goal number 2 and 4</summary>
 
-“What training is being given?” and "When do the classes happen?"
+![First time visitor goal 2 and 4](documentation/user-stories-personas/first-time-visitor-goal-2-4.png)
+</details>
+
+<details>
+<summary>Click here to see proof of first time visitor goal number 5</summary>
+
+![First time visitor goal 5](documentation/user-stories-personas/first-time-visitor-goal-5.png)
+</details>
+
+<details>
+<summary>Click here to see proof of first time visitor goal number 6</summary>
+
+![First time visitor goal 6](documentation/user-stories-personas/first-time-visitor-goal-6.png)
+</details>
+
+| GOAL | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
+| --- | --- | --- | --- | --- | --- |
+| 1 | About page | Navigate to the about page | View information about the website's purpose | View information about the website's purpose  | WORKS AS EXPECTED |
+| 2 | Releases page | Navigate to the releases page | View a list of all films available | View a list of all films available | WORKS AS EXPECTED |
+| 3 | About page | Navigate to the about page | View information about types of films sold | View information about types of films sold  | WORKS AS EXPECTED |
+| 4 | Releases page | Navigate to the releases page | View prices for each film | View prices for each film | WORKS AS EXPECTED |
+| 5 | Shopping cart page | Add an item to the cart | A discount code can be applied before checkout | A discount code can be applied before checkout | WORKS AS EXPECTED |
+| 6 | Release details page | Navigate to the release details page | View different users' star ratings for the release | View different users' star ratings for the release | WORKS AS EXPECTED |
 
 ### Returning Visitor Goals
 
-“What other classes am I interested in attending?” and "When is my class due to start?"
+1. “What new films are available?”
+2. "Is it possible to bookmark films for later purchase?"
+3. "How do I share my favourite films with others?"
+4. "How do I pay for my purchases?"
+5. "Where can I see a list of my orders?"
 
 <details>
-<summary>Click here to see proof of the returning visitor goals 1 and 2</summary>
+<summary>Click here to see proof of returning visitor goal number 1</summary>
 
-![Returning visitor goals 1 and 2](documentation/validation/users-stories-personas/returning-visitor-goal-1-2.webp)
+![Returning visitor goal 1](documentation/user-stories-personas/returning-visitor-goal-1.png)
 </details>
 
-| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
-| --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+<details>
+<summary>Click here to see proof of returning visitor goal number 2</summary>
 
-"Where can I keep track of the classes I've signed up for?"
+![Returning visitor goal 2](documentation/user-stories-personas/returning-visitor-goal-2.png)
+</details>
+
+<details>
+<summary>Click here to see proof of returning visitor goal number 3</summary>
+
+![Returning visitor goal 3](documentation/user-stories-personas/returning-visitor-goal-3.png)
+</details>
+
+<details>
+<summary>Click here to see proof of returning visitor goal number 4</summary>
+
+![Returning visitor goal 4](documentation/user-stories-personas/returning-visitor-goal-4.png)
+</details>
+
+<details>
+<summary>Click here to see proof of returning visitor goal number 5</summary>
+
+![Returning visitor goal 5](documentation/user-stories-personas/returning-visitor-goal-5.png)
+</details>
+
+| GOAL | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Home page | Navigate to home page | View latest releases featured in the hero banner | View latest releases featured in the hero banner | WORKS AS EXPECTED |
+| 2 | Release details page | Login, navigate to the release details page, and click the 'Add to Wishlist' button | Add an item to any of the user's wishlists | Add an item to any of the user's wishlists | WORKS AS EXPECTED |
+| 3 | Release details page | Navigate to the releases details page and click any of the social sharing buttons | Release is shared to the chosen social media platform | Release is shared to the chosen social media platform | WORKS AS EXPECTED |
+| 4 | Checkout page | Add an item to the shopping cart and click the 'Checkout' button | Checkout page includes payment field | Checkout page includes payment field | WORKS AS EXPECTED |
+| 5 | Account page | Navigate to the user account page | User can view a list of all previous orders | User can view a list of all previous orders | WORKS AS EXPECTED |
 
 ### Frequent Visitor Goals
 
-“Who running my class?”
+1. "Are there any special, or limited, editions available?"
+2. "How many copies are available of a particular film?"
+3. "Does my order qualify for free shipping?"
+4. "Do you have a website newsletter I can join?"
 
 <details>
-<summary>Click here to see proof of frequent visitor goal 1</summary>
+<summary>Click here to see proof of frequent visitor goal number 1</summary>
 
-![Frequent visitor goal 1](documentation/validation/users-stories-personas/frequent-visitor-goal-1.webp)
+![Frequent visitor goal 1](documentation/user-stories-personas/frequent-visitor-goal-1.png)
 </details>
 
-| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
-| --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+<details>
+<summary>Click here to see proof of frequent visitor goal number 2</summary>
 
-"How do I cancel my class enrolment?"
+![Frequent visitor goal 2](documentation/user-stories-personas/frequent-visitor-goal-2.png)
+</details>
+
+<details>
+<summary>Click here to see proof of frequent visitor goal number 3</summary>
+
+![Frequent visitor goal 3](documentation/user-stories-personas/frequent-visitor-goal-3.png)
+</details>
+
+<details>
+<summary>Click here to see proof of frequent visitor goal number 4</summary>
+
+![Frequent visitor goal 4](documentation/user-stories-personas/frequent-visitor-goal-4.png)
+</details>
+
+| GOAL | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
+| --- | --- | --- | --- | --- | --- |
+| 1 | Home page | Navigate to home page | View latest releases featured in the hero banner | View latest releases featured in the hero banner | WORKS AS EXPECTED |
+| 2 | Release details page | Navigate to the release details page | Number of copies available is shown by the price | Number of copies available is shown by the price | WORKS AS EXPECTED |
+| 3 | Home page | Navigate to home page | Free delivery is explained in the 'Why Shop With Us?' section | Free delivery is explained in the 'Why Shop With Us?' section | WORKS AS EXPECTED |
+| 4 | Newsletter page | Navigate to the newsletter signup page | User can subscribe to the website newsletter | User can subscribe to the website newsletter | WORKS AS EXPECTED |
 
 ## User Personas
 
@@ -304,25 +382,33 @@ The base.html page is not included here as it is validated as part of all other 
 
 | ISSUE | ACCEPTANCE CRITERIA | TASKS | STATUS |
 | --- | --- | --- | --- |
-| [#55](https://github.com/dvfrancis/craftr/issues/55) | Ensure users of all skill levels (beginner to advanced) find suitable classes | Label each class with its appropriate skill level | COMPLETED SUCCESSFULLY |
+| [#67](https://github.com/dvfrancis/the-cult-film-club/issues/67) | Users can filter products by limited edition, collector’s sets, and special packaging | Implement a filtering system for exclusive releases, special packaging, and remastered editions | COMPLETED SUCCESSFULLY |
+| [#68](https://github.com/dvfrancis/the-cult-film-club/issues/68) | Detailed descriptions include bonus features, remastered quality, and exclusive content | Add detailed information about each release, including bonus features and collector’s notes | COMPLETED SUCCESSFULLY |
+| [#69](https://github.com/dvfrancis/the-cult-film-club/issues/69) | Users receive notifications for pre-orders and restocks of highly sought-after films | Set up an email newsletter to inform users of latest releases, and items being restocked | COMPLETED SUCCESSFULLY |
 
 ### User 2
 
 | ISSUE | ACCEPTANCE CRITERIA | TASKS | STATUS |
 | --- | --- | --- | ---|
-| [#57](https://github.com/dvfrancis/craftr/issues/57) | Make diverse craft types visible and engaging on the homepage | Design an engaging homepage that showcases various craft types | COMPLETED SUCCESSFULLY |
+| [#70](https://github.com/dvfrancis/the-cult-film-club/issues/70) | Users can filter by specific subgenres (for example, “Grindhouse”, “Psychological Horror", or “Surreal Sci-Fi”) | Implement a subgenre-based filtering system for deep-cut movie discovery | COMPLETED SUCCESSFULLY |
+| [#71](https://github.com/dvfrancis/the-cult-film-club/issues/71) | Users can filter films by decade (for example, 1970s) | Implement a decade-based filter for users to explore films by era | COMPLETED SUCCESSFULLY |
+| [#72](https://github.com/dvfrancis/the-cult-film-club/issues/72) | Users can sign up to a genre-specific newsletter that highlights rare or obscure films | Add ability to select a genre when signing up for the website newsletter | COMPLETED SUCCESSFULLY |
 
 ### User 3
 
 | ISSUE | ACCEPTANCE CRITERIA | TASKS | STATUS |
 | --- | --- | --- | ---|
-| [#60](https://github.com/dvfrancis/craftr/issues/60) | Ensure class information is detailed and easily accessible | Maintain a well-organized and searchable class directory | COMPLETED SUCCESSFULLY |
+| [#73](https://github.com/dvfrancis/the-cult-film-club/issues/73) | An about page explains the benefits of physical media, over streaming | Write and design an informational about page | COMPLETED SUCCESSFULLY |
+| [#74](https://github.com/dvfrancis/the-cult-film-club/issues/74) | Users can create wishlists to track films they plan to own | Develop a wishlist system for tracking future purchases | COMPLETED SUCCESSFULLY |
+| [#75](https://github.com/dvfrancis/the-cult-film-club/issues/75) | Releases highlight whether a film was / has been censored | Ensure film listings clearly highlight where films have been previously censored | COMPLETED SUCCESSFULLY |
 
 ### User 4
 
 | ISSUE | ACCEPTANCE CRITERIA | TASKS | STATUS |
 | --- | --- | --- | ---|
-| [#60](https://github.com/dvfrancis/craftr/issues/60) | Ensure class information is detailed and easily accessible | Maintain a well-organized and searchable class directory | COMPLETED SUCCESSFULLY |
+| [#78](https://github.com/dvfrancis/the-cult-film-club/issues/78) | Users can share film listings directly to any social media platform | Implement social media sharing buttons for easy film recommendations | COMPLETED SUCCESSFULLY |
+| [#77](https://github.com/dvfrancis/the-cult-film-club/issues/77) | Users can rate any film on the website | Develop a rating system so users can leave feedback | COMPLETED SUCCESSFULLY |
+| [#76](https://github.com/dvfrancis/the-cult-film-club/issues/76) | Users can sort and filter by price and film rating | Add filtering / sorting by price and film rating | COMPLETED SUCCESSFULLY |
 
 ## Browser Compatibility
 

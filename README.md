@@ -245,7 +245,7 @@ Returning visitors to The Cult Film Club will likely have already explored the s
     
 - “What new films are available?”
 - "Is it possible to bookmark films for later purchase?"
-- "How do I share my favourite films wth others?"
+- "How do I share my favourite films with others?"
 - "How do I pay for my purchases?"
 - "Where can I see a list of my orders?"
     

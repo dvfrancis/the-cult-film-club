@@ -458,11 +458,15 @@ The [Wave Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org) was use
 
 ## Responsiveness
 
-Pages were going to be assessed using the [Responsive Web Design Checker](https://responsivedesignchecker.com/) but, unfortunately, the site won't load there. Instead, they have been presented using the [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en-GB&utm_source=ext_sidebar) Google Chrome browser plugin.
+The site won't load in the [Responsive Web Design Checker](https://responsivedesignchecker.com/) so I've used the Google Chrome plugin called [Responsive Viewer](https://chromewebstore.google.com/detail/responsive-viewer/inmopeiepgfljkpkidclfgbgbmfcennb?hl=en-GB&utm_source=ext_sidebar) instead.
 
-Pages were tested for responsiveness on mobile (Apple iPhone 14 - 390px x 844px), tablet (Apple iPad Air 5 - 820px x 1180px), and desktop (MacBook Pro 16 - 1728px x 1117px).
+Pages were tested for responsiveness at the following sizes:
 
-Click here to see the [Responsiveness report](documentation/validation/responsiveness/responsiveness-report.pdf)
+- Mobile (Apple iPhone 14 - 393px x 852x).
+- Tablet (Apple iPad Air 5 - 820px x 1180px).
+- Desktop (MacBook Air - 1559px x 975px).
+
+Click here to view the [Responsiveness report](documentation/validation/responsiveness/responsiveness-report.pdf)
 
 ## Performance
 

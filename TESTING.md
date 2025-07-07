@@ -72,6 +72,8 @@
 
 ## Manual Validation
 
+The base.html page is not included here as it is validated as part of all other pages.
+
 ### index.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |

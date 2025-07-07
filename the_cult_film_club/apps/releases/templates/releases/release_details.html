@@ -17,36 +17,35 @@
     <div class="row justify-content-center">
       <div class="col-12 col-md-10 col-lg-8">
         <div class="card shadow-lg rounded-3 border-0 p-0 bg-white">
-{# IMAGES CAROUSEL or fallback image #}
-<div class="text-center pt-3 pt-md-5 px-2 px-md-4">
-  {% if release.images.exists %}
-  <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      {% for img in release.images.all %}
-      <div class="carousel-item {% if forloop.first %}active{% endif %}">
-        <img class="d-block mx-auto rounded shadow img-fluid" 
-             src="{{ img.image.url }}"
-             alt="{{ release.title }} image {{ forloop.counter }}">
-      </div>
-      {% endfor %}
-    </div>
-    {% if release.images.count > 1 %}
-    <button class="carousel-control-prev" type="button" data-bs-target="#releaseCarousel"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#releaseCarousel"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    </button>
-    {% endif %}
-  </div>
-  {% else %}
-  <img class="card-img-top img-fluid rounded shadow mb-3"
-       src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
-       alt="Placeholder image for {{ release.title }}">
-  {% endif %}
-</div>
+          {# IMAGES CAROUSEL or fallback image #}
+          <div class="text-center pt-3 pt-md-5 px-2 px-md-4">
+            {% if release.images.exists %}
+            <div id="releaseCarousel" class="carousel slide mb-3" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                {% for img in release.images.all %}
+                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                  <img class="d-block mx-auto rounded shadow img-fluid" src="{{ img.image.url }}"
+                    alt="{{ release.title }} image {{ forloop.counter }}">
+                </div>
+                {% endfor %}
+              </div>
+              {% if release.images.count > 1 %}
+              <button class="carousel-control-prev" type="button" data-bs-target="#releaseCarousel"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#releaseCarousel"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              </button>
+              {% endif %}
+            </div>
+            {% else %}
+            <img class="card-img-top img-fluid rounded shadow mb-3"
+              src="https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp"
+              alt="Placeholder image for {{ release.title }}">
+            {% endif %}
+          </div>
           {# TITLE & BADGES #}
           <div class="card-body p-4">
             <h2 class="mb-3 font-weight-bold logo-font  text-center">
@@ -153,11 +152,24 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                       </div>
                       <div class="modal-body">
-                        {{ wishlist_form.priority.label_tag }} {{ wishlist_form.priority }}
-                        {{ wishlist_form.notes.label_tag }} {{ wishlist_form.notes }}
+                        {% if user_wishlists.exists %}
+                        <div class="mb-3">
+                          <label for="wishlist-select" class="form-label">Choose your wishlist:</label>
+                          <select name="wishlist_id" id="wishlist-select" class="form-select">
+                            {% for wl in user_wishlists %}
+                            <option value="{{ wl.id }}">{{ wl.name }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+                        {% else %}
+                        <p class="mb-4 text-center">You don't have any wishlists, so a new one will be created automatically.</p>
+                        {% endif %}
+
+                        <p class="mb-3">{{ wishlist_form.priority.label_tag }}<br><br>{{ wishlist_form.priority }}</p>
+                        <p class="mb-3">{{ wishlist_form.notes.label_tag }}<br><br>{{ wishlist_form.notes }}</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-outline-black" data-bs-dismiss="modal">Cancel</button>
                         <button type="submit" class="btn btn-success">Add to Wishlist</button>
                       </div>
                     </form>
@@ -244,7 +256,8 @@
               </form>
               {% else %}
               <p>
-                <a href="{% url 'account_login' %}?next={{ request.path }}" class="detail-text">Log in</a><span class="detail-text"> to add your rating.</span>
+                <a href="{% url 'account_login' %}?next={{ request.path }}" class="detail-text">Log in</a><span
+                  class="detail-text"> to add your rating.</span>
               </p>
               {% endif %}
             </div>
@@ -256,8 +269,7 @@
                 rel="noopener" class="text-primary" aria-label="Share on Facebook">
                 <i class="social-colour fab fa-facebook fa-lg"></i>
               </a>
-              <a href="https://instagram.com/" target="_blank" rel="noopener" class=""
-                aria-label="Share on Instagram">
+              <a href="https://instagram.com/" target="_blank" rel="noopener" class="" aria-label="Share on Instagram">
                 <i class="social-colour fab fa-instagram fa-lg"></i>
               </a>
               <a href="https://www.threads.net/intent/post?text={{ release.title|urlencode }}%20{{ request.build_absolute_uri }}"
@@ -268,8 +280,8 @@
                 target="_blank" rel="noopener" class="" aria-label="Share on Reddit">
                 <i class="social-colour fab fa-reddit fa-lg"></i>
               </a>
-              <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}"
-                class="" aria-label="Share by Email">
+              <a href="mailto:?subject={{ release.title|urlencode }}&body={{ request.build_absolute_uri }}" class=""
+                aria-label="Share by Email">
                 <i class="social-colour fas fa-envelope fa-lg"></i>
               </a>
             </div>

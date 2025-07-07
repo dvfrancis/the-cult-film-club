@@ -239,6 +239,7 @@ def release_details(request, release_id: int):
     )
 
     if request.user.is_authenticated:
+        user_wishlists = Wishlist.objects.filter(user=request.user)
         user_rating = (
             Rating.objects
             .filter(user=request.user, title=release)
@@ -261,6 +262,7 @@ def release_details(request, release_id: int):
             rating_form = RatingForm(instance=user_rating)
     else:
         rating_form = None
+        user_wishlists = None
 
     context = {
         "release": release,
@@ -272,6 +274,7 @@ def release_details(request, release_id: int):
         "full_stars_range": range(full_stars),
         "empty_stars_range": range(empty_stars),
         "has_half_star": has_half_star,
+        "user_wishlists": user_wishlists,
     }
     return render(request, "releases/release_details.html", context)
 
@@ -283,11 +286,20 @@ def add_to_wishlist(request, release_id: int):
     already present.
     """
     release = get_object_or_404(Releases, pk=release_id)
-    wishlist, _created = Wishlist.objects.get_or_create(user=request.user)
 
     if request.method == "POST":
         form = WishlistItemForm(request.POST)
         if form.is_valid():
+            wishlist_id = request.POST.get("wishlist_id")
+            if wishlist_id:
+                wishlist = get_object_or_404(
+                    Wishlist,
+                    id=wishlist_id,
+                    user=request.user
+                )
+            else:
+                wishlist, _ = Wishlist.objects.get_or_create(user=request.user)
+
             WishlistItem.objects.update_or_create(
                 wishlist=wishlist,
                 title=release,
@@ -296,21 +308,13 @@ def add_to_wishlist(request, release_id: int):
                     'notes': form.cleaned_data['notes'],
                 }
             )
-            profile_url = reverse('user_profile')
-            messages.success(
-                request,
-                mark_safe(
-                    (
-                        f'"{release.title}" added to your '
-                        f'<a href="{profile_url}" class="no-underline">'
-                        'wishlist</a>'
-                    )
-                )
-            )
+            messages.success(request, mark_safe(
+                f'"{release.title}" added to your wishlist.'
+            ))
         else:
             messages.error(
                 request,
-                "There was a problem adding the item to your wishlist"
+                "There was a problem adding the item to your wishlist."
             )
     return redirect('release_details', release_id=release_id)
 

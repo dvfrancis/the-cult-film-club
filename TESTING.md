@@ -472,22 +472,340 @@ Click here to see the [Performance report](documentation/validation/performance/
 
 ## Bugs
 
+The numbering of the bugs shown below matches the cases raised on the project board, attached to the GitGub repository, and are linked below. They're named after their GitHub issue number (and are not sequential).
+
 ### Resolved
 
-Resolved bugs match the cases raised on the project board attached to the GitGub repository. They're named after their GitHub issue number (so are not sequential).
+#### [Bug #79](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=112365877&issue=dvfrancis%7Cthe-cult-film-club%7C79)
 
-#### Bug 61
+Films should allow ratings from different users, yet currently it only allows one rating per film in total. I changed `title` field from `models.OnetoOneField` to `models.ForeignKey` ,and films can now have multiple ratings and are calculated correctly for display on the page.
 
 <details>
-<summary>Click here to see a screenshot of bug #61</summary>
+<summary>Click here to see a screenshot of bug #79 unfixed</summary>
 
-![Fixed Bug 61](documentation/bugs/bug-61-1.webp)
+![Unfixed Bug 79](documentation/bugs/bug-79-unfixed.webp)
 </details>
 
-| Issue | Bug | Fix |
-| --- | --- | --- |
-| [#61](https://github.com/dvfrancis/craftr/issues/61) | Fix |
+<details>
+<summary>Click here to see a screenshot of bug #79 fixed</summary>
+
+![Fixed Bug 79](documentation/bugs/bug-79-fixed.webp)
+</details>
+
+#### [Bug #80](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=112366200&issue=dvfrancis%7Cthe-cult-film-club%7C80)
+
+The site should only allow one Wishlist per user, but it is possible to create multiple wish lists per user (this functionality was changed later in the project to allow users to have multiple wishlists).
+
+Added the following to the Wishlist model `Meta` class:
+
+```
+from django.db.models import UniqueConstraint
+
+    class Meta:
+        constraints = [
+            UniqueConstraint(fields=['user'], name='unique_user_wishlist')
+            # Restricts each user to a single wishlist
+        ]
+```
+Users can no longer create multiple wishlists.
+
+<details>
+<summary>Click here to see a screenshot of bug #80 unfixed</summary>
+
+![Unfixed Bug 80](documentation/bugs/bug-80-unfixed.webp)
+</details>
+
+<details>
+<summary>Click here to see a screenshot of bug #80 fixed</summary>
+
+![Fixed Bug 80](documentation/bugs/bug-80-fixed.webp)
+</details>
+
+#### [Bug #81](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=112366363&issue=dvfrancis%7Cthe-cult-film-club%7C81)
+
+Users should only be able to create one rating per film (and edit that single rating), but currently they can create multiple ratings for a single film.
+
+Added the following restraint to the Rating model `Meta` class:
+
+```   
+class Meta:
+        unique_together = (
+            ('user', 'title'),
+        )
+```
+Users are no longer able to add duplicate ratings for a single film.
+
+<details>
+<summary>Click here to see a screenshot of bug #81 unfixed</summary>
+
+![Unfixed Bug 81](documentation/bugs/bug-81-unfixed.webp)
+</details>
+
+<details>
+<summary>Click here to see a screenshot of bug #81 fixed</summary>
+
+![Fixed Bug 81](documentation/bugs/bug-81-fixed.webp)
+</details>
+
+#### [Bug #82](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=112386515&issue=dvfrancis%7Cthe-cult-film-club%7C82)
+
+When searching images in the admin panel an error occurs.
+
+The issue is that the `title` search_fields in ImageAdmin is a ForeignKey to `Releases`, and Django doesn't support `icontains` lookups on ForeignKey fields directly.
+
+By changing it from
+
+```
+@admin.register(Images)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'caption']
+    list_filter = ['date_added']
+    search_fields = ['title', 'caption']
+    ordering = ['caption']
+```
+to 
+```
+@admin.register(Images)
+class ImageAdmin(admin.ModelAdmin):
+    list_display = ['title', 'caption']
+    list_filter = ['date_added']
+    search_fields = ['title__title', 'caption']
+    ordering = ['caption']
+```
+Django searches within the `title` field of `Releases` model, rather than directly on the ForeignKey `title` in `Images`.
+
+<details>
+<summary>Click here to see a screenshot of bug #82 unfixed</summary>
+
+![Unfixed Bug 82](documentation/bugs/bug-82-unfixed.webp)
+</details>
+
+<details>
+<summary>Click here to see a screenshot of bug #82 fixed</summary>
+
+![Fixed Bug 82](documentation/bugs/bug-82-fixed.webp)
+</details>
+
+#### [Bug #83](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=114170635&issue=dvfrancis%7Cthe-cult-film-club%7C83)
+
+If a user is logged in and requests next day delivery, but then clears all items from the shopping cart, the balance remains at £7.99 (since this error was resolved, next day delivery has been moved to a future project release).
+
+The issue was in the context processor code:
+
+```
+next_day_flat_rate = Decimal('7.99')
+...
+if delivery_option == 'next_day' and can_next_day:
+    delivery = next_day_flat_rate
+    free_delivery_diff = 0
+elif subtotal < settings.FREE_DELIVERY:
+    delivery = standard_delivery
+    free_delivery_diff = settings.FREE_DELIVERY - subtotal
+else:
+    delivery = Decimal('0.00')
+    free_delivery_diff = 0
+```
+
+If the cart is empty, subtotal is 0, so `subtotal < settings.FREE_DELIVERY` is `True`, and when delivery is set to standard delivery.
+
+If the user has selected next day delivery (and is authenticated), delivery is set to next_day_flat_rate (of £7.99), even if the cart is empty.
+
+Added a check to set all totals to zero when the cart is empty:
+
+```
+if not cart:
+    context = {
+        'purchases': [],
+        'subtotal': Decimal('0.00'),
+        'item_count': 0,
+        'total_quantity': 0,
+        'delivery_rate': settings.DELIVERY_RATE,
+        'delivery': Decimal('0.00'),
+        'free_delivery_diff': settings.FREE_DELIVERY,
+        'free_delivery_threshold': settings.FREE_DELIVERY,
+        'total': Decimal('0.00'),
+        'can_next_day': can_next_day,
+        'standard_delivery': Decimal('0.00'),
+        'next_day_flat_rate': next_day_flat_rate,
+        'delivery_option': 'standard',
+        'discount_code': '',
+        'discount_percent': 0,
+        'discount_amount': Decimal('0.00'),
+        'sorting_by_copies': sorting_by_copies,
+    }
+    return context
+```
+<details>
+<summary>Click here to see a screenshot of bug #83 unfixed</summary>
+
+![Unfixed Bug 83](documentation/bugs/bug-83-unfixed.webp)
+</details>
+
+<details>
+<summary>Click here to see a screenshot of bug #83 fixed</summary>
+
+![Fixed Bug 83](documentation/bugs/bug-83-fixed.webp)
+</details>
+
+#### [Bug #92](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=117518407&issue=dvfrancis%7Cthe-cult-film-club%7C92)
+
+Users without superuser privileges are able to amend stock and discount codes. Only superusers (staff members) should be able to do this.
+
+Added this to the releases and cart views to ensure people are logged in and that only superusers can manage products, and discount codes:
+
+```
+from functools import wraps
+from django.core.exceptions import PermissionDenied
+from django.contrib.auth.views import redirect_to_login
+
+
+def superuser_required(view_func):
+    """
+    Decorator for views that ensures the user is both authenticated and a
+    superuser.
+
+    - If the user is not authenticated, redirects them to the login page.
+    - If the user is authenticated but not a superuser, raises a
+      PermissionDenied (403) error.
+    - If the user is a superuser, proceeds to the view as normal.
+
+    Example usage:
+        @superuser_required
+        def my_view(request):
+            ...
+
+    Returns:
+        function: Wrapped view with access control applied.
+    """
+    @wraps(view_func)
+    def _wrapped_view(request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            return redirect_to_login(request.get_full_path())
+        if not request.user.is_superuser:
+            raise PermissionDenied
+        return view_func(request, *args, **kwargs)
+    return _wrapped_view
+```
+
+Above each relevant function I then added:
+
+`@superuser_required`
+
+Now when someone attempts to directly access any of the shop management URL, the site automatically asks them to login and checks they have superuser permissions. If not, they are redirected to the Permission Denied error page.
+
+#### [Bug #93](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=118594611&issue=dvfrancis%7Cthe-cult-film-club%7C93)
+
+An error appears in the console when viewing the release details page.
+
+I've added config details for the CKEditor in `settings.py` as suggested in the reference link, and this has resolved the issue:
+
+```
+# CKEditor 5 configuration for rich text editing
+CKEDITOR_5_CONFIGS = {
+    'default': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'link', '|',
+            'bulletedList', 'numberedList', '|', 'undo', 'redo'
+        ],
+        'heading': {
+            'options': [
+                {
+                    'model': 'paragraph',
+                    'title': 'Paragraph',
+                    'class': 'ck-heading_paragraph'
+                },
+                {
+                    'model': 'heading1',
+                    'view': 'h1',
+                    'title': 'Heading 1',
+                    'class': 'ck-heading_heading1'
+                },
+                {
+                    'model': 'heading2',
+                    'view': 'h2',
+                    'title': 'Heading 2',
+                    'class': 'ck-heading_heading2'
+                },
+                {
+                    'model': 'heading3',
+                    'view': 'h3',
+                    'title': 'Heading 3',
+                    'class': 'ck-heading_heading3'
+                },
+            ]
+        },
+        'image': {
+            'toolbar': ['imageTextAlternative']
+        }
+    },
+    'extends': {
+        'toolbar': [
+            'heading', '|', 'bold', 'italic', 'underline', 'strikethrough',
+            '|', 'bulletedList', 'numberedList', '|', 'outdent', 'indent',
+            '|', 'link', 'blockQuote', '|', 'undo', 'redo'
+        ],
+        'heading': {
+            'options': [
+                {
+                    'model': 'paragraph',
+                    'title': 'Paragraph',
+                    'class': 'ck-heading_paragraph'
+                },
+                {
+                    'model': 'heading1',
+                    'view': 'h1',
+                    'title': 'Heading 1',
+                    'class': 'ck-heading_heading1'
+                },
+                {
+                    'model': 'heading2',
+                    'view': 'h2',
+                    'title': 'Heading 2',
+                    'class': 'ck-heading_heading2'
+                },
+                {
+                    'model': 'heading3',
+                    'view': 'h3',
+                    'title': 'Heading 3',
+                    'class': 'ck-heading_heading3'
+                },
+            ]
+        },
+        'image': {
+            'toolbar': ['imageTextAlternative']
+        }
+    }
+}
+```
+<details>
+<summary>Click here to see a screenshot of bug #93</summary>
+
+![Bug 93](documentation/bugs/bug-93.png)
+</details>
 
 ### Unresolved
 
-There are no unresolved bugs in the project.
+#### [Bug #94](https://github.com/users/dvfrancis/projects/4/views/1?filterQuery=bug&pane=issue&itemId=118595000&issue=dvfrancis%7Cthe-cult-film-club%7C94)
+
+This error only appears when the site is deployed to Heroku, but not locally:
+
+4/:478 Mixed Content: The page at 'https://the-cult-film-club-82f85068dd71.herokuapp.com/releases/release_details/4/' was loaded over HTTPS, but requested an insecure element 'http://res.cloudinary.com/dvzs9gve0/image/upload/v1748091224/h79p7jvo3crpsar2cbbq.png'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html
+
+I have required that Cloudinary only server secure files in `settings.py`, but the error persists:
+
+```
+# Cloudinary storage configuration for media files
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
+    "SECURE": True,  # Use secure URLs for media files
+}
+```
+I am unable to resolve this issue - I think it is a problem caused from Cloudinary's side.
+
+<details>
+<summary>Click here to see a screenshot of bug #94</summary>
+
+![Bug 94](documentation/bugs/bug-94.png)
+</details>

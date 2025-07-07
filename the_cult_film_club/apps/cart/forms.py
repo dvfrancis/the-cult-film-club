@@ -31,16 +31,16 @@ class AccessibleCountrySelectWidget(CountrySelectWidget):
 
 class OrderForm(forms.ModelForm):
     """
-    Form for capturing order information.
-    Customizes field placeholders, CSS classes,
-    removes labels, and sets autofocus on full_name.
+    Accessible order form with visible labels, placeholders,
+    required field indicators, and custom styling.
     """
 
     country = CountryField().formfield(
         required=True,
         widget=AccessibleCountrySelectWidget(
             attrs={'class': 'form-control', 'required': True}
-        )
+        ),
+        label="Country"
     )
 
     class Meta:
@@ -60,11 +60,8 @@ class OrderForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
-        """
-        Initialize form fields with placeholders, CSS classes,
-        remove labels, and set autofocus on full_name field.
-        """
         super().__init__(*args, **kwargs)
+
         placeholders = {
             'full_name': 'Full Name',
             'email': 'Email Address',
@@ -77,17 +74,19 @@ class OrderForm(forms.ModelForm):
         }
 
         self.fields['full_name'].widget.attrs['autofocus'] = True
+
         for field_name, field in self.fields.items():
             if field_name == 'country':
-                continue  # Skip country field placeholder to use default
-            placeholder_text = placeholders.get(field_name, '')
+                continue  # Country widget handled above
+
+            placeholder = placeholders.get(field_name, '')
             if field.required:
-                placeholder_text += ' *'
+                placeholder += ' *'
+
             field.widget.attrs.update({
-                'placeholder': placeholder_text,
-                'class': 'stripe-style-input',
+                'placeholder': placeholder,
+                'class': 'stripe-style-input form-control',
             })
-            field.label = False
 
 
 class DiscountCodeForm(forms.ModelForm):

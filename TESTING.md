@@ -8,45 +8,17 @@
 
 1. [Code Validation](#code-validation)
 2. [Manual Validation](#manual-validation)
-    1. [index.html]()
-    2. [bad_request.html]()
-    3. [permission_denied.html]()
-    4. [page_not_found.html]()
-    5. [server_error.html]()
-    6. [releases.html]()
-    7. [release_details.html]()
-    8. [product_management.html]()
-    9. [edit_release.html]()
-    10. [delete_release.html]()
-    11. [manage_images.html]()
-    12. [edit_image.html]()
-    13. [discount_codes.html]()
-    14. [edit_discount_code.html]()
-    15. [delete_discount_code.html]()
-    16. [cart.html]()
-    17. [checkout.html]()
-    18. [checkout_success.html]()
-    19. [order_details.html]()
-    20. [account.html]()
-    21. [about.html]()
-    22. [contact_us.html]()
-    23. [newsletter.html]()
-    24. [edit_newsletter_preferences.html]()
-    25. [unsubscribe.html]()
-    26. [signup.html]()
-    27. [login.html]()
-    28. [password_reset.html]()
-    29. [logout.html]()
-3. [User Story Validation](#user-story-validation)
+3. [Automatic Validation](#automatic-validation)
+4. [User Story Validation](#user-story-validation)
     1. [First Time Visitor Goals](#first-time-visitor-goals)
     2. [Returning Visitor Goals](#returning-visitor-goals)
     3. [Frequent Visitor Goals](#frequent-visitor-goals)
-4. [User Personas](#user-personas)
-5. [Browser Compatibility](#browser-compatibility)
-6. [Accessibility](#accessibility)
-7. [Responsiveness](#responsiveness)
-8. [Performance](#performance)
-9. [Bugs](#bugs)
+5. [User Personas](#user-personas)
+6. [Browser Compatibility](#browser-compatibility)
+7. [Accessibility](#accessibility)
+8. [Responsiveness](#responsiveness)
+9. [Performance](#performance)
+10. [Bugs](#bugs)
     1. [Resolved](#resolved)
     2. [Unresolved](#unresolved)
 
@@ -247,6 +219,10 @@ The base.html page is not included here as it is validated as part of all other 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
 | TBC | TBC | TBC | TBC | TBC |
+
+## Automatic Validation
+
+TBC
 
 ## User Story Validation
 
@@ -793,9 +769,9 @@ CKEDITOR_5_CONFIGS = {
 
 This error only appears when the site is deployed to Heroku, but not locally:
 
-4/:478 Mixed Content: The page at 'https://the-cult-film-club-82f85068dd71.herokuapp.com/releases/release_details/4/' was loaded over HTTPS, but requested an insecure element 'http://res.cloudinary.com/dvzs9gve0/image/upload/v1748091224/h79p7jvo3crpsar2cbbq.png'. This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html
+"The page ... was loaded over HTTPS, but requested an insecure element ... This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html"
 
-I have required that Cloudinary only server secure files in `settings.py`, but the error persists:
+I have required that Cloudinary only server secure files in `settings.py` (as shown below), but the error persists:
 
 ```
 # Cloudinary storage configuration for media files

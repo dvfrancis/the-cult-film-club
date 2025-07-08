@@ -296,11 +296,17 @@ footer a:not(.no-highlight):focus {
 }
 
 .release-header,
-.release-header + form {
+.release-header+form {
     color: #FFF;
 }
+
 #id_rating_helptext {
     color: #FFF;
+}
+
+/* Touch target size for buttons and links */
+.fa-2x {
+    padding: 0.5rem;
 }
 
 /* Used to center page content vertically on a page */

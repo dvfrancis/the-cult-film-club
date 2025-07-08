@@ -470,9 +470,9 @@ Click here to view the [Responsiveness report](documentation/validation/responsi
 
 ## Performance
 
-Both mobile and desktop page performance was assessed with [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/).
+[Google Lighthouse](https://developer.chrome.com/docs/lighthouse/) was used to assess both mobile and desktop performance.
 
-Click here to see the [Performance report](documentation/validation/performance/performance-report.pdf)
+Click here to view the [performance report](documentation/performance/performance-report.pdf)
 
 ## Bugs
 

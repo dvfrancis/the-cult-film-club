@@ -46,61 +46,84 @@
 
 ## Manual Validation
 
-The base.html page is not included here as it is validated as part of all other pages.
+The base.html page contains the header and footer that is shared by all pages throughout the site. I've added the manual validation for those items below so they need not be repeated across every single page detailed in this section. 
+
+### base.html
+
+| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
+| --- | --- | --- | --- | --- |
+| Header nav link for site title | Click to open index.html | The user is directed to index.html | The user is directed to index.html | WORKS AS EXPECTED |
+| Header nav link for 'Home' | Click to open index.html | The user is directed to index.html, and 'Home' remains highlighted | The user is directed to index.html, and 'Home' remains highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' | Click to activate dropdown list of link options | A list of sorting options is shown, and 'Explore' remains highlighted | A list of sorting options is shown, and 'Explore' remains highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Rating (Low-High)' | Click to sort all film releases by rating, from low to high | Film releases are shown ordered from lowest to highest rating, both 'Explore' and 'Rating (Low-High)' remain highlighted | Film releases are shown ordered from lowest to highest rating, both 'Explore' and 'Rating (Low-High)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Rating (High-Low)' | Click to sort all film releases by rating, from high to low | Click to sort all film releases by rating, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | Click to sort all film releases by rating, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Price (Low-High)' | Click to sort all film releases by price, from low to high | Click to sort all film releases by price, from low to high, both 'Explore' and 'Price (Low-High)' remain highlighted | Click to sort all film releases by price, from low to high, both 'Explore' and 'Price (Low-High)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Price (High-Low)' | Click to sort all film releases by price, from high to low | Click to sort all film releases by price, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | Click to sort all film releases by price, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Copies (Low-High)' | Click to sort all film releases by number of available copies, from low to high | Click to sort all film releases by number of copies available, from low to high, both 'Explore' and 'Rating (Low-High)' remain highlighted | Click to sort all film releases by number of copies available, from low to high, both 'Explore' and 'Rating (Low-High)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Copies (High-Low)' | Click to sort all film releases by number of available copies, from high to low | Click to sort all film releases by number of copies available, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | Click to sort all film releases by number of copies available, from high to low, both 'Explore' and 'Rating (High-Low)' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Director (A-Z)' | Click to sort all film releases by director's surname, from A to Z | Film releases are shown ordered from A to Z, by director's surname, both 'Explore' and 'Director (A-Z) remain highlighted | Film releases are shown ordered from A to Z, by director's surname, both 'Explore' and 'Director (A-Z) remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Director (Z-A)' | Click to sort all film releases by director's surname, from Z to A | Film releases are shown ordered from Z to A, by director's surname, both 'Explore' and 'Director (Z-A) remain highlighted | Film releases are shown ordered from Z to A, by director's surname, both 'Explore' and 'Director (Z-A) remain highlighted  | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in | Click text to activate dropdown list of link options | 'Register' and 'Login' links are shown, 'Account' remains highlighted  | 'Register' and 'Login' links are shown, 'Account' remains highlighted  | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in > 'Register' | Click to open signup.html  | The user is directed to signup.html, both 'Account' and 'Register' remain highlighted  | The user is directed to signup.html, both 'Account' and 'Register' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in > 'Login' | Click to open login.html | The user is directed to login.html, both 'Account' and 'Login' remain highlighted | The user is directed to login.html, both 'Account' and 'Login' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in | Click to activate dropdown list of link options | 'My Profile' and 'Logout' links are shown, 'Account' remains highlighted | 'My Profile' and 'Logout' links are shown, 'Account' remains highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in > 'My Profile' | Click to open account.html | The user is directed to account.html, both 'Account' and 'My Profile' remain highlighted | The user is directed to account.html, both 'Account' and 'My Profile' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in > 'Logout' | Click to open logout.html | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges | Click to activate dropdown list of link options | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown, 'Account' remains highlighted | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown, 'Account' remains highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Product Management' | Click to open product_management.html | The user is directed to product_management.html, both 'Account' and 'Product Management' remain highlighted | The user is directed to product_management.html, both 'Account' and 'Product Management' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Discount Codes' | Click to open discount_codes.html | The user is directed to discount_codes.html, both 'Account' and 'Discount Codes' remain highlighted | The user is directed to discount_codes.html, both 'Account' and 'Discount Codes' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'My Profile' | Click to open account.html | The user is directed to account.html, both 'Account' and 'My Profile' remain highlighted | The user is directed to account.html, both 'Account' and 'My Profile' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Logout' | Click to open logout.html | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | WORKS AS EXPECTED |
+| Header nav link for cart logo | Click text to open cart.html | The user is directed to cart.html, the cart logo remains highlighted | The user is directed to cart.html, the cart logo remains highlighted | WORKS AS EXPECTED |
+| Header search bar with text entered | Type in a search term and press enter | Film releases that include the search term are shown | Film releases that include the search term are shown | WORKS AS EXPECTED |
+| Header search bar without text entered | Click into the search bar and press enter | A toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | A toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | WORKS AS EXPECTED |
+| Footer nav link for 'About' | Click to open about.html | The user is directed to about.html, 'About' remains highlighted | The user is directed to about.html, 'About' remains highlighted | WORKS AS EXPECTED |
+| Footer nav link for 'Contact' | Click to open contact_us.html | The user is directed to contact_us.html, 'Contact' remains highlighted | The user is directed to contact_us.html, 'Contact' remains highlighted | WORKS AS EXPECTED |
+| Footer nav link for 'Newsletter' | Click to open newsletter.html | The user is directed to newsletter.html, 'Newsletter' remains highlighted | The user is directed to newsletter.html, 'Newsletter' remains highlighted | WORKS AS EXPECTED |
+| Footer nav link for Instagram | Click to open Instagram | A new tab opens, showing Instagram, the current page link and the Instagram logo remain highlighted | A new tab opens, showing Instagram, the current page link and the Instagram logo remain highlighted | WORKS AS EXPECTED |
+| Footer nav link for YouTube | Click to open YouTube | A new tab opens, showing YouTube, the current page link and the YouTube logo remain highlighted | A new tab opens, showing YouTube, the current page link and the YouTube logo remain highlighted | WORKS AS EXPECTED |
+| Footer nav link for Bluesky | Click to open Bluesky | A new tab opens, showing Bluesky, the current page link and the Bluesky logo remain highlighted | A new tab opens, showing Bluesky, the current page link and the Bluesky logo remain highlighted | WORKS AS EXPECTED |
+| Footer nav link for Facebook | Click to open Facebook | A new tab opens, showing Facebook, the current page link and the Facebook logo remain highlighted | A new tab opens, showing Facebook, the current page link and the Facebook logo remain highlighted | WORKS AS EXPECTED |
+| Footer nav link for LinkedIn | Click to open LinkedIn | A new tab opens, showing https://www.linkedin.com/in/dominicfrancis, the current page link and the LinkedIn logo remain highlighted | A new tab opens, showing https://www.linkedin.com/in/dominicfrancis, the current page link and the LinkedIn logo remain highlighted | WORKS AS EXPECTED |
+| Footer nav link for GitHub | Click to open GitHub | A new tab opens, showing the project GitHub repository, the current page link and the GitHub logo remain highlighted | A new tab opens, showing the project GitHub repository, the current page link and the GitHub logo remain highlighted |WORKS AS EXPECTED |
+| Footer nav link for copyright information | Click to open https://www.dominicfrancis.co.uk | A new tab opens, showing https://www.dominicfrancis.co.uk, the current page link and the copyright text remain highlighted | A new tab opens, showing https://www.dominicfrancis.co.uk, the current page link and the copyright text remain highlighted | WORKS AS EXPECTED |
 
 ### index.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| Header nav link for site title | Click text to open index.html | The user is directed to index.html | The user is directed to index.html | WORKS AS EXPECTED |
-| Header nav link for 'Home' | Click text to open index.html | The user is directed to index.html | The user is directed to index.html | WORKS AS EXPECTED |
-| Header nav link for 'Explore' | Click text to activate dropdown list of link options | A list of filtering options is shown | A list of filtering options is shown | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Rating (Low-High)' | Click to sort all film releases by rating, from low to high | Film releases are shown ordered from lowest to highest rating | Film releases are shown ordered from lowest to highest rating | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Rating (High-Low)' | Click to sort all film releases by rating, from high to low | Film releases are shown ordered from highest to lowest rating | Film releases are shown ordered from highest to lowest rating | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Price (Low-High)' | Click to sort all film releases by price, from low to high | Film releases are shown ordered from lowest to highest price | Film releases are shown ordered from lowest to highest price | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Price (High-Low)' | Click to sort all film releases by price, from high to low | Film releases are shown ordered from highest to lowest price | Film releases are shown ordered from highest to lowest price | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Copies (Low-High)' | Click to sort all film releases by number of available copies, from low to high | Film releases are shown ordered from lowest to highest number of available copies | Film releases are shown ordered from lowest to highest number of available copies | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Copies (High-Low)' | Click to sort all film releases by number of available copies, from high to low | Film releases are shown ordered from highest to lowest number of available copies | Film releases are shown ordered from highest to lowest number of available copies | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Director (A-Z)' | Click to sort all film releases by director's surname, from A to Z | Film releases are shown ordered from A to Z, by director's surname | Film releases are shown ordered from A to Z, by director's surname | WORKS AS EXPECTED |
-| Header nav link for 'Explore' > 'Director (Z-A)' | Click to sort all film releases by director's surname, from Z to A | Film releases are shown ordered from Z to A, by director's surname | Film releases are shown ordered from Z to A, by director's surname | WORKS AS EXPECTED |
-| Header nav link for 'Account', when not logged in | Click text to activate dropdown list of link options | 'Register' and 'Login' links are shown | 'Register' and 'Login' links are shown | WORKS AS EXPECTED |
-| Header nav link for 'Account', when not logged in > 'Register' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when not logged in > 'Login' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in | TBC | 'My Profile' and 'Logout' links are shown | 'My Profile' and 'Logout' links are shown | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in > 'My Profile' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in > 'Logout' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in with Superuser privileges | TBC | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in with Superuser privileges > 'Product Management' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in with Superuser privileges > 'Discount Codes' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in with Superuser privileges > 'My Profile' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for 'Account', when logged in with Superuser privileges > 'Logout' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Header nav link for cart logo | Click text to open cart.html | The user is directed to cart.html | The user is directed to cart.html | WORKS AS EXPECTED |
-| Header search bar with text entered | Type in a search term and press enter | Film releases that include the search term are shown | Film releases that include the search term are shown | WORKS AS EXPECTED |
-| Header search bar without text entered | Click into the search bar and press enter | A toast message is shown "You didn't enter a search term. Please try again." | A toast message is shown "You didn't enter a search term. Please try again." | WORKS AS EXPECTED |
+| 'Latest Releases' image banner section | Click the banner when it shows the release of interest to navigate to the film release details | User is directed to release_details.html for the film release clicked | User is directed to release_details.html for the film release clicked | WORKS AS EXPECTED |
+| 'Other Releases' film release section | Refresh the page to see three randomly chosen film releases | Each time the page is refreshed, three different film releases are shown | Each time the page is refreshed, three different film releases are shown | WORKS AS EXPECTED |
+| 'Other Releases' selected film release | Click any of the film releases' picture or 'Details' button to be taken to their release details | User is directed to the release details of their chosen film release | User is directed to the release details of their chosen film release | WORKS AS EXPECTED |
 
 ### bad_request.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Home' button | Click to navigate to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
+| 'Back' button | Click to return to the previous page | User is directed to the previous page | User is directed to the previous page | WORKS AS EXPECTED |
+
 
 ### permission_denied.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Home' button | Click to navigate to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
+| 'Back' button | Click to return to the previous page | User is directed to the previous page | User is directed to the previous page | WORKS AS EXPECTED |
 
 ### page_not_found.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Home' button | Click to navigate to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
+| 'Back' button | Click to return to the previous page | User is directed to the previous page | User is directed to the previous page | WORKS AS EXPECTED |
 
 ### server_error.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Home' button | Click to navigate to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
+| 'Back' button | Click to return to the previous page | User is directed to the previous page | User is directed to the previous page | WORKS AS EXPECTED |
 
 ### releases.html
 
@@ -194,9 +217,7 @@ The base.html page is not included here as it is validated as part of all other 
 
 ### about.html
 
-| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
-| --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+There are no items that require testing on this page.
 
 ### contact_us.html
 
@@ -232,7 +253,15 @@ The base.html page is not included here as it is validated as part of all other 
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| Link to 'sign up' | Click to open signup.html | User is directed to signup.html | User is directed to signup.html | WORKS AS EXPECTED |
+| 'Username or email' input field | Where other fields are empty, enter username and click 'Sign In' | The user is prompted for their password | The user is prompted for their password | WORKS AS EXPECTED |
+| 'Password' input field | Where all other fields are empty, enter password and click 'Sign In' | The user is prompted for their username | The user is prompted for their username | WORKS AS EXPECTED |
+| When entering a valid 'Username' and 'Password' | Enter valid details, and click 'Sign In' | The user logs in, and is redirected to account.html, and receives the Toast message "Successfully signed in as `USERNAME`" | The user logs in, and is redirected to account.html, and receives the Toast message "Successfully signed in as `USERNAME`" | WORKS AS EXPECTED |
+| When entering a correct 'Username' but incorrect 'Password' | Enter a correct username and incorrect password, and click 'Sign In' | A message appears saying "The username and/or password you specified are not correct", and the password field is emptied | A message appears saying "The username and/or password you specified are not correct", and the password field is emptied | WORKS AS EXPECTED |
+| When entering an incorrect 'Username' but correct 'Password' | Enter an incorrect username and correct password, and click 'Sign In' | A message appears saying "The username and/or password you specified are not correct", and the password field is emptied | A message appears saying "The username and/or password you specified are not correct", and the password field is emptied | WORKS AS EXPECTED |
+| 'Remember Me' checkbox | Select the 'Remember Me' checkbox to save login details | Login details are saved | Login details are saved | WORKS AS EXPECTED |
+| 'Forgot your password?' link | Click 'Forgot your password?' link to open password_reset.html | User is directed to password_reset.html | User is directed to password_reset.html | WORKS AS EXPECTED |
+| 'Sign In' button | Click to sign in to a user account | The user is either logged in, or the login is rejected | The user is either logged in, or the login is rejected | WORKS AS EXPECTED |
 
 ### password_reset.html
 

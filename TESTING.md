@@ -30,6 +30,8 @@
 
 - I did not test base.html directly, as it is a part of all other pages.
 
+- There are also four include files used for different Toast messages throughout the site (toast_error.html, toast_info.html, toast_success.html, and toast_warning.html). As these are snippets of HTML they cannot easily be validated using the W3C Markup Validation Service. However, ignoring the errors caused by taking them out of context, all of the snippets passed validation without any errors.
+
 ### CSS
 
 - The [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator) was used to check base.css. Click to view the [CSS report](documentation/validation/css-report.pdf).
@@ -50,7 +52,31 @@ The base.html page is not included here as it is validated as part of all other 
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| Header nav link for site title | Click text to open index.html | The user is directed to index.html | The user is directed to index.html | WORKS AS EXPECTED |
+| Header nav link for 'Home' | Click text to open index.html | The user is directed to index.html | The user is directed to index.html | WORKS AS EXPECTED |
+| Header nav link for 'Explore' | Click text to activate dropdown list of link options | A list of filtering options is shown | A list of filtering options is shown | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Rating (Low-High)' | Click to sort all film releases by rating, from low to high | Film releases are shown ordered from lowest to highest rating | Film releases are shown ordered from lowest to highest rating | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Rating (High-Low)' | Click to sort all film releases by rating, from high to low | Film releases are shown ordered from highest to lowest rating | Film releases are shown ordered from highest to lowest rating | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Price (Low-High)' | Click to sort all film releases by price, from low to high | Film releases are shown ordered from lowest to highest price | Film releases are shown ordered from lowest to highest price | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Price (High-Low)' | Click to sort all film releases by price, from high to low | Film releases are shown ordered from highest to lowest price | Film releases are shown ordered from highest to lowest price | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Copies (Low-High)' | Click to sort all film releases by number of available copies, from low to high | Film releases are shown ordered from lowest to highest number of available copies | Film releases are shown ordered from lowest to highest number of available copies | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Copies (High-Low)' | Click to sort all film releases by number of available copies, from high to low | Film releases are shown ordered from highest to lowest number of available copies | Film releases are shown ordered from highest to lowest number of available copies | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Director (A-Z)' | Click to sort all film releases by director's surname, from A to Z | Film releases are shown ordered from A to Z, by director's surname | Film releases are shown ordered from A to Z, by director's surname | WORKS AS EXPECTED |
+| Header nav link for 'Explore' > 'Director (Z-A)' | Click to sort all film releases by director's surname, from Z to A | Film releases are shown ordered from Z to A, by director's surname | Film releases are shown ordered from Z to A, by director's surname | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in | Click text to activate dropdown list of link options | 'Register' and 'Login' links are shown | 'Register' and 'Login' links are shown | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in > 'Register' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when not logged in > 'Login' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in | TBC | 'My Profile' and 'Logout' links are shown | 'My Profile' and 'Logout' links are shown | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in > 'My Profile' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in > 'Logout' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges | TBC | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown | 'Product Management', 'Discount Codes', 'My Profile' and 'Logout' links are shown | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Product Management' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Discount Codes' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'My Profile' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for 'Account', when logged in with Superuser privileges > 'Logout' | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Header nav link for cart logo | Click text to open cart.html | The user is directed to cart.html | The user is directed to cart.html | WORKS AS EXPECTED |
+| Header search bar with text entered | Type in a search term and press enter | Film releases that include the search term are shown | Film releases that include the search term are shown | WORKS AS EXPECTED |
+| Header search bar without text entered | Click into the search bar and press enter | A toast message is shown "You didn't enter a search term. Please try again." | A toast message is shown "You didn't enter a search term. Please try again." | WORKS AS EXPECTED |
 
 ### bad_request.html
 

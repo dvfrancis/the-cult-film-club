@@ -1,5 +1,3 @@
-# DRAFT (NOT YET FINALISED)
-
 [Return to the Cult Film Club README.md](https://github.com/dvfrancis/the-cult-film-club)
 
 # Testing of The Cult Film Club

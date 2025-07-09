@@ -241,13 +241,28 @@ There are no items that require testing on this page.
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Unsubscribe' button | Click to unsubscribe form the newsletter | User's email address is unsubscribed with the Toast message "You have been unsubscribed from The Cult Film Club newsletter." | User's email address is unsubscribed with the Toast message "You have been unsubscribed from The Cult Film Club newsletter." | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
 
 ### signup.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| An empty 'Email address' input field | Leave this field empty and click 'Sign Up' | The user is prompted to enter an email address | The user is prompted to enter an email address | WORKS AS EXPECTED |
+| An incorrect entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Sign Up' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| A correct entry in the 'Email address' input field | Enter a valid email address and click 'Sign Up' | The user is asked to repeat the email address in the 'Email address confirmation' field | The user is asked to repeat the email address in the 'Email address confirmation' field | WORKS AS EXPECTED |
+| An empty 'Email address confirmation' input field | Leave this field empty and click 'Sign Up' | The user is prompted to repeat their email address | The user is prompted to repeat their email address | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Email address confirmation' input field | Enter an incorrectly formatted email address and click 'Sign Up' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| A non-matching entry in the 'Email address confirmation' input field | Enter a non-matching email address and click 'Sign Up' | The user is prompted to enter their email address again with the message "You must type the same email each time" | The user is prompted to enter their email address again with the message "You must type the same email each time" | WORKS AS EXPECTED |
+| A correct entry in the 'Email address confirmation' input field | Enter a valid email address and click 'Sign Up' | The user is asked to enter a username | The user is asked to enter a username | WORKS AS EXPECTED |
+| 'Username' input field | Enter a username and click 'Sign Up' | The user is asked to enter the first line of their address | The user is asked to enter the first line of their address | WORKS AS EXPECTED |
+| 'Address line 1' input field | Enter the first line of an address and click 'Sign Up' | The user is asked to enter their city | The user is asked to enter their city | WORKS AS EXPECTED |
+| 'City' input field | Enter a city and click 'Sign Up' | The user is asked to enter their postcode | The user is asked to enter their postcode | WORKS AS EXPECTED |
+| 'Password' input field | Enter a password and click 'Sign Up' | The user is asked to enter their password again | The user is asked to enter their password again | WORKS AS EXPECTED |
+| An empty 'Password (again)' input field | Leave the field blank and click 'Sign Up' | The user is prompted to enter their password again | The user is prompted to enter their password again | WORKS AS EXPECTED |
+| A non-matching entry in the 'Password (again)' input field | Enter a non-matching password and click 'Sign Up' | The user is prompted to enter their password again with the message "You must type the same password each time", and the field is cleared | The user is prompted to enter their password again with the message "You must type the same password each time", and the field is cleared | WORKS AS EXPECTED |
+| A matching entry in the 'Password (again)' input field | Enter a matching password and click 'Sign Up' | The user account is created, and the user is sent an email verification email to action | The user account is created, and the user is sent an email verification email to action | WORKS AS EXPECTED |
+| 'Sign Up' button | Click to register an account | If all information is completed correctly, a new user account is created - otherwise the request is rejected | If all information is completed correctly, a new user account is created - otherwise the request is rejected | WORKS AS EXPECTED |
 
 ### login.html
 
@@ -267,13 +282,17 @@ There are no items that require testing on this page.
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Enter your email address' input field, with no entry | Click 'Reset My Password' | User is prompted to enter their email address | User is prompted to enter their email address | WORKS AS EXPECTED |
+| 'Enter your email address' input field, with an incorrect email address | Enter incorrectly formatted email address, and click 'Reset My Password' | User is prompted to enter a correctly formatted email address | User is prompted to enter a correctly formatted email address | WORKS AS EXPECTED |
+| 'Enter your email address' input field, with a correct email address | Enter correctly formatted email address, and click 'Reset My Password' | User is sent a password reset email, and the message "We have sent you an email. If you have not received it please check your spam folder. Otherwise contact us if you do not receive it in a few minutes." is displayed | User is sent a password reset email, and the message "We have sent you an email. If you have not received it please check your spam folder. Otherwise contact us if you do not receive it in a few minutes." is displayed | WORKS AS EXPECTED |
+| 'Reset My Password' button | Click to reset a password | The user is either sent a password reset email, or the request is rejected | The user is either sent a password reset email, or the request is rejected | WORKS AS EXPECTED |
 
 ### logout.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Sign Out' button | Click to sign out of user account | User is signed out, and redirected to index.html | User is signed out, and redirected to index.html | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to the previous page | User is directed to the previous page | User is directed to the previous page | WORKS AS EXPECTED |
 
 ## Automatic Validation
 

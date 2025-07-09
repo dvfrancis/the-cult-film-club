@@ -1432,6 +1432,7 @@ All other material on the site was created independently by myself to provide a 
 | [Python](https://www.python.org/) | Versatile programming language used primarily for backend web development. |
 | [Django](https://www.djangoproject.com/) | High-level Python web framework that encourages rapid development and clean design. |
 | [PostgreSQL](https://www.postgresql.org/) | Powerful, open-source relational database system used for storing website data. |
+| [Django allauth](https://docs.allauth.org/en/latest/) | Integrated authentication system for Django |
 
 #### Development Tools & IDEs
 

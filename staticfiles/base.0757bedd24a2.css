@@ -304,10 +304,6 @@ footer a:not(.no-highlight):focus {
   min-width: 400px; /* adjust as needed */
 }
 
-.footer-social-icons i {
-  font-size: 2rem;
-}
-
 #id_rating_helptext {
     color: #FFF;
 }

@@ -223,19 +223,41 @@ There are no items that require testing on this page.
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'First Name' input field | Enter a first name and click 'Send' | The user is prompted to complete all remaining form fields | The user is prompted to complete all remaining form fields | WORKS AS EXPECTED |
+| 'Last Name' input field | Enter a last name and click 'Send' | The user is prompted to complete all remaining form fields | The user is prompted to complete all remaining form fields | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Send' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| A correct entry in the 'Email address' input field | Enter a valid email address and click 'Send' | The user is prompted to complete all remaining form fields | The user is prompted to complete all remaining form fields | WORKS AS EXPECTED |
+| 'Message' input field | Enter a message and click 'Send' | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
+| 'Send' button | With all information completed correctly, click 'Send' | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
 
 ### newsletter.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| An empty 'Email address' input field | Leave this field empty and click 'Subscribe' | The user is prompted to enter an email address | The user is prompted to enter an email address | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Subscribe' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| A correct entry in the 'Email address' input field | Enter a valid email address and click 'Subscribe' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
+| Unticked topic checkboxes | With a valid email address entered, and no topics selected, click 'Subscribe' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
+| 'Subscribe' button | With valid information entered, click 'Subscribe' | The user's email address is added to the database, and the Toast message is displayed "Thanks! You've been subscribed to The Cult Film Club newsletter." | The user's email address is added to the database, and the Toast message is displayed "Thanks! You've been subscribed to The Cult Film Club newsletter." | WORKS AS EXPECTED |
+| When a user is logged in and subscribed | Navigate to newsletter.html | User will see an 'Edit your newsletter preferences' link beneath the form | User will see an 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
+| When a user is logged in but not subscribed | Navigate to newsletter.html | User will not see the 'Edit your newsletter preferences' link beneath the form | User will not see the 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
+| When a user is not logged in | Navigate to newsletter.html | User will not see the 'Edit your newsletter preferences' link beneath the form | User will not see the 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
+| An empty 'Unsubscribe' input field | Click 'Send unsubscribe link' | User will see the Toast message "Email not found" | User will see the Toast message "Email not found" | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Unsubscribe' input field | Click 'Send unsubscribe link' | User will see the Toast message "Email not found" | User will see the Toast message "Email not found" | WORKS AS EXPECTED |
+| A correct entry in the 'Unsubscribe' input field | Enter a valid email address and click 'Send unsubscribe link' | User will see the Toast message "Check your email for an unsubscribe link.", and receive an unsubscribe link via email | User will see the Toast message "Check your email for an unsubscribe link.", and receive an unsubscribe link via email | WORKS AS EXPECTED |
+| 'Send Unsubscribe Link' button | With valid information entered, click 'Send Unsubscribe Link' | The user's email address is removed from the database, and the Toast message is displayed "You have been unsubscribed from The Cult Film Club newsletter." | The user's email address is added to the database, and a Toast message is displayed "You have been unsubscribed from The Cult Film Club newsletter." | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
 
 ### edit_newsletter_preferences.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| An empty 'Email address' input field | Leave this field empty and click 'Save' | The user is prompted to enter an email address | The user is prompted to enter an email address | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Save' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| A correct entry in the 'Email address' input field | Enter a valid email address and click 'Save' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
+| Unticked topic checkboxes | With a valid email address entered, and no topics selected, click 'Save' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
+| 'Save' button | With valid information entered, click 'Save' | The user's preferences are updated, and the Toast message is displayed "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | The user's preferences are updated, and the Toast message is displayed "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to newsletter.html | User is directed to newsletter.html | User is directed to newsletter.html | WORKS AS EXPECTED |
 
 ### unsubscribe.html
 
@@ -249,7 +271,7 @@ There are no items that require testing on this page.
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
 | An empty 'Email address' input field | Leave this field empty and click 'Sign Up' | The user is prompted to enter an email address | The user is prompted to enter an email address | WORKS AS EXPECTED |
-| An incorrect entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Sign Up' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
+| An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Sign Up' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
 | A correct entry in the 'Email address' input field | Enter a valid email address and click 'Sign Up' | The user is asked to repeat the email address in the 'Email address confirmation' field | The user is asked to repeat the email address in the 'Email address confirmation' field | WORKS AS EXPECTED |
 | An empty 'Email address confirmation' input field | Leave this field empty and click 'Sign Up' | The user is prompted to repeat their email address | The user is prompted to repeat their email address | WORKS AS EXPECTED |
 | An incorrectly formatted entry in the 'Email address confirmation' input field | Enter an incorrectly formatted email address and click 'Sign Up' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |

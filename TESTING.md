@@ -159,8 +159,8 @@ The base.html page contains the header and footer that is shared by all pages th
 | User Reviews section, when a user is logged in and has left a rating and/or review > 'Delete Your Rating' button | Click the 'Delete Your Rating' button | The user's rating is deleted, and the average rating for the film release adjusted accordingly | The user's rating is deleted, and the average rating for the film release adjusted accordingly | WORKS AS EXPECTED |
 | User Reviews section, when a user is logged in and has left a rating and/or review | Update user rating and/or review (optional), and click 'Update' button | The user's rating and/or review is updated, and the average rating for the film release adjusted accordingly | The user's rating and/or review is updated, and the average rating for the film release adjusted accordingly | WORKS AS EXPECTED |
 | Social share buttons | Click a social sharing button | The release is shared to the selected social media platform | The release is shared to the selected social media platform | WORKS AS EXPECTED |
-| 'Previous Release' button | | | | |
-| 'Next Release' button | | | | |
+| 'Previous Release' button (shown where releases listed before the one selected) | Click 'Previous Release' to view previous release | Previous release is shown | Previous release is shown | WORKS AS EXPECTED |
+| 'Next Release' button (shown where releases listed after the one selected) | Click 'Next Release' to view next release | Next release is shown | Next release is shown | WORKS AS EXPECTED |
 
 ### product_management.html
 
@@ -224,25 +224,28 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Discount codes page on mobile devices | Load discount_codes.html on a mobile device | Discount codes loaded in card view | Discount codes loaded in card view | WORKS AS EXPECTED |
+| Discount codes page on desktop devices | Load discount_codes.html on a mobile device | Discount codes loaded in list view | Discount codes loaded in list view | WORKS AS EXPECTED |
+| 'Add Discount Code' form > 'Code' input field | With no other fields completed, enter a code word and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| 'Add Discount Code' form > 'Percent' input field | With 'Code' completed, enter a percentage discount amount and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| 'Add Discount Code' form > 'Valid from' input field | With 'Code' and 'Percent' completed, enter a date and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| 'Add Discount Code' form > 'Valid to' input field | With 'Code', 'Percent', and 'Valid from' completed, enter a valid to date and click 'Add Discount Code' | Discount code is created and a Toast message is displayed - "Discount code added successfully" | Discount code is created and a Toast message is displayed - "Discount code added successfully" | WORKS AS EXPECTED |
+| 'Add Discount Code' button | Without entering any information, click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
 
 ### edit_discount_code.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Valid entry in 'Code' input field | Update code word and click 'Add Discount Code' | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Percent' input field | Update percentage discount amount and click 'Add Discount Code' | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Valid from' input field | Update valid from date and click 'Add Discount Code' | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | Discount code is updated and a Toast message is displayed - "Discount code updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Valid to' input field | Update valid to date and click 'Add Discount Code' | Discount code is created and a Toast message is displayed - "Discount code added successfully" | Discount code is created and a Toast message is displayed - "Discount code added successfully" | WORKS AS EXPECTED |
+| Invalid entry in 'Code' input field | Update code word and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| Invalid entry in 'Percent' input field | Update percentage discount amount and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| Invalid entry in 'Valid from' input field | Update valid from date and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| Invalid entry in 'Valid to' input field | Update valid to date and click 'Add Discount Code' | User is prompted to enter information in all fields | User is prompted to enter information in all fields | WORKS AS EXPECTED |
+| 'Save' button | Click to save changes | Changes are saved, user is returned to discount_codes.html  | Changes are saved, user is returned to discount_codes.html | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to manage_images.html | User is directed to discount_codes.html | User is directed to discount_codes.html | WORKS AS EXPECTED |
 
 ### delete_discount_code.html
 
@@ -250,6 +253,7 @@ The base.html page contains the header and footer that is shared by all pages th
 | --- | --- | --- | --- | --- |
 | 'Delete' button | Click to delete the selected discount code | The discount code is deleted, user is redirected to discount_codes.html, and a Toast message is displayed - "Discount code deleted successfully" | The discount code is deleted, user is redirected to discount_codes.html, and a Toast message is displayed - "Discount code deleted successfully" | WORKS AS EXPECTED |
 | 'Cancel' button | Click to return to discount_codes.html | User is directed to discount_codes.html | User is directed to discount_codes.html | WORKS AS EXPECTED |
+
 ### cart.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |

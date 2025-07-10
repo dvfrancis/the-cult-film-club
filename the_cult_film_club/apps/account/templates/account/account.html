@@ -158,6 +158,19 @@
                                     {% endif %}
                                 </select>
                             </form>
+                            {% if selected_wishlist %}
+                            <div class="text-end mb-3">
+                                <form method="post"
+                                    onsubmit="return confirm('Delete this wishlist and all its items?');">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
+                                    <button type="submit" name="delete_wishlist"
+                                        class="btn btn-outline-black text-uppercase">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                            {% endif %}
                             <!-- Wishlist Items -->
                             {% if wishlist_items %}
                             <ul class="list-group wishlist-list gap-3">
@@ -204,36 +217,21 @@
                                 {% endfor %}
                             </ul>
                             {% else %}
-                            <p class="text-muted">You have no items in this wishlist</p>
+                            <p class="text-center text-muted mt-4 mb-3">You have no items in this wishlist</p>
                             {% endif %}
-                            <!-- Create/Delete Wishlist -->
-                            <h5 class="text-center mt-3 mb-3">Create / Delete Wishlists</h5>
-                            <div class="d-flex flex-column flex-md-row gap-2 mb-4 align-items-stretch">
-                                <div class="flex-grow-1">
-                                    <form method="post" class="d-flex gap-2">
-                                        {% csrf_token %}
-                                        <input type="text" name="wishlist_name" class="form-control"
-                                            placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
-                                        <button type="submit" name="create_wishlist"
-                                            class="btn btn-success text-uppercase">
-                                            Create
-                                        </button>
-                                    </form>
-                                </div>
-
-                                {% if selected_wishlist %}
-                                <div>
-                                    <form method="post"
-                                        onsubmit="return confirm('Delete this wishlist and all its items?');">
-                                        {% csrf_token %}
-                                        <input type="hidden" name="wishlist" value="{{ selected_wishlist.id }}">
-                                        <button type="submit" name="delete_wishlist"
-                                            class="btn btn-outline-black text-uppercase">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
-                                {% endif %}
+                        </div>
+                        <!-- Create/Delete Wishlist -->
+                        <h5 class="text-center mt-3 mb-3">Create / Delete Wishlists</h5>
+                        <div class="d-flex flex-column flex-md-row gap-2 mb-4 align-items-stretch">
+                            <div class="flex-grow-1">
+                                <form method="post" class="d-flex gap-2">
+                                    {% csrf_token %}
+                                    <input type="text" name="wishlist_name" class="form-control"
+                                        placeholder="New Wishlist Name" aria-label="New Wishlist Name" required>
+                                    <button type="submit" name="create_wishlist" class="btn btn-success text-uppercase">
+                                        Create
+                                    </button>
+                                </form>
                             </div>
 
                         </div>

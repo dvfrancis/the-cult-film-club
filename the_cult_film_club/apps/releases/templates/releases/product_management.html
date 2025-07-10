@@ -21,13 +21,13 @@
 
         {# Add New Release Button and Collapsible Form #}
         <div class="text-center">
-          <button class="btn btn-success btn-lg rounded-1 text-uppercase" type="button"
-                  data-bs-toggle="collapse" data-bs-target="#addReleaseForm" aria-expanded="false"
-                  aria-controls="addReleaseForm" aria-label="Toggle Add New Release Form">
+          <button class="btn btn-success btn-lg rounded-1 text-uppercase" type="button" data-bs-toggle="collapse"
+            data-bs-target="#addReleaseForm" aria-expanded="{% if form.errors %}true{% else %}false{% endif %}"
+            aria-controls="addReleaseForm" aria-label="Toggle Add New Release Form">
             Add New Release
           </button>
         </div>
-        <div class="collapse mb-4" id="addReleaseForm">
+        <div class="collapse mb-4 {% if form.errors %}show{% endif %}" id="addReleaseForm">
           <div class="card card-body border-0 shadow-sm">
             <form method="post" enctype="multipart/form-data" novalidate>
               {% csrf_token %}
@@ -49,7 +49,8 @@
         {# Table View for md and up #}
         <div class="table-responsive d-none d-md-block">
           <table class="table table-bordered align-middle mb-0" aria-describedby="releaseTableCaption">
-            <caption id="releaseTableCaption" class="visually-hidden">List of existing film releases with management actions</caption>
+            <caption id="releaseTableCaption" class="visually-hidden">List of existing film releases with management
+              actions</caption>
             <thead class="table-light">
               <tr>
                 <th scope="col">Title</th>
@@ -65,27 +66,24 @@
                 <td>£{{ release.price }}</td>
                 <td>
                   {% if release.copies_available == 0 %}
-                    <span class="badge bg-danger">Out of stock</span>
+                  <span class="badge bg-danger">Out of stock</span>
                   {% elif release.copies_available < 10 %}
-                    <span class="badge bg-warning text-dark">{{ release.copies_available }} left</span>
+                  <span class="badge bg-warning text-dark">{{ release.copies_available }} left</span>
                   {% else %}
-                    <span class="badge bg-success">{{ release.copies_available }} available</span>
+                  <span class="badge bg-success">{{ release.copies_available }} available</span>
                   {% endif %}
                 </td>
                 <td class="text-center">
-                  <a href="{% url 'edit_release' release.id %}" 
-                     class="btn btn-sm black-btn me-1 mb-1" 
-                     title="Edit {{ release.title }}" aria-label="Edit {{ release.title }}">
+                  <a href="{% url 'edit_release' release.id %}" class="btn btn-sm black-btn me-1 mb-1"
+                    title="Edit {{ release.title }}" aria-label="Edit {{ release.title }}">
                     Edit
                   </a>
-                  <a href="{% url 'delete_release' release.id %}" 
-                     class="btn btn-sm btn-outline-black me-1 mb-1" 
-                     title="Delete {{ release.title }}" aria-label="Delete {{ release.title }}">
+                  <a href="{% url 'delete_release' release.id %}" class="btn btn-sm btn-outline-black me-1 mb-1"
+                    title="Delete {{ release.title }}" aria-label="Delete {{ release.title }}">
                     Delete
                   </a>
-                  <a href="{% url 'manage_images' release.id %}" 
-                     class="btn btn-sm btn-success mb-1" 
-                     title="Manage images for {{ release.title }}" aria-label="Manage images for {{ release.title }}">
+                  <a href="{% url 'manage_images' release.id %}" class="btn btn-sm btn-success mb-1"
+                    title="Manage images for {{ release.title }}" aria-label="Manage images for {{ release.title }}">
                     Manage Images
                   </a>
                 </td>
@@ -109,27 +107,24 @@
               <p class="mb-1">
                 <strong>Stock:</strong>
                 {% if release.copies_available == 0 %}
-                  <span class="badge bg-danger">Out of stock</span>
+                <span class="badge bg-danger">Out of stock</span>
                 {% elif release.copies_available < 10 %}
-                  <span class="badge bg-warning text-dark">{{ release.copies_available }} left</span>
+                <span class="badge bg-warning text-dark">{{ release.copies_available }} left</span>
                 {% else %}
-                  <span class="badge bg-success">{{ release.copies_available }} available</span>
+                <span class="badge bg-success">{{ release.copies_available }} available</span>
                 {% endif %}
               </p>
               <div class="d-flex flex-wrap gap-2 justify-content-center mt-3">
-                <a href="{% url 'edit_release' release.id %}" 
-                   class="btn btn-sm btn-outline-primary" 
-                   title="Edit {{ release.title }}" aria-label="Edit {{ release.title }}">
+                <a href="{% url 'edit_release' release.id %}" class="btn btn-sm btn-outline-primary"
+                  title="Edit {{ release.title }}" aria-label="Edit {{ release.title }}">
                   <i class="fas fa-edit"></i> Edit
                 </a>
-                <a href="{% url 'delete_release' release.id %}" 
-                   class="btn btn-sm btn-outline-danger" 
-                   title="Delete {{ release.title }}" aria-label="Delete {{ release.title }}">
+                <a href="{% url 'delete_release' release.id %}" class="btn btn-sm btn-outline-danger"
+                  title="Delete {{ release.title }}" aria-label="Delete {{ release.title }}">
                   <i class="fas fa-trash-alt"></i> Delete
                 </a>
-                <a href="{% url 'manage_images' release.id %}" 
-                   class="btn btn-sm btn-success" 
-                   title="Manage images for {{ release.title }}" aria-label="Manage images for {{ release.title }}">
+                <a href="{% url 'manage_images' release.id %}" class="btn btn-sm btn-success"
+                  title="Manage images for {{ release.title }}" aria-label="Manage images for {{ release.title }}">
                   <i class="fas fa-images"></i> Manage Images
                 </a>
               </div>

@@ -74,7 +74,7 @@ The base.html page contains the header and footer that is shared by all pages th
 | Header nav link for 'Account', when logged in with Superuser privileges > 'Logout' | Click to open logout.html | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | The user is directed to logout.html, both 'Account' and 'Login' remain highlighted | WORKS AS EXPECTED |
 | Header nav link for cart logo | Click text to open cart.html | The user is directed to cart.html, the cart logo remains highlighted | The user is directed to cart.html, the cart logo remains highlighted | WORKS AS EXPECTED |
 | Header search bar with text entered | Type in a search term and press enter | Film releases that include the search term are shown | Film releases that include the search term are shown | WORKS AS EXPECTED |
-| Header search bar without text entered | Click into the search bar and press enter | A toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | A toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | WORKS AS EXPECTED |
+| Header search bar without text entered | Click into the search bar and press enter | A Toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | A Toast message is shown "You didn't enter a search term. Please try again.", and the user is redirected to index.html | WORKS AS EXPECTED |
 | Footer nav link for 'About' | Click to open about.html | The user is directed to about.html, 'About' remains highlighted | The user is directed to about.html, 'About' remains highlighted | WORKS AS EXPECTED |
 | Footer nav link for 'Contact' | Click to open contact_us.html | The user is directed to contact_us.html, 'Contact' remains highlighted | The user is directed to contact_us.html, 'Contact' remains highlighted | WORKS AS EXPECTED |
 | Footer nav link for 'Newsletter' | Click to open newsletter.html | The user is directed to newsletter.html, 'Newsletter' remains highlighted | The user is directed to newsletter.html, 'Newsletter' remains highlighted | WORKS AS EXPECTED |
@@ -127,91 +127,172 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### release_details.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### product_management.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Add New Release' accordion button | Click to reveal form to add a release | Add new release form is shown | Add new release form is shown | WORKS AS EXPECTED |
+| 'Title' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Release Date' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Director' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Description' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Genre' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Subgenre' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Resolution' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Special Features' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Edition' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Censor Status' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Packaging' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Copies Available' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Price' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Add New Release' form > 'Add Release' button | With valid information entered, click 'Add Release' | Film release is added to the database | Film release is added to the database | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+
 
 ### edit_release.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### delete_release.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Delete' button | Click to delete the selected film release | The film release is deleted, user is redirected to product_management.html, and a Toast message is displayed - "Release deleted successfully" | The film release is deleted, user is redirected to product_management.html, and a Toast message is displayed - "Release deleted successfully" | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to product_management.html | User is directed to product_management.html | User is directed to product_management.html | WORKS AS EXPECTED |
 
 ### manage_images.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### edit_image.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### discount_codes.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### edit_discount_code.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### delete_discount_code.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
-
+| 'Delete' button | Click to delete the selected discount code | The discount code is deleted, user is redirected to discount_codes.html, and a Toast message is displayed - "Discount code deleted successfully" | The discount code is deleted, user is redirected to discount_codes.html, and a Toast message is displayed - "Discount code deleted successfully" | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to discount_codes.html | User is directed to discount_codes.html | User is directed to discount_codes.html | WORKS AS EXPECTED |
 ### cart.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### checkout.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### checkout_success.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'Back to Films' button | Click to return to releases.html | User is directed to releases.html | User is directed to releases.html | WORKS AS EXPECTED |
 
 ### order_details.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| 'My Profile' button | Click to return to account.html | User is directed to account.html | User is directed to account.html | WORKS AS EXPECTED |
 
 ### account.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | TBC |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### about.html
 
@@ -225,8 +306,8 @@ There are no items that require testing on this page.
 | 'Last Name' input field | Enter a last name and click 'Send' | The user is prompted to complete all remaining form fields | The user is prompted to complete all remaining form fields | WORKS AS EXPECTED |
 | An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Send' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
 | A correct entry in the 'Email address' input field | Enter a valid email address and click 'Send' | The user is prompted to complete all remaining form fields | The user is prompted to complete all remaining form fields | WORKS AS EXPECTED |
-| 'Message' input field | Enter a message and click 'Send' | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
-| 'Send' button | With all information completed correctly, click 'Send' | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and the Toast message is displayed "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
+| 'Message' input field | Enter a message and click 'Send' | Message is added to the database and a Toast message is displayed - "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and a Toast message is displayed - "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
+| 'Send' button | With all information completed correctly, click 'Send' | Message is added to the database and a Toast message is displayed - "Thank you for contacting us! We'll respond as soon as we can." | Message is added to the database and a Toast message is displayed - "Thank you for contacting us! We'll respond as soon as we can." | WORKS AS EXPECTED |
 
 ### newsletter.html
 
@@ -236,14 +317,14 @@ There are no items that require testing on this page.
 | An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Subscribe' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
 | A correct entry in the 'Email address' input field | Enter a valid email address and click 'Subscribe' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
 | Unticked topic checkboxes | With a valid email address entered, and no topics selected, click 'Subscribe' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
-| 'Subscribe' button | With valid information entered, click 'Subscribe' | The user's email address is added to the database, and the Toast message is displayed "Thanks! You've been subscribed to The Cult Film Club newsletter." | The user's email address is added to the database, and the Toast message is displayed "Thanks! You've been subscribed to The Cult Film Club newsletter." | WORKS AS EXPECTED |
+| 'Subscribe' button | With valid information entered, click 'Subscribe' | The user's email address is added to the database, and a Toast message is displayed - "Thanks! You've been subscribed to The Cult Film Club newsletter." | The user's email address is added to the database, and a Toast message is displayed - "Thanks! You've been subscribed to The Cult Film Club newsletter." | WORKS AS EXPECTED |
 | When a user is logged in and subscribed | Navigate to newsletter.html | User will see an 'Edit your newsletter preferences' link beneath the form | User will see an 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
 | When a user is logged in but not subscribed | Navigate to newsletter.html | User will not see the 'Edit your newsletter preferences' link beneath the form | User will not see the 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
 | When a user is not logged in | Navigate to newsletter.html | User will not see the 'Edit your newsletter preferences' link beneath the form | User will not see the 'Edit your newsletter preferences' link beneath the form | WORKS AS EXPECTED |
 | An empty 'Unsubscribe' input field | Click 'Send unsubscribe link' | User will see the Toast message "Email not found" | User will see the Toast message "Email not found" | WORKS AS EXPECTED |
 | An incorrectly formatted entry in the 'Unsubscribe' input field | Click 'Send unsubscribe link' | User will see the Toast message "Email not found" | User will see the Toast message "Email not found" | WORKS AS EXPECTED |
 | A correct entry in the 'Unsubscribe' input field | Enter a valid email address and click 'Send unsubscribe link' | User will see the Toast message "Check your email for an unsubscribe link.", and receive an unsubscribe link via email | User will see the Toast message "Check your email for an unsubscribe link.", and receive an unsubscribe link via email | WORKS AS EXPECTED |
-| 'Send Unsubscribe Link' button | With valid information entered, click 'Send Unsubscribe Link' | The user's email address is removed from the database, and the Toast message is displayed "You have been unsubscribed from The Cult Film Club newsletter." | The user's email address is added to the database, and a Toast message is displayed "You have been unsubscribed from The Cult Film Club newsletter." | WORKS AS EXPECTED |
+| 'Send Unsubscribe Link' button | With valid information entered, click 'Send Unsubscribe Link' | The user's email address is removed from the database, and a Toast message is displayed - "You have been unsubscribed from The Cult Film Club newsletter." | The user's email address is added to the database, and a Toast message is displayed - "You have been unsubscribed from The Cult Film Club newsletter." | WORKS AS EXPECTED |
 | 'Cancel' button | Click to return to index.html | User is directed to index.html | User is directed to index.html | WORKS AS EXPECTED |
 
 ### edit_newsletter_preferences.html
@@ -254,7 +335,7 @@ There are no items that require testing on this page.
 | An incorrectly formatted entry in the 'Email address' input field | Enter an incorrectly formatted email address and click 'Save' | The user is prompted to enter a valid email address | The user is prompted to enter a valid email address | WORKS AS EXPECTED |
 | A correct entry in the 'Email address' input field | Enter a valid email address and click 'Save' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
 | Unticked topic checkboxes | With a valid email address entered, and no topics selected, click 'Save' | The user is prompted to choose specific topics for their newsletter | The user is prompted to choose specific topics for their newsletter | WORKS AS EXPECTED |
-| 'Save' button | With valid information entered, click 'Save' | The user's preferences are updated, and the Toast message is displayed "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | The user's preferences are updated, and the Toast message is displayed "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | WORKS AS EXPECTED |
+| 'Save' button | With valid information entered, click 'Save' | The user's preferences are updated, and a Toast message is displayed - "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | The user's preferences are updated, and a Toast message is displayed - "Your newsletter preferences have been updated."; the user is also directed to newsletter.html | WORKS AS EXPECTED |
 | 'Cancel' button | Click to return to newsletter.html | User is directed to newsletter.html | User is directed to newsletter.html | WORKS AS EXPECTED |
 
 ### unsubscribe.html

@@ -300,31 +300,34 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| User profile picture section > 'Choose File' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| User profile picture section > 'Update Photo' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| User profile picture section > 'Delete Photo' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > address dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Label' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'First line' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Second line' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'City' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'County' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Postcode' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Country' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Phone number' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Default address' checkbox | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Add' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Update' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Address section > 'Delete' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Order history section > link to order | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Select wishlist' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
+| User profile picture section > 'Choose File' button | Click 'Choose file' and select an image | Image is loaded, ready to save | Image is loaded, ready to save | WORKS AS EXPECTED |
+| User profile picture section > 'Update Photo' button | With an image loaded, click 'Update Photo' | Image is updated, and a Toast message is displayed - "Profile photo updated successfully" | Image is updated, and a Toast message is displayed - "Profile photo updated successfully" | WORKS AS EXPECTED |
+| User profile picture section > 'Delete Photo' button | Click 'Delete Photo' | Image is deleted, and the holding image appears instead | Image is deleted, and the holding image appears instead | WORKS AS EXPECTED |
+| Address section > address dropdown | Click to select an address or add a new address | Dropdown options are shown | Dropdown options are shown | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Label' input field | When the field is empty and you click 'Update' | User is prompted to complete the field | User is prompted to complete the field | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'First line' input field | When the field is empty and you click 'Update' | User is prompted to complete the field | User is prompted to complete the field | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'City' input field | When the field is empty and you click 'Update' | User is prompted to complete the field | User is prompted to complete the field | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Postcode' input field | When the field is empty and you click 'Update' | User is prompted to complete the field | User is prompted to complete the field | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Country' input field | When the field is empty and you click 'Update' | User is prompted to complete the field | User is prompted to complete the field | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Default address' checkbox | Select the field and click 'Update' | The current address becomes the default address, all other addresses have this checkbox unticked | The current address becomes the default address, all other addresses have this checkbox unticked | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Add' button | When a field is empty and you click 'Add' | The user is prompted to complete all required input fields | The user is prompted to complete all required input fields | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Update' button | When a field is empty and you click 'Update' | The user is prompted to complete all required input fields | The user is prompted to complete all required input fields | WORKS AS EXPECTED |
+| When adding or amending an address in the address section > 'Delete' button | When all fields are empty and you click 'Delete' | The 'Delete' button is deactivated | The 'Delete' button is deactivated | WORKS AS EXPECTED |
+| Order history section > link to order | Click the order link | User is directed to order_detail.html | User is directed to order_detail.html | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown | Click to view wishlists | Available wishlists are shown | Available wishlists are shown | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown > wishlist | Click to select a wishlist | Wishlist items are shown | Wishlist items are shown | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Edit' button | Click to edit a wishlist item | The wishlist item is loaded into the 'Add Wishlist Item' form for editing | The wishlist item is loaded into the 'Add Wishlist Item' form for editing | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Buy' button | Click to move a wishlist item to the shopping cart | The wishlist item is added to the shopping cart, removed from the wishlist, and a shopping cart Toast notification displayed | The wishlist item is added to the shopping cart, removed from the wishlist, and a shopping cart Toast notification displayed | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Remove' button | Click to remove a wishlist item from the wishlist | The wishlist item is removed from the wishlist | The wishlist item is added to the shopping cart, and then removed from the wishlist | WORKS AS EXPECTED |
+| Wishlist section > 'Delete' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Create / Delete Wishlists' > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Create' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Delete' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Add Wishlist Item' > 'Title' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Add Wishlist Item' > 'Notes' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Add Wishlist Item' > 'Priority' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
 | Wishlist section > 'Add' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+
+| 'Image' input field |  | WORKS AS EXPECTED |
 
 ### about.html
 
@@ -649,7 +652,7 @@ Pages were tested for responsiveness at the following sizes:
 - Tablet (Apple iPad Air 5 - 820px x 1180px).
 - Desktop (MacBook Air - 1559px x 975px).
 
-Click here to view the [Responsiveness report](documentation/validation/responsiveness/responsiveness-report.pdf)
+Click here to view the [Responsiveness report](documentation/responsiveness/responsiveness-report.pdf)
 
 ## Performance
 

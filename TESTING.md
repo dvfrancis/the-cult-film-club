@@ -127,25 +127,40 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Filters > All Genres | Select a genre from the dropdown list | Film releases that match the genre are shown, and 'All Subgenres', 'All Directors' and 'All Decades' are filtered to show entries matching that genre | Film releases that match the genre are shown, and 'All Subgenres', 'All Directors' and 'All Decades' are filtered to show entries matching that genre | WORKS AS EXPECTED |
+| Filters > All Subgenres | Select a subgenre from the dropdown list | Film releases that match the subgenre are shown, and 'All Genres', 'All Directors' and 'All Decades' are filtered to show entries matching that genre | Film releases that match the genre are shown, and 'All Genres', 'All Directors' and 'All Decades' are filtered to show entries matching that genre | WORKS AS EXPECTED |
+| Filters > All Directors | Select a director from the dropdown list | Film releases that match the director are shown, and 'All Genres', 'All Subgenres' and 'All Decades' are filtered to show entries matching that genre | Film releases that match the genre are shown, and 'All Genres', 'All Subgenres' and 'All Decades' are filtered to show entries matching that genre | WORKS AS EXPECTED |
+| Filters > All Decades | Select a decade from the dropdown list | Film releases that match the decade are shown, and 'All Genres', 'All Subgenres' and 'All Directors' are filtered to show entries matching that genre | Film releases that match the genre are shown, and 'All Genres', 'All Subgenres' and 'All Directors' are filtered to show entries matching that genre | WORKS AS EXPECTED |
+| 'Reset' button | Click reset button to reset all filters | All filters are reset | All filters are reset | WORKS AS EXPECTED |
+| Release card | Click to navigate to release_details.html | User is directed to release_details.html | User is directed to release_details.html | WORKS AS EXPECTED |
+| When the first breadcrumb navigation button is selected | Click the first breadcrumb navigation button | The first page of results is shown, the button is highlighted, and the '<<' button is disabled | The first page of results is shown, the button is highlighted, and the '<<' button is disabled | WORKS AS EXPECTED |
+| When a breadcrumb navigation button is selected, other than the first or the last | Click any breadcrumb navigation button, except the first or last | The selected page of results is shown, its button if highlighted, and both the '<<' and '>>' buttons are enabled | The selected page of results is shown, its button if highlighted, and both the '<<' and '>>' buttons are enabled | WORKS AS EXPECTED |
+| When the last breadcrumb navigation button is selected | Click the last breadcrumb navigation button | The last page of results is shown, the button is highlighted, and the '>>' button is disabled | The last page of results is shown, the button is highlighted, and the '>>' button is disabled | WORKS AS EXPECTED |
 
 ### release_details.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
+| Invalid entry in the quantity input field | Enter a number that is below the minimum available quantity into the quantity input field manually | A tool tip is displayed showing the minimum available, and the field is set to that minimum | A tool tip is displayed showing the minimum available, and the field is set to that minimum | WORKS AS EXPECTED |
+| Invalid entry in the quantity input field | Enter a number that is above the maximum available quantity into the quantity input field manually | A tool tip is displayed showing the maximum available, and the field is set to that maximum | A tool tip is displayed showing the maximum available, and the field is set to that maximum | WORKS AS EXPECTED |
+| Valid entry in the quantity input field | Enter a number between the minimum and maximum available quantity into the quantity input field and click 'Add' | The quantity specified for that film release is added to the shopping cart | The quantity specified for that film release is added to the shopping cart | WORKS AS EXPECTED |
+| Quantity selector buttons at minimum available quantity | Click the '-' button | '-' button is disabled, '+' is enabled | '-' button is disabled, '+' is enabled | WORKS AS EXPECTED |
+| Quantity selector buttons at maximum available quantity | Click the '+' button | '-' button is enabled, '+' is disabled | '-' button is enabled, '+' is disabled | WORKS AS EXPECTED |
+| Quantity selector buttons at any quantity between minimum and maximum available quantity | Click either the '-' or '+' button | Both buttons are enabled | Both buttons are enabled | WORKS AS EXPECTED |
+| 'Add to Wishlist' button when not logged in | Look for the 'Add to Wishlist' button | The 'Add to Wishlist' button does not appear on the page | The 'Add to Wishlist' button does not appear on the page | WORKS AS EXPECTED |
+| 'Add to Wishlist' button when logged in | Click the 'Add to Wishlist' button | 'Add to Wishlist' modal appears | 'Add to Wishlist' modal appears | WORKS AS EXPECTED |
+| 'Add to Wishlist' modal, when user has no wishlists | Look for wishlist dropdown list | Wishlist dropdown list is not shown, and a message appears "You don't have any wishlists, so a new one called 'My Wishlist' will be created automatically." | Wishlist dropdown list is not shown, and a message appears "You don't have any wishlists, so a new one called 'My Wishlist' will be created automatically." | WORKS AS EXPECTED |
+| 'Add to Wishlist' modal, when user has wishlists | Select the wishlist to add the release to, add a priority and note (optional), and click 'Add to Wishlist' button | The film release is added to the specified wishlist | The film release is added to the specified wishlist | WORKS AS EXPECTED |
+| 'Add to Wishlist' modal > 'Add to Wishlist' button | Select the wishlist to add the release to, add a priority and note (optional), and click 'Add to Wishlist' button | The film release is added to the specified wishlist | The film release is added to the specified wishlist | WORKS AS EXPECTED |
+| 'Add to Wishlist' modal > 'Cancel' button | Click the 'Cancel' button | The modal closes and the user is returned to release_details.html | The modal closes and the user is returned to release_details.html | WORKS AS EXPECTED |
+| User Reviews section, when the user is not logged in | Look for the 'Add / Edit Your Rating' form | The 'Add / Edit Your Rating' form is not shown beneath the ratings left by users, instead a message appears "Log in to add / edit your rating"; a link is provided to login | The 'Add / Edit Your Rating' form is not shown beneath the ratings left by users, instead a message appears "Log in to add / edit your rating"; a link is provided to login | WORKS AS EXPECTED |
+| User Reviews section, when there are reviews and user is not logged in | Look for the 'Delete Your Rating' button | The 'Delete Your Rating' button is not shown beneath the ratings left by users | The 'Delete Your Rating' button is not shown beneath the ratings left by users | WORKS AS EXPECTED |
+| User Reviews section, when there are reviews, the user is logged in and has left a rating and/or review | Look for the 'Delete Your Rating' button | The 'Delete Your Rating' button is shown beneath the ratings left by users | The 'Delete Your Rating' button is shown beneath the ratings left by users | WORKS AS EXPECTED |
+| User Reviews section, when a user is logged in and has left a rating and/or review > 'Delete Your Rating' button | Click the 'Delete Your Rating' button | The user's rating is deleted, and the average rating for the film release adjusted accordingly | The user's rating is deleted, and the average rating for the film release adjusted accordingly | WORKS AS EXPECTED |
+| User Reviews section, when a user is logged in and has left a rating and/or review | Update user rating and/or review (optional), and click 'Update' button | The user's rating and/or review is updated, and the average rating for the film release adjusted accordingly | The user's rating and/or review is updated, and the average rating for the film release adjusted accordingly | WORKS AS EXPECTED |
 | TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+
+"'`RELEASE NAME`' added to your wishlist."
 
 ### product_management.html
 
@@ -186,25 +201,24 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| 'Add' | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Image' input field | Click 'Choose file' and select an image | Image is loaded, ready to save | Image is loaded, ready to save | WORKS AS EXPECTED |
+| 'Caption' input field | Enter a caption for the image | Caption is ready to save | Caption is ready to save | WORKS AS EXPECTED |
+| 'Add Image' button | With both fields completed, click 'Add Image' button | Image is added with caption | Image is added with caption | WORKS AS EXPECTED |
+| 'Add Image' button | With no fields completed, click 'Add Image' button | Holding image is added with default "Image coming soon" picture, and no caption | Holding image is added with default "Image coming soon" picture, and no caption | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to product_management.html | User is directed to product_management.html | User is directed to product_management.html | WORKS AS EXPECTED |
+| Image > 'Delete' button | Click to delete the image | Pop-up message asks user "Are you sure you want to delete this image?". If 'OK' is clicked, the image is deleted. If 'Cancel' is clicked, the image is not deleted | Pop-up message asks user "Are you sure you want to delete this image?". If 'OK' is clicked, the image is deleted. If 'Cancel' is clicked, the image is not deleted | WORKS AS EXPECTED |
+| Image > 'Edit' button | Click to open edit_image.html | User is directed to edit_image.html | User is directed to edit_image.html | WORKS AS EXPECTED |
 
 ### edit_image.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Clear' checkbox | Select the 'Clear' checkbox, and click 'Save' | The selected image is removed, and the holding image is displayed instead | The selected image is removed, and the holding image is displayed instead | WORKS AS EXPECTED |
+| 'Image' input field | Click 'Choose file' and select an image | Image is loaded, ready to save | Image is loaded, ready to save | WORKS AS EXPECTED |
+| 'Caption' input field | Enter a caption for the image | Caption is ready to save | Caption is ready to save | WORKS AS EXPECTED |
+| 'Featured Image' checkbox | Select the 'Featured Image' checkbox, and click 'Save' | The selected image becomes the featured image for the film release, other images, that were previously set as featured image, are unset as featured image | The selected image becomes the featured image for the film release, other images, that were previously set as featured image, are unset as featured image | WORKS AS EXPECTED |
+| 'Save' button | Click to save changes | Changes are saved, user is returned to manage_images.html  | Changes are saved, user is returned to manage_images.html | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to manage_images.html | User is directed to manage_images.html | User is directed to manage_images.html | WORKS AS EXPECTED |
 
 ### discount_codes.html
 

@@ -130,9 +130,9 @@
             {# WISHLIST BUTTON AND MODAL (AUTHENTICATED USERS ONLY) #}
             <div class="text-center">
               {% if user.is_authenticated %}
-              <button class="btn btn-success mt-3 mb-4" data-bs-toggle="modal" data-bs-target="#wishlistModal"
+              <button class="btn btn-success text-uppercase mt-3 mb-4" data-bs-toggle="modal" data-bs-target="#wishlistModal"
                 aria-haspopup="dialog" aria-controls="wishlistModal" aria-expanded="false">
-                <i class="fas fa-heart"></i> Add to Wishlist
+                Add to Wishlist
               </button>
 
               <div class="modal fade" id="wishlistModal" tabindex="-1" aria-labelledby="wishlistModalLabel"
@@ -162,15 +162,15 @@
                           </select>
                         </div>
                         {% else %}
-                        <p class="mb-4 text-center">You don't have any wishlists, so a new one will be created automatically.</p>
+                        <p class="mb-4 text-center">You don't have any wishlists, so a new one called 'My Wishlist' will be created automatically.</p>
                         {% endif %}
 
                         <p class="mb-3">{{ wishlist_form.priority.label_tag }}<br><br>{{ wishlist_form.priority }}</p>
                         <p class="mb-3">{{ wishlist_form.notes.label_tag }}<br><br>{{ wishlist_form.notes }}</p>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-outline-black" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-success">Add to Wishlist</button>
+                        <button type="button" class="btn text-uppercase btn-outline-black" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn text-uppercase btn-success">Add to Wishlist</button>
                       </div>
                     </form>
                   </div>
@@ -238,7 +238,7 @@
                 onsubmit="return confirm('Are you sure you want to delete your rating?');"
                 aria-label="Delete your rating">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger btn-sm">Delete Your Rating</button>
+                <button type="submit" class="text-uppercase btn btn-danger btn-sm">Delete Your Rating</button>
               </form>
               {% endif %}
             </div>
@@ -250,14 +250,14 @@
               <form method="post" aria-label="Submit your rating">
                 {% csrf_token %}
                 {{ rating_form|crispy }}
-                <button type="submit" name="rating_submit" class="btn btn-success">
+                <button type="submit" name="rating_submit" class="text-uppercase btn btn-success">
                   {% if user_rating %}Update{% else %}Submit{% endif %}
                 </button>
               </form>
               {% else %}
               <p>
                 <a href="{% url 'account_login' %}?next={{ request.path }}" class="detail-text">Log in</a><span
-                  class="detail-text"> to add your rating.</span>
+                  class="detail-text"> to add or edit your rating.</span>
               </p>
               {% endif %}
             </div>

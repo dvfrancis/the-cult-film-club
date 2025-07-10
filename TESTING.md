@@ -152,38 +152,28 @@ The base.html page contains the header and footer that is shared by all pages th
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
 | 'Add New Release' accordion button | Click to reveal form to add a release | Add new release form is shown | Add new release form is shown | WORKS AS EXPECTED |
-| 'Title' input field | Enter a film title and click 'Add Release' | User is prompted to enter a release date | User is prompted to enter a release date | WORKS AS EXPECTED |
-| 'Release Date' input field | Enter a release date and click 'Add Release' | User is prompted to enter a price | User is prompted to enter a price | WORKS AS EXPECTED |
-| 'Director' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Description' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Genre' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Subgenre' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Resolution' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Special Features' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Edition' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Censor Status' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Packaging' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Copies Available' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Price' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Add New Release' form > 'Add Release' button | With valid information entered, click 'Add Release' | Film release is added to the database | Film release is added to the database | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-
+| 'Add New Release' form > 'Title' input field | With no other input fields completed, enter a film title and click 'Add Release' | User is prompted to enter a release date | User is prompted to enter a release date | WORKS AS EXPECTED |
+| 'Add New Release' form > 'Release Date' input field | With the 'Title' input field completed, enter a release date and click 'Add Release' | User is prompted to enter a price | User is prompted to enter a price | WORKS AS EXPECTED |
+| 'Add New Release' form > 'Price' input field | With the 'Release Date' input field completed, enter a price and click 'Add Release' | Film release is added to the database, and a Toast message is displayed - "Release added successfully", the 'Add new release' form is hidden | Film release is added to the database, and a Toast message is displayed - "Release added successfully", the 'Add new release' form is hidden | WORKS AS EXPECTED |
+| 'Add New Release' form > 'Add Release' button | With valid information entered, click 'Add Release' | Film release is added to the database, and a Toast message is displayed - "Release added successfully", the 'Add new release' form is hidden | Film release is added to the database, and a Toast message is displayed - "Release added successfully", the 'Add new release' form is hidden | WORKS AS EXPECTED |
+| Current Releases section > 'Edit' button | Click 'Edit' button to open edit_release.html  | User is directed to edit_release.html | User is directed to edit_release.html | WORKS AS EXPECTED |
+| Current Releases section > 'Delete' button | Click 'Delete' button to open delete_release.html  | User is directed to delete_release.html | User is directed to delete_release.html | WORKS AS EXPECTED |
+| Current Releases section > 'Manage Images' button | Click 'Manage Images' to open manage_images.html  | User is directed to manage_images.html | User is directed to manage_images.html | WORKS AS EXPECTED |
 
 ### edit_release.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Valid entry in 'Title' input field | Update the film title and click 'Save' | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Release Date' input field | Update the release date and click 'Save' | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Copies Available' input field | Update the number of copies available and click 'Save' | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | WORKS AS EXPECTED |
+| Valid entry in 'Price' input field | Update the price and click 'Save' | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | WORKS AS EXPECTED |
+| Invalid entry in 'Title' input field | Delete the film title and click 'Save' | User is prompted to enter a film title | User is prompted to enter a film title | WORKS AS EXPECTED |
+| Invalid entry in 'Release Date' input field | Delete the release date and click 'Save' | User is prompted to enter a release date | User is prompted to enter a release date | WORKS AS EXPECTED |
+| Invalid entry in 'Copies Available' input field | Delete the number of copies available and click 'Save' | User is prompted to enter the number of copies available | User is prompted to enter the number of copies available | WORKS AS EXPECTED |
+| Invalid entry in 'Price' input field | Delete the price and click 'Save' | User is prompted to enter a price | User is prompted to enter a price | WORKS AS EXPECTED |
+| 'Save' button | With valid information entered, click 'Save' | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | Film release is updated, user is directed to product_management.html, and a Toast message is displayed - "Release updated successfully" | WORKS AS EXPECTED |
+| 'Cancel' button | Click to return to product_management.html | User is directed to product_management.html | User is directed to product_management.html | WORKS AS EXPECTED |
 
 ### delete_release.html
 
@@ -196,7 +186,7 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Add' | TBC | TBC | TBC | WORKS AS EXPECTED |
 | TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 | TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
 | TBC | TBC | TBC | TBC | WORKS AS EXPECTED |

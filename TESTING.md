@@ -258,25 +258,31 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Valid entry in the quantity input field | Enter a number between the minimum and maximum available quantity into the quantity input field and click 'Add' | The quantity specified for that film release is added to the shopping cart | The quantity specified for that film release is added to the shopping cart | WORKS AS EXPECTED |
+| Quantity selector buttons at minimum available quantity | Click the '-' button | '-' button is disabled, '+' is enabled | '-' button is disabled, '+' is enabled | WORKS AS EXPECTED |
+| Quantity selector buttons at maximum available quantity | Click the '+' button | '-' button is enabled, '+' is disabled | '-' button is enabled, '+' is disabled | WORKS AS EXPECTED |
+| Quantity selector buttons at any quantity between minimum and maximum available quantity | Click either the '-' or '+' button | Both buttons are enabled | Both buttons are enabled | WORKS AS EXPECTED |
+| Out-of-date codeword in discount code input field | Enter out-of-date codeword into discount code input field  | The codeword is rejected with a Toast message "Invalid or expired discount code." | The codeword is rejected with a Toast message "Invalid or expired discount code." | WORKS AS EXPECTED |
+| Inactive codeword in discount code input field | Enter an inactive codeword into discount code input field  | The codeword is rejected with a Toast message "Invalid or expired discount code." | The codeword is rejected with a Toast message "Invalid or expired discount code." | WORKS AS EXPECTED |
+| Valid codeword in discount code input field | Enter a valid codeword into discount code input field  | The discount is applied to the cart, with the message "You save £XX.XX (XX% discount)" | The discount is applied to the cart, with the message "You save £XX.XX (XX% discount) | WORKS AS EXPECTED |
+| 'Add More Films' button | Click the 'Add More Films' button | The user is directed to releases.html | The user is directed to releases.html | WORKS AS EXPECTED |
+| 'Checkout' button | Click the 'Checkout' button | The user is directed to checkout.html | The user is directed to checkout.html | WORKS AS EXPECTED |
 
 ### checkout.html
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Full name' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Full name' input field | The user is prompted to complete the 'Full name' input field | WORKS AS EXPECTED |
+| 'Email' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Email' input field | The user is prompted to complete the 'Email' input field | WORKS AS EXPECTED |
+| 'Phone number' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Phone number' input field | The user is prompted to complete the 'Phone number' input field | WORKS AS EXPECTED |
+| 'Town or city' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Town or city' input field | The user is prompted to complete the 'Town or city' input field | WORKS AS EXPECTED |
+| 'Postcode' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Postcode' input field | The user is prompted to complete the 'Postcode' input field | WORKS AS EXPECTED |
+| 'Country' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Country' input field | The user is prompted to complete the 'Country' input field | WORKS AS EXPECTED |
+| 'Payment' input field | If no details are entered, and you click 'Purchase' | The user is prompted to complete the 'Payment' input field | The user is prompted to complete the 'Payment' input field | WORKS AS EXPECTED |
+| 'Adjust Cart' button | Click the 'Adjust Cart' button | The user is directed to cart.html | The user is directed to cart.html | WORKS AS EXPECTED |
+| 'Purchase' button | Without any user and payment information entered, click the 'Purchase' button | The user is prompted to complete the 'Full name' input field | The user is prompted to complete the 'Full name' input field | WORKS AS EXPECTED |
+| 'Purchase' button | With invalid user and payment information entered, click the 'Purchase' button | The user is prompted to re-enter the incorrect information | The user is prompted to re-enter the incorrect information | WORKS AS EXPECTED |
+| 'Purchase' button | With valid user and payment information entered, click the 'Purchase' button | A page overlay is displayed while the transaction is processed by Stripe, items in the basket have their stock level reduced by the number in the order, the user is directed to checkout_success.html, and a Toast message is displayed - "Order successfully processed! Your order number is XXXX. A confirmation email will be sent to XXXX." | A page overlay is displayed while the transaction is processed by Stripe, items in the basket have their stock level reduced by the number in the order, the user is directed to checkout_success.html, and a Toast message is displayed - "Order successfully processed! Your order number is XXXX. A confirmation email will be sent to XXXX." | WORKS AS EXPECTED |
 
 ### checkout_success.html
 
@@ -294,13 +300,31 @@ The base.html page contains the header and footer that is shared by all pages th
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
-| TBC | TBC | TBC | TBC | WORKS AS EXPECTED |
+| User profile picture section > 'Choose File' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| User profile picture section > 'Update Photo' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| User profile picture section > 'Delete Photo' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > address dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Label' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'First line' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Second line' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'City' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'County' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Postcode' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Country' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Phone number' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Default address' checkbox | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Add' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Update' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Address section > 'Delete' button | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Order history section > link to order | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Create / Delete Wishlists' > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Create' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Delete' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Add Wishlist Item' > 'Title' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Add Wishlist Item' > 'Notes' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Add Wishlist Item' > 'Priority' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
+| Wishlist section > 'Add' button | TBC | TBC | TBC | WORKS AS EXPECTED |
 
 ### about.html
 
@@ -405,7 +429,7 @@ There are no items that require testing on this page.
 
 ## Automatic Validation
 
-TBC
+Unfortunately, I ran out of time to be able to implement automated testing.
 
 ## User Story Validation
 

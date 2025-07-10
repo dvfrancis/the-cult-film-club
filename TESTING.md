@@ -152,8 +152,8 @@ The base.html page contains the header and footer that is shared by all pages th
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |
 | 'Add New Release' accordion button | Click to reveal form to add a release | Add new release form is shown | Add new release form is shown | WORKS AS EXPECTED |
-| 'Title' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| 'Release Date' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
+| 'Title' input field | Enter a film title and click 'Add Release' | User is prompted to enter a release date | User is prompted to enter a release date | WORKS AS EXPECTED |
+| 'Release Date' input field | Enter a release date and click 'Add Release' | User is prompted to enter a price | User is prompted to enter a price | WORKS AS EXPECTED |
 | 'Director' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | 'Description' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
 | 'Genre' input field | TBC | TBC | TBC | WORKS AS EXPECTED |

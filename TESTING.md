@@ -316,18 +316,13 @@ The base.html page contains the header and footer that is shared by all pages th
 | Order history section > link to order | Click the order link | User is directed to order_detail.html | User is directed to order_detail.html | WORKS AS EXPECTED |
 | Wishlist section > 'Select wishlist' dropdown | Click to view wishlists | Available wishlists are shown | Available wishlists are shown | WORKS AS EXPECTED |
 | Wishlist section > 'Select wishlist' dropdown > wishlist | Click to select a wishlist | Wishlist items are shown | Wishlist items are shown | WORKS AS EXPECTED |
+| Wishlist section > 'Delete' button | Click 'Delete' to delete the selected wishlist | User is prompted "Delete this wishlist and all its items?", and can click 'OK' to do so, or 'Cancel' not to. If deleted, a Toast is displayed - "Wishlist deleted" | User is prompted "Delete this wishlist and all its items?", and can click 'OK' to do so, or 'Cancel' not to. If deleted, a Toast is displayed - "Wishlist deleted" | WORKS AS EXPECTED |
 | Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Edit' button | Click to edit a wishlist item | The wishlist item is loaded into the 'Add Wishlist Item' form for editing | The wishlist item is loaded into the 'Add Wishlist Item' form for editing | WORKS AS EXPECTED |
 | Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Buy' button | Click to move a wishlist item to the shopping cart | The wishlist item is added to the shopping cart, removed from the wishlist, and a shopping cart Toast notification displayed | The wishlist item is added to the shopping cart, removed from the wishlist, and a shopping cart Toast notification displayed | WORKS AS EXPECTED |
-| Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Remove' button | Click to remove a wishlist item from the wishlist | The wishlist item is removed from the wishlist | The wishlist item is added to the shopping cart, and then removed from the wishlist | WORKS AS EXPECTED |
-| Wishlist section > 'Delete' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Create / Delete Wishlists' > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Create' button > 'New Wishlist Name' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Add Wishlist Item' > 'Title' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Add Wishlist Item' > 'Notes' input field | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Add Wishlist Item' > 'Priority' dropdown | TBC | TBC | TBC | WORKS AS EXPECTED |
-| Wishlist section > 'Add' button | TBC | TBC | TBC | WORKS AS EXPECTED |
-
-| 'Image' input field |  | WORKS AS EXPECTED |
+| Wishlist section > 'Select wishlist' dropdown > wishlist > wishlist item > 'Remove' button | Click to remove a wishlist item from the wishlist | The wishlist item is removed from the wishlist, and a Toast message displayed - ""`WISHLIST ITEM`" has been removed from your wishlist" | The wishlist item is removed from the wishlist, and a Toast message displayed - ""`WISHLIST ITEM`" has been removed from your wishlist" | WORKS AS EXPECTED |
+| Wishlist section > 'Create / Delete Wishlists' > 'New Wishlist Name' input field | Add a name for a wishlist and click 'Create' | The wishlist is created and a Toast displayed - "Wishlist "`WISHLIST NAME`" created." | The wishlist is created and a Toast displayed - "Wishlist "`WISHLIST NAME`" created." | WORKS AS EXPECTED |
+| Wishlist section > 'Add Wishlist Item' > 'Title' dropdown | Click to view all available film releases | A list of all available film releases is shown | A list of all available film releases is shown | WORKS AS EXPECTED |
+| Wishlist section > 'Add' button | When the 'Title' and 'Priority' has been selected, click the 'Add' button | The film release is added to the selected wishlist, and a Toast message displayed - ""`WISHLIST ITEM`" has been added to your wishlist" | The film release is added to the selected wishlist, and a Toast message displayed - ""`WISHLIST ITEM`" has been added to your wishlist" | WORKS AS EXPECTED |
 
 ### about.html
 

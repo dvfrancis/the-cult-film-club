@@ -40,7 +40,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
         if wishlist else []
     )
 
-    # === Handle creating wishlist ===
+    # Handle creating wishlist
     if 'create_wishlist' in request.POST:
         name = request.POST.get('wishlist_name', '').strip()
         if not name:
@@ -57,7 +57,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
                 messages.success(request, f'Wishlist "{name}" created.')
         return redirect('user_profile')
 
-    # === Delete wishlist ===
+    # Delete wishlist
     if 'delete_wishlist' in request.POST:
         wishlist_id = request.POST.get("wishlist")
         wishlist_to_delete = wishlists.filter(id=wishlist_id).first()
@@ -68,7 +68,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
             messages.error(request, "Wishlist not found.")
         return redirect('user_profile')
 
-    # === Delete profile photo ===
+    # Delete profile photo
     if 'delete_photo' in request.POST:
         if (
             user_profile.photograph and
@@ -82,7 +82,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
             messages.info(request, "No photo to delete")
         return redirect('user_profile')
 
-    # === Delete account ===
+    # Delete account
     if 'delete_account' in request.POST:
         user = request.user
         logout(request)  # Logs out user immediately
@@ -96,7 +96,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
         )
         return redirect('home')
 
-    # === Default wishlist item form (for add) ===
+    # Default wishlist item form (for add)
     add_form = WishlistItemForm()
     if wishlist:
         add_form.fields['title'].queryset = Releases.objects.exclude(
@@ -105,7 +105,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
     else:
         add_form.fields['title'].queryset = Releases.objects.all()
 
-    # === Handle editing wishlist item ===
+    # Handle editing wishlist item
     edit_item_id = (
         request.GET.get('edit_item') or request.POST.get('edit_item')
     )
@@ -156,7 +156,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
         }
         return render(request, 'account/account.html', context)
 
-    # === Handle other POST actions ===
+    # Handle other POST actions
     if request.method == 'POST':
         # Profile photo update
         if 'update_photo' in request.POST:
@@ -255,7 +255,7 @@ def user_profile(request: HttpRequest) -> HttpResponse:
                 )
             return redirect(f"{request.path}?wishlist={wishlist.id}")
 
-    # === Address form preparation ===
+    # Address form preparation
     selected_address_id = (
         request.GET.get('address') or request.POST.get('address')
     )

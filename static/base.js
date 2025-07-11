@@ -55,7 +55,7 @@ function pollForOrderAndRedirectByPid(pid, attempts = 0, maxAttempts = 30) {
             } else if (attempts < maxAttempts) {
                 setTimeout(function () {
                     pollForOrderAndRedirectByPid(pid, attempts + 1, maxAttempts);
-                }, 2000); // 2 seconds
+                }, 2000);
             } else {
                 alert('Order processing is taking longer than expected. Please check your email for confirmation.');
                 window.location.href = '/checkout/';

@@ -11,8 +11,6 @@ class AccountConfig(AppConfig):
     default_auto_field = "django.db.models.BigAutoField"
     name = "the_cult_film_club.apps.account"
 
-    # Custom label used to avoid app name conflicts in complex projects
     label = "the_cult_film_club_account"
 
-    # Display name for the app in the Django admin
     verbose_name = "User Profiles"

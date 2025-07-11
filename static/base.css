@@ -233,7 +233,6 @@ footer a.active {
     color: #FFF;
 }
 
-/* Add to Cart button on release_details.html */
 .add-to-cart-btn {
     font-size: 1.1rem;
     padding: 0 1.2rem;
@@ -301,7 +300,7 @@ footer a:not(.no-highlight):focus {
 }
 
 .footer-nav-links {
-  min-width: 400px; /* adjust as needed */
+  min-width: 400px;
 }
 
 .footer-social-icons i {
@@ -420,11 +419,11 @@ input[type="number"] {
     padding: 0.5em;
 }
 
-/* Tooltip for release_details.html quantity button validation */
+/* Tooltip for quantity button validation */
 .qty-tooltip {
     position: absolute;
-    background: #e1e1e3;
-    color: #080808;
+    background: #ca0000;
+    color: #FFF;
     padding: 2px 8px;
     border-radius: 4px;
     font-size: 0.9em;
@@ -441,7 +440,6 @@ input[type="number"] {
 }
 
 /* Search box placeholder text colour */
-
 input[name='q']::placeholder {
     color: #080808 !important;
 }
@@ -476,7 +474,7 @@ input::placeholder {
     object-fit: scale-down;
 }
 
-/* Optional: Make card titles a consistent height for alignment */
+/* Make card titles a consistent height for alignment */
 .card-title {
     min-height: 3em;
 }
@@ -848,7 +846,6 @@ input[type="password"]:first-of-type {
 }
 
 /* Allauth */
-
 
 .allauth-form-inner-content a {
     color: #080808;

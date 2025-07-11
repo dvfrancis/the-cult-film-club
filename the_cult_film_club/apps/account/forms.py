@@ -12,7 +12,6 @@ class CustomResetPasswordForm(ResetPasswordForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Add proper labels and attributes
         self.fields['email'].label = 'Email Address'
         self.fields['email'].widget.attrs.update({
             'aria-label': 'Email Address',
@@ -25,7 +24,6 @@ class CustomLoginForm(LoginForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Add proper labels and attributes
         self.fields['login'].label = 'Username or Email'
         self.fields['login'].widget.attrs.update({
             'aria-label': 'Username or Email',
@@ -130,7 +128,6 @@ class AccountSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-        # Add proper labels and attributes to inherited fields
         self.fields['email'].label = 'Email Address'
         self.fields['email'].widget.attrs.update(
             {'aria-label': 'Email Address'}

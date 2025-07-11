@@ -417,7 +417,7 @@ def edit_image(request, image_id):
     """ Edit an existing image associated with a release.
     """
     image = get_object_or_404(Images, id=image_id)
-    release = image.title  # This is your Releases instance
+    release = image.title
 
     if request.method == 'POST':
         form = ImageForm(request.POST, request.FILES, instance=image)

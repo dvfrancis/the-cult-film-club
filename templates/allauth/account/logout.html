@@ -17,8 +17,8 @@
         <form method="post" action="{% url 'account_logout' %}">
             {% csrf_token %}
             {{ redirect_field }}
-            <button type="submit" class="btn btn-outline-black w-100 mt-3">{% trans 'Sign Out' %}</button>
-            <a href="javascript:history.back()" class="btn btn-outline-black w-100 mt-2">{% trans 'Cancel' %}</a>
+            <button type="submit" class="btn text-uppercase w-100 mt-3">{% trans 'Sign Out' %}</button>
+            <a href="javascript:history.back()" class="btn btn-outline-black text-uppercase w-100 mt-2">{% trans 'Cancel' %}</a>
         </form>
     </div>
 </div>

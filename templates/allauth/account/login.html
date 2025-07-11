@@ -31,7 +31,7 @@
             {% csrf_token %}
             {{ form|crispy }}
             {{ redirect_field }}
-            <button type="submit" class="btn black-btn w-100 mb-3 mt-3">{% trans "Sign In" %}</button>
+            <button type="submit" class="btn text-uppercase w-100 mb-3 mt-3">{% trans "Sign In" %}</button>
         </form>
         {% endif %}
         {% if SOCIALACCOUNT_ENABLED %}

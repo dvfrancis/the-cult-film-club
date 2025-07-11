@@ -46,7 +46,7 @@
 
 ### Permission-dependent pages
 
-The following pages are only accessible by a user with superuser privileges. The super user account for this project is called `su`, and the user account is `dgreen`. Some of the links shown below relate to specific film releases but would be in the same format for any release, just with the relevant primary key reference at the end.
+The following pages should not be available to general website users, and are only accessible by an account with superuser privileges. For this project, this account is called `su` (and a non-privileged account is `dgreen`). Some of the links shown below relate to specific film releases but would be in the same format for any release, just with the relevant primary key reference at the end.
 
 | ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
 | --- | --- | --- | --- | --- |

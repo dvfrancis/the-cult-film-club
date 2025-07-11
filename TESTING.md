@@ -676,6 +676,8 @@ Click here to view the [Responsiveness report](documentation/responsiveness/resp
 
 [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/) was used to assess both mobile and desktop performance.
 
+Some of the pages are suffering a performance hit because of external services provided by Cloudinary and Stripe. In particular, the Strip cookie appears to have a detrmimental effect across the entire site and I have no control over this. Also, although I've specified that all images served by Cloudinary are served over HTTPS, Cloudinary continues to serve them over HTTP; this results in an unfixable console error in the browser.
+
 Click here to view the [performance report](documentation/performance/performance-report.pdf)
 
 ## Bugs

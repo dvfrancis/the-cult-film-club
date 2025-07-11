@@ -44,6 +44,29 @@
 
 ## Manual Validation
 
+### Permission-dependent pages
+
+The following pages are only accessible by a user with superuser privileges. The super user account for this project is called `su`, and the user account is `dgreen`. Some of the links shown below relate to specific film releases but would be in the same format for any release, just with the relevant primary key reference at the end.
+
+| ITEM | PROCESS | EXPECTED RESULT | ACTUAL RESULT | STATUS |
+| --- | --- | --- | --- | --- |
+| Product management | Login as `dgreen` and navigate to `.../releases/manage` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Product management | Login as `su` and navigate to `.../releases/manage` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Edit a release | Login as `dgreen` and navigate to `.../releases/edit/1` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Edit a release | Login as `su` and navigate to `.../releases/edit/1` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Delete a release | Login as `dgreen` and navigate to `.../releases/delete/1` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Delete a release | Login as `su` and navigate to `.../releases/delete/1` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Image management | Login as `dgreen` and navigate to `.../releases/images/1` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Image management | Login as `su` and navigate to `.../releases/images/1` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Edit an image | Login as `dgreen` and navigate to `.../releases/images/158/edit` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Edit an image | Login as `su` and navigate to `.../releases/images/158/edit` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Discount code management | Login as `dgreen` and navigate to `.../checkout/discount-codes` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Discount code management | Login as `su` and navigate to `.../checkout/discount-codes` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Edit a discount code | Login as `dgreen` and navigate to `.../checkout/discount-codes/edit/5` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Edit a discount code | Login as `su` and navigate to `.../checkout/discount-codes/edit/5` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+| Delete a discount code | Login as `dgreen` and navigate to `.../checkout/discount-codes/delete/5` | User is directed to permission_denied.html | User is directed to permission_denied.html | WORKS AS EXPECTED |
+| Delete a discount code | Login as `su` and navigate to `.../checkout/discount-codes/delete/5` | User can successfully access the page | User can successfully access the page | WORKS AS EXPECTED |
+
 The base.html page contains the header and footer that is shared by all pages throughout the site. I've added the manual validation for those items below so they need not be repeated across every single page detailed in this section. 
 
 ### base.html

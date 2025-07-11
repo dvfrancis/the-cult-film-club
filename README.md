@@ -38,7 +38,7 @@ With the rise of streaming, countless cult classics remain locked away, inaccess
 
 - **Comprehensive Product Catalogue** – a fully searchable database of cult films with detailed descriptions, pricing, and availability.  
 - **User Accounts & Authentication** – secure user registration, customer order, and address management.  
-- **Streamlined Shopping Experience** – basket management, discount codes, wish-list features, and free shipping for large orders.  
+- **Streamlined Shopping Experience** – cart management, discount codes, wish-list features, and free shipping for large orders.  
 - **Robust Product Management** – inventory management, sales tracking, and seamless order fulfilment.  
 - **Community Connection** – share your collection and discoveries with fellow fans across social media.  
 
@@ -172,12 +172,12 @@ The MoSCoW project split was as follows:
 
 | Type | Total | % Total |
 | --- | --- | --- |
-| Must Have | 55 | 60% |
-| Should Have | 18 | 20% |
-| Could Have | 3 | 3% |
+| Must Have | 54 | 57% |
+| Should Have | 19 | 20% |
+| Could Have | 4| 4% |
 | Won't Have | 5 | 5% |
-| Uncategorised | 11 | 12% |
-| TOTALS | 92 | 100% |
+| Uncategorised | 13 | 14% |
+| TOTALS | 95| 100% |
 
 <details>
   <summary>Click to view a screenshot of a project task</summary>
@@ -203,7 +203,6 @@ The MoSCoW project split was as follows:
 
 - Discover and explore cult films via a curated collection, searchable by keyword / genre / format, learning about individual films through their detailed item information.
 - Build a personal collection through purchase and by maintaining a wishlist that can be used to track special editions and other releases.
-- Maximise opportunities to earn rewards by making regular purchases and redeeming accumulated reward points.
 - Connect with other film enthusiasts by sharing film information on social media, and discovering hidden gems based on user ratings and reviews.
 - Shop with confidence via a hassle-free checkout experience utilising a secure, reliable payment service.
 
@@ -211,7 +210,7 @@ The MoSCoW project split was as follows:
 
 - Target audience may:
     - Be film enthusiasts (aged 18+) who appreciate unconventional, offbeat, and genre-defining films.
-    - Include users who identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genre, person driven by nostalgia, movie buff, social sharer, or member of an alternative subculture communities.
+    - Include users who identify as a cult cinema enthusiast, serious / casual collector, fan of a specific genre, person driven by nostalgia, movie buff, social sharer, member of an alternative subculture communities.
     - Have an interest in rare or limited edition releases.
     - Value physical ownership over digital streaming.
     - Engage in movie discussions, reviews, and fan theories.
@@ -221,7 +220,7 @@ The MoSCoW project split was as follows:
 - A carefully curated, wide selection of authentic cult films, including rare editions.
 - A smooth, engaging, and visually appealing browsing experience with intuitive navigation and comprehensive search / filtering functionality.
 - Comprehensive and engaging product descriptions.
-- Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout, while being able to easily redeem and track loyalty points balance.
+- Secure and hassle-free shopping experience with orders processed efficiently via a secure checkout.
 - High-quality physical media, in a wide variety of formats, which are well-packaged (with a focus on film preservation), and include bonus content, and have collectible value.
 - Community engagement and social features allow users to share discoveries, recommend, and discuss films with others.
 - Reliable customer service through responsive support, and efficient handling of returns and refunds.
@@ -251,9 +250,9 @@ Returning visitors to The Cult Film Club will likely have already explored the s
     
 ##### Frequent visitor goals
 
-Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and likely see the site as their go-to destination for cult cinema:
+Frequent visitors to The Cult Film Club will have more refined goals than first-time or returning visitors. These users are highly engaged and probably see the site as their go-to destination for cult cinema:
     
-- "Are there any special, or limited, editions available?"
+- "Are there any special, or limited editions available?"
 - "How many copies are available of a particular film?"
 - "Does my order qualify for free shipping?"
 - "Do you have a website newsletter I can join?"
@@ -262,7 +261,7 @@ Frequent visitors to The Cult Film Club will have more refined goals than first-
 
 #### User 1
 
-Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He owns a large collection of films and wants to better track upcoming releases and items on his wish-list:
+Male, aged 48, life-long film enthusiast with a deep passion for cult cinema. He owns a large collection of films and wants to better track upcoming releases and items on his wishlist:
 
 “As a dedicated collector, I want to find rare and exclusive releases so that I can expand my collection with unique items.”
 
@@ -340,7 +339,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 #### Existing Features
 
-- All screenshots (unless stated otherwise) are from the website's desktop version.
+- All screenshots (unless stated otherwise) are from the website's desktop version. There may be some slight stylistic changes compared with the live site, due to alterations made while the site was being documented (which has taken several weeks to complete).
 
 - General
 
@@ -383,20 +382,20 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
             - Price (High-Low) - sorts films from highest to lowest price.
             - Copies (Low-High) - sorts films by the number of available copies (low-high).
             - Copies (High-Low) - sorts films by the number of available copies (high-low).
-            - Director (A-Z) - sorts films alphabetically by director's name.
-            - Director (Z-A) - sorts films in reverse alphabetical order by director.
+            - Director (A-Z) - sorts films alphabetically by director's last name.
+            - Director (Z-A) - sorts films in reverse alphabetical order by director's last name.
         - *Account* - access account settings and manage user profile:
             - **When logged out**:
                 - Register - create a new account to use all aspects of the site.
                 - Login - sign in to access user account.
             - **When logged in**:
                 - My profile - view and edit user profile details, orders, and wishlist.
-                - Logout - sign out of user account for privacy and security.
-            - **When a superuser is logged in**:
+                - Logout - sign out of user account.
+            - **When an account with superuser privileges is logged in**:
                 - Product management - add, edit, and delete products available on the site.
                 - Discount codes - add, edit, and delete user discount codes.
                 - My profile - view and edit user profile details, orders, and wishlist.
-                - Logout - sign out of user account for privacy and security.
+                - Logout - sign out of user account.
 
     <details>
     <summary>Click to view the navigation bar's Explore submenu</summary>
@@ -417,9 +416,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     </details>
     
     <details>
-    <summary>Click to view the navigation bar when a superuser is logged in</summary>
+    <summary>Click to view the navigation bar when an account with superuser privileges is logged in</summary>
             
-    ![Navigation bar when a superuser is logged in](assets/images/nav-bar-when-superuser-logged-in.webp)
+    ![Navigation bar when an account with superuser privileges is logged in](assets/images/nav-bar-when-superuser-logged-in.webp)
     </details>
 
 - Footer
@@ -501,11 +500,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 - Each release card shows:
     - Featured image.
     - Title.
-    - Site user ratings / reviews.
+    - Average user rating.
     - Director.
     - Year of release.
-    - In Stock / Low Stock / Out of Stock indicators (that are colour coded green, yellow, and red, respectively)
     - Price
+    - In Stock / Low Stock / Out of Stock indicators (that are colour coded green, yellow, and red, respectively)
 - There is also breadcrumb navigation to allow quick navigation between the different pages of film releases.
 
 <details>
@@ -521,17 +520,17 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - All release images, with the featured image shown first.
     - Film title.
     - Genre(s) and Subgenre(s)
-    - Overall user rating, calculated from all ratings submitted by website users.
+    - Average user rating, calculated from all ratings submitted by website users.
     - Price.
-    - Total number of copies available (which is colour coded as on the film releases page). Stock levels are adjusted automatically upon successful checkout.
-    - Quantity to add does not allow a zero to be entered (and defaults to one copy). If a user attempts to purchase more copies than are available it defaults to the maximum number of copies available.
+    - Total number of copies available (which is colour coded). Stock levels are adjusted automatically upon successful checkout.
+    - Quantity to add does not allow a zero to be entered (and defaults to one copy, if a zero is entered). If a user attempts to purchase more copies than are available it defaults to the maximum number of copies available.
     - Description.
     - Special features.
     - Production details.
     - User reviews.
     - When the user is logged in:
-        - Add / adjust user rating.
-        - Add to wishlist button.
+        - Add / Edit user rating.
+        - Add to wishlist button (shown beneath the quantity controls).
 
 <details>
 <summary>Click to view the film release details page (when a user is logged in)</summary>
@@ -547,7 +546,8 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### Product Management (product_management.html)
 
-- All existing film releases are shown on this page, with associated buttons linking to the edit_release.html, delete_release,html, and `manage_images.html` pages.
+- Only users with superuser privileges are able to access this, and associated pages.
+- All existing film releases are shown on this page, with associated buttons linking to the `edit_release.html`, `delete_release.html`, and `manage_images.html` pages.
 - New film releases can be added via the 'Add New Release' accordion button on this page.
 - Images associated with film releases are managed separately via the `manage_images.html` page
 
@@ -651,8 +651,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### Shopping Cart (cart.html)
 
+- This page will only be shown once a user is logged into their account.
 - The cart shows items selected for purchase, with the ability to increase / decrease the number of items or remove it entirely from the cart.
-- Validation on the quantity field prevents users entering a zero (defaults to one copy) or trying to buy more copies than are available (defaults to the maximum number of copies available).
+- Validation on the quantity field prevents users entering a zero (it defaults to one copy, if a zero is entered) or trying to buy more copies than are available (when it defaults to the maximum number of copies available).
 - When removing an item, if it’s the last item in the cart, the user is automatically redirected to the home page.
 - The shopping cart shows order item(s):
     - Image.
@@ -662,11 +663,11 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - Subtotal.
     - Delivery cost.
     - Total.
-    - How much more needs to be sent to qualify for free delivery
+    - How much more needs to be purchased to qualify for free delivery
 - Users can also add a valid, active discount code to the order, to receive the associated discount on their order.
 - Webhooks are used to process customer orders.
-- The shopping cart is cleared if the user logs out before checkout, or if the order is successful.
-- On the mobile view of the shopping cart, the film release image is not displayed - to save space.
+- The shopping cart is cleared if the user logs out before checkout, or when the order is successful.
+- On the mobile view of the shopping cart, the film release image is not displayed, to save space.
 
 <details>
 <summary>Click to view the shopping cart page without any items</summary>
@@ -688,7 +689,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ##### Checkout (checkout.html)
 
-- The checkout page is only displayed for logged in users (and a user is prompted to login, if not already, when moving to checkout on an order).
+- The checkout page is only displayed for logged in users (and a logged out user is prompted to login, when moving to checkout on an order).
 - It shows an order summary, including:
     - Image.
     - Title.
@@ -732,9 +733,9 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - Item ordered.
     - Full name.
     - Full address.
-    - Order total.
-    - Delivery charge (with any discount / discount code).
-    - Grand total.
+    - Subtotal.
+    - Delivery cost (with any discount).
+    - Total cost.
 
 <details>
 <summary>Click to view the checkout success page</summary>
@@ -750,10 +751,10 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - Name.
     - Email address.
     - Phone number.
-    - Address.
-    - Item(s).
+    - Order delivery address.
+    - Item(s) ordered.
     - Subtotal.
-    - Delivery cost.
+    - Delivery cost (with any discount).
     - Total cost.
 
 <details>
@@ -773,7 +774,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
     - Allows users to add multiple addresses, choose between them, and set one as the default (which will appear as the address when ordering an item).
     - Users can also update or delete any or all addresses.
 - Order history:
-    - Displays a list of previous orders with a link to 'order_details.html' that shows the specific order information.
+    - Displays a list of previous orders with a link to order_details.html that shows the specific order information.
 - Wishlist:
     - Users can create as many wishlists as they require, and these can be selected via a drop-down menu.
     - Each wishlist shows a list of releases the user has added to that wishlist.
@@ -855,7 +856,7 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 ###### Login (login.html)
 
-- Allows a user to login to the website and access their account, as well as allow them to use all the features of the site. 
+- Allows a user to login to the website, access their account, and use all site features. 
 
 <details>
 <summary>Click to view the login page</summary>
@@ -1210,6 +1211,7 @@ The restrained use of colour and simple visual elements create a focused, user-f
     - Orange (#FF7900)
     - Amber (#FFB700) 
     - Platinum (#E1E1E3)
+- Some button colours are taken from Bootstrap's default button classes.
 
 #### Typography
 
@@ -1482,7 +1484,6 @@ All other material on the site was created independently by myself to provide a 
 | [JSHint](https://jshint.com/) | Static code analysis tool for identifying errors and potential problems in JavaScript. |
 | [Code Institute Python Linter](https://pep8ci.herokuapp.com/) | Online tool for checking Python code style and adherence to PEP 8 guidelines. |
 | [Web Accessibility Evaluation Tool (WAVE)](https://wave.webaim.org/) | Tool for evaluating website accessibility compliance and identifying issues. |
-| [Django Testing Tutorial](https://www.youtube.com/playlist?list=PLbpAWbHbi5rMF2j5n6imm0enrSD9eQUaM) | How to test Django code |
 
 #### Responsive Design & Layout
 
@@ -1633,7 +1634,7 @@ You will now have full access to manage users, products, content, and more via t
 
 #### Deploying Remotely
 
-Follow these steps to deploy your Django project to [Heroku](https://www.heroku.com/):
+Follow these steps to deploy your Django project to Heroku:
 
 ##### 1. Push Changes to GitHub
 

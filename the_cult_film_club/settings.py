@@ -261,7 +261,14 @@ WSGI_APPLICATION = "the_cult_film_club.wsgi.application"
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Database configuration (using dj_database_url for parsing DATABASE_URL)
-DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+# DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+DATABASES = {
+    'default': dj_database_url.config(
+        default=os.environ.get('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=True
+    )
+}
 
 # Password validation settings
 AUTH_PASSWORD_VALIDATORS = [

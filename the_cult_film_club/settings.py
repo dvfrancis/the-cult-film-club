@@ -10,14 +10,18 @@ if os.path.isfile("env.py"):
 # Debug mode (should be False in production)
 DEBUG = False
 
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Email backend configuration for sending emails via Fastmail SMTP
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.fastmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
-DEFAULT_FROM_EMAIL = "tcfc@dominicfrancis.co.uk"
+if not DEBUG:
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+    EMAIL_HOST = "smtp.fastmail.com"
+    EMAIL_PORT = 587
+    EMAIL_USE_TLS = True
+    EMAIL_HOST_USER = os.getenv("EMAIL_USER")
+    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
+    DEFAULT_FROM_EMAIL = "tcfc@dominicfrancis.co.uk"
 
 # Custom user signup form for django-allauth
 ACCOUNT_FORMS = {
@@ -55,10 +59,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
 # CSRF trusted origins for security
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1:8000", "https://*.herokuapp.com"]
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1:8000/",
+    "https://*.herokuapp.com",
+    "https://*.railway.app",
+    "https://*.vercel.app",
+]
 
 # Allowed hosts for this Django site
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".herokuapp.com"]
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app', '.vercel.app']
 
 # Installed apps (Django, third-party, and project apps)
 INSTALLED_APPS = [

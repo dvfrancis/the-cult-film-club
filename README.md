@@ -62,7 +62,7 @@ Welcome to **The Cult Film Club**, where films find their forever home.
 
 ### Site Link
 
-[live site]: https://the-cult-film-club-82f85068dd71.herokuapp.com
+[live site]: https://web-production-bd02.up.railway.app
 Heroku is the host of the [live site].
 
 ---

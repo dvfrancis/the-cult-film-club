@@ -2,10 +2,12 @@ from pathlib import Path
 import os
 import dj_database_url
 from decimal import Decimal
+from dotenv import load_dotenv
 
-# Load environment variables from env.py if present (for local development)
-if os.path.isfile("env.py"):
-    import env  # noqa
+if os.path.isfile(".env"):
+    load_dotenv()
+
+SITE_ID = 1
 
 # Debug mode (should be False in production)
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'

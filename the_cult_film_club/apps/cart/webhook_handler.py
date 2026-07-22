@@ -10,7 +10,10 @@ from the_cult_film_club.apps.releases.models import Releases
 
 import stripe
 import json
+import logging
 from decimal import Decimal
+
+logger = logging.getLogger(__name__)
 
 
 class StripeWH_Handler:
@@ -39,7 +42,17 @@ class StripeWH_Handler:
                 'email': settings.DEFAULT_FROM_EMAIL,
             }
         )
-        send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [cust_email])
+        # A mail failure must not fail the webhook. Returning a 500 to Stripe
+        # makes it retry the delivery, which would send the customer duplicate
+        # confirmations once mail recovered - and the order itself is already
+        # safely recorded by this point.
+        try:
+            send_mail(subject, body, settings.DEFAULT_FROM_EMAIL, [cust_email])
+        except Exception:
+            logger.exception(
+                "Failed to send confirmation email for order %s",
+                order.order_number,
+            )
 
     def handle_event(self, event):
         """
@@ -94,6 +107,12 @@ class StripeWH_Handler:
         # Check if the order already exists (idempotency)
         try:
             order = Order.objects.get(stripe_pid=pid)
+            # This is the normal path: the checkout view creates the order, so
+            # by the time the webhook arrives it is already here. The
+            # confirmation has to be sent from this branch too, otherwise a
+            # customer only ever gets one when checkout failed to complete and
+            # the webhook had to create the order below.
+            self._send_confirmation_email(order)
             return HttpResponse(
                 content=(
                     f'Webhook received: {event["type"]} | '

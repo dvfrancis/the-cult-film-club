@@ -12,17 +12,24 @@ SITE_ID = 1
 # Debug mode (should be False in production)
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
-# Email backend configuration for sending emails via Fastmail SMTP
+# Email is sent through Amazon SES, which has dominicfrancis.co.uk verified
+# with DKIM, so any address on the domain can send.
+#
+# This replaced Fastmail SMTP, which rejected every message with
+# "551 5.7.1 Not authorised to send from this header address" - the From
+# address was not a configured sending identity on that account. Because the
+# confirmation email was previously only sent on a path that almost never ran,
+# the rejection went unnoticed.
+#
+# No credentials are configured: django-ses uses boto3, which picks up the
+# EC2 instance role. The role may only send as the address below.
+DEFAULT_FROM_EMAIL = "tcfc@dominicfrancis.co.uk"
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 if not DEBUG:
-    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-    EMAIL_HOST = "smtp.fastmail.com"
-    EMAIL_PORT = 587
-    EMAIL_USE_TLS = True
-    EMAIL_HOST_USER = os.getenv("EMAIL_USER")
-    EMAIL_HOST_PASSWORD = os.getenv("EMAIL_PASSWORD")
-    DEFAULT_FROM_EMAIL = "tcfc@dominicfrancis.co.uk"
+    EMAIL_BACKEND = "django_ses.SESBackend"
+    AWS_SES_REGION_NAME = "eu-west-2"
+    AWS_SES_REGION_ENDPOINT = "email.eu-west-2.amazonaws.com"
 
 # Custom user signup form for django-allauth
 ACCOUNT_FORMS = {

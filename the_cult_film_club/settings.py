@@ -30,6 +30,12 @@ if not DEBUG:
     EMAIL_BACKEND = "django_ses.SESBackend"
     AWS_SES_REGION_NAME = "eu-west-2"
     AWS_SES_REGION_ENDPOINT = "email.eu-west-2.amazonaws.com"
+    # django-ses throttles itself by calling ses:GetSendQuota before every
+    # send. That action cannot be scoped to a resource, so allowing it would
+    # mean granting it account-wide. This site sends a handful of messages a
+    # day against a 14/second limit that SES enforces server-side regardless,
+    # so the client-side throttle buys nothing worth widening IAM for.
+    AWS_SES_AUTO_THROTTLE = None
 
 # Custom user signup form for django-allauth
 ACCOUNT_FORMS = {

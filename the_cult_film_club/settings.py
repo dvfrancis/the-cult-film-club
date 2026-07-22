@@ -59,16 +59,25 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Secret key for Django (should be kept secret in production)
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
-# CSRF trusted origins for security
+# CSRF trusted origins for security. Read from the environment as a
+# comma-separated list so the same code runs on Railway and on the AWS box;
+# the default is the value that was previously hardcoded here, so leaving the
+# variable unset keeps the existing deployment unchanged.
 CSRF_TRUSTED_ORIGINS = [
-    "http://127.0.0.1:8000/",
-    "https://*.herokuapp.com",
-    "https://*.railway.app",
-    "https://*.vercel.app",
+    o.strip() for o in os.environ.get(
+        "CSRF_TRUSTED_ORIGINS",
+        "http://127.0.0.1:8000/,https://*.herokuapp.com,"
+        "https://*.railway.app,https://*.vercel.app",
+    ).split(",") if o.strip()
 ]
 
-# Allowed hosts for this Django site
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.railway.app', '.vercel.app']
+# Allowed hosts for this Django site, same environment-driven approach.
+ALLOWED_HOSTS = [
+    h.strip() for h in os.environ.get(
+        "ALLOWED_HOSTS",
+        "localhost,127.0.0.1,.railway.app,.vercel.app",
+    ).split(",") if h.strip()
+]
 
 # Installed apps (Django, third-party, and project apps)
 INSTALLED_APPS = [

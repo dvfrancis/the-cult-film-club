@@ -68,7 +68,7 @@ class StripeWH_Handler:
             try:
                 charge = stripe.Charge.retrieve(charge_id)
                 billing_details = charge.billing_details
-            except stripe.error.StripeError:
+            except stripe.StripeError:
                 return HttpResponse(
                     content=(
                         f'Webhook received: {event["type"]} | '

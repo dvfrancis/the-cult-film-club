@@ -366,7 +366,7 @@ def checkout(request):
                 'discount_code': discount_code,
             }
         )
-    except stripe.error.CardError as e:
+    except stripe.CardError as e:
         messages.error(
             request,
             e.user_message or (
@@ -375,7 +375,7 @@ def checkout(request):
         )
         return redirect(reverse('cart'))
 
-    except stripe.error.RateLimitError:
+    except stripe.RateLimitError:
         messages.error(
             request,
             (
@@ -385,7 +385,7 @@ def checkout(request):
         )
         return redirect(reverse('cart'))
 
-    except stripe.error.InvalidRequestError as e:
+    except stripe.InvalidRequestError as e:
         error_message = str(e)
         if (
             "payment_method_data[billing_details][address][country]"
@@ -403,14 +403,14 @@ def checkout(request):
         messages.error(request, user_msg)
         return redirect(reverse('cart'))
 
-    except stripe.error.AuthenticationError:
+    except stripe.AuthenticationError:
         messages.error(
             request,
             "Payment authentication failed. Please try again later."
         )
         return redirect(reverse('cart'))
 
-    except stripe.error.APIConnectionError:
+    except stripe.APIConnectionError:
         messages.error(
             request,
             (
@@ -420,7 +420,7 @@ def checkout(request):
         )
         return redirect(reverse('cart'))
 
-    except stripe.error.StripeError:
+    except stripe.StripeError:
         messages.error(
             request,
             (

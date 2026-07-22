@@ -1,5 +1,7 @@
 .DS_Store
 env.py
+*.dump
+*.sql
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

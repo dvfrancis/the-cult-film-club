@@ -30,9 +30,12 @@ class StripeWH_Handler:
         Sends order confirmation email to the user
         """
         cust_email = order.email
+        # conf_subject.txt reads {{ order.order_number }}, so the order itself
+        # has to be in the context - passing only order_number rendered the
+        # subject with an empty reference after the "#".
         subject = render_to_string(
             'cart/conf_subject.txt',
-            {'order_number': order.order_number}
+            {'order': order, 'order_number': order.order_number}
         ).strip()
         body = render_to_string(
             'cart/conf_body.txt',

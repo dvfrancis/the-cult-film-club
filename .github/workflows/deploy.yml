@@ -25,20 +25,30 @@ jobs:
     steps:
       # No AWS keys are stored in GitHub. This exchanges a short-lived OIDC
       # token for temporary credentials; the role only trusts this repo's main
-      # branch and can only invoke the DeployApp document on the one instance.
+      # branch and can only invoke the DeployCultfilmclub document on the one instance.
+      #
+      # That trust is pinned to the repository NAME as well as its immutable ID.
+      # The role's trust policy matches the token's subject claim as an exact
+      # string, so renaming or moving this repository can break deploys - which
+      # is not obvious from the failure, because the error ("Not authorized to
+      # perform sts:AssumeRoleWithWebIdentity") names neither the repository nor
+      # the condition that did not match. This has happened once already, to
+      # kanban. The ID form below survives a rename; keep both.
+      #
+      # The role is defined in apps-box-config/infra/github-actions-deploy-role.yaml.
+      # Change it there and apply the stack - not by hand in the console.
       - name: Get temporary AWS credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: arn:aws:iam::115019371912:role/github-actions-deploy
+          role-to-assume: arn:aws:iam::115019371912:role/github-actions-deploy-cultfilmclub
           aws-region: eu-west-2
 
       - name: Deploy
         run: |
           set -euo pipefail
           command_id=$(aws ssm send-command \
-            --document-name DeployApp \
+            --document-name DeployCultfilmclub \
             --instance-ids i-07bca300c5bb852d9 \
-            --parameters app=cultfilmclub \
             --comment "GitHub Actions: ${GITHUB_SHA::7} by ${GITHUB_ACTOR}" \
             --query Command.CommandId --output text)
           echo "SSM command: $command_id"

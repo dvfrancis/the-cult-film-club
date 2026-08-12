@@ -1,0 +1,63 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >-
+  TLS certificate for media.cultfilmclub.dominicfrancis.co.uk, the domain the
+  images are served from. Must be deployed to us-east-1.
+
+# Part of issue #116, between infra/media-bucket.yaml and infra/media-cdn.yaml.
+#
+# This is a separate stack for one reason: CloudFront only accepts certificates
+# from us-east-1, no matter where the distribution serves from or where its
+# origin lives. Everything else in this migration is eu-west-2, so splitting the
+# certificate out is the smallest way to satisfy that without moving the rest.
+#
+# CloudFormation exports cannot cross regions, so media-cdn.yaml takes the ARN
+# below as a parameter rather than importing it.
+#
+# The hostname follows media.<site>, matching media.tardisarchives.co.uk. It is
+# four labels deep because this site lives on a subdomain of a shared personal
+# domain rather than on one of its own. That keeps craftr, which is also still
+# on Cloudinary, free to take media.craftr.dominicfrancis.co.uk later without a
+# second decision. Nobody types or sees either hostname.
+#
+# To apply (note the region, it is not the usual one):
+#
+#   aws cloudformation deploy \
+#     --stack-name cultfilmclub-media-certificate \
+#     --template-file infra/media-certificate.yaml \
+#     --region us-east-1 \
+#     --profile admin
+#
+# The deploy blocks until the certificate is issued. Validation records are
+# written into the hosted zone automatically by the HostedZoneId below, so this
+# needs no manual DNS step, but it does usually sit for several minutes looking
+# as though it has stalled. It has not.
+
+Resources:
+  Certificate:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      DomainName: media.cultfilmclub.dominicfrancis.co.uk
+      ValidationMethod: DNS
+      DomainValidationOptions:
+        # Naming the zone is what makes this automatic. Without it ACM still
+        # issues a CNAME to add, but waits for someone to add it by hand and the
+        # stack sits in CREATE_IN_PROGRESS until they do.
+        #
+        # This is the dominicfrancis.co.uk zone, not a zone of this site's own.
+        # The site is a subdomain of it, so validation records for a name four
+        # labels deep still belong here.
+        - DomainName: media.cultfilmclub.dominicfrancis.co.uk
+          HostedZoneId: Z04281911KACWXVUQESMB
+      Tags:
+        - Key: Application
+          Value: cultfilmclub
+        - Key: ManagedBy
+          Value: cloudformation
+
+Outputs:
+  CertificateArn:
+    Description: >-
+      Pass to media-cdn.yaml as its CertificateArn parameter. Not exported,
+      because exports are per-region and that stack is in eu-west-2.
+    Value: !Ref Certificate

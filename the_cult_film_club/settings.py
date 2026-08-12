@@ -220,6 +220,24 @@ CLOUDINARY_STORAGE = {
     "SECURE": True,  # Use secure URLs for media files
 }
 
+# S3 media storage, for the move off Cloudinary in issue #116.
+#
+# Nothing reads these for storage yet. STORAGES below still has no "default"
+# entry, so uploads continue to go to Cloudinary; the switch lands separately
+# once every image is in the bucket. The copy management command needs them
+# now, which is why they arrive first.
+#
+# Empty defaults rather than the real bucket name on purpose. Uploaded media
+# already does not work in local development, and a default pointing at the
+# live bucket would let anyone with AWS credentials on their machine write to
+# production media by accident.
+AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME", "")
+AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "eu-west-2")
+
+# No credentials here. On the apps box boto3 picks up the EC2 instance role,
+# the same way django-ses already reaches SES, so nothing needs storing.
+AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN", "")
+
 # Static files storage configuration (using WhiteNoise)
 STORAGES = {
     "staticfiles": {

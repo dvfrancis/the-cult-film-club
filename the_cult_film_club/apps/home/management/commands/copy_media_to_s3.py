@@ -12,6 +12,7 @@ instance role once infra/media-permissions.yaml has been applied.
 """
 
 import mimetypes
+import os
 from urllib.parse import quote
 
 import boto3
@@ -59,16 +60,25 @@ class Command(BaseCommand):
                 "credentials."
             ),
         )
+        parser.add_argument(
+            "--cloud-name",
+            default=os.environ.get("CLOUDINARY_CLOUD_NAME", ""),
+            help=(
+                "Cloudinary cloud name to read from. Defaults to "
+                "CLOUDINARY_CLOUD_NAME in the environment. Taken as an "
+                "argument rather than from settings so this keeps working "
+                "now that the Cloudinary configuration has been removed."
+            ),
+        )
 
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
 
-        cloud_name = settings.CLOUDINARY_STORAGE.get("CLOUD_NAME")
+        cloud_name = options["cloud_name"]
         if not cloud_name:
             raise CommandError(
-                "CLOUDINARY_CLOUD_NAME is not set, so the source URLs cannot "
-                "be built. This command has to run where the Cloudinary "
-                "environment is present."
+                "No Cloudinary cloud name. Pass --cloud-name or set "
+                "CLOUDINARY_CLOUD_NAME in the environment."
             )
 
         bucket = settings.AWS_STORAGE_BUCKET_NAME

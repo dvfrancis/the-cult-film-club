@@ -102,8 +102,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.sites",
-    "cloudinary_storage",  # For media file storage
-    "cloudinary",
+    "storages",  # For media file storage on S3
     "whitenoise",  # For static file serving in production
     "the_cult_film_club.apps.home",
     "the_cult_film_club.apps.about",
@@ -212,13 +211,13 @@ MIDDLEWARE = [
     "allauth.account.middleware.AccountMiddleware",  # For allauth
 ]
 
-# Cloudinary storage configuration for media files
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
-    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
-    "SECURE": True,  # Use secure URLs for media files
-}
+# CLOUDINARY_STORAGE used to sit here. Images moved to S3 and CloudFront in
+# issue #116 and nothing reads Cloudinary any more. The assets themselves are
+# untouched and the account stays open, because cloud name dvzs9gve0 also
+# serves craftr, which has its own migration still to do.
+#
+# The copy command takes --cloud-name rather than reading a setting, so it
+# still runs if anything ever needs pulling across again.
 
 # Where the images live (issue #116). S3Storage reads these settings itself,
 # so STORAGES below needs no OPTIONS block and the order here does not matter.

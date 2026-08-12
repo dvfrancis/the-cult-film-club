@@ -220,33 +220,56 @@ CLOUDINARY_STORAGE = {
     "SECURE": True,  # Use secure URLs for media files
 }
 
-# S3 media storage, for the move off Cloudinary in issue #116.
-#
-# Nothing reads these for storage yet. STORAGES below still has no "default"
-# entry, so uploads continue to go to Cloudinary; the switch lands separately
-# once every image is in the bucket. The copy management command needs them
-# now, which is why they arrive first.
-#
-# Empty defaults rather than the real bucket name on purpose. Uploaded media
-# already does not work in local development, and a default pointing at the
-# live bucket would let anyone with AWS credentials on their machine write to
-# production media by accident.
-AWS_STORAGE_BUCKET_NAME = os.environ.get("AWS_STORAGE_BUCKET_NAME", "")
+# Where the images live (issue #116). S3Storage reads these settings itself,
+# so STORAGES below needs no OPTIONS block and the order here does not matter.
+# The box gets its credentials from the instance role; nothing reads a key
+# from the environment.
+AWS_STORAGE_BUCKET_NAME = os.environ.get(
+    "AWS_STORAGE_BUCKET_NAME", "the-cult-film-club"
+)
 AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "eu-west-2")
 
-# No credentials here. On the apps box boto3 picks up the EC2 instance role,
-# the same way django-ses already reaches SES, so nothing needs storing.
-AWS_S3_CUSTOM_DOMAIN = os.environ.get("AWS_S3_CUSTOM_DOMAIN", "")
+# Serve through CloudFront rather than the bucket, which blocks all public
+# access and would refuse every request.
+AWS_S3_CUSTOM_DOMAIN = os.environ.get(
+    "AWS_S3_CUSTOM_DOMAIN", "media.cultfilmclub.dominicfrancis.co.uk"
+)
+
+# Plain URLs, not presigned ones. Signed URLs expire, so they cannot be cached
+# by CloudFront or a browser, and every image here is public anyway.
+AWS_QUERYSTRING_AUTH = False
+
+# Send no ACL at all. The bucket has public access fully blocked and is
+# owner-enforced, so an ACL on a PUT is rejected and the upload fails.
+AWS_DEFAULT_ACL = None
+
+# Match Django's own behaviour of renaming rather than replacing. It also
+# means an uploaded image always lands on a new key, so no CloudFront
+# invalidation is needed to make a replacement visible.
+AWS_S3_FILE_OVERWRITE = False
 
 # Static files storage configuration (using WhiteNoise)
 STORAGES = {
+    "default": {
+        # Images moved to S3 in issue #116. Every stored value was rewritten
+        # by a data migration at the same time, because Cloudinary kept these
+        # at its account root with no prefix and the new keys carry one.
+        # CLOUDINARY_STORAGE above is kept so the old assets stay reachable
+        # while this beds in.
+        "BACKEND": "storages.backends.s3.S3Storage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
 }
 
-# Default file storage for uploaded media
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+# DEFAULT_FILE_STORAGE used to sit here, pointing at Cloudinary. Django 4.2
+# deprecated that setting and 5.1 removed it, so on 5.2 it had no effect at
+# all and STORAGES had no "default" key either - meaning uploaded media was
+# nominally on FileSystemStorage the whole time. Nothing was broken, because
+# CloudinaryField bypassed the storage API entirely, but the line read as
+# though it were what routed media to Cloudinary. It was not. Removed rather
+# than updated, and the "default" entry above is the real setting.
 
 # Root URL configuration
 ROOT_URLCONF = "the_cult_film_club.urls"
@@ -267,6 +290,10 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 # required by allauth
                 "django.template.context_processors.request",
+                # Puts MEDIA_URL in scope, so the decorative images under
+                # site/ are built from one setting rather than pasted in as
+                # full URLs. Added with issue #116.
+                "django.template.context_processors.media",
                 "the_cult_film_club.apps.cart.contexts.purchases",
             ],
             "builtins": [
@@ -351,7 +378,20 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 # Media files (user uploads)
-MEDIA_URL = "/assets/"
+#
+# Absolute, pointing at CloudFront, so templates can build an image URL from
+# one setting instead of repeating the host. The four decorative images under
+# site/ were pasted into templates as full Cloudinary URLs in seven places;
+# they are now {{ MEDIA_URL }}site/<name>.
+#
+# S3Storage builds its own URLs from AWS_S3_CUSTOM_DOMAIN and never consults
+# this, so the two have to agree. Keeping it absolute also means images render
+# in local development, which they never did under Cloudinary.
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+
+# Unused now that uploads go to S3, and kept only because urls.py passes it to
+# static(). That helper returns nothing for an absolute MEDIA_URL, so the line
+# there is already a no-op.
 MEDIA_ROOT = os.path.join(BASE_DIR, "assets")
 
 # Default primary key field type

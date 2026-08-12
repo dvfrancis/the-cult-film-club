@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from cloudinary.models import CloudinaryField
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django_ckeditor_5.fields import CKEditor5Field
@@ -16,9 +15,13 @@ class Profile(models.Model):
         on_delete=models.CASCADE,
         related_name="profile"
     )
-    photograph = CloudinaryField(
-        'image',
-        default='placeholder',
+    # Moved off Cloudinary in issue #116. See the note on Images.image in
+    # releases/models.py: upload_to has to match the prefix granted by
+    # infra/media-permissions.yaml, and the default sits under site/, which
+    # the application deliberately cannot write.
+    photograph = models.ImageField(
+        upload_to='profiles/',
+        default='site/placeholder',
         blank=True,
         null=False
     )

@@ -7,7 +7,6 @@ from the_cult_film_club.apps.releases.models import Releases
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest, HttpResponse
 from django.contrib.auth import logout
-import cloudinary.uploader
 
 
 @login_required
@@ -72,10 +71,16 @@ def user_profile(request: HttpRequest) -> HttpResponse:
     if 'delete_photo' in request.POST:
         if (
             user_profile.photograph and
-            user_profile.photograph.public_id != 'placeholder'
+            user_profile.photograph.name != 'site/placeholder'
         ):
-            cloudinary.uploader.destroy(user_profile.photograph.public_id)
-            user_profile.photograph = 'placeholder'
+            # Blanks the column back to the placeholder and leaves the object
+            # in S3, which is what the admin's own clear tickbox does for
+            # every other image. Issue #116 moved these off Cloudinary, where
+            # this used to call cloudinary.uploader.destroy() and erase the
+            # asset outright; the instance role is deliberately granted no
+            # delete permission, so a compromised box cannot wipe the images.
+            # The object is left unreferenced rather than removed.
+            user_profile.photograph = 'site/placeholder'
             user_profile.save()
             messages.success(request, "Profile photo deleted.")
         else:

@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Avg
-from cloudinary.models import CloudinaryField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django_ckeditor_5.fields import CKEditor5Field
 
@@ -90,9 +89,14 @@ class Images(models.Model):
         on_delete=models.CASCADE,
         related_name="images"
     )
-    image = CloudinaryField(
-        'image',
-        default='holding_image',
+    # Moved off Cloudinary in issue #116. upload_to has to match the prefix
+    # the IAM policy in infra/media-permissions.yaml grants, or every upload
+    # is denied. The default points at site/, which the application cannot
+    # write, because the holding image is shared and should never be replaced
+    # by an upload.
+    image = models.ImageField(
+        upload_to='releases/',
+        default='site/holding_image',
         blank=True,
         null=False
     )

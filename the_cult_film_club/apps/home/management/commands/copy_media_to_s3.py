@@ -49,6 +49,16 @@ class Command(BaseCommand):
             action="store_true",
             help="List what would be copied without writing anything",
         )
+        parser.add_argument(
+            "--include-site",
+            action="store_true",
+            help=(
+                "Also copy the decorative site/ assets. Off by default "
+                "because the instance role cannot write that prefix, so a "
+                "run on the apps box would fail on them. Needs admin "
+                "credentials."
+            ),
+        )
 
     def handle(self, *args, **options):
         dry_run = options["dry_run"]
@@ -65,7 +75,7 @@ class Command(BaseCommand):
         if not bucket:
             raise CommandError("AWS_STORAGE_BUCKET_NAME is not set.")
 
-        plan = self.build_plan()
+        plan = self.build_plan(include_site=options["include_site"])
         self.stdout.write(f"{len(plan)} images to copy into {bucket}")
 
         if dry_run:
@@ -110,7 +120,7 @@ class Command(BaseCommand):
                 "Some images did not copy. Nothing was deleted."
             )
 
-    def build_plan(self):
+    def build_plan(self, include_site=False):
         """
         Returns (public_id, s3_key) pairs, deduplicated and in a stable order.
 
@@ -118,6 +128,14 @@ class Command(BaseCommand):
         exactly as it is means the migration that rewrites the database only
         has to prepend a prefix, with no lookup table passed between the two
         steps.
+
+        The site/ assets are excluded unless asked for. infra/media-
+        permissions.yaml grants the instance role releases/ and profiles/
+        only, so a run on the apps box gets AccessDenied on every site/ key.
+        That is the intended design rather than a gap: those five images are
+        decorative and shared, and nothing in the running application should
+        be able to replace the holding image. They were uploaded once with
+        admin credentials.
         """
         plan = {}
 
@@ -133,8 +151,9 @@ class Command(BaseCommand):
                 continue
             plan[public_id] = f"profiles/{public_id}"
 
-        for public_id in SITE_ASSETS:
-            plan[public_id] = f"site/{public_id}"
+        if include_site:
+            for public_id in SITE_ASSETS:
+                plan[public_id] = f"site/{public_id}"
 
         return sorted(plan.items())
 

@@ -676,7 +676,9 @@ Click here to view the [Responsiveness report](documentation/responsiveness/resp
 
 [Google Lighthouse](https://developer.chrome.com/docs/lighthouse/) was used to assess both mobile and desktop performance.
 
-Some of the pages are suffering a performance hit because of external services provided by Cloudinary and Stripe. In particular, the Stripe cookie appears to have a detrimental effect across the entire site and I have no control over this. Also, although I've specified that all images served by Cloudinary are served over HTTPS, Cloudinary continues to serve them over HTTP; this results in an unfixable console error in the browser.
+Some of the pages are suffering a performance hit because of the external service provided by Stripe. In particular, the Stripe cookie appears to have a detrimental effect across the entire site and I have no control over this.
+
+> **Updated August 2026.** This paragraph used to name Cloudinary alongside Stripe, and recorded that Cloudinary served some images over HTTP despite `SECURE: True`, producing a console error described here as unfixable. Images now come from a private Amazon S3 bucket served through CloudFront, which redirects HTTP to HTTPS at the edge, so both the performance cost and the mixed-content error are gone. See issue #116.
 
 Click here to view the [performance report](documentation/performance/performance-report.pdf)
 
@@ -1001,18 +1003,11 @@ This error only appears when the site is deployed to Heroku, but not locally:
 
 "The page ... was loaded over HTTPS, but requested an insecure element ... This request was automatically upgraded to HTTPS, For more information see https://blog.chromium.org/2019/10/no-more-mixed-messages-about-https.html"
 
-I have required that Cloudinary only server secure files in `settings.py` (as shown below), but the error persists:
+I had required that Cloudinary only serve secure files in `settings.py`, but the error persisted, and at the time I concluded it was a problem on Cloudinary's side that I could not fix.
 
-```
-# Cloudinary storage configuration for media files
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME"),
-    "API_KEY": os.getenv("CLOUDINARY_API_KEY"),
-    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET"),
-    "SECURE": True,  # Use secure URLs for media files
-}
-```
-I am unable to resolve this issue - I think it is a problem caused from Cloudinary's side.
+> **Resolved August 2026, issue #116.** Images no longer come from Cloudinary. They are stored in a private Amazon S3 bucket and served through CloudFront on `media.cultfilmclub.dominicfrancis.co.uk`, whose viewer policy is `redirect-to-https`, so a plain HTTP request is answered with a 301 rather than served. The mixed-content warning cannot recur, because there is no longer any origin capable of returning the image over HTTP.
+>
+> The conclusion recorded above was correct: it was not fixable from this side while Cloudinary was serving the images. Replacing the host was what fixed it.
 
 <details>
 <summary>Click here to see a screenshot of bug #94</summary>

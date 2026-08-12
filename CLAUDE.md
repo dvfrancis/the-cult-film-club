@@ -1,7 +1,7 @@
 # The Cult Film Club
 
 Django 5.2 e-commerce site selling cult film releases. Python 3.12, PostgreSQL,
-Stripe checkout, Cloudinary media, Amazon SES email, deployed to EC2.
+Stripe checkout, S3 and CloudFront media, Amazon SES email, deployed to EC2.
 
 ## Commands
 
@@ -37,8 +37,9 @@ local config lives in `.env` (gitignored). The README's instructions to use
 `env.py` are stale — nothing imports that file.
 
 `SECRET_KEY` and `DATABASE_URL` are required; the rest have defaults or fall
-back to empty strings. Stripe and Cloudinary keys are absent locally, so
-checkout and uploaded media do not work in development.
+back to empty strings. Stripe keys are absent locally, so checkout does not
+work in development. Images do render locally: they come from CloudFront over
+public HTTPS, so nothing needs configuring to see them.
 
 ### The database URL must use a Unix socket
 
@@ -90,10 +91,10 @@ are worth adding alongside changes, but there is no existing suite to follow.
 ## Deployment
 
 Merging to `main` triggers `.github/workflows/deploy.yml`, which assumes an
-AWS role via OIDC (no stored keys) and runs the `DeployApp` SSM document on the
-apps instance in `eu-west-2`. That script pulls, installs, migrates
-(snapshotting first if the schema changed), restarts and smoke-tests, rolling
-back on failure. Deploys are serialised by a concurrency group.
+AWS role via OIDC (no stored keys) and runs the `DeployCultfilmclub` SSM
+document on the apps instance in `eu-west-2`. That script pulls, installs,
+migrates (snapshotting first if the schema changed), restarts and smoke-tests,
+rolling back on failure. Deploys are serialised by a concurrency group.
 
 Despite what the README says, this is no longer on Railway or Heroku. `Procfile`
 is a leftover from that era.
@@ -101,6 +102,36 @@ is a leftover from that era.
 Email goes through SES in production, using the EC2 instance role rather than
 stored credentials, and sends from `tcfc@dominicfrancis.co.uk`. With `DEBUG`
 on, the console backend prints messages to the terminal instead.
+
+## Media
+
+Images live in the private `the-cult-film-club` S3 bucket and are served
+through CloudFront on `media.cultfilmclub.dominicfrancis.co.uk`. The four
+CloudFormation stacks that build it are in `infra/`; each template's header
+comment carries the command that applies it.
+
+Three prefixes, and the split matters:
+
+| Prefix | Holds | Written by the app |
+| --- | --- | --- |
+| `releases/` | Release artwork | yes |
+| `profiles/` | Profile photographs | yes |
+| `site/` | Holding image, placeholder, homepage banners | no |
+
+`infra/media-permissions.yaml` grants the instance role `releases/` and
+`profiles/` only, so anything touching `site/` needs admin credentials. That
+is deliberate rather than an oversight, and it is why `copy_media_to_s3` takes
+`--include-site` instead of always copying them.
+
+No delete permission is granted at all. Deleting a profile photo blanks the
+column and leaves the object, which is what the admin's clear tickbox already
+did. Combined with bucket versioning, an overwrite is recoverable.
+
+The stored value is the prefix plus the old Cloudinary public id, with no file
+extension, so `Content-Type` is set explicitly on upload rather than inferred.
+
+Cloudinary is gone from this repo, but the account still exists: cloud name
+`dvzs9gve0` also serves craftr, which has its own migration outstanding.
 
 ## Conventions
 

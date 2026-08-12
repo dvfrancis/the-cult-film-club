@@ -9,7 +9,8 @@ The Cult Film Club is a business-to-consumer (B2C) full stack e-commerce platfor
 ![CSS3](https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![Bootstrap](https://img.shields.io/badge/bootstrap-%23563D7C.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
-![Cloudinary](https://img.shields.io/badge/Cloudinary-3448C5?style=for-the-badge&logo=Cloudinary&logoColor=white)
+![Amazon S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
+![Amazon CloudFront](https://img.shields.io/badge/Amazon%20CloudFront-9D5025?style=for-the-badge&logo=amazoncloudfront&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
 ![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
 
@@ -944,7 +945,7 @@ This is a custom model that extends Django's User model by adding additional fie
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |User|Foreign|`user`|CharField|*Linked to the `User` model, in a one-to-one relationship* `on_delete=models.CASCADE, related_name='profile'`
-|Photograph|Key|`photograph`|CloudinaryField|`default='placeholder', blank=True, null=True`
+|Photograph|Key|`photograph`|ImageField|`upload_to='profiles/', default='site/placeholder', blank=True, null=False`
 
 Meta classes used `verbose_name = "Profile", verbose_name_plural = "Profiles"`
 
@@ -1048,7 +1049,7 @@ This is a custom model that stores images related to films.
 |Description|Key|Name|Field Type|Validation|
 | ------------- | ------------- | ------------- | ------------- | ------------- |
 |Release Title|Foreign|`title`|CharField|*Linked to the `Releases` model, in a many-to-many relationship* `on_delete=models.CASCADE, related_name='releases'`
-|Image|Key|`image`|CloudinaryField|`default='placeholder', blank=True, null=False`
+|Image|Key|`image`|ImageField|`upload_to='releases/', default='site/holding_image', blank=True, null=False`
 |Caption|Key|`caption`|CharField|`max_length=200, blank=True, null=True`
 |Date Added|Key|`date_added`|DateTimeField|`auto_now_add=True, blank=False, null=False`
 |Featured Image?|Key|`is_featured`|BooleanField|`verbose_name='Featured Image', default=False, blank=False, null=False`
@@ -1221,7 +1222,7 @@ The following font (from [Google Fonts](https://fonts.google.com)) was used for 
 
 #### Media
 
-- Images used on the website are served by [Cloudinary](https://cloudinary.com/).
+- Images used on the website are stored in a private [Amazon S3](https://aws.amazon.com/s3/) bucket and served through [Amazon CloudFront](https://aws.amazon.com/cloudfront/) at `media.cultfilmclub.dominicfrancis.co.uk`. They were previously hosted on Cloudinary.
 
 - The images used by the README.md and TESTING.md documents are stored in the project's [GitHub repository](https://github.com/dvfrancis/the-cult-film-club).
 
@@ -1229,7 +1230,7 @@ The following font (from [Google Fonts](https://fonts.google.com)) was used for 
 
 - The following images are only used when no film release or user profile image is available:
 
-    - Film release holding image - [Film release holding image](https://res.cloudinary.com/dvzs9gve0/image/upload/v1748259124/holding_image.webp)
+    - Film release holding image - [Film release holding image](https://media.cultfilmclub.dominicfrancis.co.uk/site/holding_image)
     - User profile placeholder image - [Avatars...](https://depositphotos.com/vector/avatars-characters-or-profile-pictures-72611267.html)
 
 - Film release images were obtained from the following sources:
@@ -1503,7 +1504,8 @@ All other material on the site was created independently by myself to provide a 
 | [Pixillion Image Converter Software](https://www.nchsoftware.com/imageconverter/index.html?theme=webp&kw=webp%20converter&m=e&d=c&c=76691136445782&ag=1227055160311186&msclkid=024126ffbd141fc2bb514100770aa72b&utm_source=bing&utm_medium=cpc&utm_campaign=EN-C1&utm_term=webp%20converter&utm_content=Pixillion%20-%20WebP%20Converter) | Desktop software for converting images between formats including WebP. |
 | [Image Resizer Image Converter](https://imageresizer.com/image-converter) | Online tool for resizing and converting images to WebP format. |
 | [Favicon Generator](https://favicon.io/favicon-converter/) | Tool for creating custom favicons and converting images into favicon files. |
-| [Cloudinary](https://cloudinary.com/) | Cloud service for image hosting, optimization, and delivery. |
+| [Amazon S3](https://aws.amazon.com/s3/) | Object storage holding every uploaded image, private and versioned. |
+| [Amazon CloudFront](https://aws.amazon.com/cloudfront/) | Content delivery network serving those images over HTTPS. |
 | [ToWebP](https://towebp.io) | Free bulk images to WebP online converter |
 
 ---
@@ -1678,7 +1680,7 @@ In your Heroku app dashboard:
 | `STRIPE_SECRET_KEY` | Allows your app to interact securely with Stripe services
 | `STRIPE_WH_SECRET` | A secret string used to verify webhook events sent from Stripe
 
-If you're using services like Cloudinary or Amazon Web Services, add the corresponding variables here too (for example, `CLOUDINARY_URL`).
+Images are stored on Amazon S3 and served through CloudFront. The bucket, region and delivery domain all have working defaults in `settings.py`, so no variable is needed for them; `AWS_STORAGE_BUCKET_NAME`, `AWS_S3_REGION_NAME` and `AWS_S3_CUSTOM_DOMAIN` will override those defaults if you ever need to point at somewhere else. No AWS keys are stored anywhere: the server reads its credentials from its EC2 instance role.
 
 
 ##### 5. Set local environment variables

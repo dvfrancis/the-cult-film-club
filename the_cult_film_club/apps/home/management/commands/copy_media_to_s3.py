@@ -140,13 +140,13 @@ class Command(BaseCommand):
         plan = {}
 
         for value in Images.objects.values_list("image", flat=True):
-            public_id = str(value)
+            public_id = self.public_id(value)
             if not public_id or public_id in DEFAULTS:
                 continue
             plan[public_id] = f"releases/{public_id}"
 
         for value in Profile.objects.values_list("photograph", flat=True):
-            public_id = str(value)
+            public_id = self.public_id(value)
             if not public_id or public_id in DEFAULTS:
                 continue
             plan[public_id] = f"profiles/{public_id}"
@@ -156,6 +156,31 @@ class Command(BaseCommand):
                 plan[public_id] = f"site/{public_id}"
 
         return sorted(plan.items())
+
+    @staticmethod
+    def public_id(value):
+        """
+        Reduces a stored value to the Cloudinary public id.
+
+        This exists because reading the column gave two different answers
+        depending on when you asked, which is what broke the first attempt at
+        this migration. While the field was a CloudinaryField the ORM decoded
+        the column and handed back the public id; once it became a plain
+        ImageField the same read returned the raw stored path:
+
+            image/upload/v1748091195/w2friuf7hyw7ajnmnmad.png
+
+        The data migration was written against the first behaviour and ran
+        under the second, so it prefixed the whole path. Taking the last
+        segment and dropping the extension gives the same answer under either,
+        and also under the corrected keys the rows hold now.
+        """
+        name = str(value or "")
+        if not name:
+            return ""
+
+        last_segment = name.rsplit("/", 1)[-1]
+        return last_segment.rsplit(".", 1)[0]
 
     def fetch(self, cloud_name, public_id):
         """

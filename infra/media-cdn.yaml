@@ -1,0 +1,159 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >-
+  Serves The Cult Film Club images from media.cultfilmclub.dominicfrancis.co.uk.
+  CloudFront distribution, the bucket policy that lets it read, and DNS.
+
+# Part of issue #116, and the step that makes infra/media-bucket.yaml usable.
+# The bucket blocks all public access, so until this stack exists nothing can
+# read an image from the internet.
+#
+# Deploy infra/media-certificate.yaml first, to us-east-1, and pass its output
+# here:
+#
+#   aws cloudformation deploy \
+#     --stack-name cultfilmclub-media-cdn \
+#     --template-file infra/media-cdn.yaml \
+#     --parameter-overrides CertificateArn=<arn from that stack> \
+#     --region eu-west-2 \
+#     --profile admin
+#
+# Expect 5 to 10 minutes: CloudFormation waits for the distribution to finish
+# deploying to every edge location.
+#
+# Still not here, and the last infrastructure piece of #116: s3:PutObject on the
+# bucket for apps-ec2-role, so uploads through the Django admin and the profile
+# form work. That modifies a shared role this stack does not own, which is why
+# it gets a stack of its own.
+
+Parameters:
+  CertificateArn:
+    Type: String
+    AllowedPattern: "^arn:aws:acm:us-east-1:[0-9]{12}:certificate/.+$"
+    ConstraintDescription: >-
+      Must be an ACM certificate ARN in us-east-1. CloudFront accepts
+      certificates from no other region.
+    Description: Output of the cultfilmclub-media-certificate stack in us-east-1.
+
+Resources:
+  # Origin Access Control replaces the old Origin Access Identity. The bucket
+  # stays private and CloudFront signs each origin request with SigV4; the
+  # bucket policy below is what trusts those signatures.
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: cultfilmclub-media-oac
+        Description: Signs CloudFront reads of the the-cult-film-club bucket
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Enabled: true
+        Comment: The Cult Film Club images
+        Aliases:
+          - media.cultfilmclub.dominicfrancis.co.uk
+        HttpVersion: http2and3
+        IPV6Enabled: true
+        # Europe and North America only. The audience is a UK shop selling
+        # physical discs to UK addresses, and the cheaper class simply omits the
+        # edge locations furthest from it rather than refusing to serve anyone.
+        PriceClass: PriceClass_100
+
+        ViewerCertificate:
+          AcmCertificateArn: !Ref CertificateArn
+          SslSupportMethod: sni-only
+          MinimumProtocolVersion: TLSv1.2_2021
+
+        Origins:
+          - Id: MediaBucket
+            DomainName: !ImportValue cultfilmclub-media-bucket-domain
+            OriginAccessControlId: !GetAtt OriginAccessControl.Id
+            # Required by CloudFormation even for an S3 origin using OAC, and
+            # must be present and empty. A non-empty OriginAccessIdentity here
+            # would put the distribution back on the legacy mechanism.
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+
+        DefaultCacheBehavior:
+          TargetOriginId: MediaBucket
+          ViewerProtocolPolicy: redirect-to-https
+          AllowedMethods: [GET, HEAD]
+          CachedMethods: [GET, HEAD]
+          Compress: true
+          # Managed-CachingOptimized. Caches on the path alone, forwarding no
+          # cookies, headers or query strings, which is right here because an
+          # image is the same file for every visitor. The id is a fixed AWS-wide
+          # constant, not an account-specific value.
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+
+      Tags:
+        - Key: Application
+          Value: cultfilmclub
+        - Key: ManagedBy
+          Value: cloudformation
+
+  # Lives here rather than in media-bucket.yaml because it has to name the
+  # distribution, which that stack knows nothing about. CloudFormation is
+  # content for a bucket policy to sit in a different stack from its bucket.
+  BucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !ImportValue cultfilmclub-media-bucket-name
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub
+              - "arn:aws:s3:::${Bucket}/*"
+              - Bucket: !ImportValue cultfilmclub-media-bucket-name
+            # Without this condition the grant would be to the CloudFront
+            # service rather than to this distribution, and any distribution in
+            # any AWS account could be pointed at the bucket and read it.
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub
+                  "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+
+  # Both records, because the distribution answers on IPv6 and a visitor on an
+  # IPv6-only network gets no address at all from the A record alone.
+  DnsIpv4:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z04281911KACWXVUQESMB
+      Name: media.cultfilmclub.dominicfrancis.co.uk
+      Type: A
+      AliasTarget:
+        DNSName: !GetAtt Distribution.DomainName
+        # Fixed constant meaning "a CloudFront distribution", identical in every
+        # account and region. It is not this account's hosted zone.
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+
+  DnsIpv6:
+    Type: AWS::Route53::RecordSet
+    Properties:
+      HostedZoneId: Z04281911KACWXVUQESMB
+      Name: media.cultfilmclub.dominicfrancis.co.uk
+      Type: AAAA
+      AliasTarget:
+        DNSName: !GetAtt Distribution.DomainName
+        HostedZoneId: Z2FDTNDATAQYW2
+        EvaluateTargetHealth: false
+
+Outputs:
+  DistributionId:
+    Description: For cache invalidations after replacing an image
+    Value: !Ref Distribution
+
+  MediaUrl:
+    Description: Base URL for images, for the Django storage settings
+    Value: https://media.cultfilmclub.dominicfrancis.co.uk

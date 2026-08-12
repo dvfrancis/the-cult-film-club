@@ -1,0 +1,110 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >-
+  Storage for The Cult Film Club release artwork and profile photographs,
+  replacing Cloudinary. Creates the bucket only. Serving it through CloudFront
+  is a separate, later stack.
+
+# Part of issue #116. Counted against production on 12 August 2026: 161 release
+# images and 2 profile photographs, plus 4 decorative assets referenced straight
+# from templates. Images are the last part of this site hosted outside AWS.
+#
+# Per-app infrastructure lives in the repository it belongs to rather than in
+# apps-box-config, matching tardis-archives/infra/media-bucket.yaml and
+# james-baker-coach/infra/. apps-box-config/infra/ holds only what is shared
+# across the box.
+#
+# To apply:
+#
+#   aws cloudformation deploy \
+#     --stack-name cultfilmclub-media-bucket \
+#     --template-file infra/media-bucket.yaml \
+#     --region eu-west-2 \
+#     --profile admin
+#
+# No CAPABILITY_NAMED_IAM: this stack creates no roles or policies.
+
+# Three prefixes, decided here because the IAM policy in
+# infra/media-permissions.yaml has to scope to them and the Django upload_to
+# values have to match:
+#
+#   releases/  release artwork, uploaded through the admin
+#   profiles/  user profile photographs, uploaded through the profile form
+#   site/      decorative assets referenced directly from templates
+#
+# The application writes the first two and only reads the third, which is why
+# site/ is left out of the write grant. Cloudinary kept all of these at the
+# account root with no folders at all, so nothing here inherits a prefix and
+# every stored value has to be rewritten by a data migration.
+
+# Deliberately NOT in this stack, in the order they will be needed:
+#
+#   1. A CloudFront distribution and Origin Access Control. The bucket blocks
+#      all public access, so nothing can read it from the internet yet. That
+#      is correct for now and blocking later: the images cannot be served
+#      until this exists.
+#   2. A bucket policy granting that distribution's OAC s3:GetObject. It has
+#      to name the distribution ARN, so it cannot be written before the
+#      distribution exists.
+#   3. s3:PutObject on this bucket for apps-ec2-role, so admin and profile
+#      uploads work. That belongs with the other instance-role grants and is a
+#      change to a role this stack does not own.
+
+Resources:
+  MediaBucket:
+    Type: AWS::S3::Bucket
+    # Retain on both, because once the copy has run this bucket holds the only
+    # AWS-side copy of every image. Deleting this stack should orphan the
+    # bucket, not empty it. A replacing update would be worse still:
+    # CloudFormation would create the replacement, then delete the original
+    # along with its contents.
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      # Fixed name rather than one derived from the stack name. The name goes
+      # into the Django settings on the box and into a CloudFront origin, so a
+      # name that changed on replacement would break both silently.
+      BucketName: the-cult-film-club
+
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        IgnorePublicAcls: true
+        BlockPublicPolicy: true
+        RestrictPublicBuckets: true
+
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+            # Cuts the per-object encryption calls S3 makes on its own key.
+            # Free, and it matches every other bucket in the account.
+            BucketKeyEnabled: true
+
+      # Half the point of the migration. Cloudinary keeps one copy of each
+      # image and nothing else, so every release cover currently exists in
+      # exactly one place. Versioning means an overwrite or a delete through
+      # the admin is recoverable. Old versions accumulate with no expiry,
+      # which is intended: the whole bucket is a few hundred megabytes, so
+      # keeping every version indefinitely costs pennies a year and a
+      # lifecycle rule would only add a way to lose something.
+      VersioningConfiguration:
+        Status: Enabled
+
+      Tags:
+        - Key: Application
+          Value: cultfilmclub
+        - Key: ManagedBy
+          Value: cloudformation
+
+Outputs:
+  BucketName:
+    Description: Bucket name, for AWS_STORAGE_BUCKET_NAME in Django settings
+    Value: !Ref MediaBucket
+    Export:
+      Name: cultfilmclub-media-bucket-name
+
+  BucketRegionalDomainName:
+    Description: Origin domain for the CloudFront distribution added later
+    Value: !GetAtt MediaBucket.RegionalDomainName
+    Export:
+      Name: cultfilmclub-media-bucket-domain

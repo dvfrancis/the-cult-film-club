@@ -1,0 +1,77 @@
+AWSTemplateFormatVersion: "2010-09-09"
+
+Description: >-
+  Lets the apps box read and write images in the the-cult-film-club bucket, so
+  uploads through the Django admin and the profile form work.
+
+# The last infrastructure piece of issue #116, after infra/media-bucket.yaml and
+# infra/media-cdn.yaml. Nothing else is needed in AWS after this; what remains
+# is application code and the copy itself.
+#
+# apps-ec2-role was created by hand and is not owned by any CloudFormation
+# stack. Rather than import that shared production role, this attaches one more
+# inline policy to it, exactly as write-tardis-covers does. It is the smallest
+# footprint that keeps the change in version control.
+#
+# To apply:
+#
+#   aws cloudformation deploy \
+#     --stack-name cultfilmclub-media-permissions \
+#     --template-file infra/media-permissions.yaml \
+#     --capabilities CAPABILITY_NAMED_IAM \
+#     --region eu-west-2 \
+#     --profile admin
+
+# No delete permission of any kind, matching write-tardis-covers. Django does
+# not need it: since 1.3 deleting a model row leaves its file alone, and the
+# admin's "clear" tickbox blanks the database column rather than removing
+# anything from storage. Combined with versioning on the bucket, even an
+# overwrite of every image is recoverable.
+#
+# This does change one behaviour. The profile view currently calls
+# cloudinary.uploader.destroy() when someone deletes their photo, which erases
+# the file outright. Under S3 the equivalent call is deliberately not granted,
+# so that path becomes "blank the column and leave the object", which is the
+# same thing the admin already does. The object is then unreferenced rather
+# than gone. That is the intended trade: an unreferenced object costs a
+# fraction of a penny, and a compromised box cannot erase the artwork.
+
+Resources:
+  MediaWritePolicy:
+    Type: AWS::IAM::RolePolicy
+    Properties:
+      RoleName: apps-ec2-role
+      PolicyName: write-cultfilmclub-media
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: ReadWriteUploadedImages
+            Effect: Allow
+            Action:
+              - s3:PutObject
+              # Read matters more than it looks. django-storages checks whether
+              # a key already exists before saving, to avoid overwriting, and
+              # that check is a HEAD request needing this permission. Without it
+              # S3 answers 403 rather than 404 for a key that is simply absent,
+              # and the upload fails with a permissions error that names no
+              # permission.
+              - s3:GetObject
+            # Only the two prefixes the application writes. site/ is left out
+            # deliberately: those five assets are decorative, referenced
+            # straight from templates, and uploaded once by hand. Nothing in
+            # the application should be able to overwrite the holding image.
+            Resource:
+              - arn:aws:s3:::the-cult-film-club/releases/*
+              - arn:aws:s3:::the-cult-film-club/profiles/*
+
+          - Sid: ListUploadedPrefixes
+            Effect: Allow
+            Action: s3:ListBucket
+            # Bucket ARN, not an object ARN: ListBucket is a bucket-level
+            # action, and pointing it at objects silently grants nothing.
+            Resource: arn:aws:s3:::the-cult-film-club
+            Condition:
+              StringLike:
+                s3:prefix:
+                  - releases/*
+                  - profiles/*

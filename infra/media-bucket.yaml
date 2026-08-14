@@ -50,6 +50,20 @@ Description: >-
 #      uploads work. That belongs with the other instance-role grants and is a
 #      change to a role this stack does not own.
 
+Parameters:
+  BackupAccountId:
+    Type: String
+    Default: "639175159992"
+    AllowedPattern: "^[0-9]{12}$"
+    Description: >-
+      The backup account that release artwork and site assets replicate into.
+      See tardis-archives issue #14. The rest of that work lives in
+      doubleslash-studio/infra/, because a backup account is account-wide
+      rather than specific to this application. Only the rule below is here,
+      and only because CloudFormation requires it: a replication rule is a
+      property of the bucket resource, and one resource can be owned by
+      exactly one stack.
+
 Resources:
   MediaBucket:
     Type: AWS::S3::Bucket
@@ -89,6 +103,77 @@ Resources:
       # lifecycle rule would only add a way to lose something.
       VersioningConfiguration:
         Status: Enabled
+
+      # tardis-archives issue #14. Versioning above protects against accident.
+      # It does not protect against intent: anyone holding credentials in this
+      # account can purge every version in one API call, which is exactly what
+      # happened to the tardis-archives covers on 12 August 2026.
+      #
+      # So a copy goes to an account those credentials do not reach, into a
+      # bucket where Object Lock in compliance mode makes deletion impossible
+      # for anyone at all, including that account's root user and AWS Support.
+      #
+      # profiles/ is deliberately absent, and that absence is the point rather
+      # than an oversight.
+      #
+      # Profile photographs are personal data uploaded through the profile
+      # form, and an erasure request has to actually erase them. Compliance
+      # mode cannot be shortened by anyone, so a replicated profile photograph
+      # could not be removed until its retention expired. The lock runs from
+      # when the file was written rather than from the request, so most would
+      # already be free, but the margin would be gone and nothing could
+      # restore it. Leaving them out keeps erasure working as designed, and
+      # they are the least costly thing here to lose: the member still has the
+      # original and can upload it again, which is not true of release
+      # artwork.
+      #
+      # Two rules rather than one with two prefixes, because a replication
+      # filter matches a single prefix and there is no way to write an either
+      # or. Priorities only settle overlapping rules, and these do not
+      # overlap, so the numbers are just labels.
+      #
+      # DeleteMarkerReplication is Disabled, so removing an image here leaves
+      # the backup copy alone. Deletes that name a specific version are never
+      # replicated whatever this says, which is the property that would have
+      # saved the covers in August.
+      #
+      # Adding this updates the bucket in place. CloudFormation does not
+      # replace a bucket to add replication, so existing objects are
+      # untouched. They are also not copied: replication only applies to
+      # writes made after the rule exists, so the images already here need a
+      # one off S3 Batch Replication job.
+      ReplicationConfiguration:
+        # Cross-stack import. The role lives in
+        # doubleslash-backup-replication-role, in this same account. The
+        # import makes that stack undeletable while this rule refers to it,
+        # which is the correct dependency rather than an inconvenience.
+        Role: !ImportValue backup-replication-role-arn
+        Rules:
+          - Id: releases-to-backup-account
+            Status: Enabled
+            Priority: 1
+            Filter:
+              Prefix: releases/
+            DeleteMarkerReplication:
+              Status: Disabled
+            Destination:
+              Bucket: !Sub "arn:aws:s3:::doubleslash-backup-the-cult-film-club-${BackupAccountId}"
+              # Naming the expected owner turns a misdirected rule into an
+              # error instead of a silent copy to a stranger's bucket.
+              Account: !Ref BackupAccountId
+              StorageClass: STANDARD
+
+          - Id: site-assets-to-backup-account
+            Status: Enabled
+            Priority: 2
+            Filter:
+              Prefix: site/
+            DeleteMarkerReplication:
+              Status: Disabled
+            Destination:
+              Bucket: !Sub "arn:aws:s3:::doubleslash-backup-the-cult-film-club-${BackupAccountId}"
+              Account: !Ref BackupAccountId
+              StorageClass: STANDARD
 
       Tags:
         - Key: Application

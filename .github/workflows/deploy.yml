@@ -7,6 +7,27 @@ name: Deploy
 on:
   push:
     branches: [main]
+    # Documentation does not reach the running site, so changing it should not
+    # pull, install, migrate and restart the service. Merging #107 - one new
+    # markdown file, no application code - did exactly that.
+    #
+    # Listed file by file rather than as a **.md glob, deliberately. Markdown
+    # exists inside staticfiles/ as vendored licences and changelogs, and a
+    # change under there means the collected static assets have moved, which
+    # very much does need deploying. A glob would silently skip that.
+    #
+    # documentation/ is 42 screenshots and PDFs that README.md and TESTING.md
+    # link to. Nothing serves them.
+    #
+    # Anything absent from this list still deploys, so requirements.txt,
+    # templates, this workflow and every line of Python are unaffected. A push
+    # touching both documentation and code deploys, because the filter only
+    # skips when every changed file matches.
+    paths-ignore:
+      - 'README.md'
+      - 'TESTING.md'
+      - 'CLAUDE.md'
+      - 'documentation/**'
   workflow_dispatch:      # so a deploy can also be triggered by hand
 
 # One deploy at a time. Without this, two quick merges could have the box

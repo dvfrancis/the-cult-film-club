@@ -12,6 +12,66 @@ SITE_ID = 1
 # Debug mode (should be False in production)
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+# Production security, gated on DEBUG the same way the email backend below is.
+# Every one of these is wrong locally, where runserver speaks plain HTTP and
+# enabling them would make the site unreachable.
+if not DEBUG:
+    # TLS terminates at nginx on the apps box, on a Let's Encrypt certificate
+    # managed by certbot. gunicorn listens on plain HTTP on 127.0.0.1:8002, so
+    # every request Django sees arrives unencrypted and it judges them all
+    # insecure. This is what tells it otherwise, and it has to come first:
+    # without it SECURE_SSL_REDIRECT would redirect a request that is already
+    # HTTPS, then redirect it again, forever, and the cookies below would
+    # never be sent at all.
+    #
+    # Trusting a header is only safe when nothing can set it but the proxy.
+    # gunicorn binds to loopback, so nothing reaches it except nginx, and
+    # nginx sets X-Forwarded-Proto itself on every proxied request rather than
+    # passing a client's through.
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+
+    # nginx already answers port 80 with a 301, so this is a second line of
+    # defence rather than the only one. Worth having: it stops the redirect
+    # depending on a web server configuration that lives in another repository
+    # and could be changed without anyone touching this one.
+    SECURE_SSL_REDIRECT = True
+
+    # The reason this issue was raised. Both default to False, so the session
+    # and CSRF cookies were being sent over plain HTTP if a request ever
+    # reached the site that way, on a site that authenticates people and takes
+    # card payments.
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+    # HSTS tells a browser to refuse plain HTTP for this host for this long,
+    # and it is cached client-side, so a wrong value cannot be withdrawn - it
+    # has to expire. One hour to begin with, which is long enough to be real
+    # and short enough that a mistake costs an hour rather than a year. Raise
+    # it to 31536000 once this has run for a while.
+    SECURE_HSTS_SECONDS = 3600
+
+    # Covers media.cultfilmclub.dominicfrancis.co.uk, the only subdomain of
+    # this host. That is CloudFront, whose viewer policy is redirect-to-https,
+    # so it already refuses to serve anything over plain HTTP.
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+
+    # Django also asks for SECURE_HSTS_PRELOAD, and it is deliberately absent.
+    #
+    # The preload list is keyed on the registrable domain, so this site cannot
+    # be submitted on its own: the entry would be dominicfrancis.co.uk, which
+    # would force HTTPS on craftr, hi-lo, older-and-wider and everything else
+    # sharing that domain. Removal from the list takes months. That is a
+    # decision about the whole domain rather than about this application, and
+    # it is not one to make from here.
+    #
+    # The token would also contradict the max-age above: preload submissions
+    # require a year, and this declares an hour. Setting it would put a claim
+    # in the header that is both inert and untrue.
+    #
+    # Silenced rather than left as a standing warning, so that a future
+    # `check --deploy` reporting something is reporting something new.
+    SILENCED_SYSTEM_CHECKS = ["security.W021"]
+
 # Email is sent through Amazon SES, which has dominicfrancis.co.uk verified
 # with DKIM, so any address on the domain can send.
 #

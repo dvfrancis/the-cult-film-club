@@ -1,6 +1,5 @@
 from decimal import Decimal
 from django.conf import settings
-from django.shortcuts import get_object_or_404
 from the_cult_film_club.apps.releases.models import Releases
 
 
@@ -39,8 +38,26 @@ def purchases(request):
         }
 
     # Calculate subtotal and total quantities, collect purchase items
+    #
+    # A release can disappear while it is still sitting in someone's session,
+    # because deleting one through the admin does not touch anybody's cart.
+    # This used to call get_object_or_404 here, which was issue #129: a
+    # context processor is not a view, so the Http404 was not turned into a
+    # 404 page. It went to handler500, and the 500 template then bound its own
+    # context, ran this same processor and raised again. The result was that
+    # every page on the site failed for that person, error pages included, and
+    # they stayed locked out until their session cookie was cleared.
+    #
+    # Skipping is enough to keep the site up. The ids are collected rather
+    # than removed inside the loop, because mutating the dict being iterated
+    # raises.
+    missing_item_ids = []
+
     for item_id, quantity in cart.items():
-        release = get_object_or_404(Releases, pk=item_id)
+        release = Releases.objects.filter(pk=item_id).first()
+        if release is None:
+            missing_item_ids.append(item_id)
+            continue
         subtotal += release.price * quantity
         total_quantity += quantity
         purchases_list.append({
@@ -48,6 +65,15 @@ def purchases(request):
             'quantity': quantity,
             'release': release,
         })
+
+    # Drop the dead ids so the cart heals itself. Without this the lookup
+    # above runs again on every request for the life of the session, and the
+    # stale entry would be handed to the checkout as part of the bag.
+    if missing_item_ids:
+        for item_id in missing_item_ids:
+            cart.pop(item_id, None)
+        request.session['cart'] = cart
+        request.session.modified = True
 
     # Sort purchases list by copies_available if requested
     if sorting_by_copies:

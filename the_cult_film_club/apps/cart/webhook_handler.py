@@ -157,8 +157,22 @@ class StripeWH_Handler:
                     pass
 
             # Create line items
+            #
+            # A release deleted between checkout starting and this webhook
+            # arriving used to raise Releases.DoesNotExist here. The only
+            # except below catches IntegrityError, so it escaped: the webhook
+            # returned a 500, Stripe retried it, and every retry failed the
+            # same way. The customer had paid and no order was recorded.
+            # Part of issue #129, which is the same fault in the cart context.
+            #
+            # Skipping the line rather than abandoning the order is the lesser
+            # loss. The payment has already been taken, so the order has to
+            # exist for it to be reconciled against; a missing line is visible
+            # in the admin, whereas a missing order is only visible in Stripe.
             for item_id, item_data in json.loads(bag).items():
-                release = Releases.objects.get(id=item_id)
+                release = Releases.objects.filter(id=item_id).first()
+                if release is None:
+                    continue
                 quantity = item_data if isinstance(item_data, int) else 1
 
                 OrderLineItem.objects.create(

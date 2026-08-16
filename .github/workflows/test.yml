@@ -1,0 +1,85 @@
+name: Tests
+
+# Runs the suite on every pull request, and again on main after merge.
+#
+# The point of the pull request run is to gate merging: deploy.yml fires on
+# push to main and goes straight to the live instance, so a test that only ran
+# after the merge would be reporting a regression that had already shipped.
+#
+# Making this required is a branch protection setting rather than anything in
+# this file. Without that, a red run here is advisory and the merge button
+# still works.
+on:
+  pull_request:
+  push:
+    branches: [main]
+    # Same list as deploy.yml, for the same reason: documentation cannot break
+    # the suite, so running it would only add a minute to every typo fix.
+    paths-ignore:
+      - 'README.md'
+      - 'TESTING.md'
+      - 'CLAUDE.md'
+      - 'documentation/**'
+
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    services:
+      # Postgres rather than SQLite, because production is Postgres and the
+      # project has migrations and queries that would not be exercised the
+      # same way on another backend.
+      postgres:
+        image: postgres:18
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: test_the_cult_film_club
+        ports:
+          - 5432:5432
+        # Without this the job races the container and the first connection
+        # is refused while Postgres is still starting.
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    env:
+      # This container has ssl off, so the ssl_require clause in settings.py
+      # would refuse every connection with "server does not support SSL".
+      # Production sets nothing and keeps requiring it.
+      DATABASE_SSL_REQUIRE: 'False'
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/test_the_cult_film_club
+      # Not a secret. It exists because settings.py requires one to import,
+      # and nothing in the suite signs anything that outlives the job.
+      SECRET_KEY: key-used-only-by-ci
+      # Left off deliberately, so the suite runs against settings as close to
+      # production as they can be. settings.py skips the HTTPS redirect while
+      # testing, which would otherwise answer every test client request with
+      # a 301.
+      DEBUG: 'False'
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Check for missing migrations
+        # Catches a model changed without makemigrations, which would other
+        # wise only surface on the box mid-deploy, after the snapshot and
+        # part-way through the restart.
+        run: python manage.py makemigrations --check --dry-run
+
+      - name: Run the test suite
+        run: python manage.py test --verbosity 2

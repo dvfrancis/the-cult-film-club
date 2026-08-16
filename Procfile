@@ -1,1 +1,0 @@
-web: gunicorn the_cult_film_club.wsgi

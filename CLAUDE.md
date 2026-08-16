@@ -96,8 +96,9 @@ document on the apps instance in `eu-west-2`. That script pulls, installs,
 migrates (snapshotting first if the schema changed), restarts and smoke-tests,
 rolling back on failure. Deploys are serialised by a concurrency group.
 
-Despite what the README says, this is no longer on Railway or Heroku. `Procfile`
-is a leftover from that era.
+This is no longer on Railway or Heroku, and the README no longer says it is.
+`Procfile` was the last leftover from that era and was removed with issue #113;
+the systemd unit invokes gunicorn directly with the same WSGI path.
 
 Email goes through SES in production, using the EC2 instance role rather than
 stored credentials, and sends from `tcfc@dominicfrancis.co.uk`. With `DEBUG`

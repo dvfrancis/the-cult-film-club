@@ -7,13 +7,17 @@ than against a literal, so changing either does not silently invalidate the
 tests.
 """
 
+import json
 from datetime import timedelta
 from decimal import Decimal
+from unittest.mock import patch
 from uuid import uuid4
+
+import stripe
 
 from django.conf import settings
 from django.contrib.auth.models import User
-from django.test import TestCase
+from django.test import RequestFactory, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
@@ -22,6 +26,7 @@ from the_cult_film_club.apps.cart.models import (
     Order,
     OrderLineItem,
 )
+from the_cult_film_club.apps.cart.webhook_handler import StripeWH_Handler
 from the_cult_film_club.apps.releases.models import Releases
 
 
@@ -324,11 +329,49 @@ class CartContextTests(TestCase):
             context["subtotal"] + context["delivery"] - Decimal("2.00"),
         )
 
-    # A release deleted while sitting in someone's cart currently takes the
-    # whole site down for them, because the context processor raises Http404
-    # during template binding and the error page re-runs the same processor.
-    # Raised as issue #129 rather than covered here: a test asserting a crash
-    # would pass for the wrong reason, and the fix belongs with the fix.
+    def test_a_deleted_release_is_ignored_rather_than_crashing(self):
+        self.set_cart({str(self.release.id): 1})
+        self.release.delete()
+        self.assertEqual(self.client.get(reverse("cart")).status_code, 200)
+
+    def test_the_remaining_items_still_total_correctly(self):
+        """
+        The dead entry must drop out without taking the rest of the cart
+        with it.
+        """
+        survivor = make_release(title="Onibaba", price="15.00")
+        self.set_cart({
+            str(self.release.id): 1,
+            str(survivor.id): 2,
+        })
+        self.release.delete()
+
+        context = self.context()
+        self.assertEqual(context["subtotal"], Decimal("30.00"))
+        self.assertEqual(context["total_quantity"], 2)
+        self.assertEqual(len(context["purchases"]), 1)
+
+    def test_a_deleted_release_is_pruned_from_the_session(self):
+        """
+        Otherwise the lookup runs again on every request for the life of the
+        session, and the stale id is handed to the checkout as part of the
+        bag.
+        """
+        self.set_cart({str(self.release.id): 1})
+        deleted_id = str(self.release.id)
+        self.release.delete()
+
+        self.client.get(reverse("cart"))
+        self.assertNotIn(deleted_id, self.client.session.get("cart", {}))
+
+    def test_a_cart_of_only_deleted_releases_reports_as_empty(self):
+        self.set_cart({str(self.release.id): 1})
+        self.release.delete()
+
+        context = self.context()
+        self.assertEqual(context["subtotal"], Decimal("0.00"))
+        self.assertEqual(context["total"], Decimal("0.00"))
+        self.assertEqual(context["purchases"], [])
 
 
 class CartViewTests(TestCase):
@@ -358,6 +401,40 @@ class CartViewTests(TestCase):
         self.assertNotIn(
             str(self.release.id), self.client.session.get("cart", {})
         )
+
+
+class DeletedReleaseSiteWideTests(TestCase):
+    """
+    Issue #129. The context processor runs for every template, so a release
+    deleted while in someone's cart took down every page rather than just the
+    cart, and the error pages could not render either because they bind the
+    same context.
+    """
+
+    def setUp(self):
+        self.release = make_release()
+        session = self.client.session
+        session["cart"] = {str(self.release.id): 1}
+        session.save()
+        self.release.delete()
+
+    def test_the_home_page_still_renders(self):
+        self.assertEqual(self.client.get(reverse("home")).status_code, 200)
+
+    def test_the_catalogue_still_renders(self):
+        self.assertEqual(self.client.get(reverse("releases")).status_code, 200)
+
+    def test_the_about_page_still_renders(self):
+        self.assertEqual(self.client.get(reverse("about")).status_code, 200)
+
+    def test_the_404_page_still_renders(self):
+        """
+        The one that made this unrecoverable. A broken context processor sent
+        the 404 to handler500, whose template bound the same context and
+        raised again.
+        """
+        response = self.client.get("/no-such-page-exists/")
+        self.assertEqual(response.status_code, 404)
 
 
 class CheckoutAccessTests(TestCase):
@@ -406,3 +483,94 @@ class WebhookTests(TestCase):
             HTTP_STRIPE_SIGNATURE="t=1,v1=not-a-real-signature",
         )
         self.assertEqual(Order.objects.count(), 0)
+
+
+class WebhookOrderCreationTests(TestCase):
+    """
+    Issue #129 in its more expensive form. The payment has already been taken
+    by the time this runs, so anything that raises here leaves a customer
+    charged with no order recorded, and Stripe retrying into the same failure.
+
+    The handler is called directly rather than through the endpoint, because
+    the endpoint verifies a signature that cannot be produced in a test.
+    """
+
+    def setUp(self):
+        self.release = make_release(price="20.00", copies=5)
+        self.handler = StripeWH_Handler(RequestFactory().post("/checkout/wh/"))
+
+    def build_event(self, bag):
+        return stripe.Event.construct_from(
+            {
+                "type": "payment_intent.succeeded",
+                "data": {
+                    "object": {
+                        "id": f"pi_test_{uuid4().hex}",
+                        "latest_charge": "ch_test_123",
+                        "metadata": {"bag": json.dumps(bag)},
+                        "shipping": {
+                            "name": "Ada Lovelace",
+                            "phone": "01234567890",
+                            "address": {
+                                "country": "GB",
+                                "postal_code": "SW1A 1AA",
+                                "city": "London",
+                                "line1": "1 Example Street",
+                                "line2": "",
+                                "state": "",
+                            },
+                        },
+                    }
+                },
+            },
+            "sk_test_key",
+        )
+
+    def run_handler(self, bag):
+        charge = stripe.Charge.construct_from(
+            {"billing_details": {"email": "ada@example.com"}}, "sk_test_key"
+        )
+        with patch("stripe.Charge.retrieve", return_value=charge):
+            return self.handler.handle_payment_intent_succeeded(
+                self.build_event(bag)
+            )
+
+    def test_a_normal_bag_creates_the_order_and_its_line_item(self):
+        response = self.run_handler({str(self.release.id): 2})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Order.objects.count(), 1)
+        self.assertEqual(Order.objects.first().lineitems.count(), 1)
+
+    def test_a_deleted_release_does_not_lose_the_order(self):
+        """
+        Before the fix this raised Releases.DoesNotExist, which escaped the
+        only except clause, returned a 500 to Stripe and recorded nothing.
+        """
+        deleted_id = self.release.id
+        self.release.delete()
+
+        response = self.run_handler({str(deleted_id): 1})
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(Order.objects.count(), 1)
+
+    def test_the_surviving_items_are_still_recorded(self):
+        survivor = make_release(title="Onibaba", price="15.00")
+        deleted_id = self.release.id
+        self.release.delete()
+
+        self.run_handler({str(deleted_id): 1, str(survivor.id): 2})
+
+        order = Order.objects.first()
+        self.assertEqual(order.lineitems.count(), 1)
+        self.assertEqual(order.subtotal, Decimal("30.00"))
+
+    def test_the_original_bag_still_records_what_was_bought(self):
+        """
+        The line item is gone but the order keeps the bag it was created
+        from, so the missing item is recoverable rather than invisible.
+        """
+        deleted_id = self.release.id
+        self.release.delete()
+
+        self.run_handler({str(deleted_id): 1})
+        self.assertIn(str(deleted_id), Order.objects.first().original_bag)

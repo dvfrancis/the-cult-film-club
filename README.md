@@ -12,7 +12,7 @@ The Cult Film Club is a business-to-consumer (B2C) full stack e-commerce platfor
 ![Amazon S3](https://img.shields.io/badge/Amazon%20S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white)
 ![Amazon CloudFront](https://img.shields.io/badge/Amazon%20CloudFront-9D5025?style=for-the-badge&logo=amazoncloudfront&logoColor=white)
 ![Stripe](https://img.shields.io/badge/Stripe-626CD9?style=for-the-badge&logo=Stripe&logoColor=white)
-![Heroku](https://img.shields.io/badge/heroku-%23430098.svg?style=for-the-badge&logo=heroku&logoColor=white)
+![Amazon EC2](https://img.shields.io/badge/Amazon%20EC2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white)
 
 ## Overview
 
@@ -63,8 +63,8 @@ Welcome to **The Cult Film Club**, where films find their forever home.
 
 ### Site Link
 
-[live site]: https://web-production-bd02.up.railway.app
-Heroku is the host of the [live site].
+[live site]: https://cultfilmclub.dominicfrancis.co.uk
+Amazon Web Services is the host of the [live site].
 
 ---
 
@@ -1452,7 +1452,9 @@ All other material on the site was created independently by myself to provide a 
 | Tool / Technology | Description |
 |-------------------|-------------|
 | [GitHub](https://github.com/) | Cloud-based platform for version control and collaborative code management using Git. |
-| [Heroku](https://www.heroku.com/) | Cloud platform that enables easy deployment, scaling, and management of web applications. |
+| [Amazon EC2](https://aws.amazon.com/ec2/) | Virtual server hosting the application, deployed to automatically on merge. |
+| [AWS Systems Manager](https://aws.amazon.com/systems-manager/) | Runs the deploy script on the instance and stores its configuration. |
+| [Amazon SES](https://aws.amazon.com/ses/) | Sends transactional email. |
 
 #### Design & Prototyping
 
@@ -1584,22 +1586,51 @@ pip3 install -r requirements.txt
 ```
 ##### 3. Setup environment variables
 
-Create a file named `.gitignore` in the project root (if it doesn't already exist), and add the following entries. This ensures sensitive data (passwords, etc) are not tracked by Git:
+Check that `.gitignore` in the project root lists the following, so that sensitive data is never tracked by Git:
 
 ```bash
-env.py
+.env
+.venv
 __pycache__/
 ```
-Then create a file named `env.py` in the root directory and add your environment variables (while developing, leave `DEBUG=True`, but before deployment make sure to set `DEBUG=False`:
 
-```python
-import os
+Then create a file named `.env` in the root directory. `settings.py` loads it with python-dotenv whenever it is present, so nothing has to be imported:
 
-os.environ['SECRET_KEY'] = 'Add your secret key'
-os.environ['DATABASE_URL'] = 'Add your database URL'
-os.environ['DEBUG'] = 'True'
-...other environment variables
+```bash
+DEBUG=True
+SECRET_KEY=add your secret key
+DATABASE_URL=postgres://your_user@/the_cult_film_club
 ```
+
+Leave `DEBUG=True` while developing. Production sets it to `False`, which is
+also what switches on the HTTPS and secure-cookie settings, so the site is
+unusable locally with it off.
+
+`SECRET_KEY` and `DATABASE_URL` are the only two required. Stripe keys are
+absent locally, so checkout does not work in development. Images do render,
+because they come from CloudFront over public HTTPS and need no configuring.
+
+###### The database URL must use a Unix socket
+
+Note the empty host in the example above, between the `@` and the `/`. That is
+not a typo, and the setup fails without it.
+
+`settings.py` passes `ssl_require=True` to `dj_database_url`, which always sets
+`sslmode=require` and overrides whatever the URL itself says. A local Postgres
+installed through Homebrew runs with `ssl = off`, so it refuses the connection:
+
+> server does not support SSL, but SSL was required
+
+libpq ignores `sslmode` over a Unix domain socket, so leaving the host empty
+avoids the problem entirely:
+
+```bash
+DATABASE_URL=postgres://your_user@/the_cult_film_club          # works
+DATABASE_URL=postgres://your_user@localhost/the_cult_film_club # fails
+```
+
+The same clause rules out SQLite locally, because the `sslmode` option is
+passed to whichever backend is configured.
 ##### 4. Migrate the database
 
 Run the following commands to apply changes to the relevant database tables:
@@ -1636,102 +1667,77 @@ You will now have full access to manage users, products, content, and more via t
 
 #### Deploying Remotely
 
-Follow these steps to deploy your Django project to Heroku:
+The site is deployed to an Amazon EC2 instance, and deployment is automatic.
+Merging a pull request into `main` is the whole process; there is no manual
+step and no dashboard to click.
 
-##### 1. Push Changes to GitHub
+##### 1. What happens on merge
 
-Make sure all changes are committed and pushed to your GitHub repository:
+`.github/workflows/deploy.yml` runs. It exchanges a GitHub OIDC token for
+temporary AWS credentials, then asks the instance to run its own deploy script
+through an AWS Systems Manager document:
 
-```bash
-git add .
-git commit -m "Prepare for Heroku deployment"
-git push
-```
-##### 2. Create a Heroku account and app
+| Stage | What it does |
+| --- | --- |
+| Authenticate | OIDC token exchanged for short-lived credentials. No AWS keys are stored in GitHub |
+| Invoke | The `DeployCultfilmclub` SSM document runs on the apps instance in `eu-west-2` |
+| Deploy | The script pulls the commit, installs dependencies, collects static files, migrates and restarts the service |
+| Verify | A smoke test requests the home page and expects HTTP 200 |
+| Recover | If the smoke test fails, the code is rolled back to the previous commit and the service restarted |
 
-- Go to [Heroku](https://www.heroku.com) and sign up (or log in).
-- In the Heroku Dashboard, click 'New' > 'Create new app'.
-- Give your app a unique name, and choose your region.
+Deploys are serialised by a concurrency group, so two quick merges cannot have
+the instance pulling one commit while still installing another.
 
-##### 3. Create a `Procfile`
+Documentation-only changes are skipped. A commit touching nothing but
+`README.md`, `TESTING.md`, `CLAUDE.md` or `documentation/` does not deploy.
 
-In your local project root directory, create a file named Procfile (no extension) and add the following line:
+##### 2. Database safety
 
-```bash
-web: gunicorn <your_app_name>.wsgi:application
-```
-Replace `<your_app_name>` with the name of your Django project (the folder containing `settings.py`). Don’t forget to commit and push this file to GitHub after creating it.
+The script snapshots the database before running migrations, but only when
+there is a migration to run. Migrations are deliberately never rolled back
+automatically, because reversing one is more dangerous than leaving it in
+place. The snapshot is the recovery path, and its name is printed in the
+deploy log.
 
-##### 4. Configure environment variables on Heroku
+##### 3. Configuration on the server
 
-In your Heroku app dashboard:
+Environment variables live in AWS Systems Manager Parameter Store and are
+written to the instance before the service starts. Nothing sensitive is held
+in the repository or in GitHub.
 
-- Navigate to 'Settings' > 'Reveal Config Vars'.
-- Add the following key-value pairs:
+No AWS access keys exist anywhere. The instance reads its credentials from its
+EC2 instance role, which is what lets it send email through Amazon SES and
+write uploaded images to S3.
 
-| Key | Value |
-| --- | ----- |
-| `DISABLE_COLLECTSTATIC` | `1` (disables the collectstatic build step during development - delete before deployment)
-| `DATABASE_URL` | Your database URL
-| `SECRET_KEY` | Your Django secret key
-| `EMAIL_USER` | Email address (from your email provider)
-| `EMAIL_PASSWORD` | Email password (from your email provider)
-| `STRIPE_PUBLIC_KEY` | Used to identify your account with Stripe
-| `STRIPE_SECRET_KEY` | Allows your app to interact securely with Stripe services
-| `STRIPE_WH_SECRET` | A secret string used to verify webhook events sent from Stripe
+##### 4. Media and static files
 
-Images are stored on Amazon S3 and served through CloudFront. The bucket, region and delivery domain all have working defaults in `settings.py`, so no variable is needed for them; `AWS_STORAGE_BUCKET_NAME`, `AWS_S3_REGION_NAME` and `AWS_S3_CUSTOM_DOMAIN` will override those defaults if you ever need to point at somewhere else. No AWS keys are stored anywhere: the server reads its credentials from its EC2 instance role.
+Uploaded images go to a private S3 bucket and are served through CloudFront on
+`media.cultfilmclub.dominicfrancis.co.uk`. The four CloudFormation templates
+that build that are in `infra/`, and each one carries the command to apply it
+in its header comment. They are applied by hand rather than by the deploy, so
+that a change to infrastructure is always a deliberate act.
 
+Static files are served by WhiteNoise from inside the application, using
+`CompressedManifestStaticFilesStorage`. `staticfiles/` is committed, so
+`collectstatic` must be re-run and the result committed whenever a static asset
+changes.
 
-##### 5. Set local environment variables
+##### 5. TLS
 
-In your local `env.py` file, add your environment variables using:
+nginx on the instance terminates TLS with a Let's Encrypt certificate managed
+by certbot, and proxies to the application over the loopback interface. It
+answers plain HTTP with a redirect to HTTPS.
 
-```python
-import os
+##### 6. Triggering a deploy by hand
 
-os.environ.setdefault("KEY", "VALUE")
-...other environment variables
-```
+The workflow also accepts a manual trigger, so a deploy can be run from the
+Actions tab without pushing a commit. This is the way to redeploy after
+changing a value in Parameter Store, since that alone does not produce a
+commit.
 
-Replace `KEY` and `VALUE` with your actual config keys and values.
-
-##### 6. Apply migrations
-
-Run the following commands locally to set up your database schema:
-
-```bash
-python3 manage.py makemigrations
-python3 manage.py migrate
-```
-
-##### 7. Update Django settings
-
-In `settings.py`, set:
-
-```python
-DEBUG = False
-```
-Commit and push this change to GitHub.
-
-##### 8. Connect Heroku to GitHub
-
-- In the Heroku app dashboard, go to the 'Deploy' tab.
-- Under Deployment method, select 'GitHub'.
-- Search for, and then connect, your repository.
-- Click 'Deploy Branch' to begin deployment.
-
-Optionally, enable automatic deploys so Heroku redeploys on every push to the `main` or `master` branch.
-
-##### 9. Final deployment steps
-
-When you're ready to finalise your project:
-- Double-check in `settings.py` that `DEBUG = False`.
-- Remove `DISABLE_COLLECTSTATIC` from your Heroku Config Vars.
-- Commit any final changes to GitHub.
-- Re-deploy from the Heroku dashboard
-
-Once deployed, your app should be live on Heroku. Visit your app URL and add `/admin` to access the Django admin panel using your superuser credentials.
+Once deployed, the site is live at the address in the Site Link section above.
+Append `/admin` to reach the Django admin panel using your superuser
+credentials.
 
 ---
 

@@ -1,5 +1,6 @@
 from pathlib import Path
 import os
+import sys
 import dj_database_url
 from decimal import Decimal
 from dotenv import load_dotenv
@@ -12,10 +13,28 @@ SITE_ID = 1
 # Debug mode (should be False in production)
 DEBUG = os.environ.get('DEBUG', 'False') == 'True'
 
+# True while `manage.py test` is running. Added with issue #112.
+#
+# CI runs with DEBUG off, which is right: it should exercise settings as close
+# to production as possible. But SECURE_SSL_REDIRECT below answers every plain
+# HTTP request with a 301, and the Django test client speaks plain HTTP, so
+# with it on every single test gets a 301 where it expected a 200.
+#
+# Checking sys.argv is blunt but honest, and it is confined to this one line.
+# The alternative was to have CI claim DEBUG=True, which would quietly switch
+# the email backend and anything else keyed on it, and would let a test pass
+# for reasons that do not hold in production.
+TESTING = "test" in sys.argv
+
 # Production security, gated on DEBUG the same way the email backend below is.
 # Every one of these is wrong locally, where runserver speaks plain HTTP and
 # enabling them would make the site unreachable.
-if not DEBUG:
+#
+# Skipped under test for the reason above. The settings themselves were
+# verified against the running site when they landed in issue #109, which is
+# the only place they can be checked meaningfully: they describe how the site
+# sits behind nginx, and nothing about that is reproducible in a test client.
+if not DEBUG and not TESTING:
     # TLS terminates at nginx on the apps box, on a Let's Encrypt certificate
     # managed by certbot. gunicorn listens on plain HTTP on 127.0.0.1:8002, so
     # every request Django sees arrives unencrypted and it judges them all
@@ -390,11 +409,28 @@ SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
 # Database configuration (using dj_database_url for parsing DATABASE_URL)
 # DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+# dj_database_url turns ssl_require into OPTIONS["sslmode"] = "require", and it
+# does that for whichever backend is configured, overriding any sslmode in the
+# URL itself. Requiring TLS to the database is right in production, where the
+# connection leaves the instance.
+#
+# It is wrong everywhere else, and it was blocking issue #112: a Postgres
+# service container in CI has ssl off, so every connection was refused with
+# "server does not support SSL, but SSL was required" before a single test
+# could run. Locally the same clause is why DATABASE_URL has to use a Unix
+# socket, where libpq ignores sslmode.
+#
+# Defaulting to True keeps production exactly as it was: nothing sets this
+# variable there, so nothing changes. CI sets it to False.
+DATABASE_SSL_REQUIRE = (
+    os.environ.get("DATABASE_SSL_REQUIRE", "True") == "True"
+)
+
 DATABASES = {
     'default': dj_database_url.config(
         default=os.environ.get('DATABASE_URL'),
         conn_max_age=600,
-        ssl_require=True
+        ssl_require=DATABASE_SSL_REQUIRE
     )
 }
 

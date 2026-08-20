@@ -121,8 +121,8 @@ Three prefixes, and the split matters:
 
 `infra/media-permissions.yaml` grants the instance role `releases/` and
 `profiles/` only, so anything touching `site/` needs admin credentials. That
-is deliberate rather than an oversight, and it is why `copy_media_to_s3` takes
-`--include-site` instead of always copying them.
+is deliberate rather than an oversight: `site/` holds the holding image and
+the homepage banners, which the application has no reason to overwrite.
 
 No delete permission is granted at all. Deleting a profile photo blanks the
 column and leaves the object, which is what the admin's clear tickbox already
@@ -131,8 +131,10 @@ did. Combined with bucket versioning, an overwrite is recoverable.
 The stored value is the prefix plus the old Cloudinary public id, with no file
 extension, so `Content-Type` is set explicitly on upload rather than inferred.
 
-Cloudinary is gone from this repo, but the account still exists: cloud name
-`dvzs9gve0` also serves craftr, which has its own migration outstanding.
+Cloudinary is gone entirely. craftr migrated on 15 August 2026 and the
+shared account, cloud name `dvzs9gve0`, was deleted on 20 August along with
+its SSM parameters. The `CLOUDINARY_PATH` constants in the applied
+migrations stay, because those have to keep working from an empty database.
 
 ## Conventions
 

@@ -291,12 +291,10 @@ MIDDLEWARE = [
 ]
 
 # CLOUDINARY_STORAGE used to sit here. Images moved to S3 and CloudFront in
-# issue #116 and nothing reads Cloudinary any more. The assets themselves are
-# untouched and the account stays open, because cloud name dvzs9gve0 also
-# serves craftr, which has its own migration still to do.
-#
-# The copy command takes --cloud-name rather than reading a setting, so it
-# still runs if anything ever needs pulling across again.
+# issue #116, craftr followed on 15 August 2026, and the shared account,
+# cloud name dvzs9gve0, was deleted on 20 August. There is nothing left to
+# read, and no way back: the copy command that pulled these across went
+# with it, since its source no longer exists.
 
 # Where the images live (issue #116). S3Storage reads these settings itself,
 # so STORAGES below needs no OPTIONS block and the order here does not matter.
@@ -332,8 +330,8 @@ STORAGES = {
         # Images moved to S3 in issue #116. Every stored value was rewritten
         # by a data migration at the same time, because Cloudinary kept these
         # at its account root with no prefix and the new keys carry one.
-        # CLOUDINARY_STORAGE above is kept so the old assets stay reachable
-        # while this beds in.
+        # The stored value is now the S3 key, so nothing here translates
+        # between the two.
         "BACKEND": "storages.backends.s3.S3Storage",
     },
     "staticfiles": {

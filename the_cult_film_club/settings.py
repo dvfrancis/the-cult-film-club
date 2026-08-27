@@ -301,7 +301,7 @@ MIDDLEWARE = [
 # The box gets its credentials from the instance role; nothing reads a key
 # from the environment.
 AWS_STORAGE_BUCKET_NAME = os.environ.get(
-    "AWS_STORAGE_BUCKET_NAME", "the-cult-film-club"
+    "AWS_STORAGE_BUCKET_NAME", "the-cult-film-club-dominicfrancis"
 )
 AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "eu-west-2")
 

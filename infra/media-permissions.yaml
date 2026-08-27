@@ -1,8 +1,8 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
 Description: >-
-  Lets the apps box read and write images in the the-cult-film-club bucket, so
-  uploads through the Django admin and the profile form work.
+  Lets the apps box read and write images in the media bucket, so uploads
+  through the Django admin and the profile form work.
 
 # The last infrastructure piece of issue #116, after infra/media-bucket.yaml and
 # infra/media-cdn.yaml. Nothing else is needed in AWS after this; what remains
@@ -61,15 +61,15 @@ Resources:
             # straight from templates, and uploaded once by hand. Nothing in
             # the application should be able to overwrite the holding image.
             Resource:
-              - arn:aws:s3:::the-cult-film-club/releases/*
-              - arn:aws:s3:::the-cult-film-club/profiles/*
+              - arn:aws:s3:::the-cult-film-club-dominicfrancis/releases/*
+              - arn:aws:s3:::the-cult-film-club-dominicfrancis/profiles/*
 
           - Sid: ListUploadedPrefixes
             Effect: Allow
             Action: s3:ListBucket
             # Bucket ARN, not an object ARN: ListBucket is a bucket-level
             # action, and pointing it at objects silently grants nothing.
-            Resource: arn:aws:s3:::the-cult-film-club
+            Resource: arn:aws:s3:::the-cult-film-club-dominicfrancis
             Condition:
               StringLike:
                 s3:prefix:

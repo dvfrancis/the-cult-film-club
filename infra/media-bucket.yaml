@@ -78,7 +78,20 @@ Resources:
       # Fixed name rather than one derived from the stack name. The name goes
       # into the Django settings on the box and into a CloudFront origin, so a
       # name that changed on replacement would break both silently.
-      BucketName: the-cult-film-club
+      #
+      # Renamed from the-cult-film-club on 27 August 2026, issue #135, to match
+      # the <project>-<owner> pattern the other personal buckets in the account
+      # already use. S3 has no rename, so this was a replacement:
+      # CloudFormation built the new bucket, DeletionPolicy Retain orphaned the
+      # old one, and the objects moved across with aws s3 sync before the CDN
+      # followed.
+      #
+      # It could not be done in one deploy. Both Outputs below carry the name
+      # and media-cdn.yaml imports both, so CloudFormation refused the update
+      # while the exports were in use. The CDN stack was deployed once from a
+      # scratch copy holding the old values as literals, which broke the
+      # imports, and then deployed again from this repository to restore them.
+      BucketName: the-cult-film-club-dominicfrancis
 
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
@@ -131,6 +144,12 @@ Resources:
       # filter matches a single prefix and there is no way to write an either
       # or. Priorities only settle overlapping rules, and these do not
       # overlap, so the numbers are just labels.
+      #
+      # The destination keeps the old name, deliberately. Object Lock there
+      # runs in compliance mode, so a renamed backup bucket could never be
+      # emptied or removed and the original would sit in the backup account
+      # for good. Nothing reads that bucket by name, so the mismatch with
+      # issue #135 costs nothing.
       #
       # DeleteMarkerReplication is Disabled, so removing an image here leaves
       # the backup copy alone. Deletes that name a specific version are never

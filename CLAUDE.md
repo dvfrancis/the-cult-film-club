@@ -106,10 +106,17 @@ on, the console backend prints messages to the terminal instead.
 
 ## Media
 
-Images live in the private `the-cult-film-club` S3 bucket and are served
-through CloudFront on `media.cultfilmclub.dominicfrancis.co.uk`. The four
-CloudFormation stacks that build it are in `infra/`; each template's header
-comment carries the command that applies it.
+Images live in the private `the-cult-film-club-dominicfrancis` S3 bucket and
+are served through CloudFront on `media.cultfilmclub.dominicfrancis.co.uk`. The
+four CloudFormation stacks that build it are in `infra/`; each template's
+header comment carries the command that applies it.
+
+Renaming that bucket takes three CloudFormation deploys, not one. The bucket
+stack exports the name and the origin domain, `media-cdn.yaml` imports both,
+and CloudFormation will not change an export that another stack is using. The
+CDN stack has to be deployed from a scratch copy with the old values inlined,
+then the bucket stack, then the CDN stack again from the repository. It was
+renamed once already, in issue #135.
 
 Three prefixes, and the split matters:
 

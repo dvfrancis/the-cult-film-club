@@ -110,12 +110,60 @@ Resources:
       # Half the point of the migration. Cloudinary keeps one copy of each
       # image and nothing else, so every release cover currently exists in
       # exactly one place. Versioning means an overwrite or a delete through
-      # the admin is recoverable. Old versions accumulate with no expiry,
-      # which is intended: the whole bucket is a few hundred megabytes, so
-      # keeping every version indefinitely costs pennies a year and a
-      # lifecycle rule would only add a way to lose something.
+      # the admin is recoverable.
+      #
+      # This used to say the lack of an expiry was intended, because a few
+      # hundred megabytes costs pennies and a rule would only add a way to
+      # lose something. That was written before the backup account existed.
+      # See the lifecycle rule below, added for issue #134.
       VersioningConfiguration:
         Status: Enabled
+
+      # Issue #134. Versioning carries no expiry of its own, so without this
+      # every superseded version is billed for ever.
+      #
+      # Almost nothing here makes one. AWS_S3_FILE_OVERWRITE is False, so
+      # django-storages renames rather than replaces, and an upload through
+      # the admin or the profile form always lands on a new key. The only
+      # writer that overwrites is a person running aws s3 cp against site/,
+      # which is why the one noncurrent version this bucket held before the
+      # rename was a re-uploaded banner. This is insurance against a slow leak
+      # the application cannot cause, rather than a fix for something growing.
+      #
+      # Ninety days matches tardis-archives and james-baker-coach. It is long
+      # enough to undo an accident and short enough that nothing piles up.
+      #
+      # Safe alongside the replication rules below, for two reasons. Only the
+      # version that is current when it is written gets replicated, so a
+      # version that is noncurrent here was copied across already. And
+      # lifecycle actions are never replicated, so expiring one here leaves
+      # the backup account's copy alone under its own lock.
+      #
+      # profiles/ has no second copy, because it is left out of replication on
+      # purpose. This rule cannot reach it either: with no overwrites there
+      # are no noncurrent versions in that prefix to expire. Clearing a
+      # photograph blanks the column and leaves the object current and
+      # unreferenced, which an expiry of noncurrent versions never touches.
+      #
+      # ExpiredObjectDeleteMarker tidies up after the line above it. Deleting
+      # a key in a versioned bucket hides it behind a marker rather than
+      # removing it. Once the version underneath expires, the marker is left
+      # describing an object that no longer exists. S3 refuses to remove a
+      # marker while any version still sits beneath it, so a key that still
+      # has content is never a candidate.
+      LifecycleConfiguration:
+        Rules:
+          - Id: expire-noncurrent-versions
+            Status: Enabled
+            NoncurrentVersionExpirationInDays: 90
+            ExpiredObjectDeleteMarker: true
+
+          # A multipart upload that fails partway leaves parts that are billed
+          # and that no object listing shows.
+          - Id: clean-up-failed-uploads
+            Status: Enabled
+            AbortIncompleteMultipartUpload:
+              DaysAfterInitiation: 7
 
       # tardis-archives issue #14. Versioning above protects against accident.
       # It does not protect against intent: anyone holding credentials in this

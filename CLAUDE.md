@@ -133,7 +133,11 @@ the homepage banners, which the application has no reason to overwrite.
 
 No delete permission is granted at all. Deleting a profile photo blanks the
 column and leaves the object, which is what the admin's clear tickbox already
-did. Combined with bucket versioning, an overwrite is recoverable.
+did. Combined with bucket versioning, an overwrite is recoverable for 90 days,
+after which the lifecycle rule added in issue #134 expires the superseded
+version. The application cannot create one: `AWS_S3_FILE_OVERWRITE` is `False`,
+so every upload lands on a new key and only a hand-run `aws s3 cp` against
+`site/` ever overwrites anything.
 
 The stored value is the prefix plus the old Cloudinary public id, with no file
 extension, so `Content-Type` is set explicitly on upload rather than inferred.

@@ -44,7 +44,7 @@ Resources:
     Properties:
       OriginAccessControlConfig:
         Name: cultfilmclub-media-oac
-        Description: Signs CloudFront reads of the the-cult-film-club bucket
+        Description: Signs CloudFront reads of the media bucket
         OriginAccessControlOriginType: s3
         SigningBehavior: always
         SigningProtocol: sigv4

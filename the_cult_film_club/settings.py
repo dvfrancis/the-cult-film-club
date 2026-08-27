@@ -64,10 +64,13 @@ if not DEBUG and not TESTING:
 
     # HSTS tells a browser to refuse plain HTTP for this host for this long,
     # and it is cached client-side, so a wrong value cannot be withdrawn - it
-    # has to expire. One hour to begin with, which is long enough to be real
-    # and short enough that a mistake costs an hour rather than a year. Raise
-    # it to 31536000 once this has run for a while.
-    SECURE_HSTS_SECONDS = 3600
+    # has to expire. It ran at 3600 from 12 August 2026, which was long enough
+    # to be real and short enough that a mistake cost an hour. Nothing went
+    # wrong in that time, so this is now a year.
+    #
+    # A year is the point at which the setting actually protects anyone. An
+    # hour only covered a visitor who came back the same morning.
+    SECURE_HSTS_SECONDS = 31536000
 
     # Covers media.cultfilmclub.dominicfrancis.co.uk, the only subdomain of
     # this host. That is CloudFront, whose viewer policy is redirect-to-https,
@@ -83,9 +86,11 @@ if not DEBUG and not TESTING:
     # decision about the whole domain rather than about this application, and
     # it is not one to make from here.
     #
-    # The token would also contradict the max-age above: preload submissions
-    # require a year, and this declares an hour. Setting it would put a claim
-    # in the header that is both inert and untrue.
+    # The max-age above used to be a second objection, because preload
+    # submissions require a year and this declared an hour. That objection is
+    # gone: the value now meets the threshold. The first reason stands on its
+    # own and is the one that matters, so it is worth saying plainly that
+    # qualifying to submit is not a reason to submit.
     #
     # Silenced rather than left as a standing warning, so that a future
     # `check --deploy` reporting something is reporting something new.

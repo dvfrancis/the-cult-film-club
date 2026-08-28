@@ -305,9 +305,24 @@ MIDDLEWARE = [
 # so STORAGES below needs no OPTIONS block and the order here does not matter.
 # The box gets its credentials from the instance role; nothing reads a key
 # from the environment.
+# Shared since issue #140, one folder per site, alongside hi-lo and
+# older-and-wider. The bucket belongs to the dominic-francis repository.
 AWS_STORAGE_BUCKET_NAME = os.environ.get(
-    "AWS_STORAGE_BUCKET_NAME", "the-cult-film-club-dominicfrancis"
+    "AWS_STORAGE_BUCKET_NAME", "portfolio-dominicfrancis"
 )
+
+# The folder inside that bucket. django-storages prepends this to every key,
+# for reads and writes alike, so nothing stored in the database changed: a row
+# still holds releases/<id>, and the storage turns that into
+# the-cult-film-club/releases/<id> on the way to S3.
+#
+# The other two sites get their folder from a CloudFront origin path instead,
+# which leaves their addresses untouched. That cannot work here. An origin
+# path rewrites reads only, and this is the one site that writes to the bucket
+# while it runs, so uploads would land outside the folder and CloudFront would
+# never find them. The cost is visible in the image addresses, which now carry
+# the folder.
+AWS_LOCATION = "the-cult-film-club"
 AWS_S3_REGION_NAME = os.environ.get("AWS_S3_REGION_NAME", "eu-west-2")
 
 # Serve through CloudFront rather than the bucket, which blocks all public

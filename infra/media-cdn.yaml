@@ -2,11 +2,15 @@ AWSTemplateFormatVersion: "2010-09-09"
 
 Description: >-
   Serves The Cult Film Club images from media.cultfilmclub.dominicfrancis.co.uk.
-  CloudFront distribution, the bucket policy that lets it read, and DNS.
+  CloudFront distribution and DNS.
 
-# Part of issue #116, and the step that makes infra/media-bucket.yaml usable.
-# The bucket blocks all public access, so until this stack exists nothing can
-# read an image from the internet.
+# Part of issue #116. The bucket blocks all public access, so until this stack
+# exists nothing can read an image from the internet.
+#
+# This is now the only stack in this repository that owns anything in AWS
+# besides the certificate and the instance-role policy. Issue #140 moved the
+# bucket into portfolio-dominicfrancis, owned by dominic-francis, and deleted
+# infra/media-bucket.yaml along with the cultfilmclub-media-bucket stack.
 #
 # Deploy infra/media-certificate.yaml first, to us-east-1, and pass its output
 # here:
@@ -21,10 +25,8 @@ Description: >-
 # Expect 5 to 10 minutes: CloudFormation waits for the distribution to finish
 # deploying to every edge location.
 #
-# Still not here, and the last infrastructure piece of #116: s3:PutObject on the
-# bucket for apps-ec2-role, so uploads through the Django admin and the profile
-# form work. That modifies a shared role this stack does not own, which is why
-# it gets a stack of its own.
+# s3:PutObject for apps-ec2-role lives in infra/media-permissions.yaml, in a
+# stack of its own, because it modifies a shared role this stack does not own.
 
 Parameters:
   CertificateArn:
@@ -34,6 +36,18 @@ Parameters:
       Must be an ACM certificate ARN in us-east-1. CloudFront accepts
       certificates from no other region.
     Description: Output of the cultfilmclub-media-certificate stack in us-east-1.
+
+  BucketDomainName:
+    Type: String
+    Default: portfolio-dominicfrancis.s3.eu-west-2.amazonaws.com
+    Description: >-
+      Origin for this distribution. Issue #140 changed this from an
+      ImportValue to a parameter, deliberately. The bucket now belongs to
+      dominic-francis-portfolio-bucket in another repository, so an import
+      would need that stack to export the value, and CloudFormation refuses
+      to change an export while anything imports it. That is what made the
+      rename in issue #135 cost three deploys rather than one. An export
+      nothing imports cannot deadlock a later change.
 
 Resources:
   # Origin Access Control replaces the old Origin Access Identity. The bucket
@@ -71,7 +85,7 @@ Resources:
 
         Origins:
           - Id: MediaBucket
-            DomainName: !ImportValue cultfilmclub-media-bucket-domain
+            DomainName: !Ref BucketDomainName
             OriginAccessControlId: !GetAtt OriginAccessControl.Id
             # Required by CloudFormation even for an S3 origin using OAC, and
             # must be present and empty. A non-empty OriginAccessIdentity here
@@ -97,31 +111,14 @@ Resources:
         - Key: ManagedBy
           Value: cloudformation
 
-  # Lives here rather than in media-bucket.yaml because it has to name the
-  # distribution, which that stack knows nothing about. CloudFormation is
-  # content for a bucket policy to sit in a different stack from its bucket.
-  BucketPolicy:
-    Type: AWS::S3::BucketPolicy
-    Properties:
-      Bucket: !ImportValue cultfilmclub-media-bucket-name
-      PolicyDocument:
-        Version: "2012-10-17"
-        Statement:
-          - Sid: AllowCloudFrontRead
-            Effect: Allow
-            Principal:
-              Service: cloudfront.amazonaws.com
-            Action: s3:GetObject
-            Resource: !Sub
-              - "arn:aws:s3:::${Bucket}/*"
-              - Bucket: !ImportValue cultfilmclub-media-bucket-name
-            # Without this condition the grant would be to the CloudFront
-            # service rather than to this distribution, and any distribution in
-            # any AWS account could be pointed at the bucket and read it.
-            Condition:
-              StringEquals:
-                AWS:SourceArn: !Sub
-                  "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+  # The bucket policy used to live here. It is now in
+  # dominic-francis/infra/portfolio-bucket.yaml, with issue #140, because one
+  # bucket has exactly one policy and that bucket is shared with hi-lo and
+  # older-and-wider. Two stacks writing one policy would take turns removing
+  # each other's statements.
+  #
+  # This distribution's id is a parameter over there. If every image starts
+  # answering 403, that list is the first thing to check.
 
   # Both records, because the distribution answers on IPv6 and a visitor on an
   # IPv6-only network gets no address at all from the A record alone.

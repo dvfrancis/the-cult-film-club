@@ -106,17 +106,31 @@ on, the console backend prints messages to the terminal instead.
 
 ## Media
 
-Images live in the private `the-cult-film-club-dominicfrancis` S3 bucket and
-are served through CloudFront on `media.cultfilmclub.dominicfrancis.co.uk`. The
-four CloudFormation stacks that build it are in `infra/`; each template's
-header comment carries the command that applies it.
+Images live in the `the-cult-film-club/` folder of the private, shared
+`portfolio-dominicfrancis` bucket, and are served through CloudFront on
+`media.cultfilmclub.dominicfrancis.co.uk`. `hi-lo/` and `older-and-wider/` sit
+in the same bucket. Issue #140 moved them in; before that the bucket was
+`the-cult-film-club-dominicfrancis`, and before that `the-cult-film-club`.
 
-Renaming that bucket takes three CloudFormation deploys, not one. The bucket
-stack exports the name and the origin domain, `media-cdn.yaml` imports both,
-and CloudFormation will not change an export that another stack is using. The
-CDN stack has to be deployed from a scratch copy with the old values inlined,
-then the bucket stack, then the CDN stack again from the repository. It was
-renamed once already, in issue #135.
+**This repository no longer owns the bucket.** It belongs to
+`dominic-francis/infra/portfolio-bucket.yaml`, and so do the bucket policy and
+the replication rules. A bucket has exactly one policy, so if every image
+starts answering 403, check that this distribution's id is still in the list
+there. `infra/` here holds the certificate, the CDN and the instance-role
+policy only.
+
+The folder comes from `AWS_LOCATION` in `settings.py`, not from a CloudFront
+origin path. The other two sites use an origin path, which keeps their
+addresses unchanged, and that cannot work here: an origin path rewrites reads
+only, and this is the one site that writes to the bucket while it runs.
+Nothing in the database changed for the move, because django-storages applies
+`AWS_LOCATION` to reads and writes alike. A row still holds `releases/<id>`.
+
+Beware exports. The bucket stack used to export its name and origin domain and
+`media-cdn.yaml` imported both, which meant CloudFormation refused to change
+either while the import stood. The rename in issue #135 cost three deploys for
+that reason. The origin is now a plain parameter, so a future move is one
+deploy.
 
 Three prefixes, and the split matters:
 

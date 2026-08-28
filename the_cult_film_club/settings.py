@@ -500,7 +500,15 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # S3Storage builds its own URLs from AWS_S3_CUSTOM_DOMAIN and never consults
 # this, so the two have to agree. Keeping it absolute also means images render
 # in local development, which they never did under Cloudinary.
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/"
+#
+# AWS_LOCATION has to be repeated here, and leaving it out was a real bug for
+# the length of one deploy in issue #140. django-storages applies AWS_LOCATION
+# itself, so a release cover reached the right key. Nothing applies it to this
+# string. The site/ images are the only ones that use it, because they are
+# pasted into templates rather than stored on a model, so all seven references
+# pointed at the bucket root and would have answered 403 the moment the
+# CloudFront origin moved.
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{AWS_LOCATION}/"
 
 # Unused now that uploads go to S3, and kept only because urls.py passes it to
 # static(). That helper returns nothing for an absolute MEDIA_URL, so the line

@@ -8,6 +8,8 @@ gone wrong is exactly the page that breaks quietly.
 
 from decimal import Decimal
 
+from django.conf import settings
+from django.core.files.storage import default_storage
 from django.test import TestCase
 from django.urls import reverse
 from django.utils import timezone
@@ -51,6 +53,49 @@ class HomePageTests(TestCase):
         """
         response = self.client.get(reverse("home"))
         self.assertNotContains(response, "res.cloudinary.com")
+
+
+class MediaUrlTests(TestCase):
+    """
+    Two settings build image addresses, and nothing makes them agree.
+
+    django-storages applies AWS_LOCATION on its own, so a release cover
+    reached the right key throughout issue #140. MEDIA_URL is a plain string
+    that nothing applies it to, and the site/ images are pasted into templates
+    rather than stored on a model, so they were the only ones that used it.
+    They pointed at the bucket root for the length of one deploy and would
+    have answered 403 the moment the CloudFront origin moved.
+    """
+
+    def test_media_url_carries_the_storage_folder(self):
+        if not getattr(settings, "AWS_LOCATION", ""):
+            self.skipTest("no folder configured")
+        self.assertTrue(
+            settings.MEDIA_URL.rstrip("/").endswith(
+                "/" + settings.AWS_LOCATION
+            ),
+            "MEDIA_URL must repeat AWS_LOCATION; storage adds it itself and "
+            "template references to site/ do not.",
+        )
+
+    def test_the_two_mechanisms_agree_for_one_key(self):
+        """
+        The same key has to produce the same address either way. A prefix
+        check is not enough: the buggy MEDIA_URL was a prefix of the storage
+        address, so a startswith assertion passed while the bug was live.
+        """
+        key = "site/holding_image"
+        self.assertEqual(
+            default_storage.url(key), settings.MEDIA_URL + key
+        )
+
+    def test_the_home_page_banners_point_inside_the_folder(self):
+        if not getattr(settings, "AWS_LOCATION", ""):
+            self.skipTest("no folder configured")
+        response = self.client.get(reverse("home"))
+        self.assertContains(
+            response, "/%s/site/" % settings.AWS_LOCATION
+        )
 
 
 class ErrorPageTests(TestCase):

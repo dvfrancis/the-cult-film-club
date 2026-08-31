@@ -890,13 +890,13 @@ Male, aged 22, loves discussing his favourite films in cult film communities. Wa
 
 - These features were identified as desirable for the site, but were not implemented due to project time constraints.
 
-|Issue|Item|Description|
-| ------------- | ------------- | ------------- |
-| [#24](https://github.com/dvfrancis/the-cult-film-club/issues/24) | Django admin portal customisation | Adjust the style and content of the portal to fit better with the site |
-| [#64](https://github.com/dvfrancis/the-cult-film-club/issues/64) | Newsletter subscriptions | Although the site takes user's details for a newsletter, the newsletter itself is not actually produced so this functionality would be nice to implement |
-| [#65](https://github.com/dvfrancis/the-cult-film-club/issues/65) | User forum | Implementing a user forum would help build a sense of community on the site |
-| [#86](https://github.com/dvfrancis/the-cult-film-club/issues/86) | Loyalty points | Allow users to collect points when buying items, and then redeem them against future purchases |
-| [#89](https://github.com/dvfrancis/the-cult-film-club/issues/89) | Alternative shipping types and providers | Give users the option to choose what type of shipping they'd like and also the shipping provider |
+|Item|Description|
+| ------------- | ------------- |
+| Django admin portal customisation | Adjust the style and content of the portal to fit better with the site |
+| Newsletter subscriptions | Although the site takes user's details for a newsletter, the newsletter itself is not actually produced so this functionality would be nice to implement |
+| User forum | Implementing a user forum would help build a sense of community on the site |
+| Loyalty points | Allow users to collect points when buying items, and then redeem them against future purchases |
+| Alternative shipping types and providers | Give users the option to choose what type of shipping they'd like and also the shipping provider |
 
 ---
 
